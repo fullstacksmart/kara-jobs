@@ -7,18 +7,18 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import firebase from 'firebase';
 
+console.log(process.env.REACT_APP_FIREBASE_APIKEY);
 
 firebase.initializeApp({
-    apiKey: process.env.FIREBASE_APIKEY,
+    apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
     authDomain: "kara-628e0.firebaseapp.com",
     databaseURL: "https://kara-628e0.firebaseio.com",
     projectId: "kara-628e0",
     storageBucket: "kara-628e0.appspot.com",
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
     measurementId: "G-X3SZGVYYVG"
 });
-console.log(process.env.REACT_APP_FIREBASE_APIKEY);
 
 ReactDOM.render(
   <React.StrictMode>
