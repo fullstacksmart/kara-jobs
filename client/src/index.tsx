@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import dotenv from 'dotenv';
+dotenv.config();
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import firebase from 'firebase';
-import dotenv from 'dotenv';
 
-dotenv.config();
 
 firebase.initializeApp({
     apiKey: process.env.FIREBASE_APIKEY,
@@ -18,6 +18,7 @@ firebase.initializeApp({
     appId: process.env.FIREBASE_APP_ID,
     measurementId: "G-X3SZGVYYVG"
 });
+console.log(process.env.REACT_APP_FIREBASE_APIKEY);
 
 ReactDOM.render(
   <React.StrictMode>

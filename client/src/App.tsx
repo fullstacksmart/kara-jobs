@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
+import firebase from 'firebase';
+const firebaseApp = firebase.apps[0];
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+
         </a>
       </header>
     </div>
