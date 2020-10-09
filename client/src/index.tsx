@@ -7,8 +7,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import firebase from 'firebase';
 
-console.log(process.env.REACT_APP_FIREBASE_APIKEY);
-
 firebase.initializeApp({
     apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
     authDomain: "kara-628e0.firebaseapp.com",
