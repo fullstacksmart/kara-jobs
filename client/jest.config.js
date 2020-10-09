@@ -8,6 +8,9 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest"
   },
+  moduleNameMapper: {
+    '^.+\\.(css|scss|cssmodule)$': 'identity-obj-proxy'
+  },
 
   // Runs special logic, such as cleaning up components
   // when using React Testing Library and adds special
