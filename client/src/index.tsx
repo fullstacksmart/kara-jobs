@@ -9,13 +9,13 @@ import firebase from 'firebase';
 
 firebase.initializeApp({
     apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
-    authDomain: "kara-628e0.firebaseapp.com",
-    databaseURL: "https://kara-628e0.firebaseio.com",
-    projectId: "kara-628e0",
-    storageBucket: "kara-628e0.appspot.com",
+    authDomain: `${process.env.REACT_APP_FIREBASE_PROJECT_ID}.firebaseapp.com`,
+    databaseURL: `https://${process.env.REACT_APP_FIREBASE_PROJECT_ID}.firebaseio.com`,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: "${process.env.REACT_APP_FIREBASE_PROJECT_ID}.appspot.com",
     messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_FIREBASE_APP_ID,
-    measurementId: "G-X3SZGVYYVG"
+    measurementId: `G-${process.env.REACT_APP_FIREBASE_MEASUREMENT_ID}`
 });
 
 ReactDOM.render(
