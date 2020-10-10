@@ -1,14 +1,15 @@
 import React from 'react';
 import styles from './Home.module.scss';
 import { Link } from 'react-router-dom';
+import Login from '../../components/Login';
 
-interface HomeProps {}
+// interface HomeProps {}
 
-const Home: React.FC<HomeProps> = (props: HomeProps) => {
+const Home: React.FC<unknown> = (props: unknown) => {
   return (
     <div className={styles.Home}>
       <nav className={styles.NavBar}>
-        <button>Log in</button>
+        <Login />
         <Link to="/signup">
           <button>Sign up</button>
         </Link>
