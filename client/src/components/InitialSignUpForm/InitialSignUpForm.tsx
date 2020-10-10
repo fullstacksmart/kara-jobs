@@ -3,6 +3,7 @@ import EmployerSignUp from '../../containers/EmployerSignUp';
 import TalentSignUp from '../../containers/TalentSignUp';
 import {talentInfo} from '../../types/signup';
 import styles from './InitialSignUpForm.module.scss';
+import BlueWrapper from '../../containers/BlueWrapper'
 
 interface InitialSignUpFormProps {}
 
@@ -31,7 +32,7 @@ const InitialSignUpForm: React.FC<InitialSignUpFormProps> = (
     return <EmployerSignUp />;
   } else {
     return (
-      <div className={styles.InitialSignUpForm}>
+      <BlueWrapper>
         <h1>In wenigen Schritten zu deinem Profil</h1>
         <form onSubmit={handleSubmit}>
           <label>Email</label>
@@ -51,7 +52,7 @@ const InitialSignUpForm: React.FC<InitialSignUpFormProps> = (
           <button>Registrieren</button>
         </form>
         <button onClick={() => handleSubmit('employer')}>Ich bin Arbaitgeber</button>
-      </div>
+        </BlueWrapper>
     );
   }
 };
