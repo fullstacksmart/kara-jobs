@@ -1,9 +1,9 @@
-export interface talent {
-  email: String,
-  firstName: String,
-  lastName: String,
-  isoCode: String,
-  residence: String,
-  zipCode: String,
-  city: String,
+export interface Talent {
+  email: string;
+  firstName: string;
+  lastName: string;
+  isoCode: string;
+  residence: string;
+  zipCode: string;
+  city: string;
 }
