@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import EmployerSignUp from '../../containers/EmployerSignUp';
 import TalentSignUp from '../../containers/TalentSignUp';
+import {talentInfo} from '../../types/signup';
 import styles from './InitialSignUpForm.module.scss';
 
 interface InitialSignUpFormProps {}
+
 
 const InitialSignUpForm: React.FC<InitialSignUpFormProps> = (
   props: InitialSignUpFormProps,
 ) => {
   const [signUpFlow, setSignUpFlow] = useState('');
-  const [talentInfo, setTalentInfo] = useState({ email: '', password: '' });
+  const [talentInfo, setTalentInfo] = useState<talentInfo>({ email: '', password: '' });
 
   const handleChange = (e: any) => {
-    console.log(e.target);
-    console.log(e.target.id);
     if (e.target.id === 'email') {
       setTalentInfo({ email: e.target.value, password: talentInfo.password });
     } else if (e.target.id === 'password') {
@@ -21,12 +21,12 @@ const InitialSignUpForm: React.FC<InitialSignUpFormProps> = (
     }
   };
 
-  const handleSubmit = () => {
-    setSignUpFlow('talent');
+  const handleSubmit = (identifier: any) => {
+    identifier === 'employer' ? setSignUpFlow(identifier) : setSignUpFlow('talent');
   };
 
   if (signUpFlow === 'talent') {
-    return <TalentSignUp />;
+    return <TalentSignUp talentInfo={talentInfo}/>;
   } else if (signUpFlow === 'employer') {
     return <EmployerSignUp />;
   } else {
@@ -50,7 +50,7 @@ const InitialSignUpForm: React.FC<InitialSignUpFormProps> = (
           ></input>
           <button>Registrieren</button>
         </form>
-        <span>Ich bin Arbaitgeber</span>
+        <button onClick={() => handleSubmit('employer')}>Ich bin Arbaitgeber</button>
       </div>
     );
   }
