@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import styles from './TalentSignUp1.module.scss';
 import {talent} from '../../../types/talent'
-import BlueWrapper from '../../../containers/BlueWrapper'
 
 interface TalentSignUp1Props {
   talentHandler: Function,
-  progessHandler: Function,
+  progressHandler: Function,
   talent: talent,
 }
 
@@ -31,12 +30,11 @@ const TalentSignUp1: React.FC<TalentSignUp1Props> = (props: TalentSignUp1Props) 
 
   const handleSubmit = () => {
     props.talentHandler(info)
-    props.progessHandler(2)
+    props.progressHandler(2)
   };
 
 
   return (
-    <BlueWrapper>
       <div className={styles.TalentSignUp1}>
         <p>{`Hallo ${props.talent.firstName} ${props.talent.lastName}, in ein paar
         Schritten kommst du zu deinem Profl`}</p>
@@ -65,7 +63,6 @@ const TalentSignUp1: React.FC<TalentSignUp1Props> = (props: TalentSignUp1Props) 
           <button>Weiter</button>
         </form>
       </div>
-    </BlueWrapper>
   )
 };
 

@@ -6,4 +6,11 @@ export interface talent {
   residence: String,
   zipCode: String,
   city: String,
+  occupationId: String,
+  positionName: String,
+  occupationStatusId: String,
+  employerName: String,
+  studyProgram: String,
+  university: String,
+  expectedGraduationYear: String,
 }

@@ -4,7 +4,7 @@ import BlueWrapper from '../../../containers/BlueWrapper'
 
 interface TalentSignUp0Props {
   talentHandler: Function,
-  progessHandler: Function,
+  progressHandler: Function,
 }
 
 
@@ -22,7 +22,7 @@ const TalentSignUp0: React.FC<TalentSignUp0Props> = (props: TalentSignUp0Props) 
 
   const handleSubmit = () => {
     props.talentHandler(info)
-    props.progessHandler(1)
+    props.progressHandler(1)
   };
 
   return (
