@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styles from './TalentSignUp0.module.scss';
+import BlueWrapper from '../../../containers/BlueWrapper'
 
 interface TalentSignUp0Props {
   talentHandler: Function,
@@ -25,6 +26,7 @@ const TalentSignUp0: React.FC<TalentSignUp0Props> = (props: TalentSignUp0Props) 
   };
 
   return (
+    <BlueWrapper>
       <div className={styles.TalentSignUp0}>
         <form onSubmit={handleSubmit}>
           <label>Vorname*</label>
@@ -44,6 +46,7 @@ const TalentSignUp0: React.FC<TalentSignUp0Props> = (props: TalentSignUp0Props) 
           <button>Weiter</button>
         </form>
       </div>
+    </BlueWrapper>
   )
 };
 

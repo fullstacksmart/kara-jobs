@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styles from './TalentSignUp1.module.scss';
 import {talent} from '../../../types/talent'
+import BlueWrapper from '../../../containers/BlueWrapper'
 
 interface TalentSignUp1Props {
   talentHandler: Function,
@@ -13,20 +14,29 @@ const TalentSignUp1: React.FC<TalentSignUp1Props> = (props: TalentSignUp1Props) 
   const [info, setInfo] = useState({residence: '', zipCode: '', city: ''})
 
   const handleChange = (e: any) => {
-    // if (e.target.id === 'firstName') {
-    //   setInfo({ firstName: e.target.value, zipCode: info.zipCode });
-    // } else if (e.target.id === 'zipCode') {
-    //   setInfo({ firstName: info.firstName, zipCode: e.target.value });
-    // }
+    switch(e.target.id) {
+      case 'residence':
+        setInfo({ residence: e.target.value, zipCode: info.zipCode, city: info.city });
+        break;
+      case 'zipCode':
+        setInfo({ residence: info.residence, zipCode: e.target.value, city: info.city });
+        break;
+      case 'city':
+        setInfo({ residence: info.residence, zipCode: e.target.value, city: e.target.value });
+        break;
+      default:
+        break;
+    }
   };
 
   const handleSubmit = () => {
-    // props.talentHandler(info)
+    props.talentHandler(info)
     props.progessHandler(2)
   };
 
 
   return (
+    <BlueWrapper>
       <div className={styles.TalentSignUp1}>
         <p>{`Hallo ${props.talent.firstName} ${props.talent.lastName}, in ein paar
         Schritten kommst du zu deinem Profl`}</p>
@@ -55,6 +65,7 @@ const TalentSignUp1: React.FC<TalentSignUp1Props> = (props: TalentSignUp1Props) 
           <button>Weiter</button>
         </form>
       </div>
+    </BlueWrapper>
   )
 };
 
