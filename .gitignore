@@ -4,3 +4,4 @@ server/firebase/credentials.json
 server/dist
 credentials.json
 .vscode
+@ignore

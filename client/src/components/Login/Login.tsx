@@ -1,5 +1,5 @@
 import React from 'react';
-import GoogleLogin from '../GoogleLogin';
+// import GoogleLogin from '../GoogleLogin';
 import styles from './Login.module.scss';
 
 const Login: React.FC<unknown> = ({}) => {
@@ -7,7 +7,7 @@ const Login: React.FC<unknown> = ({}) => {
 
   return (
     <div className={styles.Login}>
-      <GoogleLogin text="Login with Google" />
+      {/* <GoogleLogin text="Login with Google" /> */}
     </div>
   );
 };
