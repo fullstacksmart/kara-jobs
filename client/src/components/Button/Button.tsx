@@ -1,11 +1,14 @@
 import React from 'react';
 import styles from './Button.module.scss';
 
-interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
-}
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button: React.FC<ButtonProps> = (children, ...props) => {
-return <button className={styles.Button} {...props}>{children}</button>;
+const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+  return (
+    <button className={styles.Button} {...props}>
+      {props.children}
+    </button>
+  );
 };
 
 export default Button;
