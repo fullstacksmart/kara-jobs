@@ -1,4 +1,4 @@
-export interface talentInfo {
-  email: String,
-  password: String
+export interface TalentInfo {
+  email: string;
+  password: string;
 }
