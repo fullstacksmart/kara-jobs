@@ -6,4 +6,11 @@ export interface Talent {
   residence: string;
   zipCode: string;
   city: string;
+  occupationId: string;
+  positionName: string;
+  occupationStatusId: string;
+  employerName: string;
+  studyProgram: string;
+  university: string;
+  expectedGraduationYear: string;
 }
