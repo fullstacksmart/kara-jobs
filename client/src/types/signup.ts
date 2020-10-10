@@ -1,4 +1,4 @@
 export interface talentInfo {
-  email: String,
-  password: String
+  email: string,
+  password: string
 }
