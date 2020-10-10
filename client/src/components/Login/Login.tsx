@@ -1,10 +1,15 @@
 import React from 'react';
+import GoogleLogin from '../GoogleLogin';
 import styles from './Login.module.scss';
 
-// interface LoginProps {}
+const Login: React.FC<unknown> = ({}) => {
+  // const emailAuth = new firebase.auth.EmailAuthProvider();
 
-const Login: React.FC<unknown> = (props: unknown) => {
-  return <div className={styles.Login}>Login works!</div>;
+  return (
+    <div className={styles.Login}>
+      <GoogleLogin text="Login with Google" />
+    </div>
+  );
 };
 
 export default Login;

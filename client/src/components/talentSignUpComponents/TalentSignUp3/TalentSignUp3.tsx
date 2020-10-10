@@ -1,25 +1,28 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styles from './TalentSignUp3.module.scss';
 
 interface TalentSignUp3Props {
-	talentHandler: Function;
-	progressHandler: Function
+  talentHandler: (obj: unknown) => void;
+  progressHandler: (num: number) => void;
 }
 
+const TalentSignUp3: React.FC<TalentSignUp3Props> = ({
+  talentHandler,
+  progressHandler,
+}: TalentSignUp3Props) => {
+  const [info, setInfo] = useState({
+    positionName: '',
+    occupationStatusId: '',
+    employerName: '',
+  });
 
-const TalentSignUp3: React.FC<TalentSignUp3Props> = ({ talentHandler, progressHandler }: TalentSignUp3Props) => {
-	const [info, setInfo] = useState({positionName: '', occupationStatusId: '', employerName: ''});
+  // const handleChange = (identifier: string) => {};
 
-	const handleChange = (identifier: string) => {
-
-	}
-
-	const handleSubmit = () => {
-	}
+  // const handleSubmit = () => {};
 
   return (
-	<div className={styles.TalentSignUp3}>
-		{/* <form onSubmit={handleSubmit}>
+    <div className={styles.TalentSignUp3}>
+      {/* <form onSubmit={handleSubmit}>
 				<label>Position*</label>
           <input
             type="text"
@@ -49,8 +52,8 @@ const TalentSignUp3: React.FC<TalentSignUp3Props> = ({ talentHandler, progressHa
           ></input>
 				<button>Weiter</button>
       </form> */}
-	</div>
-	)
+    </div>
+  );
 };
 
 export default TalentSignUp3;

@@ -1,4 +1,4 @@
-export interface talent {
+export interface Talent {
   email: string;
   firstName: string;
   lastName: string;

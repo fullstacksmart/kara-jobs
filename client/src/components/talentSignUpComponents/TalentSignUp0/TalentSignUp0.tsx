@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styles from './TalentSignUp0.module.scss';
-import BlueWrapper from '../../../containers/BlueWrapper'
+import BlueWrapper from '../../../containers/BlueWrapper';
 
 interface TalentSignUp0Props {
-  talentHandler: Function,
-  progressHandler: Function,
+  talentHandler: (obj: unknown) => void;
+  progressHandler: (num: number) => void;
 }
 
-const TalentSignUp0: React.FC<TalentSignUp0Props> = (props: TalentSignUp0Props) => {
-  const [info, setInfo] = useState({firstName: '', lastName: ''})
+const TalentSignUp0: React.FC<TalentSignUp0Props> = (
+  props: TalentSignUp0Props,
+) => {
+  const [info, setInfo] = useState({ firstName: '', lastName: '' });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.target.id === 'firstName') {
       setInfo({ firstName: e.target.value, lastName: info.lastName });
     } else if (e.target.id === 'lastName') {
@@ -19,8 +21,8 @@ const TalentSignUp0: React.FC<TalentSignUp0Props> = (props: TalentSignUp0Props) 
   };
 
   const handleSubmit = () => {
-    props.talentHandler(info)
-    props.progressHandler(1)
+    props.talentHandler(info);
+    props.progressHandler(1);
   };
 
   return (
@@ -45,7 +47,7 @@ const TalentSignUp0: React.FC<TalentSignUp0Props> = (props: TalentSignUp0Props) 
         </form>
       </div>
     </BlueWrapper>
-  )
+  );
 };
 
 export default TalentSignUp0;

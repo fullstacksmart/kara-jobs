@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './TalentSignUp.module.scss';
-import { talentInfo } from '../../types/signup';
-import { talent } from '../../types/talent';
+import { TalentInfo } from '../../types/signup';
+import { Talent } from '../../types/talent';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
 import TalentSignUp1 from '../../components/talentSignUpComponents/TalentSignUp1';
 import TalentSignUp2 from '../../components/talentSignUpComponents/TalentSignUp2';
@@ -12,13 +12,13 @@ import TalentSignUp6 from '../../components/talentSignUpComponents/TalentSignUp6
 import TalentSignUp7 from '../../components/talentSignUpComponents/TalentSignUp7';
 
 interface TalentSignUpProps {
-  talentInfo: talentInfo;
+  talentInfo: TalentInfo;
 }
 
 const TalentSignUp: React.FC<TalentSignUpProps> = (
   props: TalentSignUpProps,
 ) => {
-  const [talent, setTalent] = useState<talent>({
+  const [talent, setTalent] = useState<Talent>({
     email: props.talentInfo.email,
     firstName: '',
     lastName: '',
@@ -37,45 +37,54 @@ const TalentSignUp: React.FC<TalentSignUpProps> = (
 
   const [progress, setProgress] = useState<number>(0);
 
-  const talentHandler: Function = (obj: Object): void => {
+  const talentHandler = (obj: unknown): void => {
     setTalent((talent) => Object.assign(talent, obj));
   };
 
-  const progressHandler: Function = (num: number): void => {
+  const progressHandler = (num: number): void => {
     setProgress(() => num);
   };
 
+  // TODO: find better keys
   const components: React.ReactNode[] = [
     <TalentSignUp0
+      key={0}
       talentHandler={talentHandler}
       progressHandler={progressHandler}
     />,
     <TalentSignUp1
+      key={1}
       talent={talent}
       talentHandler={talentHandler}
       progressHandler={progressHandler}
     />,
     <TalentSignUp2
+      key={2}
       talentHandler={talentHandler}
       progressHandler={progressHandler}
     />,
     <TalentSignUp3
+      key={3}
       talentHandler={talentHandler}
       progressHandler={progressHandler}
     />,
     <TalentSignUp4
+      key={4}
       talentHandler={talentHandler}
       progressHandler={progressHandler}
     />,
     <TalentSignUp5
+      key={5}
       talentHandler={talentHandler}
       progressHandler={progressHandler}
     />,
     <TalentSignUp6
+      key={6}
       talentHandler={talentHandler}
       progressHandler={progressHandler}
     />,
     <TalentSignUp7
+      key={7}
       talentHandler={talentHandler}
       progressHandler={progressHandler}
     />,
