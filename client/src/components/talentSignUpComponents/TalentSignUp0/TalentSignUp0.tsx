@@ -7,8 +7,6 @@ interface TalentSignUp0Props {
   progressHandler: Function,
 }
 
-
-
 const TalentSignUp0: React.FC<TalentSignUp0Props> = (props: TalentSignUp0Props) => {
   const [info, setInfo] = useState({firstName: '', lastName: ''})
 
