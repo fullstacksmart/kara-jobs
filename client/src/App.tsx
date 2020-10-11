@@ -2,8 +2,8 @@ import React from 'react';
 import './App.scss';
 import Router from './containers/Router';
 
-function App() {
+const App: React.FC<unknown> = () => {
   return <Router />;
-}
+};
 
 export default App;
