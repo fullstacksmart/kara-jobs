@@ -7,7 +7,7 @@ const Login: React.FC<unknown> = ({}) => {
 
   return (
     <div className={styles.Login}>
-      <GoogleLogin text="Login with Google" />
+      {/* <GoogleLogin text="Login with Google" /> */}
     </div>
   );
 };

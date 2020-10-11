@@ -6,10 +6,12 @@ import styles from './Router.module.scss';
 
 const Router: React.FC<unknown> = () => {
   return (
-    <BrowserRouter>
-      <Route path="/" exact component={Home}></Route>
-      <Route path="/signup" exact component={SignUp}></Route>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Route path="/" exact component={Home}></Route>
+        <Route path="/signup" exact component={SignUp}></Route>
+      </BrowserRouter>
+    </>
   );
 };
 
