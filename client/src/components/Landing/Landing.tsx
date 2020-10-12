@@ -5,7 +5,7 @@ const Landing: React.FC<unknown> = () => {
   return (
     <div className={styles.Landing}>
       <header>
-        <img src={require('')} />
+        <img src={require('../../../public/logos/kara_creme.png')} />
       </header>
     </div>
   );
