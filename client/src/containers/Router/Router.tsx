@@ -43,7 +43,7 @@ const Router: React.FC<unknown> = () => {
     <Loading />
   ) : (
     <BrowserRouter>
-      <Route path="/" exact component={Home}></Route>
+      <Route path="/" exact component={TalentRegistration}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       {paths.map((path) => path)}
     </BrowserRouter>
