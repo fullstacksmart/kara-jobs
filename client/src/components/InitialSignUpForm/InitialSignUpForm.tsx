@@ -35,7 +35,7 @@ const InitialSignUpForm: React.FC<unknown> = () => {
     return (
       <BlueWrapper>
         <h1>In wenigen Schritten zu deinem Profil</h1>
-        {/* TODO: fix onSubmit function */}
+        {/* TODO: fix  function */}
         <form
           onSubmit={() => {
             console.log('change me!');
@@ -59,9 +59,11 @@ const InitialSignUpForm: React.FC<unknown> = () => {
             <button>Registrieren</button>
           </Link>
         </form>
-        <button onClick={() => handleSubmit('employer')}>
-          Ich bin Arbaitgeber
-        </button>
+        <Link to="/employer-signup-0">
+          <button onClick={() => handleSubmit('employer')}>
+            Ich bin Arbaitgeber
+          </button>
+        </Link>
       </BlueWrapper>
     );
   }

@@ -10,6 +10,7 @@ import { RootState } from '../../services/reducers';
 import Loading from '../../components/Loading';
 import Success from '../../components/Success';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
+import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
 //import TalentRegistration from '../../components/TalentRegistration';
 
 const Router: React.FC<unknown> = () => {
@@ -22,6 +23,12 @@ const Router: React.FC<unknown> = () => {
           path="/talent-signup-0"
           exact
           component={TalentSignUp0}
+        ></Route>,
+        <Route
+          key="/emnployer-signup-0"
+          path="/employer-signup-0"
+          exact
+          component={EmployerSignUp0}
         ></Route>,
       ]
     : [
