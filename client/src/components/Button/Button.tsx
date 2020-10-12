@@ -3,9 +3,15 @@ import styles from './Button.module.scss';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ({
+  className,
+  ...props
+}: ButtonProps) => {
   return (
-    <button className={styles.Button} {...props}>
+    <button
+      className={className ? styles.Button + ' ' + className : styles.Button}
+      {...props}
+    >
       {props.children}
     </button>
   );
