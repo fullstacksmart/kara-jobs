@@ -9,7 +9,7 @@ export interface Employer {
   street: string;
   streetNumber: string;
   addressAditional: string;
-  zipCode: number;
+  zipCode: string;
   city: string;
   website: string;
 }
