@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-// import Home from '../Home';
+import Home from '../Home';
 import SignUp from '../SignUp';
 import Login from '../../components/Login';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../services/reducers';
 import Loading from '../../components/Loading';
 import Success from '../../components/Success';
+import TalentRegistration from '../../components/TalentRegistration';
 
 const Router: React.FC<unknown> = () => {
   const auth = useSelector<RootState>((state) => state.firebase.auth);
@@ -21,7 +22,7 @@ const Router: React.FC<unknown> = () => {
     <Loading />
   ) : (
     <BrowserRouter>
-      <Route path="/" exact component={Login}></Route>
+      <Route path="/" exact component={Home}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       {paths}
     </BrowserRouter>
