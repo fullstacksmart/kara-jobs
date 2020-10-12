@@ -7,8 +7,9 @@ import hospitalImg from '../../assets/logos/hero_logo.png';
 const Landing: React.FC<unknown> = () => {
   return (
     <div className={styles.Landing}>
-      <Header></Header>
+      <Header />
       <div className={styles.bodyContainer}>
+        <div></div>
         <div className={styles.leftContainer}>
           <h3>
             Connecting international care and medical talents with German

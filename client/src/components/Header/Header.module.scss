@@ -4,9 +4,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: $kara-dark-blue;
   color: $kara-cream-white;
   padding: 15px;
+  width: 100vw;
 }
 
 .logo {
@@ -16,25 +18,28 @@
 
 .menu {
   display: flex;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-end; // DOESNT FREAKING WORK
 }
 
 .centeredMenu {
   display: flex;
   list-style: none;
   padding-top: 0.5rem;
-  justify-content: center;
+  align-items: center;
 }
 
 .rightMenu {
   display: flex;
+  position: absolute;
+  right: 3rem;
   align-items: center;
   justify-content: center;
+  justify-self: right;
   list-style: none;
   padding-top: 0.5rem;
-  margin-left: auto;
-  order: 2;
 }
 
 li {
@@ -51,6 +56,11 @@ a:hover {
   color: $kara-dark-blue;
   font-weight: bold;
   background-color: $kara-light-blue;
+}
+
+.item {
+  margin-right: 0.75rem;
+  padding: 0.75rem;
 }
 
 .buttonWrapper > Button {
