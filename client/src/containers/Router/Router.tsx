@@ -26,6 +26,7 @@ const Router: React.FC<unknown> = () => {
       <Route path="/" exact component={Home}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
+      <Route path="/sign-up" exact component={TalentRegistration}></Route>
       {paths}
     </BrowserRouter>
   );
