@@ -9,8 +9,10 @@ export const rootReducer = combineReducers({
   employer: EmployerReducer,
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
+// export type RootState = ReturnType<typeof rootReducer>;
 
 export interface RootState {
   firebase: FirebaseReducer.Reducer;
+  talent: typeof TalentReducer;
+  employer: typeof EmployerReducer;
 }
