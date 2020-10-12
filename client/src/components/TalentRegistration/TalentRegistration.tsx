@@ -1,4 +1,4 @@
-import React, { FormEvent, SyntheticEvent, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import styles from './TalentRegistration.module.scss';
 import TextInput from '../../components/TextInput';
 import Button from '../Button';
@@ -12,7 +12,7 @@ const TalentRegistration: React.FC<unknown> = () => {
   // TODO: implement real email check
   const checkEmail = (event: FormEvent<HTMLInputElement>) => {
     const email = event.currentTarget.value;
-    const emailRegex = new RegExp(/^\w+@\w+$/);
+    const emailRegex = new RegExp(/^\w+@\w+\.\w+$/);
     setEmailOK(emailRegex.test(email));
   };
 
@@ -38,12 +38,18 @@ const TalentRegistration: React.FC<unknown> = () => {
           console.log('change me!');
         }}
       >
-        <TextInput id="email" labelText="Email" onChange={checkEmail} />
-        <TextInput
-          id="password"
-          labelText="Passwort"
-          onChange={checkPassword}
-        />
+        <div className={styles.CheckBlock}>
+          <TextInput id="email" labelText="Email" onChange={checkEmail} />
+          <div className={styles.Check}>{emailOK ? '✅' : '❌'}</div>
+        </div>
+        <div className={styles.CheckBlock}>
+          <TextInput
+            id="password"
+            labelText="Passwort"
+            onChange={checkPassword}
+          />
+          <div className={styles.Check}>{passwordOK ? '✅' : '❌'}</div>
+        </div>
         <Button
           type="submit"
           onClick={handleSubmit}
