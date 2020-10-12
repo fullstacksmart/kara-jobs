@@ -5,11 +5,7 @@ import styles from './Login.module.scss';
 const Login: React.FC<unknown> = ({}) => {
   // const emailAuth = new firebase.auth.EmailAuthProvider();
 
-  return (
-    <div className={styles.Login}>
-      {/* <GoogleLogin text="Login with Google" /> */}
-    </div>
-  );
+  return <div className={styles.Login}></div>;
 };
 
 export default Login;

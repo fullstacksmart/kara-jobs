@@ -5,7 +5,7 @@ import Login from '../../components/Login';
 
 // interface HomeProps {}
 
-const Home: React.FC<unknown> = (props: unknown) => {
+const Home: React.FC<unknown> = () => {
   return (
     <div className={styles.Home}>
       <nav className={styles.NavBar}>
