@@ -10,11 +10,12 @@ const TalentSignUp0: React.FC = () => {
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
   useEffect(() => {
+    console.log(talent);
     const firstName = document.getElementById('firstName') as HTMLInputElement;
     const lastName = document.getElementById('lastName') as HTMLInputElement;
     if (talent) {
-      firstName.value = talent.firstName;
-      lastName.value = talent.lastName;
+      if (talent.firstName !== undefined) firstName.value = talent.firstName;
+      if (talent.lastName !== undefined) lastName.value = talent.lastName;
     }
   }, []);
 
