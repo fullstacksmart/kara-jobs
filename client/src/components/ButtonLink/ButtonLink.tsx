@@ -13,9 +13,9 @@ const ButtonLink: React.FC<ButtonLinkProps> = ({
   text,
 }: ButtonLinkProps) => {
   return (
-    <Button className={styles.ButtonLink}>
-      <Link to={to}>{text}</Link>
-    </Button>
+    <Link to={to}>
+      <Button className={styles.ButtonLink}>{text}</Button>
+    </Link>
   );
 };
 
