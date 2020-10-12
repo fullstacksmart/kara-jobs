@@ -1,18 +1,19 @@
 import React from 'react';
+import { Link, LinkProps } from 'react-router-dom';
 import styles from './TextLink.module.scss';
 
 type TextLinkProps = {
   text: string;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+} & LinkProps;
 
 const TextLink: React.FC<TextLinkProps> = ({
   text,
   ...props
 }: TextLinkProps) => {
   return (
-    <a className={styles.TextLink} {...props}>
+    <Link className={styles.TextLink} {...props}>
       {text}
-    </a>
+    </Link>
   );
 };
 
