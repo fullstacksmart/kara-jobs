@@ -1,4 +1,45 @@
-.Landing {
-  // TODO: style me!
+@import '../../sass/globals.scss';
+
+.bodyContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 3rem;
+  padding-top: 1rem;
 }
 
+h3 {
+  color: $kara-light-blue;
+}
+
+ul {
+  list-style: none;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 90vh;
+}
+
+.itemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 0.5rem;
+  margin: 1rem;
+  border-style: solid;
+  border-width: 2.5px;
+  border-color: $kara-light-grey;
+  cursor: pointer;
+}
+
+.arrow {
+  width: 2rem;
+  height: 2rem;
+}
+
+.hospital {
+  width: 408px;
+  height: 273px;
+}

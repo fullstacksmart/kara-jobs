@@ -17,21 +17,22 @@
 .menu {
   display: flex;
   align-items: center;
+  justify-content: flex-end; // DOESNT FREAKING WORK
 }
 
 .centeredMenu {
   display: flex;
   list-style: none;
-  padding: 0.5rem;
+  padding-top: 0.5rem;
   justify-content: center;
 }
 
 .rightMenu {
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   list-style: none;
-  padding: 0.5rem;
+  padding-top: 0.5rem;
   margin-left: auto;
   order: 2;
 }
