@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styles from './TalentSignUp0.module.scss';
+import BlueWrapper from '../../../containers/BlueWrapper';
 
 interface TalentSignUp0Props {
   talentHandler: (obj: unknown) => void;
-  progessHandler: (num: number) => void;
+  progressHandler: (num: number) => void;
 }
 
 const TalentSignUp0: React.FC<TalentSignUp0Props> = (
@@ -11,7 +12,7 @@ const TalentSignUp0: React.FC<TalentSignUp0Props> = (
 ) => {
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.target.id === 'firstName') {
       setInfo({ firstName: e.target.value, lastName: info.lastName });
     } else if (e.target.id === 'lastName') {
@@ -21,29 +22,31 @@ const TalentSignUp0: React.FC<TalentSignUp0Props> = (
 
   const handleSubmit = () => {
     props.talentHandler(info);
-    props.progessHandler(1);
+    props.progressHandler(1);
   };
 
   return (
-    <div className={styles.TalentSignUp0}>
-      <form onSubmit={handleSubmit}>
-        <label>Vorname*</label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          onChange={handleChange}
-        ></input>
-        <label>Nachname*</label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          onChange={handleChange}
-        ></input>
-        <button>Weiter</button>
-      </form>
-    </div>
+    <BlueWrapper>
+      <div className={styles.TalentSignUp0}>
+        <form onSubmit={handleSubmit}>
+          <label>Vorname*</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            onChange={handleChange}
+          ></input>
+          <label>Nachname*</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            onChange={handleChange}
+          ></input>
+          <button>Weiter</button>
+        </form>
+      </div>
+    </BlueWrapper>
   );
 };
 

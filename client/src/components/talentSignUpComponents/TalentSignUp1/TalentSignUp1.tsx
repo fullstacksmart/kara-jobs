@@ -4,7 +4,7 @@ import { Talent } from '../../../types/talent';
 
 interface TalentSignUp1Props {
   talentHandler: (obj: unknown) => void;
-  progessHandler: (num: number) => void;
+  progressHandler: (num: number) => void;
   talent: Talent;
 }
 
@@ -13,17 +13,37 @@ const TalentSignUp1: React.FC<TalentSignUp1Props> = (
 ) => {
   const [info, setInfo] = useState({ residence: '', zipCode: '', city: '' });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // if (e.target.id === 'firstName') {
-    //   setInfo({ firstName: e.target.value, zipCode: info.zipCode });
-    // } else if (e.target.id === 'zipCode') {
-    //   setInfo({ firstName: info.firstName, zipCode: e.target.value });
-    // }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    switch (e.target.id) {
+      case 'residence':
+        setInfo({
+          residence: e.target.value,
+          zipCode: info.zipCode,
+          city: info.city,
+        });
+        break;
+      case 'zipCode':
+        setInfo({
+          residence: info.residence,
+          zipCode: e.target.value,
+          city: info.city,
+        });
+        break;
+      case 'city':
+        setInfo({
+          residence: info.residence,
+          zipCode: e.target.value,
+          city: e.target.value,
+        });
+        break;
+      default:
+        break;
+    }
   };
 
   const handleSubmit = () => {
-    // props.talentHandler(info)
-    props.progessHandler(2);
+    props.talentHandler(info);
+    props.progressHandler(2);
   };
 
   return (
@@ -57,5 +77,4 @@ const TalentSignUp1: React.FC<TalentSignUp1Props> = (
     </div>
   );
 };
-
 export default TalentSignUp1;
