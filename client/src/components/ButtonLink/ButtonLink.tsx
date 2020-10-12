@@ -1,5 +1,5 @@
 import React from 'react';
-// import styles from './ButtonLink.module.scss';
+import styles from './ButtonLink.module.scss';
 import Button, { ButtonProps } from '../Button/Button';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const ButtonLink: React.FC<ButtonLinkProps> = ({
   text,
 }: ButtonLinkProps) => {
   return (
-    <Button>
+    <Button className={styles.ButtonLink}>
       <Link to={to}>{text}</Link>
     </Button>
   );
