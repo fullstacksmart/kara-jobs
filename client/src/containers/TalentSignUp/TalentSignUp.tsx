@@ -19,6 +19,7 @@ const TalentSignUp: React.FC<TalentSignUpProps> = (
   props: TalentSignUpProps,
 ) => {
   const [talent, setTalent] = useState<Talent>({
+    uid: '',
     email: props.talentInfo.email,
     firstName: '',
     lastName: '',
