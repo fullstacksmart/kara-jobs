@@ -33,8 +33,10 @@ const TalentSignUp: React.FC<TalentSignUpProps> = (
   //GET UID and Email from Firebase
   const auth: unknown = useSelector<RootState>((state) => state.firebase.auth);
   console.log(auth);
-  const talent = useSelector<RootState>((state: RootState) => state.talent);
-  //console.log(talent);
+  const talent: Talent = useSelector<RootState>(
+    (state: RootState) => state.talent,
+  ) as Talent;
+
   //Update Session Mgmt and Redux and post to DB
   //then link to next page
 
@@ -52,7 +54,10 @@ const TalentSignUp: React.FC<TalentSignUpProps> = (
 
   //update redux
   const talentDispatch = useDispatch<Dispatch<TalentActions>>();
-  // talentDispatch({type: 'ADD_TALENT', payload: Object.assign(talent, {uid: '123'}));
+  talentDispatch({
+    type: 'ADD_TALENT',
+    payload: Object.assign(talent, { uid: '123', email: 'test@gmail.com' }),
+  });
 
   //post to DB
 

@@ -37,11 +37,11 @@ const TalentRegistration: React.FC<unknown> = () => {
         <Details>
           <p>
             Schon angemeldet?{' '}
-            <TextLink href="#" onClick={login} text="Sign In" />
+            {/* <TextLink href="#" onClick={login} text="Sign In" /> */}
           </p>
         </Details>
       </form>
-      <TextLink href="/signedIn" text="Ich bin Arbeitgeber" />
+      {/* <TextLink href="/signedIn" text="Ich bin Arbeitgeber" /> */}
     </div>
   );
 };
