@@ -6,6 +6,15 @@ const initialState: Employer = {
   email: '',
   firstName: '',
   lastName: '',
+  companyName: '',
+  sector: '',
+  type: '',
+  street: '',
+  streetNumber: '',
+  addressAditional: '',
+  zipCode: '',
+  city: '',
+  website: '',
 };
 
 const EmployerReducer = (
