@@ -11,7 +11,8 @@ import Loading from '../../components/Loading';
 import Success from '../../components/Success';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
-//import TalentRegistration from '../../components/TalentRegistration';
+import TalentRegistration from '../../components/TalentRegistration';
+import TalentSignUp from '../../containers/TalentSignUp';
 
 const Router: React.FC<unknown> = () => {
   const auth = useSelector<RootState>((state) => state.firebase.auth);
@@ -25,7 +26,7 @@ const Router: React.FC<unknown> = () => {
           component={TalentSignUp0}
         ></Route>,
         <Route
-          key="/emnployer-signup-0"
+          key="/employer-signup-0"
           path="/employer-signup-0"
           exact
           component={EmployerSignUp0}
@@ -43,7 +44,7 @@ const Router: React.FC<unknown> = () => {
     <Loading />
   ) : (
     <BrowserRouter>
-      <Route path="/" exact component={TalentRegistration}></Route>
+      <Route path="/" exact component={TalentSignUp}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       {paths.map((path) => path)}
     </BrowserRouter>
