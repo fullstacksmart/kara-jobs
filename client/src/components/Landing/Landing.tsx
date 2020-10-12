@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './Landing.module.scss';
+import Header from '../Header';
 
 const Landing: React.FC<unknown> = () => {
   return (
     <div className={styles.Landing}>
-      <header>
-        <img src={require('../../../public/logos/kara_creme.png')} />
-      </header>
+      <Header></Header>
     </div>
   );
 };

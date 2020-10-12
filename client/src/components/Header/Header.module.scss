@@ -1,0 +1,67 @@
+@import '../../sass/globals.scss';
+
+.Header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $kara-dark-blue;
+  color: $kara-cream-white;
+  padding: 15px;
+}
+
+.logo {
+  max-width: 100%;
+  height: 3rem;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.centeredMenu {
+  display: flex;
+  list-style: none;
+  padding: 0.5rem;
+  justify-content: center;
+}
+
+.rightMenu {
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  list-style: none;
+  padding: 0.5rem;
+  margin-left: auto;
+  order: 2;
+}
+
+li {
+  padding: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: $kara-cream-white;
+}
+
+a:hover {
+  transition-duration: 0.4s;
+  color: $kara-dark-blue;
+  font-weight: bold;
+  background-color: $kara-light-blue;
+}
+
+.buttonWrapper > Button {
+  background-color: $kara-light-blue;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.buttonWrapper > Button:hover {
+  transition-duration: 0.4s;
+  color: $kara-dark-blue;
+}
+
