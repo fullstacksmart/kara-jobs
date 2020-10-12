@@ -1,4 +1,5 @@
 export interface Talent {
+  uid: string;
   email: string;
   firstName: string;
   lastName: string;
