@@ -1,5 +1,4 @@
-import React, { PropsWithChildren } from 'react';
-import styles from './Providers.module.scss';
+import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { firebaseConfig } from '../../services/firebase';
