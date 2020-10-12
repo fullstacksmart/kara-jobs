@@ -11,6 +11,7 @@ import Loading from '../../components/Loading';
 import Success from '../../components/Success';
 import TalentSignup from '../TalentSignUp';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
+import TalentSignUp1 from '../../components/talentSignUpComponents/TalentSignUp1';
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
 import TalentRegistration from '../../components/TalentRegistration';
 import LoginContainer from '../../containers/LoginContainer';
@@ -32,6 +33,12 @@ const Router: React.FC<unknown> = () => {
           component={TalentSignUp0}
         ></Route>,
         <Route
+          key="/talent-signup-1"
+          path="/talent-signup-1"
+          exact
+          component={TalentSignUp1}
+        ></Route>,
+        <Route
           key="/employer-signup-0"
           path="/employer-signup-0"
           exact
@@ -50,7 +57,7 @@ const Router: React.FC<unknown> = () => {
     <Loading />
   ) : (
     <BrowserRouter>
-      <Route path="/" exact component={Home}></Route>
+      <Route path="/" exact component={TalentSignup}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
       <Route path="/sign-up" exact component={TalentRegistration}></Route>

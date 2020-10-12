@@ -4,6 +4,7 @@ import { Talent } from '../../types/talent';
 const initialState: Talent = {
   uid: '',
   email: '',
+  onbarding_status: 0,
   firstName: '',
   lastName: '',
   isoCode: '',
