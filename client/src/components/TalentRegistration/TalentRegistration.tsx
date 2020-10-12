@@ -29,8 +29,8 @@ const TalentRegistration: React.FC<unknown> = () => {
           console.log('change me!');
         }}
       >
-        <TextInput key="email" labelText="Email" onClick={handleChange} />
-        <TextInput key="password" labelText="Passwort" onClick={handleChange} />
+        <TextInput id="email" labelText="Email" onClick={handleChange} />
+        <TextInput id="password" labelText="Passwort" onClick={handleChange} />
         <Button type="submit" onClick={() => handleSubmit('talent')}>
           registrieren
         </Button>

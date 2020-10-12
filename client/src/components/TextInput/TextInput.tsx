@@ -3,16 +3,16 @@ import styles from './TextInput.module.scss';
 
 interface TextInputProps {
   labelText: string;
-  key: string;
+  id: string;
 }
 
 const TextInput: React.FC<
   TextInputProps & React.HTMLAttributes<HTMLInputElement>
-> = ({ labelText, key, ...props }: TextInputProps) => {
+> = ({ labelText, id, ...props }: TextInputProps) => {
   return (
     <div className={styles.TextInput}>
-      <label htmlFor={key}>{labelText}</label>
-      <input type="text" id={key} name={key} {...props}></input>
+      <label htmlFor={id}>{labelText}</label>
+      <input type="text" id={id} name={id} {...props}></input>
     </div>
   );
 };
