@@ -35,6 +35,7 @@ const TalentSignUp: React.FC<TalentSignUpProps> = (
     university: '',
     expectedGraduationYear: '',
   });
+  console.log(talent);
 
   const [progress, setProgress] = useState<number>(0);
 

@@ -11,7 +11,6 @@ const TalentSignUp0: React.FC<TalentSignUp0Props> = (
   props: TalentSignUp0Props,
 ) => {
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.target.id === 'firstName') {
       setInfo({ firstName: e.target.value, lastName: info.lastName });
