@@ -18,7 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     email: DataTypes.STRING,
-    passeword: DataTypes.STRING
+    password: DataTypes.STRING,
+    onboarding_complete: DataTypes.BOOLEAN,
+    onboarding_page: DataTypes.INTEGER,
+
   }, {
     sequelize,
     modelName: 'user_company_employee_general',

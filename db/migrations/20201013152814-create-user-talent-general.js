@@ -32,6 +32,12 @@ module.exports = {
       city: {
         type: Sequelize.STRING,
       },
+      onboarding_page: {
+        type: Sequelize.Integer
+      },
+      onboarding_completed: {
+        type: Sequelize.BOOLEAN,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

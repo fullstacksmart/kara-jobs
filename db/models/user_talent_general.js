@@ -26,6 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     residence: DataTypes.STRING,
     zip_code: DataTypes.DECIMAL(8, 0),
     city: DataTypes.STRING,
+    onboarding_complete: DataTypes.BOOLEAN,
+    onboarding_page: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'user_talent_general',

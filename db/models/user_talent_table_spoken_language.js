@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class talent_table_education extends Model {
+  class user_talent_table_spoken_language extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,16 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  talent_table_education.init({
-    university_name: DataTypes.STRING,
-    degree: DataTypes.STRING,
-    filed_of_study: DataTypes.STRING,
-    study_start_year: DataTypes.DECIMAL(4,0),
-    study_end_year: DataTypes.DECIMAL(4,0),
-    study_description: DataTypes.STRING(500),
+  talent_table_spoken_language.init({
+    spoken_language: DataTypes.STRING,
+    spoken_language_proficiency: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'talent_table_education',
+    modelName: 'talent_table_spoken_language',
   });
-  return talent_table_education;
+  return user_talent_table_spoken_language;
 };
