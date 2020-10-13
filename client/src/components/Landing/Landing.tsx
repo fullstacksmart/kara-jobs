@@ -9,7 +9,6 @@ const Landing: React.FC<unknown> = () => {
     <div className={styles.Landing}>
       <Header />
       <div className={styles.bodyContainer}>
-        <div></div>
         <div className={styles.leftContainer}>
           <h3>
             Connecting international care and medical talents with German
@@ -30,7 +29,9 @@ const Landing: React.FC<unknown> = () => {
             </div>
           </ul>
         </div>
-        <img src={hospitalImg} className={styles.hospital} />
+        <div className={styles.imgContainer}>
+          <img src={hospitalImg} className={styles.hospital} />
+        </div>
       </div>
     </div>
   );
