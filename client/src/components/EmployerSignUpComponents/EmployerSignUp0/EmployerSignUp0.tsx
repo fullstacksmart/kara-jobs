@@ -5,43 +5,24 @@ import TextInput from '../../TextInput';
 import Button from '../../Button';
 
 const EmployerSignUp0: React.FC = () => {
-  const [info, setInfo] = useState({ companyName: '', sector: '', type: '' });
+  const [info, setInfo] = useState({ firstName: '', lastName: '' });
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
 
   useEffect(() => {
-    console.log(employer);
-    const companyName = document.getElementById(
-      'companyName',
-    ) as HTMLInputElement;
-    const sector = document.getElementById('sector') as HTMLInputElement;
-    const type = document.getElementById('type') as HTMLInputElement;
+    const firstName = document.getElementById('firstName') as HTMLInputElement;
+    const lastName = document.getElementById('lastName') as HTMLInputElement;
     if (employer) {
-      if (employer.companyName !== undefined)
-        companyName.value = employer.companyName;
-      if (employer.sector !== undefined) sector.value = employer.sector;
-      if (employer.type !== undefined) type.value = employer.type;
+      if (employer.firstName !== undefined)
+        firstName.value = employer.firstName;
+      if (employer.lastName !== undefined) lastName.value = employer.lastName;
     }
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.id === 'companyName') {
-      setInfo({
-        companyName: e.target.value,
-        sector: info.sector,
-        type: info.type,
-      });
-    } else if (e.target.id === 'sector') {
-      setInfo({
-        companyName: info.companyName,
-        sector: e.target.value,
-        type: info.type,
-      });
-    } else if (e.target.id === 'type') {
-      setInfo({
-        companyName: info.companyName,
-        sector: info.sector,
-        type: e.target.type,
-      });
+    if (e.target.id === 'firstName') {
+      setInfo({ firstName: e.target.value, lastName: info.lastName });
+    } else if (e.target.id === 'lastName') {
+      setInfo({ firstName: info.firstName, lastName: e.target.value });
     }
   };
 
@@ -66,20 +47,14 @@ const EmployerSignUp0: React.FC = () => {
       <div className={styles.EmployerSignUp0}>
         <form onSubmit={handleSubmit}>
           <TextInput
-            id="companyName"
-            labelText="Name der Einrichtung/Firma*"
+            id="firstName"
+            labelText="Vorname (Ansprechpartner)*"
             onChange={handleChange}
             onBlur={updateSession}
           ></TextInput>
           <TextInput
-            id="sector"
-            labelText="Branche*"
-            onChange={handleChange}
-            onBlur={updateSession}
-          ></TextInput>
-          <TextInput
-            id="type"
-            labelText="Art der Einrichtung*"
+            id="lastName"
+            labelText="Nachname (Ansprechpartner)*"
             onChange={handleChange}
             onBlur={updateSession}
           ></TextInput>
