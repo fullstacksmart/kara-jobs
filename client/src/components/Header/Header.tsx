@@ -24,9 +24,11 @@ const Header: React.FC<unknown> = () => {
           </Link>
         </ul>
         <div className={styles.rightMenu}>
+
           <Link to="/signup" className={styles.item}>
             Mitglied werden
           </Link>
+
           <Link to="/sign-in" className={styles.buttonWrapper}>
             <Button>Login</Button>
           </Link>

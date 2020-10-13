@@ -4,6 +4,7 @@ import TalentSignUp from '../../containers/TalentSignUp';
 import { TalentInfo } from '../../types/signup';
 import styles from './InitialSignUpForm.module.scss';
 import BlueWrapper from '../../containers/BlueWrapper';
+import { Link } from 'react-router-dom';
 
 const InitialSignUpForm: React.FC<unknown> = () => {
   const [signUpFlow, setSignUpFlow] = useState('');
@@ -34,7 +35,7 @@ const InitialSignUpForm: React.FC<unknown> = () => {
     return (
       <BlueWrapper>
         <h1>In wenigen Schritten zu deinem Profil</h1>
-        {/* TODO: fix onSubmit function */}
+        {/* TODO: fix  function */}
         <form
           onSubmit={() => {
             console.log('change me!');
@@ -54,11 +55,15 @@ const InitialSignUpForm: React.FC<unknown> = () => {
             name="password"
             onChange={handleChange}
           ></input>
-          <button>Registrieren</button>
+          <Link to="/talent-signup-0">
+            <button>Registrieren</button>
+          </Link>
         </form>
-        <button onClick={() => handleSubmit('employer')}>
-          Ich bin Arbaitgeber
-        </button>
+        <Link to="/employer-signup-0">
+          <button onClick={() => handleSubmit('employer')}>
+            Ich bin Arbaitgeber
+          </button>
+        </Link>
       </BlueWrapper>
     );
   }
