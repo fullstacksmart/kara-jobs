@@ -1,9 +1,9 @@
-import React, { useEffect, Dispatch } from 'react';
-import styles from './TalentSignUp.module.scss';
+import React from 'react';
+// import styles from './TalentSignUp.module.scss';
 import { TalentInfo } from '../../types/signup';
-import { useSelector, useDispatch } from 'react-redux';
-import { TalentActions } from '../../services/actions/talentActions';
-import { RootState } from '../../services/reducers';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { TalentActions } from '../../services/actions/talentActions';
+// import { RootState } from '../../services/reducers';
 import { Redirect } from 'react-router-dom';
 
 //TO DO: replace
@@ -20,9 +20,7 @@ interface TalentSignUpProps {
   talentInfo: TalentInfo;
 }
 
-const TalentSignUp: React.FC<TalentSignUpProps> = (
-  props: TalentSignUpProps,
-) => {
+const TalentSignUp: React.FC<TalentSignUpProps> = () => {
   //session mgmt filled ?
   //--> redirect to right page, after submit: update redux, session mgmt and post to DB :
   //DB ? --> redirect right page, update session mgmt immediately (using firebase uid); after submit: update redux, session mgmt and post to DB :

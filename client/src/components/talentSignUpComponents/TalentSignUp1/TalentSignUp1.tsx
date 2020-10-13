@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styles from './TalentSignUp1.module.scss';
-import { Talent } from '../../../types/talent';
-import TextInput from '../../TextInput';
+import React from 'react';
+// import styles from './TalentSignUp1.module.scss';
+// import { Talent } from '../../../types/talent';
+// import TextInput from '../../TextInput';
 
 const TalentSignUp1: React.FC = () => {
   // const [info, setInfo] = useState({ residence: '', zipCode: '', city: '' });

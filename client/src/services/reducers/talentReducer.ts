@@ -20,7 +20,10 @@ const initialState: Talent = {
   expectedGraduationYear: '',
 };
 
-const TalentReducer = (state: Talent = initialState, action: TalentActions) => {
+const TalentReducer = (
+  state: Talent = initialState,
+  action: TalentActions,
+): Talent => {
   switch (action.type) {
     case 'ADD_TALENT':
       return Object.assign(state, action.payload);
