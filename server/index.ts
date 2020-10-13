@@ -3,7 +3,10 @@ import cors from '@koa/cors';
 import dotenv from 'dotenv';
 dotenv.config();
 import router from './routes';
-import sequelize from './models/index';
+import db from '../db/models/index';
+// the following is needed for the config.json file to be copied to dist/db folder
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import * as dbConfig from '../db/config/config.json';
 
 const app = new Koa();
 
@@ -18,7 +21,7 @@ app.use(router.routes()).use(router.allowedMethods());
 
 (async () => {
   try {
-    await sequelize.authenticate();
+    await db.sequelize.authenticate();
     console.log(
       '🔌 connection to db has been established successfully',
     );
