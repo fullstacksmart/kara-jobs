@@ -27,7 +27,7 @@ const TalentSignUp0: React.FC = () => {
     }
   };
 
-  const updateSession = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const updateSession = (e: React.ChangeEvent<HTMLInputElement>) => {
     sessionStorage.setItem(
       'talent',
       JSON.stringify(Object.assign(talent, { [e.target.id]: e.target.value })),

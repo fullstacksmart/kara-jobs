@@ -1,65 +1,78 @@
 import React, { useState } from 'react';
 // import styles from './TalentSignUp1.module.scss';
-// import { Talent } from '../../../types/talent';
-// import TextInput from '../../TextInput';
 import Form from '../../Form';
 import Select from '../../Select';
 import Button from '../../Button';
 import Label from '../../Label';
 import Option from '../../Option';
 import TextInput from '../../TextInput';
+import { Redirect } from 'react-router-dom';
 
 const TalentSignUp1: React.FC = () => {
-  const [info, setInfo] = useState({
-    isoCode: '',
-    residence: '',
+  const [selectedValue, setSelectedValue] = useState<string>('country1');
+  const [textInputs, setTextInputs] = useState({
     zipCode: '',
     city: '',
   });
-  const [selectedValue, setSelectedValue] = useState({
-    selectedValue: 'country1',
-  });
+  const [redirect, setRedirect] = useState(0);
+
+  //TO DO update:
+  const countryValues = { isoCode: 'id1', residence: 'country1' };
+
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
-  const handleSelectChange = (e: any): void => {
-    console.log(e.target.value);
-    setSelectedValue({
-      selectedValue: e.target.value,
-    });
+  const handleSelectChange = (e: React.FormEvent<HTMLSelectElement>) => {
+    console.log(e.currentTarget.id);
+    setSelectedValue(e.currentTarget.value);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget.id);
+    switch (e.target.id) {
+      case 'zipCode':
+        setTextInputs({
+          zipCode: e.target.value,
+          city: textInputs.city,
+        });
+        break;
+      case 'city':
+        setTextInputs({
+          zipCode: textInputs.zipCode,
+          city: e.target.value,
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
+  const updateSessionSelect = (e: React.FocusEvent<HTMLSelectElement>) => {
+    console.log(e.currentTarget.value);
+    sessionStorage.setItem(
+      'talent',
+      JSON.stringify({ ...talent, ...countryValues }),
+    );
+  };
+
+  const updateSession = (e: React.ChangeEvent<HTMLInputElement>) => {
+    sessionStorage.setItem(
+      'talent',
+      JSON.stringify(Object.assign(talent, { [e.target.id]: e.target.value })),
+    );
   };
 
   const handleSubmit = () => {
-    console.log('selected', selectedValue);
-    console.log(info);
+    sessionStorage.setItem(
+      'talent',
+      JSON.stringify({
+        ...talent,
+        ...textInputs,
+        ...countryValues,
+      }),
+    );
+    // post to DB
+    setRedirect(2);
   };
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  //   switch (e.target.id) {
-  //     case 'residence':
-  //       setInfo({
-  //         residence: e.target.value,
-  //         zipCode: info.zipCode,
-  //         city: info.city,
-  //       });
-  //       break;
-  //     case 'zipCode':
-  //       setInfo({
-  //         residence: info.residence,
-  //         zipCode: e.target.value,
-  //         city: info.city,
-  //       });
-  //       break;
-  //     case 'city':
-  //       setInfo({
-  //         residence: info.residence,
-  //         zipCode: e.target.value,
-  //         city: e.target.value,
-  //       });
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
 
   const optArray = [
     ['id1', 'country1'],
@@ -67,25 +80,40 @@ const TalentSignUp1: React.FC = () => {
     ['id3', 'country3'],
   ];
 
-  return (
-    <div>
-      <Form onSubmit={handleSubmit}>
-        <Label htmlFor="countries">Land*</Label>
-        <Select
-          value={selectedValue.selectedValue}
-          onChange={(e) => handleSelectChange(e.target.id)}
-        >
-          {optArray.map((opt) => (
-            <Option key={opt[0]} value={opt[0]}>
-              {opt[1]}
-            </Option>
-          ))}
-        </Select>
-        <TextInput id="zipCode" labelText="Postleitzahl"></TextInput>
-        <TextInput id="city" labelText="Region / Stadt"></TextInput>
-        <Button>Submit</Button>
-      </Form>
-    </div>
-  );
+  if (redirect === 2) return <Redirect to={`/talent-signup-2`} />;
+  else {
+    return (
+      <div>
+        <Form onSubmit={handleSubmit}>
+          <Label htmlFor="countries">Land*</Label>
+          <Select
+            id="countries"
+            value={selectedValue}
+            onChange={(e) => handleSelectChange(e)}
+            onBlur={(e) => updateSessionSelect(e)}
+          >
+            {optArray.map((opt) => (
+              <Option key={opt[0]} value={opt[0]}>
+                {opt[1]}
+              </Option>
+            ))}
+          </Select>
+          <TextInput
+            id="zipCode"
+            labelText="Postleitzahl"
+            onChange={handleChange}
+            onBlur={updateSession}
+          ></TextInput>
+          <TextInput
+            id="city"
+            labelText="Region / Stadt"
+            onChange={handleChange}
+            onBlur={updateSession}
+          ></TextInput>
+          <Button>Submit</Button>
+        </Form>
+      </div>
+    );
+  }
 };
 export default TalentSignUp1;
