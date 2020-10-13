@@ -8,29 +8,29 @@ const Landing: React.FC<unknown> = () => {
   return (
     <div className={styles.Landing}>
       <Header />
-      <div className={styles.bodyContainer}>
-        <div className={styles.leftContainer}>
+      <div className={styles.BodyContainer}>
+        <div className={styles.LeftContainer}>
           <h3>
             Connecting international care and medical talents with German
             employers
           </h3>
           <ul>
-            <div className={styles.itemContainer}>
+            <div className={styles.ItemContainer}>
               <li>Arbeitgeber in Deutschland finden</li>
-              <img src={arrowImg} className={styles.arrow} />
+              <img src={arrowImg} className={styles.Arrow} />
             </div>
-            <div className={styles.itemContainer}>
+            <div className={styles.ItemContainer}>
               <li>Die Anerkennung deiner Ausbildung</li>
-              <img src={arrowImg} className={styles.arrow} />
+              <img src={arrowImg} className={styles.Arrow} />
             </div>
-            <div className={styles.itemContainer}>
+            <div className={styles.ItemContainer}>
               <li>Dein Start in Deutschland</li>
-              <img src={arrowImg} className={styles.arrow} />
+              <img src={arrowImg} className={styles.Arrow} />
             </div>
           </ul>
         </div>
-        <div className={styles.imgContainer}>
-          <img src={hospitalImg} className={styles.hospital} />
+        <div className={styles.ImgContainer}>
+          <img src={hospitalImg} className={styles.Hospital} />
         </div>
       </div>
     </div>

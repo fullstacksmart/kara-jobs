@@ -1,4 +1,4 @@
-@import '../../sass/globals.scss';
+@import '../../sass/globals';
 
 .Header {
   align-items: center;
@@ -11,12 +11,12 @@
   width: 100vw;
 }
 
-.logo {
+.Logo {
   height: 3rem;
   max-width: 100%;
 }
 
-.menu {
+.Menu {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -24,14 +24,14 @@
   padding-right: 2rem;
 }
 
-.centeredMenu {
+.CenteredMenu {
   align-items: center;
   display: flex;
   list-style: none;
   padding-top: 0.5rem;
 }
 
-.rightMenu {
+.RightMenu {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -58,12 +58,12 @@ a:hover {
   transition-duration: 0.4s;
 }
 
-.item {
+.Item {
   margin-right: 0.75rem;
   padding: 0.75rem;
 }
 
-.buttonWrapper > Button {
+.ButtonWrapper > Button {
   background-color: $kara-light-blue;
   padding-bottom: 0.25rem;
   padding-left: 1rem;
@@ -71,7 +71,7 @@ a:hover {
   padding-top: 0.25rem;
 }
 
-.buttonWrapper > Button:hover {
+.ButtonWrapper > Button:hover {
   color: $kara-dark-blue;
   transition-duration: 0.4s;
 }
