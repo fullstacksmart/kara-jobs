@@ -12,38 +12,38 @@ const EmployerSignUp2: React.FC<unknown> = (props: unknown) => {
           <TextInput
             id="street"
             labelText="Straße*"
-            onChange={handleChange}
-            onBlur={updateSession}
+            // onChange={handleChange}
+            // onBlur={updateSession}
           ></TextInput>
           <TextInput
             id="streetNumber"
             labelText="Haus-Nr.*"
-            onChange={handleChange}
-            onBlur={updateSession}
+            // onChange={handleChange}
+            // onBlur={updateSession}
           ></TextInput>
           <TextInput
             id="addressAditional"
             labelText="Adresszusatz"
-            onChange={handleChange}
-            onBlur={updateSession}
+            // onChange={handleChange}
+            // onBlur={updateSession}
           ></TextInput>
           <TextInput
             id="zipCode"
             labelText="Postleitzahl*"
-            onChange={handleChange}
-            onBlur={updateSession}
+            // onChange={handleChange}
+            // onBlur={updateSession}
           ></TextInput>
           <TextInput
             id="city"
             labelText="Region / Stadt*"
-            onChange={handleChange}
-            onBlur={updateSession}
+            // onChange={handleChange}
+            // onBlur={updateSession}
           ></TextInput>
           <TextInput
             id="website"
             labelText="Website"
-            onChange={handleChange}
-            onBlur={updateSession}
+            // onChange={handleChange}
+            // onBlur={updateSession}
           ></TextInput>
           <Button>Weiter</Button>
         </form>
