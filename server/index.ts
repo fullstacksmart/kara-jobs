@@ -30,6 +30,7 @@ app.use(router.routes()).use(router.allowedMethods());
     console.error(
       `there was a problem connecting to the db: ${error.message}`,
     );
+    return;
   }
   app.listen(PORT, () => {
     console.log(`🚀 server listening on http://localhost:${PORT}`);
