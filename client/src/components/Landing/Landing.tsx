@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Landing.module.scss';
 import Header from '../Header';
+import Footer from '../Footer';
 import arrowImg from '../../assets/arrow.png';
 import hospitalImg from '../../assets/logos/hero_logo.png';
 
@@ -10,7 +11,7 @@ const Landing: React.FC<unknown> = () => {
       <Header />
       <div className={styles.BodyContainer}>
         <div className={styles.LeftContainer}>
-          <h3>
+          <h3 className={styles.Description}>
             Connecting international care and medical talents with German
             employers
           </h3>
@@ -33,6 +34,7 @@ const Landing: React.FC<unknown> = () => {
           <img src={hospitalImg} className={styles.Hospital} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

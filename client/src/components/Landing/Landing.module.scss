@@ -18,6 +18,10 @@ ul {
   list-style: none;
 }
 
+li {
+  padding: 1rem;
+}
+
 .LeftContainer {
   display: flex;
   flex-direction: column;
@@ -42,21 +46,42 @@ ul {
 }
 
 .ImgContainer {
-  max-width: 400px;
+  max-width: 40vw;
 }
 
 .Hospital {
   height: auto;
-  width: 100%;
+  width: 90%;
 }
 
-@media only screen and (max-width: 600px) {    
+@media only screen and (max-width: 864px) {      
   .BodyContainer {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 3rem;
+    flex-wrap: wrap-reverse;
+    margin: 0.1rem;
     padding-top: 1rem;
+  }
+
+  .LeftContainer {
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    min-width: 90vw;
+  }
+
+  h3 {
+    color: $kara-light-blue;
+    margin: 0;
+    max-width: 80vw;
+    padding-bottom: 0.5rem;
+    padding-top: 1rem;
+    text-align: center;
+  }
+
+  .ImgContainer {
+    align-self: center;
+    margin: 0.5rem;
+    margin-top: 1rem;
+    min-width: 40vw;
+    padding-top: 0.75rem;
   }
 }

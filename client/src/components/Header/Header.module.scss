@@ -8,7 +8,6 @@
   flex-direction: column;
   justify-content: center;
   padding: 15px;
-  width: 100vw;
 }
 
 .Logo {
@@ -34,16 +33,10 @@
 .RightMenu {
   align-items: center;
   display: flex;
-  justify-content: center;
-  justify-self: right;
   list-style: none;
   padding-top: 0.5rem;
   position: absolute;
   right: 3rem;
-}
-
-li {
-  padding: 1rem;
 }
 
 a {
@@ -74,4 +67,41 @@ a:hover {
 .ButtonWrapper > Button:hover {
   color: $kara-dark-blue;
   transition-duration: 0.4s;
+}
+
+@media only screen and (max-width: 1074px) {    
+  .Header {
+    align-content: flex-end;
+    justify-content: flex-end;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 1rem;
+  }
+  
+  .Menu {
+    min-height: 4rem;
+    padding: 0;
+  }
+  
+  .CenteredMenu {
+    display: none;
+  }
+  
+  .RightMenu {
+    right: 0.5rem;
+  }
+
+  .Item {
+    font-size: 0.95rem;
+    margin-right: 0.25rem;
+    padding: 0.5rem;
+  }
+
+  .ButtonWrapper > Button {
+    font-size: 0.95rem;
+    padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
+  }
+
 }
