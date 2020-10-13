@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './TalentSignUp.module.scss';
+//import styles from './TalentSignUp.module.scss';
 import { TalentInfo } from '../../types/signup';
 import { Redirect } from 'react-router-dom';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './EmployerSignUp0.module.scss';
 
-const EmployerSignUp0: React.FC<unknown> = (props: unknown) => {
+const EmployerSignUp0: React.FC<unknown> = () => {
   return <div className={styles.EmployerSignUp0}>EmployerSignUp0 works!</div>;
 };
 
