@@ -6,5 +6,5 @@ describe('TalentRegistration', () => {
   it('renders TalentRegistration', () => {
     render(<TalentRegistration />);
     expect(screen.getByText('TalentRegistration works!')).not.toBe(null);
-  });
-});
+  })
+})

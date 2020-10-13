@@ -1,14 +1,22 @@
 import React, { FormEvent, useState } from 'react';
-import styles from './TalentRegistration.module.scss';
-import TextInput from '../../components/TextInput';
-import Button from '../Button';
-import TextLink from '../TextLink';
-import Details from '../Details';
+import styles from './Registration.module.scss';
+import TextInput from '../../TextInput';
+import Button from '../../Button';
+import TextLink from '../../TextLink';
+import Details from '../../Details';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 
-const TalentRegistration: React.FC<unknown> = () => {
+interface RegistrationProps {
+  kind: string;
+  heading: string;
+}
+
+const Registration: React.FC<RegistrationProps> = ({
+  kind,
+  heading,
+}: RegistrationProps) => {
   const history = useHistory();
   const [emailOK, setEmailOK] = useState(false);
   const [passwordOK, setPasswordOK] = useState(false);
@@ -50,8 +58,8 @@ const TalentRegistration: React.FC<unknown> = () => {
   };
 
   return (
-    <div className={styles.TalentRegistration}>
-      <h1>In wenigen Schritten zu deinem Profil</h1>
+    <div className={styles.Registration}>
+      <h1>{heading}</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.CheckBlock}>
           <TextInput id="email" labelText="Email" onChange={checkEmail} />
@@ -67,20 +75,25 @@ const TalentRegistration: React.FC<unknown> = () => {
         </div>
         <Button disabled={!emailOK || !passwordOK}>registrieren</Button>
         <div className={styles.alternativeRegistration}>
-          <p>or</p>
-          <GoogleButton onClick={signInWithGoogle} />
+          <p>oder</p>
+          <GoogleButton
+            label="mit Google registrieren"
+            onClick={signInWithGoogle}
+          />
         </div>
 
         <Details>
           <p>
-            Schon angemeldet?{' '}
-            {/* <TextLink href="#" onClick={login} text="Sign In" /> */}
+            Schon registriert? <TextLink to="/sign-in" text="Einloggen" />
           </p>
         </Details>
       </form>
-      {/* <TextLink href="/signedIn" text="Ich bin Arbeitgeber" /> */}
+      <TextLink
+        to={kind === 'talent' ? '/employer-sign-up' : 'talent-sign-up'}
+        text={`Ich bin ${kind === 'talent' ? 'Arbeitgeber' : 'Pflegekraft'}`}
+      />
     </div>
   );
 };
 
-export default TalentRegistration;
+export default Registration;
