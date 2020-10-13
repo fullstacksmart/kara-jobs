@@ -19,7 +19,7 @@ const Header: React.FC<unknown> = () => {
         <div className={styles.rightMenu}>
           <TextLink
             text="Mitglied werden"
-            to="/signup"
+            to="/talent-sign-up"
             className={styles.item}
           ></TextLink>
           <Link to="/sign-in" className={styles.buttonWrapper}>

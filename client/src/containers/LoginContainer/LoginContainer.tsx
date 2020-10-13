@@ -11,7 +11,7 @@ const LoginContainer: React.FC<unknown> = () => {
       <Login />
       <Details>
         <p>
-          Neu hier? <TextLink to="/sign-up" text="registrieren" />
+          Neu hier? <TextLink to="/talent-sign-up" text="Registrieren" />
         </p>
       </Details>
     </div>
