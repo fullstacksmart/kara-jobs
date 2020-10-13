@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../services/reducers';
 
-const Success: React.FC<unknown> = (props: unknown) => {
+const Success: React.FC<unknown> = () => {
   const history = useHistory();
   const firebase = useFirebase();
   const auth = useSelector<RootState>((state) => state.firebase.auth);
