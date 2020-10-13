@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import styles from './TalentSignUp1.module.scss';
 import Form from '../../Form';
 import Select from '../../Select';
@@ -9,36 +9,47 @@ import TextInput from '../../TextInput';
 import { Redirect } from 'react-router-dom';
 
 const TalentSignUp1: React.FC = () => {
-  const [selectedValue, setSelectedValue] = useState<string>('country1');
-  const [textInputs, setTextInputs] = useState({
-    zipCode: '',
-    city: '',
-  });
+  const [info, setInfo] = useState({ residence: '', zipCode: '', city: '' });
   const [redirect, setRedirect] = useState(0);
-
-  //TO DO update:
-  const countryValues = { isoCode: 'id1', residence: 'country1' };
 
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
-  const handleSelectChange = (e: React.FormEvent<HTMLSelectElement>) => {
-    console.log(e.currentTarget.id);
-    setSelectedValue(e.currentTarget.value);
-  };
+  useEffect(() => {
+    const residence = document.getElementById('residence') as HTMLInputElement;
+    const zipCode = document.getElementById('zipCode') as HTMLInputElement;
+    const city = document.getElementById('city') as HTMLInputElement;
+    if (talent) {
+      if (talent.zipCode !== undefined) zipCode.value = talent.zipCode;
+      if (talent.city !== undefined) city.value = talent.city;
+      //TO DO: Change residence in Talent and update correctly here
+      if (talent.residence !== undefined) residence.value = 'country2';
+    }
+  }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
+  ) => {
     console.log(e.currentTarget.id);
-    switch (e.target.id) {
+    switch (e.currentTarget.id) {
+      case 'residence':
+        setInfo({
+          residence: e.currentTarget.value,
+          zipCode: info.zipCode,
+          city: info.city,
+        });
+        break;
       case 'zipCode':
-        setTextInputs({
-          zipCode: e.target.value,
-          city: textInputs.city,
+        setInfo({
+          residence: info.residence,
+          zipCode: e.currentTarget.value,
+          city: info.city,
         });
         break;
       case 'city':
-        setTextInputs({
-          zipCode: textInputs.zipCode,
-          city: e.target.value,
+        setInfo({
+          residence: info.residence,
+          zipCode: info.zipCode,
+          city: e.currentTarget.value,
         });
         break;
       default:
@@ -46,28 +57,26 @@ const TalentSignUp1: React.FC = () => {
     }
   };
 
-  const updateSessionSelect = (e: React.FocusEvent<HTMLSelectElement>) => {
-    console.log(e.currentTarget.value);
+  const updateSession = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.FocusEvent<HTMLSelectElement>,
+  ) => {
     sessionStorage.setItem(
       'talent',
-      JSON.stringify({ ...talent, ...countryValues }),
-    );
-  };
-
-  const updateSession = (e: React.ChangeEvent<HTMLInputElement>) => {
-    sessionStorage.setItem(
-      'talent',
-      JSON.stringify(Object.assign(talent, { [e.target.id]: e.target.value })),
+      JSON.stringify(
+        Object.assign(talent, { [e.currentTarget.id]: e.currentTarget.value }),
+      ),
     );
   };
 
   const handleSubmit = () => {
+    //TO DO: map country values
     sessionStorage.setItem(
       'talent',
       JSON.stringify({
         ...talent,
-        ...textInputs,
-        ...countryValues,
+        ...info,
       }),
     );
     // post to DB
@@ -85,15 +94,15 @@ const TalentSignUp1: React.FC = () => {
     return (
       <div>
         <Form onSubmit={handleSubmit}>
-          <Label htmlFor="countries">Land*</Label>
+          <Label htmlFor="residence">Land*</Label>
           <Select
-            id="countries"
-            value={selectedValue}
-            onChange={(e) => handleSelectChange(e)}
-            onBlur={(e) => updateSessionSelect(e)}
+            id="residence"
+            value={info.residence}
+            onChange={handleChange}
+            onBlur={(e) => updateSession(e)}
           >
             {optArray.map((opt) => (
-              <Option key={opt[0]} value={opt[0]}>
+              <Option key={opt[0]} value={opt[1]}>
                 {opt[1]}
               </Option>
             ))}
@@ -101,14 +110,14 @@ const TalentSignUp1: React.FC = () => {
           <TextInput
             id="zipCode"
             labelText="Postleitzahl"
-            onChange={handleChange}
-            onBlur={updateSession}
+            onChange={(e) => handleChange(e)}
+            onBlur={(e) => updateSession(e)}
           ></TextInput>
           <TextInput
             id="city"
             labelText="Region / Stadt"
-            onChange={handleChange}
-            onBlur={updateSession}
+            onChange={(e) => handleChange(e)}
+            onBlur={(e) => updateSession(e)}
           ></TextInput>
           <Button>Submit</Button>
         </Form>
