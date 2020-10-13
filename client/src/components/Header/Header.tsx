@@ -7,27 +7,27 @@ import { Link } from 'react-router-dom';
 const Header: React.FC<unknown> = () => {
   return (
     <div className={styles.Header}>
-      <img src={logo} className={styles.logo} />
-      <div className={styles.menu}>
-        <ul className={styles.centeredMenu}>
-          <Link to="/" className={styles.item}>
+      <img src={logo} className={styles.Logo} />
+      <div className={styles.Menu}>
+        <ul className={styles.CenteredMenu}>
+          <Link to="/" className={styles.Item}>
             Home
           </Link>
-          <Link to="/" className={styles.item}>
+          <Link to="/" className={styles.Item}>
             Für Talente
           </Link>
-          <Link to="/" className={styles.item}>
+          <Link to="/" className={styles.Item}>
             Für Arbeitgeber
           </Link>
-          <Link to="/" className={styles.item}>
+          <Link to="/" className={styles.Item}>
             Über uns
           </Link>
         </ul>
-        <div className={styles.rightMenu}>
-          <Link to="/signup" className={styles.item}>
+        <div className={styles.RightMenu}>
+          <Link to="/signup" className={styles.Item}>
             Mitglied werden
           </Link>
-          <Link to="/sign-in" className={styles.buttonWrapper}>
+          <Link to="/sign-in" className={styles.ButtonWrapper}>
             <Button>Login</Button>
           </Link>
         </div>
