@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import styles from './TalentSignUp0.module.scss';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
-import ButtonLink from '../../ButtonLink';
-import { Link } from 'react-router-dom';
+import Button from '../../Button';
+import { Redirect } from 'react-router-dom';
 
 const TalentSignUp0: React.FC = () => {
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
+  const [redirect, setRedirect] = useState(0);
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
   useEffect(() => {
-    console.log(talent);
     const firstName = document.getElementById('firstName') as HTMLInputElement;
     const lastName = document.getElementById('lastName') as HTMLInputElement;
     if (talent) {
@@ -40,32 +40,33 @@ const TalentSignUp0: React.FC = () => {
       JSON.stringify(Object.assign(talent, { onboarding_status: 1 })),
     );
     // post to DB
+    setRedirect(1);
   };
 
-  return (
-    <BlueWrapper>
-      <div className={styles.TalentSignUp0}>
-        <form onSubmit={handleSubmit}>
-          <TextInput
-            id="firstName"
-            labelText="Vorname*"
-            onChange={handleChange}
-            onBlur={updateSession}
-          ></TextInput>
-          <TextInput
-            id="lastName"
-            labelText="Nachname*"
-            onChange={handleChange}
-            onBlur={updateSession}
-          ></TextInput>
-          <Link to="/talent-signup-1">
-            <button>Hier</button>
-          </Link>
-          <ButtonLink to="/talent-signup-1">Weiter</ButtonLink>
-        </form>
-      </div>
-    </BlueWrapper>
-  );
+  if (redirect === 1) return <Redirect to={`/talent-signup-1`} />;
+  else {
+    return (
+      <BlueWrapper>
+        <div className={styles.TalentSignUp0}>
+          <form onSubmit={handleSubmit}>
+            <TextInput
+              id="firstName"
+              labelText="Vorname*"
+              onChange={handleChange}
+              onBlur={updateSession}
+            ></TextInput>
+            <TextInput
+              id="lastName"
+              labelText="Nachname*"
+              onChange={handleChange}
+              onBlur={updateSession}
+            ></TextInput>
+            <Button>Weiter</Button>
+          </form>
+        </div>
+      </BlueWrapper>
+    );
+  }
 };
 
 export default TalentSignUp0;

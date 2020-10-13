@@ -57,7 +57,7 @@ const Router: React.FC<unknown> = () => {
     <Loading />
   ) : (
     <BrowserRouter>
-      <Route path="/" exact component={Home}></Route>
+      <Route path="/" exact component={TalentSignup}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
       <Route
