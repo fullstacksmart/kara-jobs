@@ -5,6 +5,9 @@ import TextInput from '../../TextInput';
 
 const TalentSignUp1: React.FC = () => {
   // const [info, setInfo] = useState({ residence: '', zipCode: '', city: '' });
+  const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+
+  console.log(talent);
 
   // const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
   //   switch (e.target.id) {
