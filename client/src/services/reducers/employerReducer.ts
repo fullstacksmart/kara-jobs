@@ -20,7 +20,7 @@ const initialState: Employer = {
 const EmployerReducer = (
   state: Employer = initialState,
   action: EmployerActions,
-) => {
+): Employer => {
   switch (action.type) {
     case 'ADD_EMPLOYER':
       return Object.assign(state, action.payload);

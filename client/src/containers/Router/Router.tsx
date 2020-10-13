@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from '../Home';
-import SignUp from '../SignUp';
-import LoginComponent from '../../containers/LoginContainer';
+// import SignUp from '../SignUp';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import JobSearch from '../JobSearch';
 import { useSelector } from 'react-redux';

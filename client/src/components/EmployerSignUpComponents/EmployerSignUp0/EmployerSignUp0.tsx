@@ -3,8 +3,6 @@ import styles from './EmployerSignUp0.module.scss';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
 import Button from '../../Button';
-import ButtonLink from '../../ButtonLink';
-import { Link } from 'react-router-dom';
 
 const EmployerSignUp0: React.FC = () => {
   const [info, setInfo] = useState({ companyName: '', sector: '', type: '' });
