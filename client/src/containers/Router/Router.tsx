@@ -9,7 +9,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../services/reducers';
 import Loading from '../../components/Loading';
 import Success from '../../components/Success';
-import TalentRegistration from '../../components/TalentRegistration';
+import TalentRegistration from '../../components/Registration/TalentRegistration';
+import EmployerRegistration from '../../components/Registration/EmployerRegistration';
 import LoginContainer from '../../containers/LoginContainer';
 
 const Router: React.FC<unknown> = () => {
@@ -26,7 +27,16 @@ const Router: React.FC<unknown> = () => {
       <Route path="/" exact component={Home}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
-      <Route path="/sign-up" exact component={TalentRegistration}></Route>
+      <Route
+        path="/talent-sign-up"
+        exact
+        component={TalentRegistration}
+      ></Route>
+      <Route
+        path="/employer-sign-up"
+        exact
+        component={EmployerRegistration}
+      ></Route>
       {paths}
     </BrowserRouter>
   );

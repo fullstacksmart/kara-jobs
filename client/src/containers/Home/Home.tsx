@@ -9,7 +9,7 @@ const Home: React.FC<unknown> = () => {
   return (
     <div className={styles.Home}>
       <nav className={styles.NavBar}>
-        <ButtonLink text="Sign Up" to="sign-up" />
+        <ButtonLink text="Sign Up" to="talent-sign-up" />
         <ButtonLink to="/sign-in" text="Sign In" />
       </nav>
       <h1>HOME</h1>
