@@ -1,22 +1,17 @@
 import React from 'react';
 import styles from './Home.module.scss';
-import { Link } from 'react-router-dom';
-import Login from '../../components/Login';
+import Landing from '../../components/Landing';
 
 // interface HomeProps {}
 
-const Home: React.FC<unknown> = (props: unknown) => {
-  return (
-    <div className={styles.Home}>
-      <nav className={styles.NavBar}>
-        <Login />
-        <Link to="/signup">
-          <button>Sign up</button>
-        </Link>
-      </nav>
-      <h1>HOME</h1>
-    </div>
-  );
+//REDUX
+// import { Dispatch } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { RootState } from '../../services/reducers';
+// import { TalentActions } from '../../services/actions/talentActions';
+
+const Home: React.FC<unknown> = () => {
+  return <Landing />;
 };
 
 export default Home;
