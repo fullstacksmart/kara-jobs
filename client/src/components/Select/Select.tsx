@@ -10,6 +10,7 @@ const Select: React.FC<SelectProps> = ({
   return (
     <select
       className={className ? styles.Select + ' ' + className : styles.Select}
+      {...props}
     >
       {props.children}
     </select>
