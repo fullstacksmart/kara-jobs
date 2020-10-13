@@ -1,24 +1,30 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('talent_table_approbations', {
-      user_id: {
+    await queryInterface.createTable('user_company_talent_search_preferences', {
+      company_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      approbation_started: {
+      search_doctor: {
         type: Sequelize.BOOLEAN
       },
-      approbation_federal_state: {
-        type: Sequelize.STRING
-      },
-      approbation_feedback: {
+      search_nurse: {
         type: Sequelize.BOOLEAN
       },
-      approbation_status: {
-        type: Sequelize.STRING
+      search_other: {
+        type: Sequelize.BOOLEAN
+      },
+      search_talent_study_status: {
+        type: Sequelize.BOOLEAN
+      },
+      search_talent_approb_status: {
+        type: Sequelize.BOOLEAN
+      },
+      search_talent_min_german: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +37,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('talent_table_approbations');
+    await queryInterface.dropTable('user_company_talent_search_preferences');
   }
 };

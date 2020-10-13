@@ -1,38 +1,38 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('talent_table_experiences', {
-      user_id: {
+    await queryInterface.createTable('user_company_generals', {
+      company_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      position_name: {
+      company_name: {
         type: Sequelize.STRING
       },
-      employer_name: {
+      company_sector: {
         type: Sequelize.STRING
       },
-      employer_country: {
+      company_type: {
         type: Sequelize.STRING
       },
-      employer_city: {
+      company_street: {
         type: Sequelize.STRING
       },
-      position_start_month: {
-        type: Sequelize.DECIMAL(2,0)
+      company_street_no: {
+        type: Sequelize.STRING
       },
-      position_start_year: {
-        type: Sequelize.DECIMAL(4,0)
+      company_address_additional: {
+        type: Sequelize.STRING
       },
-      position_end_month: {
-        type: Sequelize.DECIMAL(2,0)
+      company_zip_code: {
+        type: Sequelize.STRING
       },
-      position_end_year: {
-        type: Sequelize.DECIMAL(4,0)
+      company_city: {
+        type: Sequelize.STRING
       },
-      position_description: {
+      company_website: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -46,6 +46,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('talent_table_experiences');
+    await queryInterface.dropTable('user_company_generals');
   }
 };

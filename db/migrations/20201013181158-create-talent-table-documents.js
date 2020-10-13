@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('talent_table_documents', {
-      id: {
+      user_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

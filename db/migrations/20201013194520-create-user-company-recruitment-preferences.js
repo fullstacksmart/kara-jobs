@@ -1,24 +1,24 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('user_talent_registration_proficiencies', {
-      user_id: {
+    await queryInterface.createTable('user_company_recruitment_preferences', {
+      company_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      occupation_id: {
-        type: Sequelize.DECIMAL(1,0),
+      receive_initiative_application: {
+        type: Sequelize.BOOLEAN
       },
-      position_name: {
-        type: Sequelize.STRING
+      offer_approb_training: {
+        type: Sequelize.BOOLEAN
       },
-      occupation_status_id: {
-        type: Sequelize.DECIMAL(1,0)
+      receive_international_application: {
+        type: Sequelize.BOOLEAN
       },
-      employer_name: {
-        type: Sequelize.STRING
+      receive_agency_application: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +31,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('user_talent_registration_proficiencies');
+    await queryInterface.dropTable('user_company_recruitment_preferences');
   }
 };

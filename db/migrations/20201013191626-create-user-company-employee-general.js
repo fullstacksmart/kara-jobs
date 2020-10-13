@@ -1,18 +1,27 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('talent_table_spoken_languages', {
-      user_id: {
+    await queryInterface.createTable('user_company_employee_generals', {
+      company_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      spoken_language: {
+      employee_id: {
+        type: Sequelize.BIGINT
+      },
+      first_name: {
         type: Sequelize.STRING
       },
-      spoken_language_proficiency: {
-        type: Sequelize.INTEGER
+      last_name: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING
+      },
+      passeword: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -25,6 +34,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('talent_table_spoken_languages');
+    await queryInterface.dropTable('user_company_employee_generals');
   }
 };
