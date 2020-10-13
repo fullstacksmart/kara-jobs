@@ -2,10 +2,9 @@ import Router from '@koa/router';
 
 const router = new Router();
 
-router.get('/', () => {
-  console.log('get');
+// TODO: add routes
+router.get('/', (ctx) => {
+  ctx.body = 'getting there';
 });
-
-console.log('no');
 
 export default router;
