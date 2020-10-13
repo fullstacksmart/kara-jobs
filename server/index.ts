@@ -1,18 +1,18 @@
-import * as dotenv from 'dotenv';
+import Koa from 'koa';
+import cors from '@koa/cors';
+import dotenv from 'dotenv';
 dotenv.config();
-import express from 'express';
-import cors from 'cors';
-import authMiddleware from './firebase/auth-middleware';
-const PORT = 3001 || process.env.SERVER_PORT;
 
-const app = express();
+const app = new Koa();
 
-app.use('/', authMiddleware);
+const corsOptions = {
+  origin: process.env.PATH_TO_APP || 'http://localhost:3000',
+}
 
-app.use(cors({
-  origin: process.env.PATH_TO_APP
-}));
+app.use(cors(corsOptions));
+
+const PORT = process.env.SERVER_PORT || 3001;
 
 app.listen(PORT, () => {
-  console.log(`🚀 server listening on http://localhost:${PORT}`)
-});
+  console.log(`🚀 server listening on http://localhost:${PORT}`);
+})
