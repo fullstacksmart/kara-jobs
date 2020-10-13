@@ -35,7 +35,6 @@ const TalentSignUp0: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    console.log('submit');
     sessionStorage.setItem(
       'talent',
       JSON.stringify(Object.assign(talent, { onboarding_status: 1 })),
@@ -44,7 +43,7 @@ const TalentSignUp0: React.FC = () => {
     setRedirect(1);
   };
 
-  if (redirect) return <Redirect to={`/talent-signup-1`} />;
+  if (redirect === 1) return <Redirect to={`/talent-signup-1`} />;
   else {
     return (
       <BlueWrapper>

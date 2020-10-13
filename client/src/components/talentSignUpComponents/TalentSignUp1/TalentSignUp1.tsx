@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import styles from './TalentSignUp1.module.scss';
 // import { Talent } from '../../../types/talent';
 // import TextInput from '../../TextInput';
+import Form from '../../Form';
+import Select from '../../Select';
+import Button from '../../Button';
+import Label from '../../Label';
+import Option from '../../Option';
+import TextInput from '../../TextInput';
 
 const TalentSignUp1: React.FC = () => {
-  // const [info, setInfo] = useState({ residence: '', zipCode: '', city: '' });
+  const [info, setInfo] = useState({
+    isoCode: '',
+    residence: '',
+    zipCode: '',
+    city: '',
+  });
+  const [selectedValue, setSelectedValue] = useState({
+    selectedValue: 'country1',
+  });
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
-  console.log(talent);
+  const handleSelectChange = (e: any): void => {
+    console.log(e.target.value);
+    setSelectedValue({
+      selectedValue: e.target.value,
+    });
+  };
+
+  const handleSubmit = () => {
+    console.log('selected', selectedValue);
+    console.log(info);
+  };
 
   // const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
   //   switch (e.target.id) {
@@ -37,41 +61,31 @@ const TalentSignUp1: React.FC = () => {
   //   }
   // };
 
-  // const handleSubmit = () => {
-  //   props.talentHandler(info);
-  //   props.progressHandler(2);
-  // };
+  const optArray = [
+    ['id1', 'country1'],
+    ['id2', 'country2'],
+    ['id3', 'country3'],
+  ];
 
   return (
-    <div>hi</div>
-    // <div className={styles.TalentSignUp1}>
-    //   <p>{`Hallo ${props.talent.firstName} ${props.talent.lastName}, in ein paar
-    //     Schritten kommst du zu deinem Profl`}</p>
-    //   <form onSubmit={handleSubmit}>
-    //     <label>Land*</label>
-    //     <input
-    //       type="text"
-    //       id="residence"
-    //       name="residence"
-    //       onChange={handleChange}
-    //     ></input>
-    //     <label>Postleitzahl*</label>
-    //     <input
-    //       type="text"
-    //       id="zipCode"
-    //       name="zipCode"
-    //       onChange={handleChange}
-    //     ></input>
-    //     <label>Region / Stadt*</label>
-    //     <input
-    //       type="text"
-    //       id="city"
-    //       name="city"
-    //       onChange={handleChange}
-    //     ></input>
-    //     <button>Weiter</button>
-    //   </form>
-    // </div>
+    <div>
+      <Form onSubmit={handleSubmit}>
+        <Label htmlFor="countries">Land*</Label>
+        <Select
+          value={selectedValue.selectedValue}
+          onChange={(e) => handleSelectChange(e.target.id)}
+        >
+          {optArray.map((opt) => (
+            <Option key={opt[0]} value={opt[0]}>
+              {opt[1]}
+            </Option>
+          ))}
+        </Select>
+        <TextInput id="zipCode" labelText="Postleitzahl"></TextInput>
+        <TextInput id="city" labelText="Region / Stadt"></TextInput>
+        <Button>Submit</Button>
+      </Form>
+    </div>
   );
 };
 export default TalentSignUp1;
