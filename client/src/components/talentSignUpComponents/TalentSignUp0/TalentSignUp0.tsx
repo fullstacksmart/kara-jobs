@@ -4,10 +4,13 @@ import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
 import Button from '../../Button';
 import { Redirect } from 'react-router-dom';
+import Form from '../../Form';
 
 const TalentSignUp0: React.FC = () => {
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
   const [redirect, setRedirect] = useState(0);
+  //TO DO: if session mgmt doesn't contain values of this page, query from DB (async) and then update session mgmt (for this specific page). Once done, set talent.firstName / lastName values.
+  //talent obj either contains data from previous pages or is empty or contains some data of this page
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
   useEffect(() => {
@@ -28,6 +31,7 @@ const TalentSignUp0: React.FC = () => {
   };
 
   const updateSession = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //adding firstname / lastName props to talent obj (talent obj either contains data from previous pages or is empty or contains some data of this page
     sessionStorage.setItem(
       'talent',
       JSON.stringify(Object.assign(talent, { [e.target.id]: e.target.value })),
@@ -39,16 +43,16 @@ const TalentSignUp0: React.FC = () => {
       'talent',
       JSON.stringify(Object.assign(talent, { onboarding_status: 1 })),
     );
-    // post to DB
+    // post to DB: only post relevant data of this page
     setRedirect(1);
   };
 
-  if (redirect === 1) return <Redirect to={`/talent-signup-1`} />;
+  if (redirect === 1) return <Redirect push to={`/talent-signup-1`} />;
   else {
     return (
       <BlueWrapper>
         <div className={styles.TalentSignUp0}>
-          <form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <TextInput
               id="firstName"
               labelText="Vorname*"
@@ -62,7 +66,7 @@ const TalentSignUp0: React.FC = () => {
               onBlur={updateSession}
             ></TextInput>
             <Button>Weiter</Button>
-          </form>
+          </Form>
         </div>
       </BlueWrapper>
     );

@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom';
 const uid = '123';
 const email = 'test@gmail.com';
 const onboarding_status = 0;
+//TO DO: container gets uid, email and onboarding_status from SignIn container
 
 interface TalentSignUpProps {
   talentInfo: TalentInfo;
@@ -15,7 +16,6 @@ interface TalentSignUpProps {
 const TalentSignUp: React.FC<TalentSignUpProps> = (
   props: TalentSignUpProps,
 ) => {
-  //TO DO: 1. Update Session Storage with Talent Obj; 2. Redirect to right page in Onboarding;
   sessionStorage.setItem(
     'talent',
     JSON.stringify({
