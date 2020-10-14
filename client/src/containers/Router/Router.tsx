@@ -20,6 +20,7 @@ import TalentSignUp3 from '../../components/talentSignUpComponents/TalentSignUp3
 import TalentSignUp4 from '../../components/talentSignUpComponents/TalentSignUp4';
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
 import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
+import EmployerSignUp2 from '../../components/EmployerSignUpComponents/EmployerSignUp2';
 import LoginContainer from '../../containers/LoginContainer';
 
 const Router: React.FC<unknown> = () => {
@@ -73,6 +74,12 @@ const Router: React.FC<unknown> = () => {
           path="/employer-signup-1"
           exact
           component={EmployerSignUp1}
+        ></Route>,
+        <Route
+          key="/employer-signup-2"
+          path="/employer-signup-2"
+          exact
+          component={EmployerSignUp2}
         ></Route>,
       ]
     : [
