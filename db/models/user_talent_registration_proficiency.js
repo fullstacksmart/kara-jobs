@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user_talent_registration_proficiency extends Model {
     /**
@@ -12,12 +12,24 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
+  }
   user_talent_registration_proficiency.init({
-    occupation_id: DataTypes.DECIMAL(1,0),
-    position_name: DataTypes.STRING,
-    occupation_status_id: DataTypes.DECIMAL,
-    employer_name: DataTypes.STRING
+    occupation_id: {
+      type: DataTypes.DECIMAL(1, 0),
+      allowNull: false,
+    },
+    position_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    occupation_status_id: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
+    employer_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'user_talent_registration_proficiency',

@@ -1,42 +1,42 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('user_talent_generals', {
-      user_id: {
+    await queryInterface.createTable('user_talents', {
+      id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.BIGINT,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-      },
-      password: {
         type: Sequelize.STRING,
       },
       first_name: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       last_name: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       iso_code: {
         type: Sequelize.STRING(2),
+        allowNull: false,
       },
       residence: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       zip_code: {
         type: Sequelize.DECIMAL(8, 0),
+        allowNull: false,
       },
       city: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       onboarding_page: {
-        type: Sequelize.Integer
+        type: Sequelize.Integer,
+        allowNull: false,
       },
       onboarding_completed: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -49,6 +49,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('user_talent_generals');
+    await queryInterface.dropTable('user_talents');
   },
 };

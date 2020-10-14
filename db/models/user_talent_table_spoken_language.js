@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user_talent_table_spoken_language extends Model {
     /**
@@ -12,10 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  talent_table_spoken_language.init({
+  }
+  user_talent_table_spoken_language.init({
     spoken_language: DataTypes.STRING,
-    spoken_language_proficiency: DataTypes.INTEGER
+    spoken_language_proficiency: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'talent_table_spoken_language',

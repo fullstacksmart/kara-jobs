@@ -1,30 +1,43 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('user_company_employee_generals', {
+    await queryInterface.createTable('user_companies', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING,
       },
-      employee_id: {
+      company_name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      first_name: {
+      company_sector: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      last_name: {
+      company_type: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      onboarding_page: {
-        type: Sequelize.INTEGER,
+      company_street: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      onboarding_completed: {
-        type: Sequelize.BOOLEAN,
+      company_street_no: {
+        type: Sequelize.STRING,
+      },
+      company_address_additional: {
+        type: Sequelize.STRING,
+      },
+      company_zip_code: {
+        type: Sequelize.STRING,
         allowNull: false,
+      },
+      company_city: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      company_website: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +50,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('user_company_employee_generals');
+    await queryInterface.dropTable('user_companies');
   },
 };

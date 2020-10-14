@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class user_company_employee_general extends Model {
+  class user_company extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,31 +13,46 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  user_company_employee_general.init({
-    employee_id: {
+  user_company.init({
+    company_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    first_name: {
+    company_sector: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    last_name: {
+    company_type: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    onboarding_complete: {
-      type: DataTypes.BOOLEAN,
+    company_street: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    onboarding_page: {
-      type: DataTypes.INTEGER,
+    company_street_no: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    company_address_additional: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    company_zip_code: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-
+    company_city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    company_website: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {
     sequelize,
-    modelName: 'user_company_employee_general',
+    modelName: 'user_company',
   });
-  return user_company_employee_general;
+  return user_company;
 };

@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user_company_image_gallery extends Model {
     /**
@@ -12,12 +12,25 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
+  }
   user_company_image_gallery.init({
-    image_id: DataTypes.BIGINT,
-    image_title: DataTypes.STRING,
-    profile_image: DataTypes.BOOLEAN,
-    image_url: DataTypes.STRING
+    id: {
+      primaryKey: true,
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    image_title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    profile_image: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    image_url: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'user_company_image_gallery',

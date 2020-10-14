@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  talent_table_about_me.init({
+  user_talent_table_about_me.init({
     about_me_text: DataTypes.STRING(800),
     sequelize,
     modelName: 'talent_table_about_me',

@@ -1,51 +1,55 @@
-'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('talent_table_experiences', {
-      user_id: {
+      id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
       },
       position_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       employer_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       employer_country: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       employer_city: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       position_start_month: {
-        type: Sequelize.DECIMAL(2,0)
+        type: Sequelize.DECIMAL(2, 0),
+        allowNull: false,
       },
       position_start_year: {
-        type: Sequelize.DECIMAL(4,0)
+        type: Sequelize.DECIMAL(4, 0),
+        allowNull: false,
       },
       position_end_month: {
-        type: Sequelize.DECIMAL(2,0)
+        type: Sequelize.DECIMAL(2, 0),
       },
       position_end_year: {
-        type: Sequelize.DECIMAL(4,0)
+        type: Sequelize.DECIMAL(4, 0),
       },
       position_description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('talent_table_experiences');
-  }
+  },
 };

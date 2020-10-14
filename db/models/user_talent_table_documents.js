@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model, UUIDV4,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user_talent_table_documents extends Model {
     /**
@@ -12,10 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  talent_table_documents.init({
-    document_id: DataTypes.INTEGER,
-    document_type: DataTypes.STRING
+  }
+  user_talent_table_documents.init({
+    id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    document_type: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'talent_table_documents',

@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user_talent_table_other_skills extends Model {
     /**
@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  talent_table_other_skills.init({
-    talent_skill: DataTypes.STRING
+  }
+  user_talent_table_other_skills.init({
+    talent_skill: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'talent_table_other_skills',

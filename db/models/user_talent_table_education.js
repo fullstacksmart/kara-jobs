@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user_talent_table_education extends Model {
     /**
@@ -12,13 +12,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  talent_table_education.init({
-    university_name: DataTypes.STRING,
+  }
+  user_talent_table_education.init({
+    university_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     degree: DataTypes.STRING,
-    filed_of_study: DataTypes.STRING,
-    study_start_year: DataTypes.DECIMAL(4,0),
-    study_end_year: DataTypes.DECIMAL(4,0),
+    field_of_study: DataTypes.STRING,
+    study_start_year: DataTypes.DECIMAL(4, 0),
+    study_end_year: DataTypes.DECIMAL(4, 0),
     study_description: DataTypes.STRING(500),
   }, {
     sequelize,

@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user_company_recruitment_preferences extends Model {
     /**
@@ -12,12 +12,24 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
+  }
   user_company_recruitment_preferences.init({
-    receive_initiative_application: DataTypes.BOOLEAN,
-    offer_approb_training: DataTypes.BOOLEAN,
-    receive_international_application: DataTypes.BOOLEAN,
-    receive_agency_application: DataTypes.BOOLEAN
+    receive_initiative_application: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    offer_approb_training: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    receive_international_application: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    receive_agency_application: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'user_company_recruitment_preferences',

@@ -13,11 +13,23 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  talent_table_approbation.init({
-    approbation_started: DataTypes.BOOLEAN,
-    approbation_federal_state: DataTypes.STRING,
-    approbation_feedback: DataTypes.BOOLEAN,
-    approbation_status: DataTypes.STRING,
+  user_talent_table_approbation.init({
+    approbation_started: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    approbation_federal_state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    approbation_feedback: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    approbation_status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'talent_table_approbation',
