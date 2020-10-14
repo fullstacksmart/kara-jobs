@@ -36,15 +36,19 @@ const TalentSignUp0: React.FC = () => {
     );
   };
 
+  const postToDB = (talentObj: any) => {
+    console.log(talentObj);
+  };
+
   const handleSubmit = () => {
-    sessionStorage.setItem(
-      'talent',
-      JSON.stringify(Object.assign(talent, { onboarding_status: 1 })),
-    );
+    const talentObj = Object.assign(talent, { onboarding_status: 1 });
+    sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB: only post relevant data of this page
+    postToDB(talentObj);
     setRedirect(1);
   };
 
+  //test
   if (redirect === 1) return <Redirect push to={`/talent-signup-1`} />;
   else {
     return (
@@ -56,12 +60,14 @@ const TalentSignUp0: React.FC = () => {
               labelText="Vorname*"
               onChange={handleChange}
               onBlur={updateSession}
+              data-testid="firstName"
             ></TextInput>
             <TextInput
               id="lastName"
               labelText="Nachname*"
               onChange={handleChange}
               onBlur={updateSession}
+              data-testid="lastName"
             ></TextInput>
             <Button>Weiter</Button>
           </Form>
