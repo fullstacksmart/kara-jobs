@@ -20,9 +20,6 @@ const TalentSignUp1: React.FC = () => {
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
   useEffect(() => {
-    const residenceHTML = document.getElementById(
-      'residence',
-    ) as HTMLSelectElement;
     const zipCodeHTML = document.getElementById('zipCode') as HTMLInputElement;
     const cityHTML = document.getElementById('city') as HTMLInputElement;
     if (talent) {
