@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import styles from './TalentSignUp0.module.scss';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
-import ButtonLink from '../../ButtonLink';
-import { Link } from 'react-router-dom';
+import Button from '../../Button';
+import { Redirect } from 'react-router-dom';
+import Form from '../../Form';
 
 const TalentSignUp0: React.FC = () => {
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
+  const [redirect, setRedirect] = useState(0);
+
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
   useEffect(() => {
-    console.log(talent);
     const firstName = document.getElementById('firstName') as HTMLInputElement;
     const lastName = document.getElementById('lastName') as HTMLInputElement;
     if (talent) {
@@ -27,7 +29,7 @@ const TalentSignUp0: React.FC = () => {
     }
   };
 
-  const updateSession = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const updateSession = (e: React.ChangeEvent<HTMLInputElement>) => {
     sessionStorage.setItem(
       'talent',
       JSON.stringify(Object.assign(talent, { [e.target.id]: e.target.value })),
@@ -39,33 +41,34 @@ const TalentSignUp0: React.FC = () => {
       'talent',
       JSON.stringify(Object.assign(talent, { onboarding_status: 1 })),
     );
-    // post to DB
+    // post to DB: only post relevant data of this page
+    setRedirect(1);
   };
 
-  return (
-    <BlueWrapper>
-      <div className={styles.TalentSignUp0}>
-        <form onSubmit={handleSubmit}>
-          <TextInput
-            id="firstName"
-            labelText="Vorname*"
-            onChange={handleChange}
-            onBlur={updateSession}
-          ></TextInput>
-          <TextInput
-            id="lastName"
-            labelText="Nachname*"
-            onChange={handleChange}
-            onBlur={updateSession}
-          ></TextInput>
-          <Link to="/talent-signup-1">
-            <button>Hier</button>
-          </Link>
-          <ButtonLink to="/talent-signup-1">Weiter</ButtonLink>
-        </form>
-      </div>
-    </BlueWrapper>
-  );
+  if (redirect === 1) return <Redirect push to={`/talent-signup-1`} />;
+  else {
+    return (
+      <BlueWrapper>
+        <div className={styles.TalentSignUp0}>
+          <Form onSubmit={handleSubmit}>
+            <TextInput
+              id="firstName"
+              labelText="Vorname*"
+              onChange={handleChange}
+              onBlur={updateSession}
+            ></TextInput>
+            <TextInput
+              id="lastName"
+              labelText="Nachname*"
+              onChange={handleChange}
+              onBlur={updateSession}
+            ></TextInput>
+            <Button>Weiter</Button>
+          </Form>
+        </div>
+      </BlueWrapper>
+    );
+  }
 };
 
 export default TalentSignUp0;

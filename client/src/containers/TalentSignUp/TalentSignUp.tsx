@@ -1,55 +1,15 @@
 import React from 'react';
-// import styles from './TalentSignUp.module.scss';
-import { TalentInfo } from '../../types/signup';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { TalentActions } from '../../services/actions/talentActions';
-// import { RootState } from '../../services/reducers';
+//import styles from './TalentSignUp.module.scss';
 import { Redirect } from 'react-router-dom';
 
-//TO DO: replace
+//TO DO: replace with data from signIn Handler Container (talent object from DB)
+//this object will include all infos relevant up to onboarding status
 const uid = '123';
 const email = 'test@gmail.com';
 const onboarding_status = 0;
 
-// const auth: unknown = useSelector<RootState>((state) => state.firebase.auth);
-//   const talent: Talent = useSelector<RootState>(
-//     (state: RootState) => state.talent,
-//   ) as Talent;
-
-interface TalentSignUpProps {
-  talentInfo: TalentInfo;
-}
-
-const TalentSignUp: React.FC<TalentSignUpProps> = () => {
-  //session mgmt filled ?
-  //--> redirect to right page, after submit: update redux, session mgmt and post to DB :
-  //DB ? --> redirect right page, update session mgmt immediately (using firebase uid); after submit: update redux, session mgmt and post to DB :
-  //redirect to 1st page, update session mgmt with uid and email immediately (using firebase uid); after submit: update, redux, session mgmt and post to DB,
-
-  //after each page: update session mgmt, update redux, post to DB;
-
-  //Update Session Mgmt and Redux and post to DB
-  //then link to next page
-
-  //update session mgmt
-  // sessionStorage.setItem(
-  //   'talent',
-  //   JSON.stringify(
-  //     Object.assign(talent, {
-  //       uid: JSON.stringify(auth),
-  //       email: JSON.stringify(auth),
-  //       onboarding_status: 1,
-  //     }),
-  //   ),
-  // );
-
-  //update redux
-  // const talentDispatch = useDispatch<Dispatch<TalentActions>>();
-  // talentDispatch({
-  //   type: 'ADD_TALENT',
-  //   payload: Object.assign(talent, { uid: '123', email: 'test@gmail.com' }),
-  // });
-
+const TalentSignUp: React.FC = () => {
+  //Updating session mgmt with talent object
   sessionStorage.setItem(
     'talent',
     JSON.stringify({
