@@ -3,66 +3,86 @@ import styles from './EmployerSignUp1.module.scss';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
 import Button from '../../Button';
-
 import Form from '../../Form';
 import Select from '../../Select';
 import Label from '../../Label';
 import Option from '../../Option';
+import { Redirect } from 'react-router-dom';
 
 const EmployerSignUp1: React.FC = () => {
-  const [info, setInfo] = useState({ companyName: '' });
-
-  const [selectedSector, setSelectedSector] = useState({
-    selectedSector: 'sector1',
-  });
-  const [selectedType, setSelectedType] = useState({
-    selectedType: 'type1',
-  });
+  const [info, setInfo] = useState({ companyName: '', sector: '', type: '' });
+  const [redirect, setRedirect] = useState(0);
 
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
 
-  // useEffect(() => {
-  //   console.log(employer);
-  //   const companyName = document.getElementById(
-  //     'companyName',
-  //   ) as HTMLInputElement;
-  //   const sector = document.getElementById('sector') as HTMLInputElement;
-  //   const type = document.getElementById('type') as HTMLInputElement;
-  //   if (employer) {
-  //     if (employer.companyName !== undefined)
-  //       companyName.value = employer.companyName;
-  //     if (employer.sector !== undefined) sector.value = employer.sector;
-  //     if (employer.type !== undefined) type.value = employer.type;
-  //   }
-  // }, []);
+  useEffect(() => {
+    const companyName = document.getElementById(
+      'companyName',
+    ) as HTMLInputElement;
+    const sector = document.getElementById('sector') as HTMLInputElement;
+    const type = document.getElementById('type') as HTMLInputElement;
+    if (employer) {
+      if (employer.companyName !== undefined)
+        companyName.value = employer.companyName;
+      if (employer.sector !== undefined) sector.value = 'sector1';
+      if (employer.type !== undefined) type.value = 'type1';
+    }
+  }, []);
 
-  const handleSelectChange = (e: any): void => {
-    console.log(e.target.value);
-    setSelectedSector({
-      selectedSector: e.target.value,
-    });
-    setSelectedType({
-      selectedType: e.target.value,
-    });
+  const handleChange = (
+    e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
+  ) => {
+    switch (e.currentTarget.id) {
+      case 'companyName':
+        setInfo({
+          companyName: e.currentTarget.value,
+          sector: info.sector,
+          type: info.type,
+        });
+        break;
+      case 'sector':
+        setInfo({
+          companyName: info.companyName,
+          sector: e.currentTarget.value,
+          type: info.type,
+        });
+        break;
+      case 'type':
+        setInfo({
+          companyName: info.companyName,
+          sector: info.sector,
+          type: e.currentTarget.value,
+        });
+        break;
+      default:
+        break;
+    }
   };
 
-  // const updateSession = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  //   sessionStorage.setItem(
-  //     'employer',
-  //     JSON.stringify(
-  //       Object.assign(employer, { [e.target.id]: e.target.value }),
-  //     ),
-  //   );
-  // };
+  const updateSession = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.FocusEvent<HTMLSelectElement>,
+  ) => {
+    sessionStorage.setItem(
+      'employer',
+      JSON.stringify(
+        Object.assign(employer, {
+          [e.currentTarget.id]: e.currentTarget.value,
+        }),
+      ),
+    );
+  };
 
   const handleSubmit = () => {
-    // sessionStorage.setItem(
-    //   'employer',
-    //   JSON.stringify(Object.assign(employer, { onboarding_status: 2 })),
-    // );
-    console.log('selected', selectedType);
-    console.log('selected', selectedSector);
-    console.log(info);
+    sessionStorage.setItem(
+      'employer',
+      JSON.stringify({
+        ...employer,
+        ...info,
+      }),
+    );
+    setRedirect(2);
   };
 
   const sectorArr = [
@@ -77,42 +97,49 @@ const EmployerSignUp1: React.FC = () => {
     ['id3', 'type3'],
   ];
 
-  return (
-    <BlueWrapper>
-      <div className={styles.EmployerSignUp1}>
-        <Form onSubmit={handleSubmit}>
-          <TextInput
-            id="companyName"
-            labelText="Name der Einrichtung/Firma*"
-            // onChange={handleChange}
-            // onBlur={updateSession}
-          ></TextInput>
-          <Label htmlFor="sectors">Branche*</Label>
-          <Select
-            value={selectedSector.selectedSector}
-            onChange={(e) => handleSelectChange(e.target.id)}
-          >
-            {sectorArr.map((opt) => (
-              <Option key={opt[0]} value={opt[0]}>
-                {opt[1]}
-              </Option>
-            ))}
-          </Select>
-          <Select
-            value={selectedType.selectedType}
-            onChange={(e) => handleSelectChange(e.target.id)}
-          >
-            {typeArr.map((opt) => (
-              <Option key={opt[0]} value={opt[0]}>
-                {opt[1]}
-              </Option>
-            ))}
-          </Select>
-          <Button>Weiter</Button>
-        </Form>
-      </div>
-    </BlueWrapper>
-  );
+  if (redirect === 2) return <Redirect to={`/employer-signup-2`} />;
+  else {
+    return (
+      <BlueWrapper>
+        <div className={styles.EmployerSignUp1}>
+          <Form onSubmit={handleSubmit}>
+            <TextInput
+              id="companyName"
+              labelText="Name der Einrichtung/Firma*"
+              onChange={(e) => handleChange(e)}
+              onBlur={(e) => updateSession(e)}
+            ></TextInput>
+            <Label htmlFor="sectors">Branche*</Label>
+            <Select
+              id="sector"
+              value={info.sector}
+              onChange={handleChange}
+              onBlur={(e) => updateSession(e)}
+            >
+              {sectorArr.map((opt) => (
+                <Option key={opt[0]} value={opt[1]}>
+                  {opt[1]}
+                </Option>
+              ))}
+            </Select>
+            <Select
+              id="type"
+              value={info.type}
+              onChange={handleChange}
+              onBlur={(e) => updateSession(e)}
+            >
+              {typeArr.map((opt) => (
+                <Option key={opt[0]} value={opt[1]}>
+                  {opt[1]}
+                </Option>
+              ))}
+            </Select>
+            <Button>Weiter</Button>
+          </Form>
+        </div>
+      </BlueWrapper>
+    );
+  }
 };
 
 export default EmployerSignUp1;
