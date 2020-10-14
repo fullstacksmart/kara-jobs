@@ -2,9 +2,11 @@
 
 .Button {
   border: 2px solid rgb(0, 0, 0);
+  /* stylelint-disable */
+  -webkit-box-shadow: 4px 3px 0 2px rgb(0, 0, 0);
+  -moz-box-shadow: 4px 3px 0 2px rgb(0, 0, 0);
   box-shadow: 4px 3px 0 2px rgb(0, 0, 0);
-  box-shadow: 4px 3px 0 2px rgb(0, 0, 0);
-  box-shadow: 4px 3px 0 2px rgb(0, 0, 0);
+  /* stylelint-enable */
   color: $kara-cream-white;
   cursor: pointer;
   font-size: 1rem;
