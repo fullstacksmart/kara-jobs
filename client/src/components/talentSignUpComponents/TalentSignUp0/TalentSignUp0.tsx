@@ -3,12 +3,12 @@ import styles from './TalentSignUp0.module.scss';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
 import Button from '../../Button';
-import { Redirect } from 'react-router-dom';
 import Form from '../../Form';
+import { useHistory } from 'react-router-dom';
 
 const TalentSignUp0: React.FC = () => {
+  const history = useHistory();
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
-  const [redirect, setRedirect] = useState(0);
 
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
@@ -36,45 +36,42 @@ const TalentSignUp0: React.FC = () => {
     );
   };
 
-  const postToDB = (talentObj: any) => {
-    console.log(talentObj);
-  };
+  // const postToDB = (talentObj: any) => {
+  //   console.log(talentObj);
+  // };
 
-  const handleSubmit = () => {
-    const talentObj = Object.assign(talent, { onboarding_status: 1 });
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const talentObj = Object.assign(talent, { onboarding_page: 1 });
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB: only post relevant data of this page
-    postToDB(talentObj);
-    setRedirect(1);
+    //postToDB(talentObj);
+    history.push('/talent-signup-1');
   };
 
-  //test
-  if (redirect === 1) return <Redirect push to={`/talent-signup-1`} />;
-  else {
-    return (
-      <BlueWrapper>
-        <div className={styles.TalentSignUp0}>
-          <Form onSubmit={handleSubmit}>
-            <TextInput
-              id="firstName"
-              labelText="Vorname*"
-              onChange={handleChange}
-              onBlur={updateSession}
-              data-testid="firstName"
-            ></TextInput>
-            <TextInput
-              id="lastName"
-              labelText="Nachname*"
-              onChange={handleChange}
-              onBlur={updateSession}
-              data-testid="lastName"
-            ></TextInput>
-            <Button>Weiter</Button>
-          </Form>
-        </div>
-      </BlueWrapper>
-    );
-  }
+  return (
+    <BlueWrapper>
+      <div className={styles.TalentSignUp0}>
+        <Form onSubmit={handleSubmit}>
+          <TextInput
+            id="firstName"
+            labelText="Vorname*"
+            onChange={handleChange}
+            onBlur={updateSession}
+            data-testid="firstName"
+          ></TextInput>
+          <TextInput
+            id="lastName"
+            labelText="Nachname*"
+            onChange={handleChange}
+            onBlur={updateSession}
+            data-testid="lastName"
+          ></TextInput>
+          <Button type="submit">Weiter</Button>
+        </Form>
+      </div>
+    </BlueWrapper>
+  );
 };
 
 export default TalentSignUp0;

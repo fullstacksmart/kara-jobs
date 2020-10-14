@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Home from '../Home';
 // import SignUp from '../SignUp';
-import TalentSignUp from '../TalentSignUp';
+//import TalentSignUp from '../TalentSignUp';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import JobSearch from '../JobSearch';
 import { useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ import Success from '../../components/Success';
 import TalentRegistration from '../../components/Registration/TalentRegistration';
 import EmployerRegistration from '../../components/Registration/EmployerRegistration';
 import TalentSignup from '../TalentSignUp';
-import EmployerSignup from '../EmployerSignUp';
+//import EmployerSignup from '../EmployerSignUp';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
 import TalentSignUp1 from '../../components/talentSignUpComponents/TalentSignUp1';
 import TalentSignUp2 from '../../components/talentSignUpComponents/TalentSignUp2';
@@ -93,8 +93,8 @@ const Router: React.FC<unknown> = () => {
   return !isLoaded(auth) ? (
     <Loading />
   ) : (
-    <BrowserRouter>
-      <Route path="/" exact component={TalentSignUp}></Route>
+    <>
+      <Route path="/" exact component={Home}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
       <Route
@@ -108,7 +108,7 @@ const Router: React.FC<unknown> = () => {
         component={EmployerRegistration}
       ></Route>
       {paths}
-    </BrowserRouter>
+    </>
   );
 };
 
