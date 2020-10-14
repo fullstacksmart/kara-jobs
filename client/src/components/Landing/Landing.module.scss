@@ -33,11 +33,27 @@ li {
   border-color: $kara-light-grey;
   border-style: solid;
   border-width: 2.5px;
-  cursor: pointer;
   display: flex;
   justify-content: space-between;
   margin: 1rem;
   padding-right: 0.5rem;
+}
+
+.ItemContainer {
+  align-items: center;
+  border-color: $kara-light-grey;
+  border-style: solid;
+  border-width: 2.5px;
+  color: $kara-dark-blue;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  padding-right: 0.5rem;
+}
+
+.ItemContainer:hover {
+  color: $kara-cream-white;
+  font-weight: normal;
 }
 
 .Arrow {
@@ -46,7 +62,7 @@ li {
 }
 
 .ImgContainer {
-  max-width: 40vw;
+  max-width: 70vw;
 }
 
 .Hospital {
@@ -56,7 +72,9 @@ li {
 
 @media only screen and (max-width: 864px) {      
   .BodyContainer {
+    align-items: center;
     flex-wrap: wrap-reverse;
+    justify-content: center;
     margin: 0.1rem;
     padding-top: 1rem;
   }
@@ -71,7 +89,7 @@ li {
   h3 {
     color: $kara-light-blue;
     margin: 0;
-    max-width: 80vw;
+    max-width: 70vw;
     padding-bottom: 0.5rem;
     padding-top: 1rem;
     text-align: center;
@@ -81,7 +99,6 @@ li {
     align-self: center;
     margin: 0.5rem;
     margin-top: 1rem;
-    min-width: 40vw;
     padding-top: 0.75rem;
   }
 }

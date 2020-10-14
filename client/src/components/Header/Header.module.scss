@@ -15,6 +15,10 @@
   max-width: 100%;
 }
 
+.BurgerMenu {
+  display: none;
+}
+
 .Menu {
   align-items: center;
   display: flex;
@@ -71,27 +75,25 @@ a:hover {
 
 @media only screen and (max-width: 1074px) {    
   .Header {
-    align-content: flex-end;
-    justify-content: flex-end;
-    padding-bottom: 0;
+    align-content: center;
+    justify-content: space-between;
+    max-width: 100vw;
+    min-height: 5rem;
+    padding-bottom: 1rem;
     padding-left: 0;
     padding-right: 0;
     padding-top: 1rem;
   }
-  
+
   .Menu {
-    min-height: 4rem;
-    padding: 0;
-  }
-  
-  .CenteredMenu {
     display: none;
   }
-  
-  .RightMenu {
-    right: 0.5rem;
-  }
 
+  .BurgerMenu {
+    left: 0.5rem;
+    position: absolute;
+  }
+  
   .Item {
     font-size: 0.95rem;
     margin-right: 0.25rem;
