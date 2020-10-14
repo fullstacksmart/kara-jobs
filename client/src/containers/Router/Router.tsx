@@ -12,12 +12,14 @@ import Success from '../../components/Success';
 import TalentRegistration from '../../components/Registration/TalentRegistration';
 import EmployerRegistration from '../../components/Registration/EmployerRegistration';
 import TalentSignup from '../TalentSignUp';
+import EmployerSignup from '../EmployerSignUp';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
 import TalentSignUp1 from '../../components/talentSignUpComponents/TalentSignUp1';
 import TalentSignUp2 from '../../components/talentSignUpComponents/TalentSignUp2';
 import TalentSignUp3 from '../../components/talentSignUpComponents/TalentSignUp3';
 import TalentSignUp4 from '../../components/talentSignUpComponents/TalentSignUp4';
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
+import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
 import LoginContainer from '../../containers/LoginContainer';
 
 const Router: React.FC<unknown> = () => {
@@ -65,6 +67,12 @@ const Router: React.FC<unknown> = () => {
           path="/employer-signup-0"
           exact
           component={EmployerSignUp0}
+        ></Route>,
+        <Route
+          key="/employer-signup-1"
+          path="/employer-signup-1"
+          exact
+          component={EmployerSignUp1}
         ></Route>,
       ]
     : [
