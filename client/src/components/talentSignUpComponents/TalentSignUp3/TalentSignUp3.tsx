@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
+import React /*{ useState }*/ from 'react';
 import styles from './TalentSignUp3.module.scss';
-import { Redirect } from 'react-router-dom';
-import Form from '../../Form';
-import TextInput from '../../TextInput';
-import Label from '../../Label';
-import Option from '../../Option';
-import Select from '../../Select';
-import Button from '../../Button';
+//import { Redirect } from 'react-router-dom';
+// import Form from '../../Form';
+// import TextInput from '../../TextInput';
+// import Label from '../../Label';
+// import Option from '../../Option';
+// import Select from '../../Select';
+// import Button from '../../Button';
 
-const optArray = ['Arbeitssuchend', 'Teilzeit', 'Vollzeit'];
+// const optArray = ['Arbeitssuchend', 'Teilzeit', 'Vollzeit'];
 
 const TalentSignUp3: React.FC = () => {
-  const [info, setInfo] = useState({
-    positionName: '',
-    occupationStatusId: '',
-    employerName: '',
-  });
-  const [redirect, setRedirect] = useState(0);
+  // const [info, setInfo] = useState({
+  //   positionName: '',
+  //   occupationStatusId: '',
+  //   employerName: '',
+  // });
+  //const [redirect, setRedirect] = useState(0);
 
   // const handleChange = (identifier: string) => {};
 
   // const handleSubmit = () => {};
 
-  if (redirect === 4) return <Redirect push to={`/talent-signup-4`} />;
-  else if (redirect === 5) return <Redirect push to={`/talent-signup-5`} />;
+  // if (redirect === 4) return <Redirect push to={`/talent-signup-4`} />;
+  // else if (redirect === 5) return <Redirect push to={`/talent-signup-5`} />;
   return (
     <div className={styles.TalentSignUp3}></div>
     //   <Form onSubmit={handleSubmit}>

@@ -1,21 +1,15 @@
 import React from 'react';
 //import styles from './TalentSignUp.module.scss';
-import { TalentInfo } from '../../types/signup';
 import { Redirect } from 'react-router-dom';
 
-//TO DO: replace with data from signIn Success Component (talent object from DB)
+//TO DO: replace with data from signIn Handler Container (talent object from DB)
+//this object will include all infos relevant up to onboarding status
 const uid = '123';
 const email = 'test@gmail.com';
 const onboarding_status = 0;
-//TO DO: container gets uid, email and onboarding_status from SignIn container
 
-interface TalentSignUpProps {
-  talentInfo: TalentInfo;
-}
-
-const TalentSignUp: React.FC<TalentSignUpProps> = (
-  props: TalentSignUpProps,
-) => {
+const TalentSignUp: React.FC = () => {
+  //Updating session mgmt with talent object
   sessionStorage.setItem(
     'talent',
     JSON.stringify({

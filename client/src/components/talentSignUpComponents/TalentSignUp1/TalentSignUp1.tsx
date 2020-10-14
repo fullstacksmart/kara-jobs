@@ -79,7 +79,7 @@ const TalentSignUp1: React.FC = () => {
         ...info,
       }),
     );
-    // post to DB
+    // post to DB (only relevant props from this page)
     setRedirect(2);
   };
 

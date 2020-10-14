@@ -9,8 +9,7 @@ import Form from '../../Form';
 const TalentSignUp0: React.FC = () => {
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
   const [redirect, setRedirect] = useState(0);
-  //TO DO: if session mgmt doesn't contain values of this page, query from DB (async) and then update session mgmt (for this specific page). Once done, set talent.firstName / lastName values.
-  //talent obj either contains data from previous pages or is empty or contains some data of this page
+
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
   useEffect(() => {
@@ -31,7 +30,6 @@ const TalentSignUp0: React.FC = () => {
   };
 
   const updateSession = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //adding firstname / lastName props to talent obj (talent obj either contains data from previous pages or is empty or contains some data of this page
     sessionStorage.setItem(
       'talent',
       JSON.stringify(Object.assign(talent, { [e.target.id]: e.target.value })),
