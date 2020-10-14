@@ -9,37 +9,51 @@ import TextInput from '../../TextInput';
 import { Redirect } from 'react-router-dom';
 
 const TalentSignUp1: React.FC = () => {
-  const [info, setInfo] = useState({ residence: '', zipCode: '', city: '' });
+  const [info, setInfo] = useState({
+    isoCode: '',
+    residence: '',
+    zipCode: '',
+    city: '',
+  });
   const [redirect, setRedirect] = useState(0);
 
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
   useEffect(() => {
-    const residence = document.getElementById('residence') as HTMLInputElement;
-    const zipCode = document.getElementById('zipCode') as HTMLInputElement;
-    const city = document.getElementById('city') as HTMLInputElement;
+    const residenceHTML = document.getElementById(
+      'residence',
+    ) as HTMLSelectElement;
+    const zipCodeHTML = document.getElementById('zipCode') as HTMLInputElement;
+    const cityHTML = document.getElementById('city') as HTMLInputElement;
     if (talent) {
-      if (talent.zipCode !== undefined) zipCode.value = talent.zipCode;
-      if (talent.city !== undefined) city.value = talent.city;
-      //TO DO: Change residence in Talent and update correctly here
-      if (talent.residence !== undefined) residence.value = talent.residence;
+      if (talent.zipCode !== undefined) zipCodeHTML.value = talent.zipCode;
+      if (talent.city !== undefined) cityHTML.value = talent.city;
+      if (talent.residence !== undefined && talent.isoCode !== undefined)
+        setInfo({
+          isoCode: talent.isoCode,
+          residence: talent.residence,
+          zipCode: talent.zipCode,
+          city: talent.city,
+        });
+      //residenceHTML.value = `${talent.isoCode},${talent.residence}`;
     }
   }, []);
 
   const handleChange = (
     e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
   ) => {
-    console.log(e.currentTarget.id);
     switch (e.currentTarget.id) {
       case 'residence':
         setInfo({
-          residence: e.currentTarget.value,
+          isoCode: e.currentTarget.value.split(',')[0],
+          residence: e.currentTarget.value.split(',')[1],
           zipCode: info.zipCode,
           city: info.city,
         });
         break;
       case 'zipCode':
         setInfo({
+          isoCode: info.isoCode,
           residence: info.residence,
           zipCode: e.currentTarget.value,
           city: info.city,
@@ -47,6 +61,7 @@ const TalentSignUp1: React.FC = () => {
         break;
       case 'city':
         setInfo({
+          isoCode: info.isoCode,
           residence: info.residence,
           zipCode: info.zipCode,
           city: e.currentTarget.value,
@@ -62,12 +77,26 @@ const TalentSignUp1: React.FC = () => {
       | React.ChangeEvent<HTMLInputElement>
       | React.FocusEvent<HTMLSelectElement>,
   ) => {
-    sessionStorage.setItem(
-      'talent',
-      JSON.stringify(
-        Object.assign(talent, { [e.currentTarget.id]: e.currentTarget.value }),
-      ),
-    );
+    if (e.currentTarget.id === 'residence') {
+      sessionStorage.setItem(
+        'talent',
+        JSON.stringify(
+          Object.assign(talent, {
+            isoCode: e.currentTarget.value.split(',')[0],
+            residence: e.currentTarget.value.split(',')[1],
+          }),
+        ),
+      );
+    } else {
+      sessionStorage.setItem(
+        'talent',
+        JSON.stringify(
+          Object.assign(talent, {
+            [e.currentTarget.id]: e.currentTarget.value,
+          }),
+        ),
+      );
+    }
   };
 
   const handleSubmit = () => {
@@ -83,11 +112,7 @@ const TalentSignUp1: React.FC = () => {
     setRedirect(2);
   };
 
-  const optArray = [
-    ['id1', 'country1'],
-    ['id2', 'country2'],
-    ['id3', 'country3'],
-  ];
+  const optArray = ['id1,country1', 'id2,country2', 'id3,country3'];
 
   if (redirect === 2) return <Redirect push to={`/talent-signup-2`} />;
   else {
@@ -97,13 +122,13 @@ const TalentSignUp1: React.FC = () => {
           <Label htmlFor="residence">Land*</Label>
           <Select
             id="residence"
-            value={info.residence}
+            value={`${info.isoCode},${info.residence}`}
             onChange={handleChange}
             onBlur={(e) => updateSession(e)}
           >
             {optArray.map((opt) => (
-              <Option key={opt[0]} value={opt[1]}>
-                {opt[1]}
+              <Option key={opt.split(',')[0]} value={opt}>
+                {opt.split(',')[1]}
               </Option>
             ))}
           </Select>

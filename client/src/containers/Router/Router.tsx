@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from '../Home';
 // import SignUp from '../SignUp';
+import TalentSignUp from '../TalentSignUp';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import JobSearch from '../JobSearch';
 import { useSelector } from 'react-redux';
@@ -78,7 +79,7 @@ const Router: React.FC<unknown> = () => {
     <Loading />
   ) : (
     <BrowserRouter>
-      <Route path="/" exact component={Home}></Route>
+      <Route path="/" exact component={TalentSignUp}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
       <Route

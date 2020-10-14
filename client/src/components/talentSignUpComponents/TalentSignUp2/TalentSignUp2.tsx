@@ -10,6 +10,7 @@ const TalentSignUp2: React.FC = () => {
   const [redirect, setRedirect] = useState(0);
 
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  console.log(talent);
 
   useEffect(() => {
     if (talent && talent.occupationId !== undefined) {
