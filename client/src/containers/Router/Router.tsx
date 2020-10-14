@@ -14,6 +14,9 @@ import TalentSignup from '../TalentSignUp';
 import EmployerSignup from '../EmployerSignUp';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
 import TalentSignUp1 from '../../components/talentSignUpComponents/TalentSignUp1';
+import TalentSignUp2 from '../../components/talentSignUpComponents/TalentSignUp2';
+import TalentSignUp3 from '../../components/talentSignUpComponents/TalentSignUp3';
+import TalentSignUp4 from '../../components/talentSignUpComponents/TalentSignUp4';
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
 import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
 import LoginContainer from '../../containers/LoginContainer';
@@ -41,6 +44,24 @@ const Router: React.FC<unknown> = () => {
           component={TalentSignUp1}
         ></Route>,
         <Route
+          key="/talent-signup-2"
+          path="/talent-signup-2"
+          exact
+          component={TalentSignUp2}
+        ></Route>,
+        <Route
+          key="/talent-signup-3"
+          path="/talent-signup-3"
+          exact
+          component={TalentSignUp3}
+        ></Route>,
+        <Route
+          key="/talent-signup-4"
+          path="/talent-signup-4"
+          exact
+          component={TalentSignUp4}
+        ></Route>,
+        <Route
           key="/employer-signup-0"
           path="/employer-signup-0"
           exact
@@ -65,7 +86,7 @@ const Router: React.FC<unknown> = () => {
     <Loading />
   ) : (
     <BrowserRouter>
-      <Route path="/" exact component={EmployerSignup}></Route>
+      <Route path="/" exact component={Home}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
       <Route

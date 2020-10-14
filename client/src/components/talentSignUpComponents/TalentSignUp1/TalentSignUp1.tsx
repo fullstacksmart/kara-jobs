@@ -22,7 +22,7 @@ const TalentSignUp1: React.FC = () => {
       if (talent.zipCode !== undefined) zipCode.value = talent.zipCode;
       if (talent.city !== undefined) city.value = talent.city;
       //TO DO: Change residence in Talent and update correctly here
-      if (talent.residence !== undefined) residence.value = 'country2';
+      if (talent.residence !== undefined) residence.value = talent.residence;
     }
   }, []);
 
@@ -71,7 +71,7 @@ const TalentSignUp1: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    //TO DO: map country values
+    //TO DO: map country values and save isCode to DB and session mgmt
     sessionStorage.setItem(
       'talent',
       JSON.stringify({
@@ -79,7 +79,7 @@ const TalentSignUp1: React.FC = () => {
         ...info,
       }),
     );
-    // post to DB
+    // post to DB (only relevant props from this page)
     setRedirect(2);
   };
 
@@ -89,7 +89,7 @@ const TalentSignUp1: React.FC = () => {
     ['id3', 'country3'],
   ];
 
-  if (redirect === 2) return <Redirect to={`/talent-signup-2`} />;
+  if (redirect === 2) return <Redirect push to={`/talent-signup-2`} />;
   else {
     return (
       <div>
