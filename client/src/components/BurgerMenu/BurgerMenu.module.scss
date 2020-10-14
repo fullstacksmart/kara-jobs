@@ -1,0 +1,25 @@
+@import '../../sass/globals';
+
+.Menu {
+  left: 0;
+  position: absolute;
+}
+
+.Item {
+  font-size: 0.95rem;
+  margin-right: 0.25rem;
+  padding: 0.5rem;
+}
+
+.ButtonWrapper > Button {
+  background-color: $kara-light-blue;
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+}
+
+.ButtonWrapper > Button:hover {
+  color: $kara-dark-blue;
+  transition-duration: 0.4s;
+}

@@ -8,12 +8,15 @@
   flex-direction: column;
   justify-content: center;
   padding: 15px;
-  width: 100vw;
 }
 
 .Logo {
   height: 3rem;
   max-width: 100%;
+}
+
+.BurgerMenu {
+  display: none;
 }
 
 .Menu {
@@ -34,16 +37,10 @@
 .RightMenu {
   align-items: center;
   display: flex;
-  justify-content: center;
-  justify-self: right;
   list-style: none;
   padding-top: 0.5rem;
   position: absolute;
   right: 3rem;
-}
-
-li {
-  padding: 1rem;
 }
 
 a {
@@ -74,4 +71,39 @@ a:hover {
 .ButtonWrapper > Button:hover {
   color: $kara-dark-blue;
   transition-duration: 0.4s;
+}
+
+@media only screen and (max-width: 1074px) {    
+  .Header {
+    align-content: center;
+    justify-content: space-between;
+    max-width: 100vw;
+    min-height: 5rem;
+    padding-bottom: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 1rem;
+  }
+
+  .Menu {
+    display: none;
+  }
+
+  .BurgerMenu {
+    left: 0.5rem;
+    position: absolute;
+  }
+  
+  .Item {
+    font-size: 0.95rem;
+    margin-right: 0.25rem;
+    padding: 0.5rem;
+  }
+
+  .ButtonWrapper > Button {
+    font-size: 0.95rem;
+    padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
+  }
+
 }
