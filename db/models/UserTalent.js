@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class UserTalent extends Model {
+  class Talent extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,9 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Talent.hasOne(models.TalentRegistrationProficiency);
+      Talent.hasOne(models.TalentRegistrationEducation);
+      Talent.hasMany(models.TalentTableApprobation);
+      Talent.hasMany(models.TalentTableDocument);
+      Talent.hasOne(models.TalentTableAboutMe);
+      Talent.hasMany(models.TalentTableExperience);
+      Talent.hasMany(models.TalentTableEducation);
+      Talent.hasMany(models.TalentTableSpokenLanguage);
+      Talent.hasMany(models.TalentTableOtherSkill);
     }
   }
-  UserTalent.init({
+  Talent.init({
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
@@ -52,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'UserTalent',
+    modelName: 'Talent',
   });
-  return UserTalent;
+  return Talent;
 };

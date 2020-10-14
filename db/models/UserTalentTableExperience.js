@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class UserTalentTableExperience extends Model {
+  class TalentTableExperience extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  UserTalentTableExperience.init({
+  TalentTableExperience.init({
     position_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -45,5 +45,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'talent_table_experience',
   });
-  return UserTalentTableExperience;
+  return TalentTableExperience;
 };

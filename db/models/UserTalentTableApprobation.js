@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class UserTalentTableApprobation extends Model {
+  class TalentTableApprobation extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  UserTalentTableApprobation.init({
+  TalentTableApprobation.init({
     approbation_started: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -34,5 +34,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'talent_table_approbation',
   });
-  return UserTalentTableApprobation;
+  return TalentTableApprobation;
 };

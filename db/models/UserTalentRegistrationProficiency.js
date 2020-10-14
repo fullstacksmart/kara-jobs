@@ -3,17 +3,17 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class UserTalentRegistrationProficiency extends Model {
+  class TalentRegistrationProficiency extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      TalentRegistrationProficiency.belongsTo(models.Talent);
     }
   }
-  UserTalentRegistrationProficiency.init({
+  TalentRegistrationProficiency.init({
     occupation_id: {
       type: DataTypes.DECIMAL(1, 0),
       allowNull: false,
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'UserTalentRegistrationProficiency',
+    modelName: 'TalentRegistrationProficiency',
   });
-  return UserTalentRegistrationProficiency;
+  return TalentRegistrationProficiency;
 };

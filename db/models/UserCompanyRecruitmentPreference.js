@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class UserCompanyRecruitmentPreferences extends Model {
+  class CompanyRecruitmentPreference extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  UserCompanyRecruitmentPreferences.init({
+  CompanyRecruitmentPreference.init({
     receive_initiative_application: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'UserCompanyRecruitmentPreferences',
+    modelName: 'CompanyRecruitmentPreference',
   });
-  return UserCompanyRecruitmentPreferences;
+  return CompanyRecruitmentPreference;
 };

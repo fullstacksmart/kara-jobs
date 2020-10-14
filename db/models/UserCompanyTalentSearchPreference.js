@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class UserCompanyTalentSearchPreferences extends Model {
+  class CompanyTalentSearchPreference extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  UserCompanyTalentSearchPreferences.init({
+  CompanyTalentSearchPreference.init({
     search_doctor: DataTypes.BOOLEAN,
     search_nurse: DataTypes.BOOLEAN,
     search_other: DataTypes.BOOLEAN,
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     search_status_min_german: DataTypes.BOOLEAN,
   }, {
     sequelize,
-    modelName: 'UserCompanyTalentSearchPreferences',
+    modelName: 'CompanyTalentSearchPreference',
   });
-  return UserCompanyTalentSearchPreferences;
+  return CompanyTalentSearchPreference;
 };

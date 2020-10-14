@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class UserTalentTableOtherSkills extends Model {
+  class TalentTableOtherSkill extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  UserTalentTableOtherSkills.init({
+  TalentTableOtherSkill.init({
     talent_skill: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'talent_table_other_skills',
   });
-  return UserTalentTableOtherSkills;
+  return TalentTableOtherSkill;
 };
