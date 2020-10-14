@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class user_talent extends Model {
+  class UserCompanyImageGallery extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,46 +13,27 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  user_talent.init({
+  UserCompanyImageGallery.init({
     id: {
-      type: DataTypes.STRING,
       primaryKey: true,
-    },
-    first_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    last_name: {
+    image_title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    iso_code: {
-      type: DataTypes.STRING(2),
-      allowNull: false,
-    },
-    residence: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    zip_code: {
-      type: DataTypes.DECIMAL(8, 0),
-      allowNull: false,
-    },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    onboarding_complete: {
+    profile_image: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    onboarding_page: {
-      type: DataTypes.INTEGER,
+    image_url: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   }, {
     sequelize,
-    modelName: 'user_talent',
+    modelName: 'UserCompanyImageGallery',
   });
-  return user_talent;
+  return UserCompanyImageGallery;
 };

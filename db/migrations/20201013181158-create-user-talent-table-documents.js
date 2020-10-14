@@ -1,8 +1,8 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('talent_table_documents', {
+    await queryInterface.createTable('TalentTableDocuments', {
       id: {
-        type: Sequelize.String,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       document_type: {
@@ -19,6 +19,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('talent_table_documents');
+    await queryInterface.dropTable('TalentTableDocuments');
   },
 };

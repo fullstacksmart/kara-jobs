@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('talent_table_spoken_languages', {
+    await queryInterface.createTable('TalentTableSpokenLanguages', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -23,6 +23,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('talent_table_spoken_languages');
+    await queryInterface.dropTable('TalentTableSpokenLanguages');
   },
 };

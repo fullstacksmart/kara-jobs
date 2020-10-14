@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('user_talents', {
+    await queryInterface.createTable('UserTalents', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -31,7 +31,7 @@ module.exports = {
         allowNull: false,
       },
       onboarding_page: {
-        type: Sequelize.Integer,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       onboarding_completed: {
@@ -49,6 +49,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('user_talents');
+    await queryInterface.dropTable('UserTalents');
   },
 };

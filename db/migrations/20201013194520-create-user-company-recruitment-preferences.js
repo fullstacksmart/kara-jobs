@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('user_company_recruitment_preferences', {
+    await queryInterface.createTable('UserCompanyRecruitmentPreferences', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -33,6 +33,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('user_company_recruitment_preferences');
+    await queryInterface.dropTable('UserCompanyRecruitmentPreferences');
   },
 };

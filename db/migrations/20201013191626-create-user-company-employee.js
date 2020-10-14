@@ -1,14 +1,10 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('user_company_employee_generals', {
-      id: {
-        allowNull: false,
-        primaryKey: true,
-        type: Sequelize.STRING,
-      },
+    await queryInterface.createTable('UserCompanyEmployees', {
       employee_id: {
         type: Sequelize.STRING,
         allowNull: false,
+        primaryKey: true,
       },
       first_name: {
         type: Sequelize.STRING,
@@ -37,6 +33,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('user_company_employee_generals');
+    await queryInterface.dropTable('UserCompanyEmployees');
   },
 };

@@ -1,9 +1,9 @@
 const {
-  Model, UUIDV4,
+  Model,
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class user_talent_table_documents extends Model {
+  class UserTalentTableAboutMe extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,15 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  user_talent_table_documents.init({
-    id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    document_type: DataTypes.STRING,
-  }, {
+  UserTalentTableAboutMe.init({
+    about_me_text: DataTypes.STRING(800),
     sequelize,
-    modelName: 'talent_table_documents',
+    modelName: 'talent_table_about_me',
   });
-  return user_talent_table_documents;
+  return UserTalentTableAboutMe;
 };

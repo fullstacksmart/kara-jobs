@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class user_talent_table_about_me extends Model {
+  class UserTalentTableSpokenLanguage extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,10 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  user_talent_table_about_me.init({
-    about_me_text: DataTypes.STRING(800),
+  UserTalentTableSpokenLanguage.init({
+    spoken_language: DataTypes.STRING,
+    spoken_language_proficiency: DataTypes.INTEGER,
+  }, {
     sequelize,
-    modelName: 'talent_table_about_me',
+    modelName: 'talent_table_spoken_language',
   });
-  return user_talent_table_about_me;
+  return UserTalentTableSpokenLanguage;
 };

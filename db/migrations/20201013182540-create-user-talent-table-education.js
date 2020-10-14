@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('talent_table_educations', {
+    await queryInterface.createTable('TalentTableEducations', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -36,6 +36,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('talent_table_educations');
+    await queryInterface.dropTable('TalentTableEducations');
   },
 };

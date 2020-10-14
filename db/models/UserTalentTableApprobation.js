@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class user_talent_registration_proficiency extends Model {
+  class UserTalentTableApprobation extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,26 +13,26 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  user_talent_registration_proficiency.init({
-    occupation_id: {
-      type: DataTypes.DECIMAL(1, 0),
+  UserTalentTableApprobation.init({
+    approbation_started: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    position_name: {
+    approbation_federal_state: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    occupation_status_id: {
-      type: DataTypes.DECIMAL,
+    approbation_feedback: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    employer_name: {
+    approbation_status: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   }, {
     sequelize,
-    modelName: 'user_talent_registration_proficiency',
+    modelName: 'talent_table_approbation',
   });
-  return user_talent_registration_proficiency;
+  return UserTalentTableApprobation;
 };

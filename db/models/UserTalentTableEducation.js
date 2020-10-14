@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class user_company_profile extends Model {
+  class UserTalentTableEducation extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,18 +13,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  user_company_profile.init({
-    company_about_text: {
+  UserTalentTableEducation.init({
+    university_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    company_offer_text: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    degree: DataTypes.STRING,
+    field_of_study: DataTypes.STRING,
+    study_start_year: DataTypes.DECIMAL(4, 0),
+    study_end_year: DataTypes.DECIMAL(4, 0),
+    study_description: DataTypes.STRING(500),
   }, {
     sequelize,
-    modelName: 'user_company_profile',
+    modelName: 'talent_table_education',
   });
-  return user_company_profile;
+  return UserTalentTableEducation;
 };

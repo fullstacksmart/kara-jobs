@@ -3,7 +3,7 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class user_company extends Model {
+  class UserTalentTableExperience extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,46 +13,37 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  user_company.init({
-    company_name: {
+  UserTalentTableExperience.init({
+    position_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    company_sector: {
+    employer_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    company_type: {
+    employer_country: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    company_street: {
+    employer_city: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    company_street_no: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    company_address_additional: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    company_zip_code: {
-      type: DataTypes.STRING,
+    position_start_month: {
+      type: DataTypes.DECIMAL(2, 0),
       allowNull: false,
     },
-    company_city: {
-      type: DataTypes.STRING,
+    position_start_year: {
+      type: DataTypes.DECIMAL(4, 0),
       allowNull: false,
     },
-    company_website: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    position_end_month: DataTypes.DECIMAL(2, 0),
+    position_end_year: DataTypes.DECIMAL(4, 0),
+    position_description: DataTypes.STRING,
   }, {
     sequelize,
-    modelName: 'user_company',
+    modelName: 'talent_table_experience',
   });
-  return user_company;
+  return UserTalentTableExperience;
 };
