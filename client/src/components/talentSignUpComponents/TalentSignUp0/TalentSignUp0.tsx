@@ -11,6 +11,7 @@ const TalentSignUp0: React.FC = () => {
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
 
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  console.log(talent);
 
   useEffect(() => {
     const firstName = document.getElementById('firstName') as HTMLInputElement;
@@ -30,6 +31,7 @@ const TalentSignUp0: React.FC = () => {
   };
 
   const updateSession = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     sessionStorage.setItem(
       'talent',
       JSON.stringify(Object.assign(talent, { [e.target.id]: e.target.value })),
