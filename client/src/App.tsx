@@ -3,11 +3,7 @@ import './App.scss';
 import Router from './containers/Router';
 
 const App: React.FC<unknown> = () => {
-  return (
-    <>
-      <Router />
-    </>
-  );
+  return <Router />;
 };
 
 export default App;
