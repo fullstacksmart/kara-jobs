@@ -24,8 +24,8 @@ const EmployerSignUp1: React.FC = () => {
     if (employer) {
       if (employer.companyName !== undefined)
         companyName.value = employer.companyName;
-      if (employer.sector !== undefined) sector.value = 'sector1';
-      if (employer.type !== undefined) type.value = 'type1';
+      if (employer.sector !== undefined) sector.value = employer.sector;
+      if (employer.type !== undefined) type.value = employer.type;
     }
   }, []);
 
@@ -97,7 +97,7 @@ const EmployerSignUp1: React.FC = () => {
     ['id3', 'type3'],
   ];
 
-  if (redirect === 2) return <Redirect to={`/employer-signup-2`} />;
+  if (redirect === 2) return <Redirect push to={`/employer-signup-2`} />;
   else {
     return (
       <BlueWrapper>
