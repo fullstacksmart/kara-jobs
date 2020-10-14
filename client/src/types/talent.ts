@@ -1,7 +1,7 @@
 export interface Talent {
   uid: string;
   email: string;
-  onbarding_status: number;
+  onbarding_page: number;
   firstName: string;
   lastName: string;
   isoCode: string;

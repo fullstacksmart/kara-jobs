@@ -1,17 +1,33 @@
 import React from 'react';
-import styles from './EmployerSignUp.module.scss';
-import BlueWrapper from '../BlueWrapper';
+// import styles from './EmployerSignUp.module.scss';
+import { TalentInfo } from '../../types/signup';
+import { Redirect } from 'react-router-dom';
 
-const EmployerSignUp: React.FC<unknown> = () => {
+//TO DO: Change signup type interface to fit talent and employer signup
+const uid = 'ABC';
+const email = 'test@gmail.com';
+const onboarding_status = 0;
+
+interface EmployerSignUpProps {
+  employerInfo: TalentInfo;
+}
+
+const EmployerSignUp: React.FC<EmployerSignUpProps> = (
+  props: EmployerSignUpProps,
+) => {
+  sessionStorage.setItem(
+    'employer',
+    JSON.stringify({
+      uid: uid,
+      email: email,
+      onboarding_status: onboarding_status,
+    }),
+  );
+
   return (
-    <BlueWrapper>
-      <div>
-        <h3>
-          In wenigen Schritten mit internationalen Talenten aus dem
-          medizinischen.
-        </h3>
-      </div>
-    </BlueWrapper>
+    <>
+      <Redirect to={`/employer-signup-${onboarding_status}`} />
+    </>
   );
 };
 

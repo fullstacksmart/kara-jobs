@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Home from '../Home';
 // import SignUp from '../SignUp';
+//import TalentSignUp from '../TalentSignUp';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import JobSearch from '../JobSearch';
 import { useSelector } from 'react-redux';
@@ -11,12 +12,15 @@ import Success from '../../components/Success';
 import TalentRegistration from '../../components/Registration/TalentRegistration';
 import EmployerRegistration from '../../components/Registration/EmployerRegistration';
 import TalentSignup from '../TalentSignUp';
+//import EmployerSignup from '../EmployerSignUp';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
 import TalentSignUp1 from '../../components/talentSignUpComponents/TalentSignUp1';
 import TalentSignUp2 from '../../components/talentSignUpComponents/TalentSignUp2';
 import TalentSignUp3 from '../../components/talentSignUpComponents/TalentSignUp3';
 import TalentSignUp4 from '../../components/talentSignUpComponents/TalentSignUp4';
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
+import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
+import EmployerSignUp2 from '../../components/EmployerSignUpComponents/EmployerSignUp2';
 import LoginContainer from '../../containers/LoginContainer';
 
 const Router: React.FC<unknown> = () => {
@@ -65,6 +69,18 @@ const Router: React.FC<unknown> = () => {
           exact
           component={EmployerSignUp0}
         ></Route>,
+        <Route
+          key="/employer-signup-1"
+          path="/employer-signup-1"
+          exact
+          component={EmployerSignUp1}
+        ></Route>,
+        <Route
+          key="/employer-signup-2"
+          path="/employer-signup-2"
+          exact
+          component={EmployerSignUp2}
+        ></Route>,
       ]
     : [
         <Route
@@ -77,7 +93,7 @@ const Router: React.FC<unknown> = () => {
   return !isLoaded(auth) ? (
     <Loading />
   ) : (
-    <BrowserRouter>
+    <>
       <Route path="/" exact component={Home}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
@@ -92,7 +108,7 @@ const Router: React.FC<unknown> = () => {
         component={EmployerRegistration}
       ></Route>
       {paths}
-    </BrowserRouter>
+    </>
   );
 };
 
