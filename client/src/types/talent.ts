@@ -14,5 +14,5 @@ export interface Talent {
   employerName: string;
   studyProgram: string;
   university: string;
-  expectedGraduationYear: string;
+  expectedGraduationYear: number;
 }

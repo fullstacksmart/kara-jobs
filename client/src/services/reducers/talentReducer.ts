@@ -17,7 +17,7 @@ const initialState: Talent = {
   employerName: '',
   studyProgram: '',
   university: '',
-  expectedGraduationYear: '',
+  expectedGraduationYear: new Date().getFullYear(),
 };
 
 const TalentReducer = (
