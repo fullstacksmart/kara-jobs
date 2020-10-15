@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Home from '../Home';
 // import SignUp from '../SignUp';
 import TalentSignUp from '../TalentSignUp';
@@ -12,12 +12,14 @@ import Success from '../../components/Success';
 import TalentRegistration from '../../components/Registration/TalentRegistration';
 import EmployerRegistration from '../../components/Registration/EmployerRegistration';
 import TalentSignup from '../TalentSignUp';
-import EmployerSignup from '../EmployerSignUp';
+//import EmployerSignup from '../EmployerSignUp';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
 import TalentSignUp1 from '../../components/talentSignUpComponents/TalentSignUp1';
 import TalentSignUp2 from '../../components/talentSignUpComponents/TalentSignUp2';
 import TalentSignUp3 from '../../components/talentSignUpComponents/TalentSignUp3';
 import TalentSignUp4 from '../../components/talentSignUpComponents/TalentSignUp4';
+import TalentSignUp5 from '../../components/talentSignUpComponents/TalentSignUp5';
+import TalentSignUp6 from '../../components/talentSignUpComponents/TalentSignUp6';
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
 import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
 import EmployerSignUp2 from '../../components/EmployerSignUpComponents/EmployerSignUp2';
@@ -64,6 +66,18 @@ const Router: React.FC<unknown> = () => {
           component={TalentSignUp4}
         ></Route>,
         <Route
+          key="/talent-signup-5"
+          path="/talent-signup-5"
+          exact
+          component={TalentSignUp5}
+        ></Route>,
+        <Route
+          key="/talent-signup-6"
+          path="/talent-signup-6"
+          exact
+          component={TalentSignUp6}
+        ></Route>,
+        <Route
           key="/employer-signup-0"
           path="/employer-signup-0"
           exact
@@ -93,7 +107,7 @@ const Router: React.FC<unknown> = () => {
   return !isLoaded(auth) ? (
     <Loading />
   ) : (
-    <BrowserRouter>
+    <>
       <Route path="/" exact component={TalentSignUp}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
@@ -108,7 +122,7 @@ const Router: React.FC<unknown> = () => {
         component={EmployerRegistration}
       ></Route>
       {paths}
-    </BrowserRouter>
+    </>
   );
 };
 

@@ -6,11 +6,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Providers from './containers/Providers';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     <Providers>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Providers>
   </React.StrictMode>,
   document.getElementById('root'),

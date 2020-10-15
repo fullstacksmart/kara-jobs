@@ -3,13 +3,15 @@ import styles from './Header.module.scss';
 import logo from '../../assets/logos/kara_creme.png';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
+import BurgerMenu from '../BurgerMenu';
 
 const Header: React.FC<unknown> = () => {
   return (
     <div className={styles.Header}>
+      {/* <BurgerMenu /> */}
       <img src={logo} className={styles.Logo} />
       <div className={styles.Menu}>
-        <ul className={styles.CenteredMenu}>
+        <div className={styles.CenteredMenu}>
           <Link to="/" className={styles.Item}>
             Home
           </Link>
@@ -22,7 +24,7 @@ const Header: React.FC<unknown> = () => {
           <Link to="/" className={styles.Item}>
             Über uns
           </Link>
-        </ul>
+        </div>
         <div className={styles.RightMenu}>
           <Link to="/signup" className={styles.Item}>
             Mitglied werden

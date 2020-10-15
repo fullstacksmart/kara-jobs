@@ -1,16 +1,24 @@
 import React from 'react';
 import styles from './TalentSignUp5.module.scss';
+import Form from '../../Form';
+import Button from '../../Button';
+import { useHistory } from 'react-router-dom';
 
-interface TalentSignUp5Props {
-  talentHandler: (obj: unknown) => void;
-  progressHandler: (num: number) => void;
-}
+const TalentSignUp5: React.FC = () => {
+  const history = useHistory();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    history.push('/talent-signup-6');
+  };
 
-const TalentSignUp5: React.FC<TalentSignUp5Props> = ({
-  talentHandler,
-  progressHandler,
-}: TalentSignUp5Props) => {
-  return <div className={styles.TalentSignUp5}>TalentSignUp5 works!</div>;
+  return (
+    <div className={styles.TalentSignUp5}>
+      <p>Talent SignUp 5</p>
+      <Form onSubmit={handleSubmit}>
+        <Button type="submit">Weiter</Button>
+      </Form>
+    </div>
+  );
 };
 
 export default TalentSignUp5;
