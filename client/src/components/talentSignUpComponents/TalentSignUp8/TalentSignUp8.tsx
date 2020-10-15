@@ -7,4 +7,6 @@ const TalentSignUp8: React.FC = () => {
   return <div className={styles.TalentSignUp8}>TalentSignUp8 works!</div>;
 };
 
+//back button: redirect to page 6 (zurück zu Anerkennung)
+
 export default TalentSignUp8;
