@@ -18,6 +18,10 @@ const initialState: Talent = {
   studyProgram: '',
   university: '',
   expectedGraduationYear: new Date().getFullYear(),
+  approbationStartedFlag: false,
+  approbationFederalState: '',
+  approbationFeedbackFlag: false,
+  approbationStatus: '',
 };
 
 const TalentReducer = (

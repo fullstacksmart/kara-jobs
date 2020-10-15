@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 //import styles from './TalentSignUp.module.scss';
 import { useHistory } from 'react-router-dom';
 
@@ -27,12 +27,12 @@ const TalentSignUp: React.FC = () => {
     history.push(`/talent-signup-${onboarding_page}`);
   };
 
-  return (
-    <>
-      {setStorage()}
-      {redirect()}
-    </>
-  );
+  useEffect(() => {
+    setStorage();
+    redirect();
+  });
+
+  return <></>;
 };
 
 export default TalentSignUp;
