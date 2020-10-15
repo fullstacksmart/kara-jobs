@@ -86,20 +86,18 @@ const TalentSignUp6: React.FC = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const page = info.approbationStartedFlag ? 7 : 8;
     e.preventDefault();
-    sessionStorage.setItem(
-      'talent',
-      JSON.stringify({
-        ...talent,
-        ...info,
-      }),
-    );
+    const talentObj = {
+      ...talent,
+      ...info,
+      onboarding_page: page,
+    };
+    sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB
-    if (info.approbationStartedFlag === false) {
-      history.push('/talent-signup-8');
-    } else if (info.approbationStartedFlag === true) {
-      history.push('/talent-signup-7');
-    }
+    info.approbationStartedFlag
+      ? history.push('/talent-signup-7')
+      : history.push('/talent-signup-8');
   };
 
   const optArray = [

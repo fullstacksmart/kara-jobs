@@ -31,13 +31,12 @@ const TalentSignUp2: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sessionStorage.setItem(
-      'talent',
-      JSON.stringify({
-        ...talent,
-        ...info,
-      }),
-    );
+    const talentObj = {
+      ...talent,
+      ...info,
+      onboarding_page: 1,
+    };
+    sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB
     history.push('/talent-signup-3');
   };

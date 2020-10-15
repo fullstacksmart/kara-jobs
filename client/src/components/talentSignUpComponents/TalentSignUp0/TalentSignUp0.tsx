@@ -43,7 +43,11 @@ const TalentSignUp0: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const talentObj = Object.assign(talent, { onboarding_page: 1 });
+    const talentObj = {
+      ...talent,
+      ...info,
+      onboarding_page: 1,
+    };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB: only post relevant data of this page
     //postToDB(talentObj);

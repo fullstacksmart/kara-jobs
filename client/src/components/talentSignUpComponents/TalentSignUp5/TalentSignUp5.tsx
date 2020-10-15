@@ -5,7 +5,7 @@ import Button from '../../Button';
 import { useHistory } from 'react-router-dom';
 
 const TalentSignUp5: React.FC = () => {
-  const history = useHistory();
+  console.log(history);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     history.push('/talent-signup-6');
