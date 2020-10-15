@@ -9,7 +9,7 @@ const TalentSignUp: React.FC = () => {
   const history = useHistory();
   const uid = '123';
   const email = 'test@gmail.com';
-  const onboarding_page = 4;
+  const onboarding_page = 0;
   //Updating session mgmt with talent object
 
   const setStorage = () => {
