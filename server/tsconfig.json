@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "declaration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowJs": false,
+    "declaration": false,
     "module": "commonjs",
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -10,6 +12,7 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "strict": true,
+    "strictPropertyInitialization": false,
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
@@ -18,8 +21,4 @@
       ]
     },
   },
-  "exclude": [
-    "db",
-    "dist"
-  ]
 }
