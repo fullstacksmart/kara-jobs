@@ -106,7 +106,7 @@ const TalentSignUp7: React.FC = () => {
 
   return (
     <div className={styles.TalentSignUp7}>
-      <Form onSubmit={handleSubmit} id="occupationId-form">
+      <Form onSubmit={handleSubmit} id="approbation-feedback-form">
         <p>Hast du schon Rückmeldung von der Behörde erhalten?</p>
         <RadioInput
           labelText="Ja"
@@ -140,8 +140,11 @@ const TalentSignUp7: React.FC = () => {
             </Option>
           ))}
         </Select>
-        <Button type="submit">Weiter</Button>
       </Form>
+      <Button onClick={() => history.push('/talent-signup-6')}>Zurück</Button>
+      <Button type="submit" value="Submit" form="approbation-feedback-form">
+        Submit
+      </Button>
     </div>
   );
 };

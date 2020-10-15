@@ -122,7 +122,7 @@ const TalentSignUp6: React.FC = () => {
 
   return (
     <div className={styles.TalentSignUp6}>
-      <Form onSubmit={handleSubmit} id="occupationId-form">
+      <Form onSubmit={handleSubmit} id="approbation-started-form">
         <p>
           Hast du schon Mal einen Antrag zur Anerkennung deiner Ausbildung bei
           einer deutschen Behörde eingereicht?*
@@ -159,8 +159,11 @@ const TalentSignUp6: React.FC = () => {
             </Option>
           ))}
         </Select>
-        <Button type="submit">Weiter</Button>
       </Form>
+      <Button type="submit" value="Submit" form="approbation-started-form">
+        Submit
+      </Button>
+      <Button onClick={() => history.push('/talent-signup-5')}>Zurück</Button>
     </div>
   );
 };

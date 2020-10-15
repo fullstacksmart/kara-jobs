@@ -111,7 +111,7 @@ const TalentSignUp1: React.FC = () => {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} id="residence-form">
         <Label htmlFor="residence">Land*</Label>
         <Select
           id="residence"
@@ -137,8 +137,11 @@ const TalentSignUp1: React.FC = () => {
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
         ></TextInput>
-        <Button type="submit">Submit</Button>
       </Form>
+      <Button onClick={() => history.push('/talent-signup-0')}>Zurück</Button>
+      <Button type="submit" value="Submit" form="residence-form">
+        Submit
+      </Button>
     </div>
   );
 };

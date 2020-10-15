@@ -130,6 +130,7 @@ const TalentSignUp3: React.FC = () => {
         ></TextInput>
       </Form>
       <p onClick={() => history.push('/talent-signup-4')}>Ich studiere noch</p>
+      <Button onClick={() => history.push('/talent-signup-2')}>Zurück</Button>
       <Button type="submit" value="Submit" form="position-form">
         Submit
       </Button>

@@ -106,7 +106,7 @@ const TalentSignUp4: React.FC = () => {
 
   return (
     <div className={styles.TalentSignUp4}>
-      <Form onSubmit={handleSubmit} id="position-form">
+      <Form onSubmit={handleSubmit} id="education-form">
         <TextInput
           id="studyProgram"
           labelText="Studiengang*"
@@ -138,7 +138,8 @@ const TalentSignUp4: React.FC = () => {
       <p onClick={() => history.push('/talent-signup-3')}>
         Ich arbeite bereits
       </p>
-      <Button type="submit" value="Submit" form="position-form">
+      <Button onClick={() => history.push('/talent-signup-2')}>Zurück</Button>
+      <Button type="submit" value="Submit" form="education-form">
         Submit
       </Button>
     </div>

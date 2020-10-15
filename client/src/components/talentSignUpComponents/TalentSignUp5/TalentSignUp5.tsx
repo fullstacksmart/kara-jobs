@@ -17,6 +17,7 @@ const TalentSignUp5: React.FC = () => {
       <Form onSubmit={handleSubmit}>
         <Button type="submit">Weiter</Button>
       </Form>
+      <Button onClick={() => history.push('/talent-signup-2')}>Zurück</Button>
     </div>
   );
 };
