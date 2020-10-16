@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "watch": "./node_modules/.bin/tsc-watch --onSuccess \"node .\"",

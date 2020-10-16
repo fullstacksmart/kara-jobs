@@ -11,7 +11,7 @@ const initialState: Employer = {
   type: '',
   street: '',
   streetNumber: '',
-  addressAditional: '',
+  addressAdditional: '',
   zipCode: '',
   city: '',
   website: '',

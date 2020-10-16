@@ -8,7 +8,7 @@ export interface Employer {
   type: string;
   street: string;
   streetNumber: string;
-  addressAditional: string;
+  addressAdditional: string;
   zipCode: string;
   city: string;
   website: string;

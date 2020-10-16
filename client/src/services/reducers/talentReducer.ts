@@ -4,7 +4,7 @@ import { Talent } from '../../types/talent';
 const initialState: Talent = {
   uid: '',
   email: '',
-  onbarding_status: 0,
+  onbarding_page: 0,
   firstName: '',
   lastName: '',
   isoCode: '',
@@ -17,7 +17,11 @@ const initialState: Talent = {
   employerName: '',
   studyProgram: '',
   university: '',
-  expectedGraduationYear: '',
+  expectedGraduationYear: new Date().getFullYear(),
+  approbationStartedFlag: false,
+  approbationFederalState: '',
+  approbationFeedbackFlag: false,
+  approbationStatus: '',
 };
 
 const TalentReducer = (

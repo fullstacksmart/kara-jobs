@@ -1,7 +1,7 @@
 export interface Talent {
   uid: string;
   email: string;
-  onbarding_status: number;
+  onbarding_page: number;
   firstName: string;
   lastName: string;
   isoCode: string;
@@ -14,5 +14,9 @@ export interface Talent {
   employerName: string;
   studyProgram: string;
   university: string;
-  expectedGraduationYear: string;
+  expectedGraduationYear: number;
+  approbationStartedFlag: boolean;
+  approbationFederalState: string;
+  approbationFeedbackFlag: boolean;
+  approbationStatus: string;
 }
