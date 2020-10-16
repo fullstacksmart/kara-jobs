@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from '../Home';
 // import SignUp from '../SignUp';
-//import TalentSignUp from '../TalentSignUp';
+import TalentSignUp from '../TalentSignUp';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import JobSearch from '../JobSearch';
 import { useSelector } from 'react-redux';
@@ -18,6 +18,10 @@ import TalentSignUp1 from '../../components/talentSignUpComponents/TalentSignUp1
 import TalentSignUp2 from '../../components/talentSignUpComponents/TalentSignUp2';
 import TalentSignUp3 from '../../components/talentSignUpComponents/TalentSignUp3';
 import TalentSignUp4 from '../../components/talentSignUpComponents/TalentSignUp4';
+import TalentSignUp5 from '../../components/talentSignUpComponents/TalentSignUp5';
+import TalentSignUp6 from '../../components/talentSignUpComponents/TalentSignUp6';
+import TalentSignUp7 from '../../components/talentSignUpComponents/TalentSignUp7';
+import TalentSignUp8 from '../../components/talentSignUpComponents/TalentSignUp8';
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
 import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
 import EmployerSignUp2 from '../../components/EmployerSignUpComponents/EmployerSignUp2';
@@ -62,6 +66,30 @@ const Router: React.FC<unknown> = () => {
           path="/talent-signup-4"
           exact
           component={TalentSignUp4}
+        ></Route>,
+        <Route
+          key="/talent-signup-5"
+          path="/talent-signup-5"
+          exact
+          component={TalentSignUp5}
+        ></Route>,
+        <Route
+          key="/talent-signup-6"
+          path="/talent-signup-6"
+          exact
+          component={TalentSignUp6}
+        ></Route>,
+        <Route
+          key="/talent-signup-7"
+          path="/talent-signup-7"
+          exact
+          component={TalentSignUp7}
+        ></Route>,
+        <Route
+          key="/talent-signup-8"
+          path="/talent-signup-8"
+          exact
+          component={TalentSignUp8}
         ></Route>,
         <Route
           key="/employer-signup-0"
