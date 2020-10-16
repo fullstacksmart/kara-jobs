@@ -4,9 +4,13 @@ import {
   Column,
   AllowNull,
   HasMany,
+  HasOne,
 } from 'sequelize-typescript';
 import { CompanyEmployee } from './CompanyEmployee';
 import { CompanyImage } from './CompanyImage';
+import { CompanyProfile } from './CompanyProfile';
+import { CompanyRecruitmentPreferences } from './CompanyRecruitmentPreferences';
+import { CompanySearchPreferences } from './CompanySearchPreferences';
 
 @Table
 export class Company extends Model<Company> {
@@ -50,4 +54,13 @@ export class Company extends Model<Company> {
 
   @HasMany(() => CompanyImage as typeof Model)
   images!: CompanyImage[];
+
+  @HasOne(() => CompanySearchPreferences as typeof Model)
+  searchPreferences!: CompanySearchPreferences;
+
+  @HasOne(() => CompanyRecruitmentPreferences as typeof Model)
+  recruitmentPreferences!: CompanyRecruitmentPreferences;
+
+  @HasOne(() => CompanyProfile as typeof Model)
+  profile!: CompanyProfile;
 }
