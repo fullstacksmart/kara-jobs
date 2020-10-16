@@ -12,10 +12,8 @@ import { Talent } from './Talent';
 
 interface TalentRegistrationProficiencyAttributes {
   TalentId: string;
-  // TODO: check whether this should be boolean
   occupationId: number;
   positionName: string;
-  // TODO: check what this is supposed to be
   occupationStatusId: number;
   employerName: string;
 }

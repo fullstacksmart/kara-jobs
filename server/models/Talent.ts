@@ -5,10 +5,12 @@ import {
   PrimaryKey,
   AllowNull,
   HasOne,
+  HasMany,
 } from 'sequelize-typescript';
 import { Optional } from 'sequelize';
 import { TalentRegistrationEducation } from './TalentRegistrationEducation';
 import { TalentRegistrationProficiency } from './TalentRegistrationProficiency';
+import { TalentApprobation } from './TalentApprobation';
 
 interface TalentAttributes {
   id: string;
@@ -71,6 +73,8 @@ export class Talent
   talentRegistrationProficiency!: TalentRegistrationProficiency;
   @HasOne(() => TalentRegistrationEducation as typeof Model)
   talentRegistrationEducation!: TalentRegistrationEducation;
+  @HasMany(() => TalentApprobation as typeof Model)
+  talentApprobation!: TalentApprobation;
   // Talent.hasMany(models.TalentTableApprobation);
   // Talent.hasMany(models.TalentTableDocument);
   // Talent.hasOne(models.TalentTableAboutMe);
