@@ -1,25 +1,29 @@
 import { Context } from 'koa';
+import { TalentRegistrationProficiency } from '../models/TalentRegistrationProficiency';
 import { Model } from 'sequelize-typescript';
-import { Person } from '../models/Person';
-import { Hobby } from '../models/Hobby';
+import { Talent } from '../models/Talent';
 
 export const getAll = async (ctx: Context): Promise<void> => {
-  const newPerson = await Person.create({
-    age: 121 / 2,
-    firstName: 'Personibus',
+  const newTalent = await Talent.create({
+    id: 'a',
+    firstName: 'Max',
+    lastName: 'Muster',
+    isoCode: 'GER',
+    country: 'Germany',
+    zipCode: '10115',
+    city: 'Berlin',
+    onboardingComplete: false,
+    onboardingPage: 1,
   });
-  const newHobby = await Hobby.create({
-    name: 'sequelize',
-    PersonId: newPerson.id,
+  const newProfish = await TalentRegistrationProficiency.create({
+    TalentId: 'a',
+    occupationId: 2,
+    positionName: 'coder',
+    occupationStatusId: 0,
+    employerName: 'Stadt Berlin',
   });
-  const result = await Person.findAll({});
-  const completeHobby = await Hobby.findOne({
-    include: Person as typeof Model,
-  });
-  console.log('result', completeHobby);
-  ctx.body = completeHobby;
+  ctx.body = newTalent;
 };
-
 export const getOne = (ctx: Context, type: string): void => {
   ctx.body = `getting ${type} info from talent ${ctx.params.id}`;
 };
