@@ -127,15 +127,17 @@ const TalentSignUp1: React.FC = () => {
         </Select>
         <TextInput
           id="zipCode"
-          labelText="Postleitzahl"
+          labelText="Postleitzahl*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <TextInput
           id="city"
-          labelText="Region / Stadt"
+          labelText="Region / Stadt*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
       </Form>
       <Button onClick={() => history.push('/talent-signup-0')}>Zurück</Button>

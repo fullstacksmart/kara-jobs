@@ -160,10 +160,10 @@ const TalentSignUp6: React.FC = () => {
           ))}
         </Select>
       </Form>
+      <Button onClick={() => history.push('/talent-signup-5')}>Zurück</Button>
       <Button type="submit" value="Submit" form="approbation-started-form">
         Submit
       </Button>
-      <Button onClick={() => history.push('/talent-signup-5')}>Zurück</Button>
     </div>
   );
 };

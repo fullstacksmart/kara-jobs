@@ -3,7 +3,6 @@ import styles from './TalentSignUp5.module.scss';
 import Form from '../../Form';
 import Button from '../../Button';
 import { useHistory } from 'react-router-dom';
-import TalentSignUp from '../../../containers/TalentSignUp';
 
 const TalentSignUp5: React.FC = () => {
   const history = useHistory();
@@ -23,10 +22,10 @@ const TalentSignUp5: React.FC = () => {
   };
 
   return (
-    <div className={styles.TalentSignUp5} id="picture-form">
+    <div className={styles.TalentSignUp5}>
       <p>Talent SignUp 5</p>
-      <Form onSubmit={handleSubmit}></Form>
-      <Button onClick={() => redirect}>Zurück</Button>
+      <Form onSubmit={handleSubmit} id="picture-form"></Form>
+      <Button onClick={() => redirect()}>Zurück</Button>
       <Button type="submit" value="Submit" form="picture-form">
         Submit
       </Button>

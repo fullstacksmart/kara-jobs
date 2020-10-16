@@ -106,6 +106,7 @@ const TalentSignUp3: React.FC = () => {
           labelText="Position*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <Label htmlFor="occupationStatusId">
           Derzeitiges Beschäftigungsverhältnis*
@@ -115,6 +116,7 @@ const TalentSignUp3: React.FC = () => {
           value={info.occupationStatusId}
           onChange={handleChange}
           onBlur={(e) => updateSession(e)}
+          required
         >
           {optArray.map((opt) => (
             <Option key={opt} value={opt}>
@@ -127,6 +129,7 @@ const TalentSignUp3: React.FC = () => {
           labelText="Letzter oder derzeitiger Arbeitgeber*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
       </Form>
       <p onClick={() => history.push('/talent-signup-4')}>Ich studiere noch</p>

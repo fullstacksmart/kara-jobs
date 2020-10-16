@@ -112,12 +112,14 @@ const TalentSignUp4: React.FC = () => {
           labelText="Studiengang*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <TextInput
           id="university"
           labelText="Universität*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <Label htmlFor="expectedGraduationYear">
           Erwartetes Abschlussjahr*
@@ -127,6 +129,7 @@ const TalentSignUp4: React.FC = () => {
           value={info.expectedGraduationYear}
           onChange={handleChange}
           onBlur={(e) => updateSession(e)}
+          required
         >
           {optArray.map((opt) => (
             <Option key={opt} value={opt}>
