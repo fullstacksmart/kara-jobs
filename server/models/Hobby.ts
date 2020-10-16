@@ -16,6 +16,9 @@ export class Hobby extends Model {
   @ForeignKey(() => Person)
   PersonId: number;
 
-  @BelongsTo(() => Person)
+  @BelongsTo(() => Person, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   personWhoHasThis: Person;
 }

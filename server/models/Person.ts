@@ -18,7 +18,5 @@ export class Person extends Model {
   age: number;
 
   @HasOne(() => Hobby)
-  favoriteHobby?: Hobby;
-  onDelete: 'CASCADE';
-  onUpdate: 'CASCADE';
+  favoriteHobby: Hobby;
 }
