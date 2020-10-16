@@ -64,6 +64,7 @@ const TalentSignUp0: React.FC = () => {
             onChange={handleChange}
             onBlur={updateSession}
             data-testid="firstName"
+            required={true}
           ></TextInput>
           <TextInput
             id="lastName"
@@ -71,6 +72,7 @@ const TalentSignUp0: React.FC = () => {
             onChange={handleChange}
             onBlur={updateSession}
             data-testid="lastName"
+            required={true}
           ></TextInput>
           <Button type="submit">Weiter</Button>
         </Form>
