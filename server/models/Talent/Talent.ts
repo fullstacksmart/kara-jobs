@@ -11,6 +11,7 @@ import { Optional } from 'sequelize';
 import { TalentRegistrationEducation } from './TalentRegistrationEducation';
 import { TalentRegistrationProficiency } from './TalentRegistrationProficiency';
 import { TalentApprobation } from './TalentApprobation';
+import { TalentDocument } from './TalentDocument';
 
 interface TalentAttributes {
   id: string;
@@ -22,6 +23,10 @@ interface TalentAttributes {
   city: string;
   onboardingComplete: boolean;
   onboardingPage: number;
+  registrationProficiency?: TalentRegistrationProficiency;
+  registrationEducation?: TalentRegistrationEducation;
+  approbations?: TalentApprobation[];
+  documents?: TalentDocument[];
 }
 
 // type TalentCreationAttributes = Optional<
@@ -70,12 +75,13 @@ export class Talent
   onboardingPage!: number;
 
   @HasOne(() => TalentRegistrationProficiency as typeof Model)
-  talentRegistrationProficiency!: TalentRegistrationProficiency;
+  registrationProficiency!: TalentRegistrationProficiency;
   @HasOne(() => TalentRegistrationEducation as typeof Model)
-  talentRegistrationEducation!: TalentRegistrationEducation;
+  registrationEducation!: TalentRegistrationEducation;
   @HasMany(() => TalentApprobation as typeof Model)
-  talentApprobation!: TalentApprobation;
-  // Talent.hasMany(models.TalentTableApprobation);
+  approbations!: TalentApprobation[];
+  @HasMany(() => TalentDocument as typeof Model)
+  documents!: TalentDocument[];
   // Talent.hasMany(models.TalentTableDocument);
   // Talent.hasOne(models.TalentTableAboutMe);
   // Talent.hasMany(models.TalentTableExperience);

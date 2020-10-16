@@ -7,9 +7,11 @@ import {
   BelongsTo,
   ForeignKey,
 } from 'sequelize-typescript';
+import { Optional } from 'sequelize/types';
 import { Talent } from './Talent';
 
 interface TalentApprobationAttributes {
+  id: number;
   TalentId: string;
   approbationStarted: boolean;
   approbationFederalState: string;
@@ -17,14 +19,22 @@ interface TalentApprobationAttributes {
   approbationStatus: string;
 }
 
+type TalentApprobationCreationAttributes = Optional<
+  TalentApprobationAttributes,
+  'id'
+>;
+
 @Table
 export class TalentApprobation
   extends Model<
     TalentApprobationAttributes,
-    TalentApprobationAttributes
+    TalentApprobationCreationAttributes
   >
   implements TalentApprobationAttributes {
   @PrimaryKey
+  @Column
+  id!: number;
+
   @AllowNull(false)
   @ForeignKey(() => Talent as typeof Model)
   @Column

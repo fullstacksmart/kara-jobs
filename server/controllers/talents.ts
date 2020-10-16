@@ -1,7 +1,7 @@
 import { Context } from 'koa';
-import { TalentRegistrationProficiency } from '../models/TalentRegistrationProficiency';
+import { TalentRegistrationProficiency } from '../models/Talent/TalentRegistrationProficiency';
 import { Model } from 'sequelize-typescript';
-import { Talent } from '../models/Talent';
+import { Talent } from '../models/Talent/Talent';
 
 export const getAll = async (ctx: Context): Promise<void> => {
   const newTalent = await Talent.create({

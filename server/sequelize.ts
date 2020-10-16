@@ -1,11 +1,12 @@
 import { Sequelize } from 'sequelize-typescript';
+import path from 'path';
 
 export const db = new Sequelize({
   database: process.env.DEV_POSTGRES_DATABASE,
   username: process.env.DEV_POSTGRES_USER,
   password: process.env.DEV_POSTGRES_PASSWORD,
   dialect: 'postgres',
-  models: [__dirname + '/models'],
+  models: [path.join(__dirname, 'models/Talent')],
 });
 
 // Person.hasOne(Hobby, {
