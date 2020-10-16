@@ -3,7 +3,7 @@ import cors from '@koa/cors';
 import dotenv from 'dotenv';
 dotenv.config();
 import router from './routes';
-import { db } from './models';
+import { db } from './sequelize';
 
 const app = new Koa();
 
