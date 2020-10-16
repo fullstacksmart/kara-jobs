@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Header.module.scss';
-import logo from '../../assets/logos/kara_creme.png';
+import logo from '../../assets/logos/kara_gradient.png';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
 import BurgerMenu from '../BurgerMenu';

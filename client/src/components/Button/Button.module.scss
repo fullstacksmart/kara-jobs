@@ -1,15 +1,15 @@
 @import '../../sass/globals';
 
 .Button {
-  border: 2px solid rgb(0, 0, 0);
-  /* stylelint-disable */
-  -webkit-box-shadow: 4px 3px 0 2px rgb(0, 0, 0);
-  -moz-box-shadow: 4px 3px 0 2px rgb(0, 0, 0);
-  box-shadow: 4px 3px 0 2px rgb(0, 0, 0);
-  /* stylelint-enable */
-  color: $kara-cream-white;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid $kara-dark-blue;
+  border-radius: 7px;
+  color: $kara-dark-blue;
   cursor: pointer;
   font-size: 1rem;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
 }
+
