@@ -8,10 +8,12 @@ import {
 } from 'sequelize-typescript';
 import { BELONGSTOMODEL } from './BELONGSTOMODEL';
 
+@Table
 export class THISMODEL extends Model<THISMODEL> {
   @AllowNull(false)
   @ForeignKey(() => BELONGSTOMODEL as typeof Model)
-  BELONGSTOMODELId!: number;
+  @Column
+  BELONGSTOMODELId!: string;
 
   @BelongsTo(() => BELONGSTOMODEL as typeof Model)
   bELONGSTOMODEL!: BELONGSTOMODEL;

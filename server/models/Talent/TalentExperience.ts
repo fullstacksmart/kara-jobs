@@ -17,9 +17,10 @@ export class TalentExperience extends Model<TalentExperience> {
 
   @AllowNull(false)
   @ForeignKey(() => Talent as typeof Model)
+  @Column
   TalentId!: string;
 
-  @AllowNull
+  @AllowNull(false)
   @Column
   employerName!: string;
 

@@ -14,6 +14,8 @@ import { TalentDocument } from './TalentDocument';
 import { TalentAboutMe } from './TalentAboutMe';
 import { TalentExperience } from './TalentExperience';
 import { TalentQualification } from './TalentQualification';
+import { TalentLanguage } from './TalentLanguage';
+import { TalentOtherSkill } from './TalentOtherSkill';
 
 interface TalentAttributes {
   id: string;
@@ -33,7 +35,7 @@ interface TalentAttributes {
 
 @Table
 export class Talent
-  extends Model<TalentAttributes, TalentAttributes>
+  extends Model<Talent>
   implements TalentAttributes {
   @PrimaryKey
   @Column
@@ -85,7 +87,8 @@ export class Talent
   experiences!: TalentExperience[];
   @HasMany(() => TalentQualification as typeof Model)
   qualifications!: TalentQualification[];
-
-  // Talent.hasMany(models.TalentTableSpokenLanguage);
-  // Talent.hasMany(models.TalentTableOtherSkill);
+  @HasMany(() => TalentLanguage as typeof Model)
+  languages!: TalentLanguage[];
+  @HasMany(() => TalentOtherSkill as typeof Model)
+  skills!: TalentOtherSkill[];
 }
