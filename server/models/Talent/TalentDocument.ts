@@ -34,10 +34,12 @@ export class TalentDocument
   @Column
   id!: number;
 
+  @AllowNull(false)
   @ForeignKey(() => Talent as typeof Model)
   @Column
   TalentId!: string;
 
+  @AllowNull(false)
   @Column
   type!: string;
 

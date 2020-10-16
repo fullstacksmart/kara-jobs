@@ -29,11 +29,6 @@ interface TalentAttributes {
   documents?: TalentDocument[];
 }
 
-// type TalentCreationAttributes = Optional<
-//   TalentAttributes,
-//   'talentRegistrationEducation'
-// >;
-
 @Table
 export class Talent
   extends Model<TalentAttributes, TalentAttributes>
@@ -82,7 +77,6 @@ export class Talent
   approbations!: TalentApprobation[];
   @HasMany(() => TalentDocument as typeof Model)
   documents!: TalentDocument[];
-  // Talent.hasMany(models.TalentTableDocument);
   // Talent.hasOne(models.TalentTableAboutMe);
   // Talent.hasMany(models.TalentTableExperience);
   // Talent.hasMany(models.TalentTableEducation);
