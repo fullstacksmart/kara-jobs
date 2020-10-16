@@ -13,7 +13,7 @@ export class CompanyImage extends Model<CompanyImage> {
   @AllowNull(false)
   @ForeignKey(() => Company as typeof Model)
   @Column
-  CompanyId!: string;
+  CompanyId!: number;
 
   @AllowNull(false)
   @Column

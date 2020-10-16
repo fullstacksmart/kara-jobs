@@ -6,7 +6,11 @@ export const db = new Sequelize({
   username: process.env.DEV_POSTGRES_USER,
   password: process.env.DEV_POSTGRES_PASSWORD,
   dialect: 'postgres',
-  models: [path.join(__dirname, 'models/Talent')],
+  //logging: false,
+  models: [
+    path.join(__dirname, 'models', 'Talent'),
+    path.join(__dirname, 'models', 'Company'),
+  ],
 });
 
 // Person.hasOne(Hobby, {

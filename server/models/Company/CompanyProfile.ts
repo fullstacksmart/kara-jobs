@@ -14,7 +14,7 @@ export class CompanyProfile extends Model<CompanyProfile> {
   @PrimaryKey
   @ForeignKey(() => Company as typeof Model)
   @Column
-  CompanyId!: string;
+  CompanyId!: number;
 
   @AllowNull(false)
   @Column

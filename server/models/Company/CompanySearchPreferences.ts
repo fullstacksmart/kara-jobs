@@ -16,7 +16,7 @@ export class CompanySearchPreferences extends Model<
   @PrimaryKey
   @ForeignKey(() => Company as typeof Model)
   @Column
-  CompanyId!: string;
+  CompanyId!: number;
 
   @AllowNull(false)
   @Column
