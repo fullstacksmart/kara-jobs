@@ -74,7 +74,7 @@ export class Talent
   onboardingPage!: number;
 
   @HasOne(() => TalentRegistrationExperience as typeof Model)
-  registrationProficiency!: TalentRegistrationExperience;
+  registrationExperience!: TalentRegistrationExperience;
   @HasOne(() => TalentRegistrationQualification as typeof Model)
   registrationEducation!: TalentRegistrationQualification;
   @HasMany(() => TalentApprobation as typeof Model)
