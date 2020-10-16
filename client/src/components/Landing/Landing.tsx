@@ -13,8 +13,9 @@ const Landing: React.FC<unknown> = () => {
       <div className={styles.BodyContainer}>
         <div className={styles.LeftContainer}>
           <h3 className={styles.Description}>
-            Connecting international care and medical talents with German
-            employers
+            Connecting international care and medical talents
+            <br />
+            <span> with German employers.</span>
           </h3>
           <ul>
             <Link to="/" className={styles.ItemContainer}>
