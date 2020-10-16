@@ -7,11 +7,13 @@ import {
   HasOne,
   HasMany,
 } from 'sequelize-typescript';
-import { Optional } from 'sequelize';
-import { TalentRegistrationEducation } from './TalentRegistrationEducation';
-import { TalentRegistrationProficiency } from './TalentRegistrationProficiency';
+import { TalentRegistrationQualification } from './TalentRegistrationQualification';
+import { TalentRegistrationExperience } from './TalentRegistrationExperience';
 import { TalentApprobation } from './TalentApprobation';
 import { TalentDocument } from './TalentDocument';
+import { TalentAboutMe } from './TalentAboutMe';
+import { TalentExperience } from './TalentExperience';
+import { TalentQualification } from './TalentQualification';
 
 interface TalentAttributes {
   id: string;
@@ -23,8 +25,8 @@ interface TalentAttributes {
   city: string;
   onboardingComplete: boolean;
   onboardingPage: number;
-  registrationProficiency?: TalentRegistrationProficiency;
-  registrationEducation?: TalentRegistrationEducation;
+  registrationProficiency?: TalentRegistrationExperience;
+  registrationEducation?: TalentRegistrationQualification;
   approbations?: TalentApprobation[];
   documents?: TalentDocument[];
 }
@@ -69,17 +71,21 @@ export class Talent
   @Column
   onboardingPage!: number;
 
-  @HasOne(() => TalentRegistrationProficiency as typeof Model)
-  registrationProficiency!: TalentRegistrationProficiency;
-  @HasOne(() => TalentRegistrationEducation as typeof Model)
-  registrationEducation!: TalentRegistrationEducation;
+  @HasOne(() => TalentRegistrationExperience as typeof Model)
+  registrationProficiency!: TalentRegistrationExperience;
+  @HasOne(() => TalentRegistrationQualification as typeof Model)
+  registrationEducation!: TalentRegistrationQualification;
   @HasMany(() => TalentApprobation as typeof Model)
   approbations!: TalentApprobation[];
   @HasMany(() => TalentDocument as typeof Model)
   documents!: TalentDocument[];
-  // Talent.hasOne(models.TalentTableAboutMe);
-  // Talent.hasMany(models.TalentTableExperience);
-  // Talent.hasMany(models.TalentTableEducation);
+  @HasOne(() => TalentAboutMe as typeof Model)
+  aboutMe!: TalentAboutMe;
+  @HasMany(() => TalentExperience as typeof Model)
+  experiences!: TalentExperience[];
+  @HasMany(() => TalentQualification as typeof Model)
+  qualifications!: TalentQualification[];
+
   // Talent.hasMany(models.TalentTableSpokenLanguage);
   // Talent.hasMany(models.TalentTableOtherSkill);
 }

@@ -10,7 +10,7 @@ import {
 } from 'sequelize-typescript';
 import { Talent } from './Talent';
 
-interface TalentRegistrationEducationAttributes {
+interface TalentRegistrationQualificationAttributes {
   TalentId: string;
   studyProgram: string;
   university: string;
@@ -18,12 +18,12 @@ interface TalentRegistrationEducationAttributes {
 }
 
 @Table
-export class TalentRegistrationEducation
+export class TalentRegistrationQualification
   extends Model<
-    TalentRegistrationEducationAttributes,
-    TalentRegistrationEducationAttributes
+    TalentRegistrationQualificationAttributes,
+    TalentRegistrationQualificationAttributes
   >
-  implements TalentRegistrationEducationAttributes {
+  implements TalentRegistrationQualificationAttributes {
   @PrimaryKey
   @AllowNull(false)
   @ForeignKey(() => Talent as typeof Model)

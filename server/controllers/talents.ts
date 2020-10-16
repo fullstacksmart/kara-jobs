@@ -1,6 +1,5 @@
 import { Context } from 'koa';
-import { TalentRegistrationProficiency } from '../models/Talent/TalentRegistrationProficiency';
-import { Model } from 'sequelize-typescript';
+import { TalentRegistrationExperience } from '../models/Talent/TalentRegistrationExperience';
 import { Talent } from '../models/Talent/Talent';
 
 export const getAll = async (ctx: Context): Promise<void> => {
@@ -15,7 +14,7 @@ export const getAll = async (ctx: Context): Promise<void> => {
     onboardingComplete: false,
     onboardingPage: 1,
   });
-  const newProfish = await TalentRegistrationProficiency.create({
+  const newProfish = await TalentRegistrationExperience.create({
     TalentId: 'a',
     occupationId: 2,
     positionName: 'coder',

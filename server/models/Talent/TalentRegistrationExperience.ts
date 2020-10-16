@@ -10,7 +10,7 @@ import {
 } from 'sequelize-typescript';
 import { Talent } from './Talent';
 
-interface TalentRegistrationProficiencyAttributes {
+interface TalentRegistrationExperienceAttributes {
   TalentId: string;
   occupationId: number;
   positionName: string;
@@ -19,12 +19,12 @@ interface TalentRegistrationProficiencyAttributes {
 }
 
 @Table
-export class TalentRegistrationProficiency
+export class TalentRegistrationExperience
   extends Model<
-    TalentRegistrationProficiencyAttributes,
-    TalentRegistrationProficiencyAttributes
+    TalentRegistrationExperienceAttributes,
+    TalentRegistrationExperienceAttributes
   >
-  implements TalentRegistrationProficiencyAttributes {
+  implements TalentRegistrationExperienceAttributes {
   // TODO: check nonnullable status
   @AllowNull(false)
   @PrimaryKey

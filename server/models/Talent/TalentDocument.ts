@@ -4,7 +4,6 @@ import {
   Model,
   PrimaryKey,
   AllowNull,
-  DataType,
   BelongsTo,
   ForeignKey,
 } from 'sequelize-typescript';
