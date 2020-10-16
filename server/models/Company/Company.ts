@@ -3,7 +3,10 @@ import {
   Model,
   Column,
   AllowNull,
+  HasMany,
 } from 'sequelize-typescript';
+import { CompanyEmployee } from './CompanyEmployee';
+import { CompanyImage } from './CompanyImage';
 
 @Table
 export class Company extends Model<Company> {
@@ -41,4 +44,10 @@ export class Company extends Model<Company> {
 
   @Column
   webSite!: string;
+
+  @HasMany(() => CompanyEmployee as typeof Model)
+  employees!: CompanyEmployee[];
+
+  @HasMany(() => CompanyImage as typeof Model)
+  images!: CompanyImage[];
 }
