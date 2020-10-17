@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import { ReturnTalent } from '../types/talent';
+import { ReturnTalent, TalentCandidate } from '../types/talent';
 import { Talent } from '../models/Talent/Talent';
 import { TalentDocument } from '../models/Talent/TalentDocument';
 import { TalentAboutMe } from '../models/Talent/TalentAboutMe';
@@ -173,17 +173,29 @@ const fetchTalent = async (
   // }
 };
 
-const addTalent = (
+const addTalent = async (
   talentCandidate: Record<string, unknown>,
-): ReturnTalent | Error | null => {
+): Promise<ReturnTalent | Error | null> => {
   let newTalent;
   try {
     newTalent = new Talent(talentCandidate);
-    newTalent.save();
+    const savedTalent = await newTalent.save();
+    for (const subTableName of subTableNames) {
+      if (talentCandidate[subTableName]) {
+        const newSubTalent = new subTables[subTableName](
+          talentCandidate[subTableName] as Record<string, unknown>,
+        );
+        // savedTalent[subTableName] = await newSubTalent.save();
+      }
+    }
+    return savedTalent;
   } catch (err) {
     return err;
   }
-  return newTalent;
+};
+
+const isConsistent = (candidate: TalentCandidate, id: string) => {
+  return candidate.id === id;
 };
 
 export const getOne = (ctx: Context): void => {
@@ -211,18 +223,26 @@ export const getAll = async (ctx: Context): Promise<void> => {
 
 export const addOne = async (ctx: Context): Promise<void> => {
   const id = ctx.params.id;
+  ctx.status = 401;
   try {
     const existingTalent = await Talent.findByPk(id);
     if (existingTalent) {
-      ctx.status = 401;
       ctx.body = `Talent with id ${id} already exists`;
     } else {
-      const newTalent = ctx.request.body;
-      try {
-        addTalent(newTalent);
-      } catch (err) {
-        ctx.status = 401;
-        ctx.body = `Talent does not have the right format to be included in db: ${err.msg}`;
+      const talentCandidate = ctx.request.body;
+      if (!isConsistent(talentCandidate, id)) {
+        ctx.body = 'Request is inconsistent with path';
+      } else {
+        try {
+          const newTalent = addTalent(talentCandidate);
+          if (newTalent) {
+            ctx.status = 201;
+            ctx.body = newTalent;
+          }
+        } catch (err) {
+          ctx.status = 401;
+          ctx.body = `Talent does not have the right format to be included in db: ${err.msg}`;
+        }
       }
     }
   } catch (err) {

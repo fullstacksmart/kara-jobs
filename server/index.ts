@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import cors from '@koa/cors';
+import bodyParser from 'koa-bodyparser';
 import dotenv from 'dotenv';
 dotenv.config();
 import router from './routes';
@@ -13,6 +14,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(bodyParser());
 
 app.use(router.routes()).use(router.allowedMethods());
 

@@ -20,3 +20,7 @@ export type ReturnTalent =
   | TalentQualification
   | TalentRegistrationExperience
   | TalentRegistrationQualification;
+
+export interface TalentCandidate {
+  id: string;
+}

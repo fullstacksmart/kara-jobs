@@ -11,4 +11,6 @@ router.get('/talents/:id', talentController.getOne);
 
 router.get('/talents/:id/:type', talentController.getOne);
 
+router.post('/talents/:id', talentController.addOne);
+
 export default router;

@@ -17,7 +17,7 @@ import { TalentQualification } from './TalentQualification';
 import { TalentLanguage } from './TalentLanguage';
 import { TalentOtherSkill } from './TalentOtherSkill';
 
-interface TalentAttributes {
+export interface TalentAttributes {
   id: string;
   firstName: string;
   lastName: string;
@@ -27,10 +27,10 @@ interface TalentAttributes {
   city: string;
   onboardingComplete: boolean;
   onboardingPage: number;
-  registrationProficiency?: TalentRegistrationExperience;
-  registrationEducation?: TalentRegistrationQualification;
-  approbations?: TalentApprobation[];
-  documents?: TalentDocument[];
+  // registrationProficiency?: TalentRegistrationExperience;
+  // registrationEducation?: TalentRegistrationQualification;
+  // approbations?: TalentApprobation[];
+  // documents?: TalentDocument[];
 }
 
 @Table
