@@ -21,6 +21,7 @@ const initialState: Employer = {
   talentStudyStatus: 0, //false?
   talentAprobStatus: 0, //false?
   talentMinGerman: '',
+  agencyApplications: 0,
 };
 
 const EmployerReducer = (

@@ -18,4 +18,5 @@ export interface Employer {
   talentStudyStatus: number;
   talentAprobStatus: number;
   talentMinGerman: string;
+  agencyApplications: number;
 }
