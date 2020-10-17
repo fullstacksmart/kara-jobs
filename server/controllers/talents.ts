@@ -17,7 +17,7 @@ const fetchTalent = async (
       return Talent.findByPk(id, {
         include: [
           'registrationExperience',
-          'registrationQualification',
+          'registrationExperience',
           'documents',
           'approbations',
           'aboutMe',
@@ -30,27 +30,42 @@ const fetchTalent = async (
       const fullTalent = await Talent.findByPk(id);
       if (!fullTalent) return null;
       const onBoardingStatus =
-        fullTalent.onboardingPage < 2
+        fullTalent.onboardingPage <= 2
           ? 0
-          : fullTalent.onboardingPage < 5
+          : fullTalent.onboardingPage <= 5
           ? 1
-          : 2;
+          : fullTalent.onboardingPage <= 6
+          ? 2
+          : 3;
       switch (onBoardingStatus) {
         case 0:
           return fullTalent;
         case 1:
           return Talent.findByPk(id, {
-            include: 'registrationEducation',
+            include: [
+              'registrationQualification',
+              'registrationExperience',
+            ],
           });
-        default:
+        case 2:
           return Talent.findByPk(id, {
             include: [
-              'registrationEducation',
               'registrationQualification',
+              'registrationExperience',
               'documents',
             ],
           });
+        case 3:
+          return Talent.findByPk(id, {
+            include: [
+              'registrationQualification',
+              'registrationExperience',
+              'documents',
+              'approbations',
+            ],
+          });
       }
+      break;
     }
     case 'general':
       return Talent.findByPk(id);
