@@ -76,7 +76,7 @@ export class Talent
   @HasOne(() => TalentRegistrationExperience as typeof Model)
   registrationExperience!: TalentRegistrationExperience;
   @HasOne(() => TalentRegistrationQualification as typeof Model)
-  registrationEducation!: TalentRegistrationQualification;
+  registrationQualification!: TalentRegistrationQualification;
   @HasMany(() => TalentApprobation as typeof Model)
   approbations!: TalentApprobation[];
   @HasMany(() => TalentDocument as typeof Model)

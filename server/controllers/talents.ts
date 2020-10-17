@@ -8,17 +8,25 @@ import { TalentExperience } from '../models/Talent/TalentExperience';
 import { TalentLanguage } from '../models/Talent/TalentLanguage';
 import { TalentOtherSkill } from '../models/Talent/TalentOtherSkill';
 
-export const getAll = async (ctx: Context): Promise<void> => {
-  const allTalents = await Talent.findAll();
-  ctx.body = allTalents;
-};
-
 const fetchTalent = async (
   id: string,
   info: string,
 ): Promise<ReturnTalent | null> => {
   switch (info) {
-    case 'all': {
+    case 'all':
+      return Talent.findByPk(id, {
+        include: [
+          'registrationExperience',
+          'registrationQualification',
+          'documents',
+          'approbations',
+          'aboutMe',
+          'experiences',
+          'languages',
+          'skills',
+        ],
+      });
+    case 'signup': {
       const fullTalent = await Talent.findByPk(id);
       if (!fullTalent) return null;
       const onBoardingStatus =
@@ -78,4 +86,10 @@ export const getOne = (ctx: Context): void => {
     console.error('there was a problem accessing the database:', err);
     ctx.status = 500;
   }
+};
+
+// TODO: remove
+export const getAll = async (ctx: Context): Promise<void> => {
+  const allTalents = await Talent.findAll();
+  ctx.body = allTalents;
 };
