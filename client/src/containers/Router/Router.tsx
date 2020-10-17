@@ -12,7 +12,7 @@ import Success from '../../components/Success';
 import TalentRegistration from '../../components/Registration/TalentRegistration';
 import EmployerRegistration from '../../components/Registration/EmployerRegistration';
 import TalentSignup from '../TalentSignUp';
-//import EmployerSignup from '../EmployerSignUp';
+import EmployerSignup from '../EmployerSignUp';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
 import TalentSignUp1 from '../../components/talentSignUpComponents/TalentSignUp1';
 import TalentSignUp2 from '../../components/talentSignUpComponents/TalentSignUp2';
@@ -26,6 +26,7 @@ import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerS
 import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
 import EmployerSignUp2 from '../../components/EmployerSignUpComponents/EmployerSignUp2';
 import LoginContainer from '../../containers/LoginContainer';
+import EmployerSignUp4 from '../../components/EmployerSignUpComponents/EmployerSignUp4';
 
 const Router: React.FC<unknown> = () => {
   const auth = useSelector<RootState>((state) => state.firebase.auth);
@@ -109,6 +110,12 @@ const Router: React.FC<unknown> = () => {
           exact
           component={EmployerSignUp2}
         ></Route>,
+        <Route
+          key="/employer-signup-4"
+          path="/employer-signup-4"
+          exact
+          component={EmployerSignUp4}
+        ></Route>,
       ]
     : [
         <Route
@@ -122,7 +129,7 @@ const Router: React.FC<unknown> = () => {
     <Loading />
   ) : (
     <>
-      <Route path="/" exact component={Home}></Route>
+      <Route path="/" exact component={EmployerSignup}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
       <Route

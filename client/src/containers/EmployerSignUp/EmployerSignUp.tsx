@@ -26,7 +26,7 @@ const EmployerSignUp: React.FC<EmployerSignUpProps> = (
 
   return (
     <>
-      <Redirect to={`/employer-signup-${onboarding_status}`} />
+      <Redirect to={`/employer-signup-4`} />
     </>
   );
 };
