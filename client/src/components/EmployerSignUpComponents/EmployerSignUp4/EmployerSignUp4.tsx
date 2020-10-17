@@ -5,6 +5,8 @@ import Button from '../../Button';
 import { useHistory } from 'react-router-dom';
 import RadioInput from '../../RadioInput';
 import Checkbox from '../../Checkbox';
+import Select from '../../Select';
+import Option from '../../Option';
 
 const EmployerSignUp4: React.FC = () => {
   const history = useHistory();
@@ -19,70 +21,87 @@ const EmployerSignUp4: React.FC = () => {
   const [talentApprobStatus, setTalentApprobStatus] = useState({
     talentApprobStatus: 0,
   });
-  const [talentMinGerman, setTalentMinGerman] = useState({});
-
+  const [talentMinGerman, setTalentMinGerman] = useState({
+    talentMinGerman: '',
+  });
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
 
+  const updateSession = (
+    identifier: string | React.FormEvent<HTMLSelectElement>,
+  ): void => {
+    // sessionStorage.setItem(
+    //   'employer',
+    //   JSON.stringify(
+    //     Object.assign(employer, {
+    //       searchDoctor: talent.searchDoctor,
+    //       searchNurse: talent.searchNurse,
+    //       searchOther: talent.searchOther,
+    //     }),
+    //   ),
+    // );
+  };
+
   useEffect(() => {
-    if (
-      employer &&
-      employer.searchDoctor !== undefined &&
-      employer.searchNurse !== undefined &&
-      employer.searchOther !== undefined
-    ) {
-      setTalent({
-        searchDoctor: employer.searchDoctor,
-        searchNurse: employer.searchNurse,
-        searchOther: employer.searchOther,
-        // talentStudyStatus: talent.talentStudyStatus,
-        // talentApprobStatus: talent.talentApprobStatus,
-        // talentMinGerman: talent.talentMinGerman,
-      });
+    if (employer) {
+      if (
+        employer.searchDoctor !== undefined &&
+        employer.searchNurse !== undefined &&
+        employer.searchOther !== undefined
+      ) {
+        setTalent({
+          searchDoctor: employer.searchDoctor,
+          searchNurse: employer.searchNurse,
+          searchOther: employer.searchOther,
+        });
+      }
+      if (employer.talentStudyStatus !== undefined) {
+        setTalentStudyStatus({ talentStudyStatus: employer.talentStudyStatus });
+      }
+      if (employer.talentMinGerman !== undefined) {
+        setTalentMinGerman({ talentMinGerman: employer.talentMinGerman });
+      }
     }
   }, []);
 
-  const updateSession = (): void => {
-    sessionStorage.setItem(
-      'employer',
-      JSON.stringify(
-        Object.assign(employer, {
-          searchDoctor: talent.searchDoctor,
+  const handleChange = (
+    identifier: string | React.FormEvent<HTMLSelectElement>,
+  ): void => {
+    if (typeof identifier === 'string') {
+      if (identifier === 'Ärzte') {
+        setTalent({
+          searchDoctor: !talent.searchDoctor,
           searchNurse: talent.searchNurse,
           searchOther: talent.searchOther,
-        }),
-      ),
-    );
-  };
-
-  const handleChange = (identifier: string): void => {
-    if (identifier === 'Ärzte') {
-      setTalent({
-        searchDoctor: !talent.searchDoctor,
-        searchNurse: talent.searchNurse,
-        searchOther: talent.searchOther,
-      });
-    } else if (identifier === 'Pflegepersonal') {
-      setTalent({
-        searchDoctor: talent.searchDoctor,
-        searchNurse: !talent.searchNurse,
-        searchOther: talent.searchOther,
-        // talentStudyStatus: talent.talentStudyStatus,
-      });
-    } else if (identifier === 'Other') {
-      setTalent({
-        searchDoctor: talent.searchDoctor,
-        searchNurse: talent.searchNurse,
-        searchOther: !talent.searchOther,
-        // talentStudyStatus: talent.talentStudyStatus,
-      });
-    } else if (identifier.includes('study')) {
-      setTalentStudyStatus(
-        {
+        });
+      } else if (identifier === 'Pflegepersonal') {
+        setTalent({
+          searchDoctor: talent.searchDoctor,
+          searchNurse: !talent.searchNurse,
+          searchOther: talent.searchOther,
+        });
+      } else if (identifier === 'Other') {
+        setTalent({
+          searchDoctor: talent.searchDoctor,
+          searchNurse: talent.searchNurse,
+          searchOther: !talent.searchOther,
+        });
+      } else if (identifier.includes('study')) {
+        setTalentStudyStatus({
           talentStudyStatus: parseInt(identifier.charAt(identifier.length - 1)),
-        },
-        () => updateSession,
-      );
+        });
+      } else if (identifier.includes('approb')) {
+        setTalentApprobStatus({
+          talentApprobStatus: parseInt(
+            identifier.charAt(identifier.length - 1),
+          ),
+        });
+      }
+    } else {
+      setTalentMinGerman({
+        talentMinGerman: identifier.currentTarget.value,
+      });
     }
+    //updateSession(identifier);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -93,6 +112,8 @@ const EmployerSignUp4: React.FC = () => {
     console.log(obj);
     history.push('/employer-signup-4');
   };
+
+  const optArray = ['low', 'medium', 'high'];
 
   return (
     <div>
@@ -149,31 +170,51 @@ const EmployerSignUp4: React.FC = () => {
           checked={talentStudyStatus.talentStudyStatus === 3}
           onChange={() => handleChange('study-3')}
         ></RadioInput>
-        {/* <p>Ausbildung / Studium bereits abgeschlossen?</p>
         <RadioInput
-          labelText="Ja"
-          id="Ja"
-          name="Ja"
-          value="Ja"
-          checked={talent.talentStudyStatus === 'Ja'}
-          onChange={() => handleChange('Ja')}
+          labelText="Approb stuff 1"
+          id="4"
+          name="4"
+          value="4"
+          checked={talentApprobStatus.talentApprobStatus === 1}
+          onChange={() => handleChange('approb-1')}
         ></RadioInput>
         <RadioInput
-          labelText="Nein"
-          id="Nein"
-          name="Nein"
-          value="Nein"
-          checked={talent.talentStudyStatus === 'Nein'}
-          onChange={() => handleChange('Nein')}
+          labelText="Approb stuff 2"
+          id="5"
+          name="5"
+          value="5"
+          checked={talentApprobStatus.talentApprobStatus === 2}
+          onChange={() => handleChange('approb-2')}
         ></RadioInput>
         <RadioInput
-          labelText="Egal"
-          id="Egal"
-          name="Egal"
-          value="Egal"
-          checked={talent.talentStudyStatus === 'Egal'}
-          onChange={() => handleChange('Egal')}
-        ></RadioInput> */}
+          labelText="Approb stuff 3"
+          id="6"
+          name="6"
+          value="6"
+          checked={talentApprobStatus.talentApprobStatus === 3}
+          onChange={() => handleChange('approb-3')}
+        ></RadioInput>
+        <RadioInput
+          labelText="Approb stuff 4"
+          id="7"
+          name="7"
+          value="7"
+          checked={talentApprobStatus.talentApprobStatus === 4}
+          onChange={() => handleChange('approb-4')}
+        ></RadioInput>
+        <Select
+          id="german-level"
+          value={talentMinGerman.talentMinGerman}
+          onChange={(e) => handleChange(e)}
+          //onBlur={(e) => updateSession(e)}
+          required
+        >
+          {optArray.map((opt) => (
+            <Option key={opt} value={opt}>
+              {opt}
+            </Option>
+          ))}
+        </Select>
       </Form>
       <Button type="submit" value="Submit" form="search-f">
         Weiter
