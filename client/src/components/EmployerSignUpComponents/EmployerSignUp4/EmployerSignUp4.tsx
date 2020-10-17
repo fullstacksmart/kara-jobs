@@ -25,21 +25,23 @@ const EmployerSignUp4: React.FC = () => {
     talentMinGerman: '',
   });
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
+  console.log(employer);
 
-  // const updateSession = (
-  //   identifier: string | React.FormEvent<HTMLSelectElement>,
-  // ): void => {
-  //   // sessionStorage.setItem(
-  //   //   'employer',
-  //   //   JSON.stringify(
-  //   //     Object.assign(employer, {
-  //   //       searchDoctor: talent.searchDoctor,
-  //   //       searchNurse: talent.searchNurse,
-  //   //       searchOther: talent.searchOther,
-  //   //     }),
-  //   //   ),
-  //   // );
-  // };
+  const updateSession = (): void => {
+    sessionStorage.setItem(
+      'employer',
+      JSON.stringify(
+        Object.assign(employer, {
+          searchDoctor: talent.searchDoctor,
+          searchNurse: talent.searchNurse,
+          searchOther: talent.searchOther,
+          talentStudyStatus: talentStudyStatus.talentStudyStatus,
+          talentApprobStatus: talentApprobStatus.talentApprobStatus,
+          talentMinGerman: talentMinGerman.talentMinGerman,
+        }),
+      ),
+    );
+  };
 
   useEffect(() => {
     if (employer) {
@@ -57,33 +59,45 @@ const EmployerSignUp4: React.FC = () => {
       if (employer.talentStudyStatus !== undefined) {
         setTalentStudyStatus({ talentStudyStatus: employer.talentStudyStatus });
       }
+      if (employer.talentApprobStatus !== undefined) {
+        setTalentApprobStatus({
+          talentApprobStatus: employer.talentApprobStatus,
+        });
+      }
       if (employer.talentMinGerman !== undefined) {
         setTalentMinGerman({ talentMinGerman: employer.talentMinGerman });
       }
     }
   }, []);
 
+  useEffect(() => {
+    updateSession();
+  }, [talent, talentStudyStatus, talentApprobStatus, talentMinGerman]);
+
   const handleChange = (
     identifier: string | React.FormEvent<HTMLSelectElement>,
   ): void => {
     if (typeof identifier === 'string') {
       if (identifier === 'Ärzte') {
-        setTalent({
-          searchDoctor: !talent.searchDoctor,
-          searchNurse: talent.searchNurse,
-          searchOther: talent.searchOther,
+        setTalent((talent) => {
+          return {
+            ...talent,
+            searchDoctor: !talent.searchDoctor,
+          };
         });
       } else if (identifier === 'Pflegepersonal') {
-        setTalent({
-          searchDoctor: talent.searchDoctor,
-          searchNurse: !talent.searchNurse,
-          searchOther: talent.searchOther,
+        setTalent((talent) => {
+          return {
+            ...talent,
+            searchNurse: !talent.searchNurse,
+          };
         });
       } else if (identifier === 'Other') {
-        setTalent({
-          searchDoctor: talent.searchDoctor,
-          searchNurse: talent.searchNurse,
-          searchOther: !talent.searchOther,
+        setTalent((talent) => {
+          return {
+            ...talent,
+            searchOther: !talent.searchOther,
+          };
         });
       } else if (identifier.includes('study')) {
         setTalentStudyStatus({
@@ -101,15 +115,11 @@ const EmployerSignUp4: React.FC = () => {
         talentMinGerman: identifier.currentTarget.value,
       });
     }
-    //updateSession(identifier);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const obj = { ...employer, ...talent };
-    sessionStorage.setItem('employer', JSON.stringify(obj));
     // post to DB
-    console.log(obj);
     history.push('/employer-signup-4');
   };
 
