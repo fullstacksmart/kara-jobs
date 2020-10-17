@@ -15,6 +15,12 @@ const initialState: Employer = {
   zipCode: '',
   city: '',
   website: '',
+  searchDoctor: 0, //false?
+  searchNurse: 0, //false?
+  searchOther: 0, //false?
+  talentStudyStatus: 0, //false?
+  talentAprobStatus: 0, //false?
+  talentMinGerman: '',
 };
 
 const EmployerReducer = (
