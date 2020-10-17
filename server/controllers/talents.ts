@@ -11,6 +11,7 @@ import { Error } from 'sequelize';
 import { TalentRegistrationExperience } from '../models/Talent/TalentRegistrationExperience';
 import { TalentRegistrationQualification } from '../models/Talent/TalentRegistrationQualification';
 import { TalentQualification } from '../models/Talent/TalentQualification';
+import { Model } from 'sequelize';
 
 const subTables = {
   registrationExperience: TalentRegistrationExperience,
@@ -24,14 +25,16 @@ const subTables = {
   skills: TalentOtherSkill,
 };
 
-const subTableNames: [keyof typeof subTables] = Object.keys(
+type SubTableNames = keyof typeof subTables;
+
+const subTableNames: SubTableNames[] = Object.keys(
   subTables,
-) as [keyof typeof subTables];
+) as SubTableNames[];
 
 const fetchTalent = async (
   id: string,
   info: string,
-): Promise<ReturnTalent | null> => {
+): Promise<Model | null> => {
   if (info === 'all') {
     return Talent.findByPk(id, {
       include: [
@@ -89,7 +92,8 @@ const fetchTalent = async (
     for (const subTableName of subTableNames) {
       if (info === subTableName) {
         const table = subTables[subTableName];
-        table.findByPk.call(table, id);
+        const result = await table.findByPk.call(table, id);
+        return result;
       }
     }
     return null;
@@ -97,24 +101,105 @@ const fetchTalent = async (
 };
 
 const addTalent = async (
-  talentCandidate: Record<string, unknown>,
+  talentCandidate: TalentCandidate & Record<string, unknown>,
 ): Promise<ReturnTalent | Error | null> => {
   let newTalent;
   try {
+    console.log('it reached this');
     newTalent = new Talent(talentCandidate);
-    const savedTalent = await newTalent.save();
-    for (const subTableName of subTableNames) {
-      if (talentCandidate[subTableName]) {
-        const newSubTalent = new subTables[subTableName](
-          talentCandidate[subTableName] as Record<string, unknown>,
-        );
-        // savedTalent[subTableName] = await newSubTalent.save();
-      }
-    }
-    return savedTalent;
+    await newTalent.save();
+    const include: string[] = [];
+    // await Promise.all(
+    //   subTableNames.map(async (subTableName) => {
+    //     if (
+    //       Object.prototype.hasOwnProperty.call(
+    //         talentCandidate,
+    //         subTableName,
+    //       )
+    //     ) {
+    //       const existingSubtable = await subTables[
+    //         subTableName
+    //       ].findByPk.call(
+    //         subTables[subTableName],
+    //         talentCandidate.id,
+    //       );
+    //       console.log('ABOUTME', TalentAboutMe.findByPk(126));
+    //       if (existingSubtable && talentCandidate.onboardingComplete)
+    //         return;
+    //       else if (
+    //         !talentCandidate.onboardingComplete &&
+    //         existingSubtable
+    //       )
+    //         await existingSubtable.update.call(
+    //           subTables[subTableName],
+    //           talentCandidate[subTableName] as Partial<unknown>,
+    //         );
+    //       else {
+    //         const newSubTalent = new subTables[subTableName](
+    //           talentCandidate[subTableName] as Record<
+    //             string,
+    //             unknown
+    //           >,
+    //         );
+    //         await newSubTalent.save();
+    //       }
+    //       include.push(subTableName);
+    //     }
+    //   }),
+    // );
+    await Promise.all(
+      subTableNames.map(async (subTableName) => {
+        if (
+          Object.prototype.hasOwnProperty.call(
+            talentCandidate,
+            subTableName,
+          )
+        ) {
+          console.log(`${subTableName} gets updated`);
+          const newSubTalent = new subTables[subTableName](
+            talentCandidate[subTableName] as Record<string, unknown>,
+          );
+          await newSubTalent.save();
+          include.push(subTableName);
+        }
+      }),
+    );
+
+    return Talent.findByPk(talentCandidate.id, { include });
   } catch (err) {
     return err;
   }
+};
+
+const updateTalent = async (
+  existingTalent: Talent,
+  newData: TalentCandidate & Record<string, Record<string, unknown>>,
+): Promise<Talent | null> => {
+  existingTalent.update(newData);
+  const id = existingTalent.id;
+  const include: string[] = [];
+  await Promise.all(
+    subTableNames.map(async (subTableName) => {
+      if (
+        Object.prototype.hasOwnProperty.call(newData, subTableName)
+      ) {
+        const currentTable = subTables[subTableName];
+        const newTable = newData[subTableName];
+        const existingSubtable = await currentTable.findByPk.call(
+          currentTable,
+          id,
+        );
+        if (existingSubtable) existingSubtable.update(newTable);
+        else {
+          const newInstance = new currentTable(newTable);
+          await newInstance.save();
+        }
+        include.push(subTableName);
+      }
+    }),
+  );
+  if (!include.length) return existingTalent;
+  return await Talent.findByPk(id, { include });
 };
 
 const isConsistent = (candidate: TalentCandidate, id: string) => {
@@ -150,13 +235,24 @@ export const addOne = async (ctx: Context): Promise<void> => {
   ctx.status = 401;
   try {
     const existingTalent = await Talent.findByPk(id);
-    if (existingTalent) {
+    // TODO: rethink/discuss onboarding update logic
+    if (existingTalent && existingTalent.onboardingComplete) {
       ctx.body = `Talent with id ${id} already exists`;
       return;
     } else {
       const talentCandidate = ctx.request.body;
       if (!isConsistent(talentCandidate, id)) {
         ctx.body = 'Request is inconsistent with path';
+        return;
+      } else if (
+        existingTalent &&
+        !existingTalent.onboardingComplete
+      ) {
+        const updatedTalent = await updateTalent(
+          existingTalent,
+          talentCandidate,
+        );
+        ctx.body = updatedTalent;
         return;
       } else {
         try {
