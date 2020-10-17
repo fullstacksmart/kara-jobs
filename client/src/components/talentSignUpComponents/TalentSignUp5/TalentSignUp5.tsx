@@ -3,10 +3,14 @@ import styles from './TalentSignUp5.module.scss';
 import Form from '../../Form';
 import Button from '../../Button';
 import { useHistory } from 'react-router-dom';
+import { useFirebase } from 'react-redux-firebase';
 
 const TalentSignUp5: React.FC = () => {
   const history = useHistory();
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+
+  //FILE MGMT
+  const firebase = useFirebase();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,10 +25,34 @@ const TalentSignUp5: React.FC = () => {
     }
   };
 
+  function handleFiles(this: HTMLInputElement) {
+    console.log('here');
+    const file = this.files ? this.files[0] : null;
+    console.log(file);
+    if (file) {
+      const storageRef = firebase.storage().ref('tetFolder/testFile.png');
+      const task = storageRef.put(file);
+      task.on(
+        'state_changed',
+        function progress(snapshot) {
+          const percentage = snapshot.bytesTransferred / snapshot.totalBytes;
+          console.log(percentage);
+        },
+        function error(err) {
+          console.log(err);
+        },
+      );
+    }
+  }
+  const input = document.getElementById('input') as HTMLInputElement;
+  if (input) input.addEventListener('change', handleFiles, false);
+
   return (
     <div className={styles.TalentSignUp5}>
       <p>Talent SignUp 5</p>
-      <Form onSubmit={handleSubmit} id="picture-form"></Form>
+      <Form onSubmit={handleSubmit} id="picture-form">
+        <input type="file" id="input"></input>
+      </Form>
       <Button onClick={() => redirect()}>Zurück</Button>
       <Button type="submit" value="Submit" form="picture-form">
         Submit
