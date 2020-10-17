@@ -7,7 +7,7 @@ import { TalentApprobation } from '../models/Talent/TalentApprobation';
 import { TalentExperience } from '../models/Talent/TalentExperience';
 import { TalentLanguage } from '../models/Talent/TalentLanguage';
 import { TalentOtherSkill } from '../models/Talent/TalentOtherSkill';
-import { Error } from 'sequelize/types';
+import { Error } from 'sequelize';
 import { TalentRegistrationExperience } from '../models/Talent/TalentRegistrationExperience';
 import { TalentRegistrationQualification } from '../models/Talent/TalentRegistrationQualification';
 import { TalentQualification } from '../models/Talent/TalentQualification';
@@ -88,11 +88,6 @@ const fetchTalent = async (
   } else {
     for (const subTableName of subTableNames) {
       if (info === subTableName) {
-        if (
-          subTables[subTableName] === TalentRegistrationExperience
-        ) {
-          console.log('equal');
-        }
         const table = subTables[subTableName];
         table.findByPk.call(table, id);
       }
@@ -198,16 +193,17 @@ const isConsistent = (candidate: TalentCandidate, id: string) => {
   return candidate.id === id;
 };
 
-export const getOne = (ctx: Context): void => {
+export const getOne = async (ctx: Context): Promise<void> => {
   const type = ctx.params.type || 'all';
   const id = ctx.params.id;
   try {
-    const talent = fetchTalent(id, type);
+    const talent = await fetchTalent(id, type);
     if (talent) {
       ctx.status = 200;
       ctx.body = talent;
     } else {
       ctx.status = 400;
+      ctx.body = `No info of type ${type} for talent with id ${id}`;
     }
   } catch (err) {
     console.error('there was a problem accessing the database:', err);
@@ -228,20 +224,25 @@ export const addOne = async (ctx: Context): Promise<void> => {
     const existingTalent = await Talent.findByPk(id);
     if (existingTalent) {
       ctx.body = `Talent with id ${id} already exists`;
+      return;
     } else {
       const talentCandidate = ctx.request.body;
       if (!isConsistent(talentCandidate, id)) {
         ctx.body = 'Request is inconsistent with path';
+        return;
       } else {
         try {
-          const newTalent = addTalent(talentCandidate);
-          if (newTalent) {
-            ctx.status = 201;
-            ctx.body = newTalent;
+          const newTalent = await addTalent(talentCandidate);
+          if (newTalent instanceof Error) {
+            throw new Error(newTalent.message);
           }
+          ctx.status = 201;
+          ctx.body = newTalent;
+          return;
         } catch (err) {
           ctx.status = 401;
-          ctx.body = `Talent does not have the right format to be included in db: ${err.msg}`;
+          ctx.body = `Talent does not have the right format to be included in db:\n${err}`;
+          return;
         }
       }
     }
