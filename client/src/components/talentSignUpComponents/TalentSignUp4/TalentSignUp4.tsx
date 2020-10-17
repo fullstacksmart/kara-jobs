@@ -94,31 +94,32 @@ const TalentSignUp4: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sessionStorage.setItem(
-      'talent',
-      JSON.stringify({
-        ...talent,
-        ...info,
-      }),
-    );
+    const talentObj = {
+      ...talent,
+      ...info,
+      onboarding_page: 5,
+    };
+    sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB (only relevant props from this page)
     history.push('/talent-signup-5');
   };
 
   return (
     <div className={styles.TalentSignUp4}>
-      <Form onSubmit={handleSubmit} id="position-form">
+      <Form onSubmit={handleSubmit} id="education-form">
         <TextInput
           id="studyProgram"
           labelText="Studiengang*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <TextInput
           id="university"
           labelText="Universität*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <Label htmlFor="expectedGraduationYear">
           Erwartetes Abschlussjahr*
@@ -128,6 +129,7 @@ const TalentSignUp4: React.FC = () => {
           value={info.expectedGraduationYear}
           onChange={handleChange}
           onBlur={(e) => updateSession(e)}
+          required
         >
           {optArray.map((opt) => (
             <Option key={opt} value={opt}>
@@ -139,7 +141,8 @@ const TalentSignUp4: React.FC = () => {
       <p onClick={() => history.push('/talent-signup-3')}>
         Ich arbeite bereits
       </p>
-      <Button type="submit" value="Submit" form="position-form">
+      <Button onClick={() => history.push('/talent-signup-2')}>Zurück</Button>
+      <Button type="submit" value="Submit" form="education-form">
         Submit
       </Button>
     </div>

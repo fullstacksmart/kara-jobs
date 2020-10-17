@@ -86,20 +86,18 @@ const TalentSignUp6: React.FC = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const page = info.approbationStartedFlag ? 7 : 8;
     e.preventDefault();
-    sessionStorage.setItem(
-      'talent',
-      JSON.stringify({
-        ...talent,
-        ...info,
-      }),
-    );
+    const talentObj = {
+      ...talent,
+      ...info,
+      onboarding_page: page,
+    };
+    sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB
-    if (info.approbationStartedFlag === false) {
-      history.push('/talent-signup-8');
-    } else if (info.approbationStartedFlag === true) {
-      history.push('/talent-signup-7');
-    }
+    info.approbationStartedFlag
+      ? history.push('/talent-signup-7')
+      : history.push('/talent-signup-8');
   };
 
   const optArray = [
@@ -124,7 +122,7 @@ const TalentSignUp6: React.FC = () => {
 
   return (
     <div className={styles.TalentSignUp6}>
-      <Form onSubmit={handleSubmit} id="occupationId-form">
+      <Form onSubmit={handleSubmit} id="approbation-started-form">
         <p>
           Hast du schon Mal einen Antrag zur Anerkennung deiner Ausbildung bei
           einer deutschen Behörde eingereicht?*
@@ -161,8 +159,11 @@ const TalentSignUp6: React.FC = () => {
             </Option>
           ))}
         </Select>
-        <Button type="submit">Weiter</Button>
       </Form>
+      <Button onClick={() => history.push('/talent-signup-5')}>Zurück</Button>
+      <Button type="submit" value="Submit" form="approbation-started-form">
+        Submit
+      </Button>
     </div>
   );
 };

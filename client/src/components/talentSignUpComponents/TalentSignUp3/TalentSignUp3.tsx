@@ -88,13 +88,12 @@ const TalentSignUp3: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sessionStorage.setItem(
-      'talent',
-      JSON.stringify({
-        ...talent,
-        ...info,
-      }),
-    );
+    const talentObj = {
+      ...talent,
+      ...info,
+      onboarding_page: 5,
+    };
+    sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB (only relevant props from this page)
     history.push('/talent-signup-5');
   };
@@ -107,6 +106,7 @@ const TalentSignUp3: React.FC = () => {
           labelText="Position*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <Label htmlFor="occupationStatusId">
           Derzeitiges Beschäftigungsverhältnis*
@@ -116,6 +116,7 @@ const TalentSignUp3: React.FC = () => {
           value={info.occupationStatusId}
           onChange={handleChange}
           onBlur={(e) => updateSession(e)}
+          required
         >
           {optArray.map((opt) => (
             <Option key={opt} value={opt}>
@@ -128,9 +129,11 @@ const TalentSignUp3: React.FC = () => {
           labelText="Letzter oder derzeitiger Arbeitgeber*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
       </Form>
       <p onClick={() => history.push('/talent-signup-4')}>Ich studiere noch</p>
+      <Button onClick={() => history.push('/talent-signup-2')}>Zurück</Button>
       <Button type="submit" value="Submit" form="position-form">
         Submit
       </Button>

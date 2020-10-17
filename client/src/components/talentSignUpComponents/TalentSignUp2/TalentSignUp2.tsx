@@ -31,13 +31,12 @@ const TalentSignUp2: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sessionStorage.setItem(
-      'talent',
-      JSON.stringify({
-        ...talent,
-        ...info,
-      }),
-    );
+    const talentObj = {
+      ...talent,
+      ...info,
+      onboarding_page: 3,
+    };
+    sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB
     history.push('/talent-signup-3');
   };
@@ -72,6 +71,7 @@ const TalentSignUp2: React.FC = () => {
         ></RadioInput>
       </Form>
       <p onClick={() => history.push('/talent-signup-4')}>Ich studiere noch</p>
+      <Button onClick={() => history.push('/talent-signup-1')}>Zurück</Button>
       <Button type="submit" value="Submit" form="occupationId-form">
         Weiter
       </Button>

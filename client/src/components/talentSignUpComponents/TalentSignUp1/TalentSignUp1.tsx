@@ -97,13 +97,12 @@ const TalentSignUp1: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sessionStorage.setItem(
-      'talent',
-      JSON.stringify({
-        ...talent,
-        ...info,
-      }),
-    );
+    const talentObj = {
+      ...talent,
+      ...info,
+      onboarding_page: 2,
+    };
+    sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB (only relevant props from this page)
     history.push('/talent-signup-2');
   };
@@ -112,7 +111,7 @@ const TalentSignUp1: React.FC = () => {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} id="residence-form">
         <Label htmlFor="residence">Land*</Label>
         <Select
           id="residence"
@@ -128,18 +127,23 @@ const TalentSignUp1: React.FC = () => {
         </Select>
         <TextInput
           id="zipCode"
-          labelText="Postleitzahl"
+          labelText="Postleitzahl*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <TextInput
           id="city"
-          labelText="Region / Stadt"
+          labelText="Region / Stadt*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
-        <Button type="submit">Submit</Button>
       </Form>
+      <Button onClick={() => history.push('/talent-signup-0')}>Zurück</Button>
+      <Button type="submit" value="Submit" form="residence-form">
+        Submit
+      </Button>
     </div>
   );
 };
