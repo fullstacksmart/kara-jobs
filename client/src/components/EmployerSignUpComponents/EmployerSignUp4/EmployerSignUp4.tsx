@@ -26,20 +26,20 @@ const EmployerSignUp4: React.FC = () => {
   });
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
 
-  const updateSession = (
-    identifier: string | React.FormEvent<HTMLSelectElement>,
-  ): void => {
-    // sessionStorage.setItem(
-    //   'employer',
-    //   JSON.stringify(
-    //     Object.assign(employer, {
-    //       searchDoctor: talent.searchDoctor,
-    //       searchNurse: talent.searchNurse,
-    //       searchOther: talent.searchOther,
-    //     }),
-    //   ),
-    // );
-  };
+  // const updateSession = (
+  //   identifier: string | React.FormEvent<HTMLSelectElement>,
+  // ): void => {
+  //   // sessionStorage.setItem(
+  //   //   'employer',
+  //   //   JSON.stringify(
+  //   //     Object.assign(employer, {
+  //   //       searchDoctor: talent.searchDoctor,
+  //   //       searchNurse: talent.searchNurse,
+  //   //       searchOther: talent.searchOther,
+  //   //     }),
+  //   //   ),
+  //   // );
+  // };
 
   useEffect(() => {
     if (employer) {
@@ -118,8 +118,13 @@ const EmployerSignUp4: React.FC = () => {
   return (
     <div>
       <p>
-        Basierend auf Ihren Angaben sehen Talente welche Art von Personal Sie
-        derzeit suchen. Umgekehrt werd
+        Basierend auf Ihren Angaben sehen Talente welche Art von Personal Sie 
+        derzeit suchen. Umgekehrt werden Ihnen nur Bewerber angezeigt, die die
+        nötigen Vorgaben erfüllen.
+      </p>
+      <p>Sie können die Auswahl in Ihrem Profil jederzeit ändern.</p>
+      <p>
+        Sie suchen zur Verstärkung ihrer Einrichtung (Mehrfachauswahl möglich):
       </p>
       <Form onSubmit={handleSubmit} id="search-f">
         <Checkbox
@@ -146,6 +151,7 @@ const EmployerSignUp4: React.FC = () => {
           checked={talent.searchOther}
           onChange={() => handleChange('Other')}
         ></Checkbox>
+        <p>Ausbildung / Studium bereits abgeschlossen?</p>
         <RadioInput
           labelText="Ausbildung / Studium bereits abgeschlossen?"
           id="1"
@@ -170,8 +176,9 @@ const EmployerSignUp4: React.FC = () => {
           checked={talentStudyStatus.talentStudyStatus === 3}
           onChange={() => handleChange('study-3')}
         ></RadioInput>
+        <p>Anerkennungs / Approbationsbescheid bereits vorliegend?</p>
         <RadioInput
-          labelText="Approb stuff 1"
+          labelText="Ja"
           id="4"
           name="4"
           value="4"
@@ -179,7 +186,7 @@ const EmployerSignUp4: React.FC = () => {
           onChange={() => handleChange('approb-1')}
         ></RadioInput>
         <RadioInput
-          labelText="Approb stuff 2"
+          labelText="Nein"
           id="5"
           name="5"
           value="5"
@@ -187,7 +194,7 @@ const EmployerSignUp4: React.FC = () => {
           onChange={() => handleChange('approb-2')}
         ></RadioInput>
         <RadioInput
-          labelText="Approb stuff 3"
+          labelText="Laufend"
           id="6"
           name="6"
           value="6"
@@ -195,13 +202,17 @@ const EmployerSignUp4: React.FC = () => {
           onChange={() => handleChange('approb-3')}
         ></RadioInput>
         <RadioInput
-          labelText="Approb stuff 4"
+          labelText="Egal"
           id="7"
           name="7"
           value="7"
           checked={talentApprobStatus.talentApprobStatus === 4}
           onChange={() => handleChange('approb-4')}
         ></RadioInput>
+        <p>
+          Minimum Deutschkenntnisse (wenn nicht durch Anerkennung bereits
+          erfüllt)
+        </p>
         <Select
           id="german-level"
           value={talentMinGerman.talentMinGerman}

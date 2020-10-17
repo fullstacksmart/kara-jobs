@@ -3,11 +3,12 @@ import styles from './EmployerSignUp0.module.scss';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
 import Button from '../../Button';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const EmployerSignUp0: React.FC = () => {
+  const history = useHistory();
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
-  const [redirect, setRedirect] = useState(0);
+
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
 
   useEffect(() => {
@@ -37,38 +38,40 @@ const EmployerSignUp0: React.FC = () => {
     );
   };
 
-  const handleSubmit = () => {
-    sessionStorage.setItem(
-      'employer',
-      JSON.stringify(Object.assign(employer, { onboarding_status: 1 })),
-    );
-    setRedirect(1);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const employerObj = {
+      ...employer,
+      ...info,
+      onboarding_page: 1,
+    };
+    sessionStorage.setItem('employer', JSON.stringify(employerObj));
+    // post to DB: only post relevant data of this page
+    //postToDB(employerObj);
+    history.push('/employer-signup-1');
   };
 
-  if (redirect === 1) return <Redirect to={`/employer-signup-1`} />;
-  else {
-    return (
-      <BlueWrapper>
-        <div className={styles.EmployerSignUp0}>
-          <form onSubmit={handleSubmit}>
-            <TextInput
-              id="firstName"
-              labelText="Vorname (Ansprechpartner)*"
-              onChange={handleChange}
-              onBlur={updateSession}
-            ></TextInput>
-            <TextInput
-              id="lastName"
-              labelText="Nachname (Ansprechpartner)*"
-              onChange={handleChange}
-              onBlur={updateSession}
-            ></TextInput>
-            <Button>Weiter</Button>
-          </form>
-        </div>
-      </BlueWrapper>
-    );
-  }
+  return (
+    <BlueWrapper>
+      <div className={styles.EmployerSignUp0}>
+        <form onSubmit={handleSubmit}>
+          <TextInput
+            id="firstName"
+            labelText="Vorname (Ansprechpartner)*"
+            onChange={handleChange}
+            onBlur={updateSession}
+          ></TextInput>
+          <TextInput
+            id="lastName"
+            labelText="Nachname (Ansprechpartner)*"
+            onChange={handleChange}
+            onBlur={updateSession}
+          ></TextInput>
+          <Button>Weiter</Button>
+        </form>
+      </div>
+    </BlueWrapper>
+  );
 };
 
 export default EmployerSignUp0;

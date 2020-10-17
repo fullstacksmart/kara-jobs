@@ -25,6 +25,7 @@ import TalentSignUp8 from '../../components/talentSignUpComponents/TalentSignUp8
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
 import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
 import EmployerSignUp2 from '../../components/EmployerSignUpComponents/EmployerSignUp2';
+import EmployerSignUp3 from '../../components/EmployerSignUpComponents/EmployerSignUp3';
 import LoginContainer from '../../containers/LoginContainer';
 import EmployerSignUp4 from '../../components/EmployerSignUpComponents/EmployerSignUp4';
 
@@ -109,6 +110,12 @@ const Router: React.FC<unknown> = () => {
           path="/employer-signup-2"
           exact
           component={EmployerSignUp2}
+        ></Route>,
+        <Route
+          key="/employer-signup-3"
+          path="/employer-signup-3"
+          exact
+          component={EmployerSignUp3}
         ></Route>,
         <Route
           key="/employer-signup-4"

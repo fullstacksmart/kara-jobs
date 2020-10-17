@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styles from './EmployerSignUp2.module.scss';
-import { Redirect } from 'react-router-dom';
 import TextInput from '../../TextInput';
 import Form from '../../Form';
 import Button from '../../Button';
+import { useHistory } from 'react-router-dom';
 
 const EmployerSignUp2: React.FC = () => {
+  const history = useHistory();
   const [info, setInfo] = useState({
     street: '',
     streetNumber: '',
@@ -14,7 +15,6 @@ const EmployerSignUp2: React.FC = () => {
     city: '',
     website: '',
   });
-  const [redirect, setRedirect] = useState(0);
 
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
 
@@ -125,19 +125,19 @@ const EmployerSignUp2: React.FC = () => {
     );
   };
 
-  const handleSubmit = () => {
-    sessionStorage.setItem(
-      'employer',
-      JSON.stringify({
-        ...employer,
-        ...info,
-      }),
-    );
-    setRedirect(3);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const employerObj = {
+      ...employer,
+      ...info,
+      onboarding_page: 3,
+    };
+    sessionStorage.setItem('employer', JSON.stringify(employerObj));
+    // post to DB: only post relevant data of this page
+    //postToDB(employerObj);
+    history.push('/employer-signup-3');
   };
 
-  if (redirect === 3) return <Redirect push to={`/employer-signup-3`} />;
-  else if (redirect === 4) return <Redirect push to={`/employer-signup-4`} />;
   return (
     <div className={styles.EmployerSignUp2}>
       <Form onSubmit={handleSubmit}>

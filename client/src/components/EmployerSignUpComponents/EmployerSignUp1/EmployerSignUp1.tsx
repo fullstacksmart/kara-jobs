@@ -7,11 +7,11 @@ import Form from '../../Form';
 import Select from '../../Select';
 import Label from '../../Label';
 import Option from '../../Option';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const EmployerSignUp1: React.FC = () => {
+  const history = useHistory();
   const [info, setInfo] = useState({ companyName: '', sector: '', type: '' });
-  const [redirect, setRedirect] = useState(0);
 
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
 
@@ -74,15 +74,17 @@ const EmployerSignUp1: React.FC = () => {
     );
   };
 
-  const handleSubmit = () => {
-    sessionStorage.setItem(
-      'employer',
-      JSON.stringify({
-        ...employer,
-        ...info,
-      }),
-    );
-    setRedirect(2);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const employerObj = {
+      ...employer,
+      ...info,
+      onboarding_page: 2,
+    };
+    sessionStorage.setItem('employer', JSON.stringify(employerObj));
+    // post to DB: only post relevant data of this page
+    //postToDB(employerObj);
+    history.push('/employer-signup-2');
   };
 
   const sectorArr = [
@@ -97,49 +99,46 @@ const EmployerSignUp1: React.FC = () => {
     ['id3', 'type3'],
   ];
 
-  if (redirect === 2) return <Redirect push to={`/employer-signup-2`} />;
-  else {
-    return (
-      <BlueWrapper>
-        <div className={styles.EmployerSignUp1}>
-          <Form onSubmit={handleSubmit}>
-            <TextInput
-              id="companyName"
-              labelText="Name der Einrichtung/Firma*"
-              onChange={(e) => handleChange(e)}
-              onBlur={(e) => updateSession(e)}
-            ></TextInput>
-            <Label htmlFor="sectors">Branche*</Label>
-            <Select
-              id="sector"
-              value={info.sector}
-              onChange={handleChange}
-              onBlur={(e) => updateSession(e)}
-            >
-              {sectorArr.map((opt) => (
-                <Option key={opt[0]} value={opt[1]}>
-                  {opt[1]}
-                </Option>
-              ))}
-            </Select>
-            <Select
-              id="type"
-              value={info.type}
-              onChange={handleChange}
-              onBlur={(e) => updateSession(e)}
-            >
-              {typeArr.map((opt) => (
-                <Option key={opt[0]} value={opt[1]}>
-                  {opt[1]}
-                </Option>
-              ))}
-            </Select>
-            <Button>Weiter</Button>
-          </Form>
-        </div>
-      </BlueWrapper>
-    );
-  }
+  return (
+    <BlueWrapper>
+      <div className={styles.EmployerSignUp1}>
+        <Form onSubmit={handleSubmit}>
+          <TextInput
+            id="companyName"
+            labelText="Name der Einrichtung/Firma*"
+            onChange={(e) => handleChange(e)}
+            onBlur={(e) => updateSession(e)}
+          ></TextInput>
+          <Label htmlFor="sectors">Branche*</Label>
+          <Select
+            id="sector"
+            value={info.sector}
+            onChange={handleChange}
+            onBlur={(e) => updateSession(e)}
+          >
+            {sectorArr.map((opt) => (
+              <Option key={opt[0]} value={opt[1]}>
+                {opt[1]}
+              </Option>
+            ))}
+          </Select>
+          <Select
+            id="type"
+            value={info.type}
+            onChange={handleChange}
+            onBlur={(e) => updateSession(e)}
+          >
+            {typeArr.map((opt) => (
+              <Option key={opt[0]} value={opt[1]}>
+                {opt[1]}
+              </Option>
+            ))}
+          </Select>
+          <Button>Weiter</Button>
+        </Form>
+      </div>
+    </BlueWrapper>
+  );
 };
 
 export default EmployerSignUp1;
