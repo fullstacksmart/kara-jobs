@@ -8,11 +8,16 @@ const styles = {
     position: 'absolute',
     width: '36px',
     height: '30px',
-    left: '36px',
-    top: '36px',
+    right: '1.65rem',
+    top: '2.7rem',
   },
   bmBurgerBars: {
-    background: 'rgb(224, 241, 244)',
+    background: 'rgb(32, 53, 70)',
+    borderRadius: '5px',
+    height: '0.25rem',
+  },
+  bmBurgerBarsHover: {
+    background: '#a90000',
   },
   bmCrossButton: {
     height: '24px',
@@ -21,10 +26,15 @@ const styles = {
   bmCross: {
     background: '#bdc3c7',
   },
+  bmMenuWrap: {
+    position: 'fixed',
+    top: '5.5rem',
+    height: '100%',
+  },
   bmMenu: {
-    background: '#373a47',
-    padding: '2.5em 1.5em 0',
-    fontSize: '1.15em',
+    background: 'rgb(0, 168, 198)',
+    padding: '1.2rem 1.2rem 0',
+    fontSize: '1.15rem',
   },
   bmMorphShape: {
     fill: '#373a47',
@@ -32,15 +42,19 @@ const styles = {
   bmItemList: {
     color: '#b8b7ad',
     padding: '0.8em',
+    display: 'flex',
+    flexDirection: 'column',
   },
-  bmOverlay: {
-    background: 'rgba(0, 0, 0, 0.3)',
+  bmItem: {
+    paddingTop: '0.5rem',
+    paddingBottom: '0.5rem',
+    paddingLeft: '0.5rem',
   },
 };
 
-const BurgerMenu: React.FC<unknown> = () => {
+const BurgerMenu: React.FC<unknown> = (props: unknown) => {
   return (
-    <Menu noOverlay styles={styles}>
+    <Menu right width={'65%'} styles={styles} {...props}>
       <Link to="/">Home</Link>
       <Link to="/">Für Talente</Link>
       <Link to="/">Für Arbeitgeber</Link>

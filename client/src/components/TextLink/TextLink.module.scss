@@ -1,7 +1,7 @@
-@import '../../sass/globals.scss';
+@import '../../sass/globals';
 
 .TextLink {
-  text-decoration: underline;
   color: $kara-dark-blue;
   font-weight: bold;
+  text-decoration: underline;
 }

@@ -8,25 +8,40 @@
   padding-top: 1rem;
 }
 
-h3 {
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
-  margin-top: 1.25rem;
-}
+.Landing {
+  h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  
+  span {
+    font-size: 1.25rem;
+    font-weight: normal;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  li {
+    padding: 1rem;
+  }
 
-span {
-  font-size: 1.25rem;
-  font-weight: normal;
-}
+  a {
+    color: $kara-dark-blue;
+    text-decoration: none;
+  }
 
-ul {
-  list-style: none;
-}
-
-li {
-  padding: 1rem;
+  a:hover {
+    background-color: $kara-light-blue;
+    border-radius: 7px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    transition-duration: 0.4s;
+  }
 }
 
 .LeftContainer {
@@ -72,6 +87,7 @@ li {
     flex-wrap: wrap-reverse;
     justify-content: center;
     margin: 0.1rem;
+    min-width: 90vw;
     padding-top: 1rem;
   }
 
@@ -82,22 +98,26 @@ li {
     min-width: 90vw;
   }
 
-  h3 {
-    margin: 0;
-    max-width: 80vw;
-    padding-bottom: 0.5rem;
-    padding-top: 1rem;
+  .Landing {
+    h3 {
+      margin: 0;
+      max-width: 80vw;
+      padding-bottom: 0.5rem;
+      padding-top: 1rem;
+    }
   }
 
   .ItemContainer {
-    width: 90vw;
+    width: 85vw;
   }
 
   .ImgContainer {
     display: flex;
     justify-content: center;
     margin: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    max-height: 60vw;
+    max-width: 80vw;
     padding-top: 0.75rem;
   }
 }
