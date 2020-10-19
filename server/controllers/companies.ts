@@ -54,7 +54,10 @@ export const getOne = async (
         ctx.status = 404;
         return;
       }
-      if (type === 'signup') {
+      if (type === 'basic') {
+        ctx.status = 200;
+        ctx.body = currentCompany;
+      } else if (type === 'signup') {
         const signupPage = currentCompany?.onboardingPage;
         const stages = [1, 4, 5, 6];
         const include = [];
@@ -114,7 +117,7 @@ export const getOneFromEmployee = async (
 
 const addOrUpdateSubtable = async (
   companyTable: ModelStatic<Model>,
-  value: any,
+  value: Company,
   id: string,
 ) => {
   const [signingUpCompany, created] = await Model.findOrCreate.call(
@@ -222,6 +225,73 @@ export const addOneFromEmployee = async (ctx: Context) => {
     addOne(ctx, companyId);
   } catch (err) {
     ctx.status = 500;
-    ctx.body = `There was ab error accessing the database: ${err}`;
+    ctx.body = `There was an error accessing the database: ${err}`;
   }
 };
+
+export const updateOne = async (ctx: Context): Promise<void> => {
+  const id = ctx.params.id;
+  const type = ctx.params.type || 'all';
+  try {
+    const existingEntry = await Company.findByPk(id);
+    if (!existingEntry) {
+      ctx.status = 400;
+      ctx.body = `There is no company with id ${id} in the database`;
+      return;
+    }
+    const companyCandidate = ctx.request.body;
+    let updatedCompany;
+    let dbError;
+    if (type === 'all') {
+      try {
+        updatedCompany = await existingEntry.update(companyCandidate);
+      } catch (err) {
+        dbError = `Error updating company: ${err}`;
+      }
+    } else {
+      for (const subTableName of subTableNames) {
+        if (type === subTableName) {
+          const currentTable = subTables[subTableName];
+          if (Array.isArray(companyCandidate)) {
+            try {
+              updatedCompany = await Promise.all(
+                companyCandidate.map(async (item) => {
+                  Model.update.call(currentTable, item, {
+                    where: {
+                      CompanyId: id,
+                    },
+                  });
+                }),
+              );
+            } catch (err) {
+              dbError = `Error updating ${type} array: ${err}`;
+            }
+          } else {
+            try {
+              updatedCompany = await Model.update.call(
+                currentTable,
+                companyCandidate,
+                { where: { CompanyId: id } },
+              );
+            } catch (err) {
+              dbError = `Error updating ${type} item: ${err}`;
+            }
+          }
+        }
+      }
+    }
+    if (updatedCompany !== undefined) {
+      ctx.status = 200;
+      ctx.send(updatedCompany);
+      return;
+    }
+    ctx.status = 400;
+    ctx.send(dbError);
+  } catch (err) {
+    ctx.status = 500;
+  }
+};
+
+// export const deleteOne = async (ctx) => {
+
+// }

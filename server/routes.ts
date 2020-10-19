@@ -53,4 +53,8 @@ router.post('/companies/empoyee/:employeeId/:type', (ctx) =>
   companyController.addOneFromEmployee(ctx),
 );
 
+router.put('/companies/:id', companyController.updateOne);
+
+router.put('/companies/:id/:type', companyController.updateOne);
+
 export default router;
