@@ -120,7 +120,7 @@ const EmployerSignUp4: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // post to DB
-    history.push('/employer-signup-4');
+    history.push('/employer-signup-5');
   };
 
   const optArray = ['low', 'medium', 'high'];
