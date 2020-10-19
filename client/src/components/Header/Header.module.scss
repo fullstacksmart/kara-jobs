@@ -15,8 +15,8 @@
   max-width: 100%;
 }
 
-.BurgerMenu {
-  display: none;
+.BurgerWrapper {
+  display: none !important;
 }
 
 .Menu {
@@ -42,6 +42,7 @@
   list-style: none;
   position: absolute;
   right: 3rem;
+  top: 6rem;
 }
 
 .Header {
@@ -59,7 +60,6 @@
   }
 }
   
-
 .Item {
   margin-right: 0.75rem;
   padding: 0.75rem;
@@ -100,8 +100,8 @@
     padding-left: 1rem;
   }
 
-  .BurgerMenu {
-    display: unset;
+  .BurgerWrapper {
+    display: unset !important;
   }
   
   .Item {

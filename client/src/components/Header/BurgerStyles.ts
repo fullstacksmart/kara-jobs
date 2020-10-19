@@ -1,9 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from '../Button';
-import { slide as Menu } from 'react-burger-menu';
-
-const styles = {
+export const BurgerStyles = {
   bmBurgerButton: {
     position: 'absolute',
     width: '36px',
@@ -51,25 +46,3 @@ const styles = {
     paddingLeft: '0.5rem',
   },
 };
-
-// interface BurgerMenuAttributes {
-//   /* eslint-disable  @typescript-eslint/no-explicit-any */
-//   style: any;
-// }
-
-const BurgerMenu: React.FC<unknown> = () => {
-  return (
-    <Menu noOverlay right width={'65%'} styles={styles}>
-      <Link to="/">Home</Link>
-      <Link to="/">Für Talente</Link>
-      <Link to="/">Für Arbeitgeber</Link>
-      <Link to="/">Über uns</Link>
-      <Link to="/signup">Mitglied werden</Link>
-      <Link to="/sign-in">
-        <Button>Login</Button>
-      </Link>
-    </Menu>
-  );
-};
-
-export default BurgerMenu;
