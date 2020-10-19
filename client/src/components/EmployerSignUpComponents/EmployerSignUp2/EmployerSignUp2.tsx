@@ -146,12 +146,14 @@ const EmployerSignUp2: React.FC = () => {
           labelText="Straße*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <TextInput
           id="streetNumber"
           labelText="Haus-Nr.*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <TextInput
           id="addressAdditional"
@@ -164,12 +166,14 @@ const EmployerSignUp2: React.FC = () => {
           labelText="Postleitzahl*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <TextInput
           id="city"
           labelText="Region / Stadt*"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => updateSession(e)}
+          required={true}
         ></TextInput>
         <TextInput
           id="website"
