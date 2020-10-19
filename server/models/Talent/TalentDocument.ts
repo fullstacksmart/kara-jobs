@@ -23,16 +23,7 @@ type TalentDocumentCreationAttributes = Optional<
 >;
 
 @Table
-export class TalentDocument
-  extends Model<
-    TalentDocumentAttributes,
-    TalentDocumentCreationAttributes
-  >
-  implements TalentDocumentAttributes {
-  @PrimaryKey
-  @Column
-  id!: number;
-
+export class TalentDocument extends Model<TalentDocument> {
   @AllowNull(false)
   @ForeignKey(() => Talent as typeof Model)
   @Column

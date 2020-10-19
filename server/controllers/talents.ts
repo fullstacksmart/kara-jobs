@@ -1,5 +1,10 @@
 import { Context } from 'koa';
-import { ReturnTalent, TalentCandidate } from '../types/talent';
+import {
+  InputTalent,
+  ReturnTalent,
+  TalentArray,
+  TalentCandidate,
+} from '../types/talent';
 import { Talent } from '../models/Talent/Talent';
 import { TalentDocument } from '../models/Talent/TalentDocument';
 import { TalentAboutMe } from '../models/Talent/TalentAboutMe';
@@ -100,8 +105,20 @@ const fetchTalent = async (
   }
 };
 
+const addAllItems = async (
+  tableToAdd: TalentArray,
+  model: InputTalent,
+) => {
+  return Promise.all(
+    tableToAdd.map(async (item) => {
+      const newSubtalent = new model(item);
+      await newSubtalent.save();
+    }),
+  );
+};
+
 const addTalent = async (
-  talentCandidate: TalentCandidate & Record<string, unknown>,
+  talentCandidate: TalentCandidate,
 ): Promise<ReturnTalent | Error | null> => {
   let newTalent;
   try {
@@ -109,44 +126,6 @@ const addTalent = async (
     newTalent = new Talent(talentCandidate);
     await newTalent.save();
     const include: string[] = [];
-    // await Promise.all(
-    //   subTableNames.map(async (subTableName) => {
-    //     if (
-    //       Object.prototype.hasOwnProperty.call(
-    //         talentCandidate,
-    //         subTableName,
-    //       )
-    //     ) {
-    //       const existingSubtable = await subTables[
-    //         subTableName
-    //       ].findByPk.call(
-    //         subTables[subTableName],
-    //         talentCandidate.id,
-    //       );
-    //       console.log('ABOUTME', TalentAboutMe.findByPk(126));
-    //       if (existingSubtable && talentCandidate.onboardingComplete)
-    //         return;
-    //       else if (
-    //         !talentCandidate.onboardingComplete &&
-    //         existingSubtable
-    //       )
-    //         await existingSubtable.update.call(
-    //           subTables[subTableName],
-    //           talentCandidate[subTableName] as Partial<unknown>,
-    //         );
-    //       else {
-    //         const newSubTalent = new subTables[subTableName](
-    //           talentCandidate[subTableName] as Record<
-    //             string,
-    //             unknown
-    //           >,
-    //         );
-    //         await newSubTalent.save();
-    //       }
-    //       include.push(subTableName);
-    //     }
-    //   }),
-    // );
     await Promise.all(
       subTableNames.map(async (subTableName) => {
         if (
@@ -155,11 +134,28 @@ const addTalent = async (
             subTableName,
           )
         ) {
-          console.log(`${subTableName} gets updated`);
-          const newSubTalent = new subTables[subTableName](
-            talentCandidate[subTableName] as Record<string, unknown>,
-          );
-          await newSubTalent.save();
+          if (Array.isArray(talentCandidate[subTableName])) {
+            await addAllItems(
+              talentCandidate[subTableName] as TalentArray,
+              subTables[subTableName],
+            );
+            // await Promise.all(
+            //   (talentCandidate[subTableName] as TalentArray).map(
+            //     async (item) => {
+            //       const newSubtalent = new subTables[subTableName](
+            //         item,
+            //       );
+            //       await newSubtalent.save();
+            //     },
+            //   ),
+            // );
+          } else {
+            // not an array
+            const newSubTalent = new subTables[subTableName](
+              talentCandidate[subTableName],
+            );
+            await newSubTalent.save();
+          }
           include.push(subTableName);
         }
       }),
@@ -173,7 +169,7 @@ const addTalent = async (
 
 const updateTalent = async (
   existingTalent: Talent,
-  newData: TalentCandidate & Record<string, Record<string, unknown>>,
+  newData: TalentCandidate,
 ): Promise<Talent | null> => {
   existingTalent.update(newData);
   const id = existingTalent.id;
@@ -181,18 +177,40 @@ const updateTalent = async (
   await Promise.all(
     subTableNames.map(async (subTableName) => {
       if (
-        Object.prototype.hasOwnProperty.call(newData, subTableName)
+        Object.prototype.hasOwnProperty.call(newData, subTableName) &&
+        newData[subTableName] !== undefined &&
+        newData[subTableName] !== null
       ) {
         const currentTable = subTables[subTableName];
         const newTable = newData[subTableName];
-        const existingSubtable = await currentTable.findByPk.call(
-          currentTable,
-          id,
-        );
-        if (existingSubtable) existingSubtable.update(newTable);
-        else {
-          const newInstance = new currentTable(newTable);
-          await newInstance.save();
+        if (Array.isArray(newTable)) {
+          await Promise.all(
+            (newTable as TalentArray).map(async (item) => {
+              const existingEntry = await currentTable.findByPk.call(
+                currentTable,
+                item.id,
+              );
+              if (existingEntry) {
+                await existingEntry.update(item);
+              } else {
+                const newEntry = new currentTable(item);
+                await newEntry.save();
+              }
+            }),
+          );
+        } else {
+          const existingSubtable = await currentTable.findByPk.call(
+            currentTable,
+            id,
+          );
+          if (newTable !== undefined) {
+            if (existingSubtable)
+              await existingSubtable.update(newTable);
+            else {
+              const newInstance = new currentTable(newTable);
+              await newInstance.save();
+            }
+          }
         }
         include.push(subTableName);
       }
@@ -252,6 +270,7 @@ export const addOne = async (ctx: Context): Promise<void> => {
           existingTalent,
           talentCandidate,
         );
+        ctx.status = 201;
         ctx.body = updatedTalent;
         return;
       } else {
