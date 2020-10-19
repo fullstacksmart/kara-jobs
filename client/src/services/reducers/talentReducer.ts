@@ -5,6 +5,7 @@ const initialState: Talent = {
   uid: '',
   email: '',
   onbarding_page: 0,
+  onboarding_complete: false,
   firstName: '',
   lastName: '',
   isoCode: '',

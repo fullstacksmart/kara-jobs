@@ -79,8 +79,6 @@ const TalentSignUp4: React.FC = () => {
         });
         break;
       case 'expectedGraduationYear':
-        console.log(e.currentTarget.value);
-        console.log(typeof e.currentTarget.value);
         setInfo({
           studyProgram: info.studyProgram,
           expectedGraduationYear: parseInt(e.currentTarget.value),
