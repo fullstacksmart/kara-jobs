@@ -374,7 +374,7 @@ export const updateOne = async (ctx: Context): Promise<void> => {
         if (type === subTableName) {
           const currentTable = subTables[subTableName];
           const updateInfo = ctx.request.body;
-          let updatedItem: any;
+          let updatedItem: (Model<Talent> | null)[];
           try {
             if (Array.isArray(updateInfo)) {
               updatedItem = await Promise.all(
