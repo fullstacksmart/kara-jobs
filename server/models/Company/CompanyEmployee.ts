@@ -5,6 +5,7 @@ import {
   ForeignKey,
   AllowNull,
   BelongsTo,
+  DataType,
 } from 'sequelize-typescript';
 import { Company } from './Company';
 
@@ -12,8 +13,8 @@ import { Company } from './Company';
 export class CompanyEmployee extends Model<CompanyEmployee> {
   @AllowNull(false)
   @ForeignKey(() => Company as typeof Model)
-  @Column
-  CompanyId!: number;
+  @Column(DataType.UUID)
+  CompanyId!: string;
 
   @AllowNull(false)
   @Column

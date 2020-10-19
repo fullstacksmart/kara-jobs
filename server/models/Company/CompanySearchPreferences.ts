@@ -6,6 +6,7 @@ import {
   AllowNull,
   BelongsTo,
   PrimaryKey,
+  DataType,
 } from 'sequelize-typescript';
 import { Company } from './Company';
 
@@ -15,8 +16,8 @@ export class CompanySearchPreferences extends Model<
 > {
   @PrimaryKey
   @ForeignKey(() => Company as typeof Model)
-  @Column
-  CompanyId!: number;
+  @Column(DataType.UUID)
+  CompanyId!: string;
 
   @AllowNull(false)
   @Column
