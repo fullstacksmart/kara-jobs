@@ -1,3 +1,5 @@
+import { rgbToHex } from '@material-ui/core';
+
 export const BurgerStyles = {
   bmBurgerButton: {
     position: 'absolute',
@@ -35,7 +37,6 @@ export const BurgerStyles = {
     fill: '#373a47',
   },
   bmItemList: {
-    color: '#b8b7ad',
     padding: '0.8em',
     display: 'flex',
     flexDirection: 'column',
@@ -44,5 +45,6 @@ export const BurgerStyles = {
     paddingTop: '0.5rem',
     paddingBottom: '0.5rem',
     paddingLeft: '0.5rem',
+    color: 'rgb(255, 255, 255)',
   },
 };
