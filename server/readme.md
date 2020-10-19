@@ -7,6 +7,8 @@ all"|"registrationExperience"|"registrationQualification"|"approbations"|"docume
 
 ### get
 
+extra types: "signup"|"basic"
+
 possible routes:
 
 - get(/talents):
@@ -17,6 +19,8 @@ possible routes:
   returns all avaliable information for talent with id :id of type :type
 
 ### post
+
+extra types: "signup"|"basic"
 
 possible routes:
 

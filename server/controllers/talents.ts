@@ -41,7 +41,7 @@ const fetchTalent = async (
   info: string,
 ): Promise<Model | Model[] | null> => {
   if (info === 'all') {
-    return Talent.findByPk(id, {
+    return await Talent.findByPk(id, {
       include: [
         'registrationExperience',
         'registrationExperience',
@@ -53,6 +53,8 @@ const fetchTalent = async (
         'skills',
       ],
     });
+  } else if (info === 'basic') {
+    return await Talent.findByPk(id);
   } else if (info === 'signup') {
     const fullTalent = await Talent.findByPk(id);
     if (!fullTalent) return null;
@@ -299,6 +301,11 @@ export const addOne = async (ctx: Context): Promise<void> => {
   try {
     if (type === 'signup') {
       return addForSignup(ctx);
+    } else if (type === 'basic') {
+      const createdTalent = await Talent.create(talentCandidate);
+      ctx.status = 201;
+      ctx.body = createdTalent;
+      return;
     }
     for (const subTableName of subTableNames) {
       if (type === subTableName) {
