@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './TalentSignUp5.module.scss';
 import Form from '../../Form';
 import Button from '../../Button';
 import { useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../services/reducers';
 
 const TalentSignUp5: React.FC = () => {
   const history = useHistory();
@@ -11,6 +13,32 @@ const TalentSignUp5: React.FC = () => {
 
   //FILE MGMT
   const firebase = useFirebase();
+  const auth: any = useSelector<RootState>((state) => state.firebase.auth);
+  const uid = auth.uid as string;
+
+  const downloadImage = () => {
+    const storageRef = firebase
+      .storage()
+      .ref(`/talents/${uid}/images/profile-picture`);
+    storageRef
+      .getDownloadURL()
+      .then(function (url) {
+        if (url) {
+          console.log(url);
+          const img = document.getElementById(
+            'profile-picture',
+          ) as HTMLImageElement;
+          if (img) img.src = url;
+        }
+      })
+      .catch(function (e) {
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    downloadImage();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,17 +54,20 @@ const TalentSignUp5: React.FC = () => {
   };
 
   function handleFiles(this: HTMLInputElement) {
-    console.log('here');
     const file = this.files ? this.files[0] : null;
-    console.log(file);
     if (file) {
-      const storageRef = firebase.storage().ref('tetFolder/testFile.png');
+      const storageRef = firebase
+        .storage()
+        .ref(`/talents/${uid}/images/profile-picture`);
       const task = storageRef.put(file);
       task.on(
         'state_changed',
         function progress(snapshot) {
           const percentage = snapshot.bytesTransferred / snapshot.totalBytes;
-          console.log(percentage);
+          if (percentage === 1) {
+            console.log('here at 1');
+            downloadImage();
+          }
         },
         function error(err) {
           console.log(err);
@@ -44,12 +75,13 @@ const TalentSignUp5: React.FC = () => {
       );
     }
   }
+
   const input = document.getElementById('input') as HTMLInputElement;
   if (input) input.addEventListener('change', handleFiles, false);
 
   return (
     <div className={styles.TalentSignUp5}>
-      <p>Talent SignUp 5</p>
+      <img src="" id="profile-picture"></img>
       <Form onSubmit={handleSubmit} id="picture-form">
         <input type="file" id="input"></input>
       </Form>
