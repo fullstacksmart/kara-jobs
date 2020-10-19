@@ -28,8 +28,11 @@ export const getAll = async (ctx: Context): Promise<void> => {
   ctx.body = await Company.findAll();
 };
 
-export const getOne = async (ctx: Context): Promise<void> => {
-  const id = ctx.params.id;
+export const getOne = async (
+  ctx: Context,
+  id?: string,
+): Promise<void> => {
+  id = id || ctx.params.id;
   const type = ctx.params.type || 'all';
   try {
     if (type === 'all') {
@@ -87,5 +90,18 @@ export const getOne = async (ctx: Context): Promise<void> => {
   } catch (err) {
     console.error(err);
     ctx.status = 500;
+  }
+};
+
+export const getOneFromEmployee = async (
+  ctx: Context,
+): Promise<void> => {
+  const employeeId = ctx.params.employeeId;
+  const employee = await CompanyEmployee.findByPk(employeeId);
+  const companyId = employee?.CompanyId;
+  if (companyId) {
+    getOne(ctx, companyId);
+  } else {
+    ctx.status = 404;
   }
 };
