@@ -12,8 +12,11 @@ const TextInput: React.FC<
 > = ({ labelText, id, required, ...props }: TextInputProps) => {
   return (
     <div className={styles.TextInput}>
-      <label htmlFor={id}>{labelText}</label>
+      <div className={styles.Label}>
+        <label htmlFor={id}>{labelText}</label>
+      </div>
       <input
+        className={styles.Input}
         type="text"
         id={id}
         name={id}

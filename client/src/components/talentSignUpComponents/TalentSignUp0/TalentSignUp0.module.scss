@@ -1,3 +1,56 @@
+@import '../../../sass/globals';
+
 .TalentSignUp0 {
-  // TODO: style me!
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+
+  .FormHeader {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .FormWrapper {
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 4rem;
+    min-height: 18rem;
+    min-width: 18rem;
+  }
+
+  .Logo {
+    height: 3rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: lighter;
+    margin-bottom: 3rem;
+  }
+
+  .Form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  Button {
+    background-color: $kara-light-blue;
+    color: rgb(255, 255, 255);
+    margin-top: 1rem;
+  }
+
+  Button:hover {
+    background-color: $kara-dark-blue;
+  }
 }

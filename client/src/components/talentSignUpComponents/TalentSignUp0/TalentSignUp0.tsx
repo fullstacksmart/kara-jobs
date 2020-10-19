@@ -4,6 +4,7 @@ import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
 import Button from '../../Button';
 import Form from '../../Form';
+import logo from '../../../assets/logos/kara_lightblue.png';
 import { useHistory } from 'react-router-dom';
 
 const TalentSignUp0: React.FC = () => {
@@ -57,25 +58,33 @@ const TalentSignUp0: React.FC = () => {
   return (
     <BlueWrapper>
       <div className={styles.TalentSignUp0}>
-        <Form onSubmit={handleSubmit}>
-          <TextInput
-            id="firstName"
-            labelText="Vorname*"
-            onChange={handleChange}
-            onBlur={updateSession}
-            data-testid="firstName"
-            required={true}
-          ></TextInput>
-          <TextInput
-            id="lastName"
-            labelText="Nachname*"
-            onChange={handleChange}
-            onBlur={updateSession}
-            data-testid="lastName"
-            required={true}
-          ></TextInput>
-          <Button type="submit">Weiter</Button>
-        </Form>
+        <div className={styles.FormHeader}>
+          <img src={logo} className={styles.Logo} />
+          <h3>In wenigen Schritten zu deinem Profil</h3>
+        </div>
+        <div className={styles.FormWrapper}>
+          <Form onSubmit={handleSubmit} className={styles.Form}>
+            <TextInput
+              className={styles.TextInput}
+              id="firstName"
+              labelText="Vorname* "
+              onChange={handleChange}
+              onBlur={updateSession}
+              data-testid="firstName"
+              required={true}
+            ></TextInput>
+            <TextInput
+              className={styles.TextInput}
+              id="lastName"
+              labelText="Nachname* "
+              onChange={handleChange}
+              onBlur={updateSession}
+              data-testid="lastName"
+              required={true}
+            ></TextInput>
+            <Button type="submit">Weiter</Button>
+          </Form>
+        </div>
       </div>
     </BlueWrapper>
   );
