@@ -11,12 +11,13 @@
 
 .Logo {
   height: 3rem;
+  margin-top: 0.75rem;
   max-width: 100%;
 }
 
-// .BurgerMenu {
-//   display: none;
-// }
+.BurgerWrapper {
+  display: none !important;
+}
 
 .Menu {
   align-items: center;
@@ -29,32 +30,36 @@
 .CenteredMenu {
   align-items: center;
   display: flex;
+  justify-content: center;
   list-style: none;
-  padding-top: 0.5rem;
+  position: absolute;
+  top: 6rem;
 }
 
 .RightMenu {
   align-items: center;
   display: flex;
   list-style: none;
-  padding-top: 0.5rem;
   position: absolute;
   right: 3rem;
+  top: 6rem;
 }
 
-a {
-  color: $kara-dark-blue;
-  text-decoration: none;
-}
+.Header {
+  a {
+    color: $kara-dark-blue;
+    text-decoration: none;
+  }
 
-a:hover {
-  background-color: $kara-light-blue;
-  border-radius: 7px;
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  transition-duration: 0.4s;
+  a:hover {
+    background-color: $kara-light-blue;
+    border-radius: 7px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    transition-duration: 0.4s;
+  }
 }
-
+  
 .Item {
   margin-right: 0.75rem;
   padding: 0.75rem;
@@ -86,10 +91,18 @@ a:hover {
     display: none;
   }
 
-  // .BurgerMenu {
-  //   left: 0.5rem;
-  //   position: absolute;
-  // }
+  .Header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .Logo {
+    padding-left: 1rem;
+  }
+
+  .BurgerWrapper {
+    display: unset !important;
+  }
   
   .Item {
     font-size: 0.95rem;

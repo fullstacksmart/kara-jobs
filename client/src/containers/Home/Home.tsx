@@ -1,6 +1,7 @@
 import React from 'react';
 // import styles from './Home.module.scss';
 import Landing from '../../components/Landing';
+import GradientWrapper from '../GradientWrapper';
 
 // interface HomeProps {}
 
@@ -11,7 +12,11 @@ import Landing from '../../components/Landing';
 // import { TalentActions } from '../../services/actions/talentActions';
 
 const Home: React.FC<unknown> = () => {
-  return <Landing />;
+  return (
+    <GradientWrapper>
+      <Landing />
+    </GradientWrapper>
+  );
 };
 
 export default Home;
