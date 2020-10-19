@@ -208,3 +208,20 @@ export const addOne = async (
   ctx.status = 201;
   ctx.body = fromDb;
 };
+
+export const addOneFromEmployee = async (ctx: Context) => {
+  const employeeId = ctx.params.employeeId;
+  try {
+    const employee = await CompanyEmployee.findByPk(employeeId);
+    if (!employee) {
+      ctx.status = 400;
+      ctx.body = `there is no employee with id ${employeeId} in the db.`;
+      return;
+    }
+    const companyId = employee.CompanyId;
+    addOne(ctx, companyId);
+  } catch (err) {
+    ctx.status = 500;
+    ctx.body = `There was ab error accessing the database: ${err}`;
+  }
+};

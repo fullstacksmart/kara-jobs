@@ -43,4 +43,14 @@ router.get(
   companyController.getOneFromEmployee,
 );
 
+router.post('/companies/:id', (ctx) => companyController.addOne(ctx));
+
+router.post('/companies/:id/:type', (ctx) =>
+  companyController.addOne(ctx),
+);
+
+router.post('/companies/empoyee/:employeeId/:type', (ctx) =>
+  companyController.addOneFromEmployee(ctx),
+);
+
 export default router;
