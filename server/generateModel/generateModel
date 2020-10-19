@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+NAME=$(echo "$1" | gsed -r 's/(^|_|-)([a-z])/\U\2/g')
+FILENAME=$1
+BELONGSTO=$2
+LOWERCASE_BELONGSTO="$(echo "$2" | gsed -r 's/(^|_|-)([A-Z])/\L\2/g')"
+OUTPUTFILE="${PWD}/$NAME.ts"
+
+
+check_file () {
+	# check whether file exists
+	if [ -f "$1" ]
+	then
+		return 0
+	fi
+	return 1
+}
+
+create_file () {
+  if check_file "$FILENAME"
+  then
+    echo "file already exists"
+    return 1
+  else
+    gsed "s/BELONGSTOMODEL/$BELONGSTO/g" "/Users/dev/Documents/projects/codeworks/senior/thesis/kara/server/generateModel/template.ts" | gsed "s/THISMODEL/$NAME/g" | gsed "s/bELONGSTOMODEL/$LOWERCASE_BELONGSTO/" >> "${PWD}/$NAME.ts"
+  fi
+}
+
+create_file &&
+echo "successfully created $NAME"
