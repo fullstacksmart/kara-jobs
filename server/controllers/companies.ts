@@ -292,6 +292,42 @@ export const updateOne = async (ctx: Context): Promise<void> => {
   }
 };
 
-// export const deleteOne = async (ctx) => {
-
-// }
+export const deleteOne = async (ctx: Context): Promise<void> => {
+  const id = ctx.params.id;
+  const type = ctx.params.type || 'all';
+  try {
+    if (!(await Company.findByPk(id))) {
+      ctx.status = 404;
+      return;
+    }
+    if (type === 'all') {
+      Company.destroy({ where: { id } });
+      ctx.status = 204;
+      return;
+    } else {
+      for (const subTableName of subTableNames) {
+        if (type === subTableName) {
+          const currentTable = subTables[subTableName];
+          if (
+            !(await Model.findOne.call(currentTable, {
+              where: { CompanyId: id },
+            }))
+          ) {
+            ctx.status = 404;
+            return;
+          }
+          Model.destroy.call(currentTable, {
+            where: { CompanyId: id },
+          });
+          ctx.status = 204;
+          return;
+        }
+        ctx.status = 400;
+        ctx.body = `Type ${type} not recognized`;
+      }
+    }
+  } catch (err) {
+    ctx.status = 500;
+    ctx.send = `Error deleting from the db: ${err}`;
+  }
+};

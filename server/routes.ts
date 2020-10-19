@@ -57,4 +57,8 @@ router.put('/companies/:id', companyController.updateOne);
 
 router.put('/companies/:id/:type', companyController.updateOne);
 
+router.delete('/companies/:id', companyController.deleteOne);
+
+router.delete('/companies/:id/:type', companyController.deleteOne);
+
 export default router;
