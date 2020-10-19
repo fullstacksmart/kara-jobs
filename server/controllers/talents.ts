@@ -124,7 +124,6 @@ const addTalent = async (
 ): Promise<ReturnTalent | Error | null> => {
   let newTalent;
   try {
-    console.log('it reached this');
     newTalent = new Talent(talentCandidate);
     await newTalent.save();
     const include: string[] = [];
