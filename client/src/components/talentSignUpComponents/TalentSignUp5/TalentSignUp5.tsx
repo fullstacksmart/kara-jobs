@@ -48,7 +48,6 @@ const TalentSignUp5: React.FC = () => {
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     history.push('/talent-signup-6');
-    // post to DB
   };
 
   const redirect = () => {
