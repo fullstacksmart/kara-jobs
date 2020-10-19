@@ -30,6 +30,7 @@ const RadioInput: React.FC<RadioInputProps> = ({
         onChange={onChange}
         {...props}
       ></input>
+      <br />
       <label htmlFor={id}>{labelText}</label>
     </div>
   );
