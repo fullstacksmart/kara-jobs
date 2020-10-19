@@ -60,14 +60,16 @@ const EmployerSignUp0: React.FC = () => {
             labelText="Vorname (Ansprechpartner)*"
             onChange={handleChange}
             onBlur={updateSession}
+            required={true}
           ></TextInput>
           <TextInput
             id="lastName"
             labelText="Nachname (Ansprechpartner)*"
             onChange={handleChange}
             onBlur={updateSession}
+            required={true}
           ></TextInput>
-          <Button>Weiter</Button>
+          <Button type="submit">Weiter</Button>
         </form>
       </div>
     </BlueWrapper>
