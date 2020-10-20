@@ -1,3 +1,115 @@
+@import '../../../sass/globals';
+
 .TalentSignUp3 {
-  // TODO: style me!
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+
+  .FormHeader {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    position: relative;
+    top: 2rem;
+  }
+
+  .FormWrapper {
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    min-height: 24rem;
+    min-width: 20rem;
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+  }
+
+  .InputWrapper {
+    display: flex;
+    width: 15rem;
+  }
+
+  .Logo {
+    height: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    max-width: 100%;
+  }
+
+  .Text {
+    font-size: 1.1rem;
+    font-weight: lighter;
+    margin-bottom: 2rem;
+    margin-top: 1.1rem;
+    text-align: center;
+  }
+
+  .DropDownWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+  }
+
+  .InputContainer {
+    padding-bottom: 0.3rem;
+    padding-top: 0.3rem;
+  }
+
+  Label {
+    font-size: 0.9rem;
+    padding-top: 0.3rem;
+  }
+
+  Select {
+    border-radius: 7px;
+    box-shadow: none;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.2rem;
+    width: 14rem;
+  }
+
+  .Form {
+    display: flex;
+    flex-direction: column;
+    min-width: 12rem;
+  }
+
+  .TextLink {
+    color: $kara-dark-blue;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    text-decoration: underline;
+  }
+
+  Button {
+    background-color: $kara-light-blue;
+    color: rgb(255, 255, 255);
+    margin-top: 1rem;
+  }
+
+  Button:hover {
+    background-color: $kara-dark-blue;
+  }
+
+  .ButtonWrapper {
+    display: flex;
+    justify-content: space-between;
+    min-width: 12rem;
+  }
 }
