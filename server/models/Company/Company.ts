@@ -42,7 +42,6 @@ export class Company extends Model<Company> {
   @Column
   streetNo!: string;
 
-  @AllowNull(false)
   @Column
   addressAdditional!: string;
 
