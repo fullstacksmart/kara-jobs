@@ -19,4 +19,6 @@ export interface Talent {
   approbationFederalState: string;
   approbationFeedbackFlag: boolean;
   approbationStatus: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

@@ -8,6 +8,7 @@ import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import { redirect } from '../../../services/redirect';
+import { useLocation } from 'react-router-dom';
 
 interface RegistrationProps {
   kind: 'talent' | 'employer' | 'login';
@@ -86,6 +87,7 @@ const Registration: React.FC<RegistrationProps> = ({
   //   const passwordRegex = new RegExp(/^\w{8,}$/);
   //   setPasswordOK(passwordRegex.test(password));
   // };
+  const location = useLocation();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -112,12 +114,17 @@ const Registration: React.FC<RegistrationProps> = ({
   firebase.auth().onAuthStateChanged(async function (user) {
     if (user) {
       const uid = user.uid;
-      redirect();
-      //const { page, complete } = await redirect(uid, kind);
-      //complete ? history.push()
-      //history.push(`${kind}-signup-${onboardingPage}`);
-    } else {
-      // User is signed out.
+      const { page, complete, type, wrongLogin } = await redirect(uid, kind);
+      if (wrongLogin) {
+        history.push('/talent-signup-0');
+        return;
+      }
+      if (complete) {
+        //TO DO: Redirect to Talent / Employer Profile page (depending on kind)
+        history.push('/');
+      } else {
+        history.push(`/${type}-signup-${page}`);
+      }
     }
   });
 
