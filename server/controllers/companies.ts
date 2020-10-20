@@ -106,6 +106,11 @@ export const getOneFromEmployee = async (
   const employeeId = ctx.params.employeeId;
   try {
     const employee = await CompanyEmployee.findByPk(employeeId);
+    if (!employee) {
+      ctx.status = 400;
+      ctx.body = `No employee with id ${employeeId} in db`;
+      return;
+    }
     const companyId = employee?.CompanyId;
     if (companyId) {
       getOne(ctx, companyId);

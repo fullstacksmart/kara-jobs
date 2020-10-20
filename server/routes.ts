@@ -39,7 +39,7 @@ router.get('/companies/:id/:type', (ctx) =>
 );
 
 router.get(
-  '/companies/employee/:employeeId/:type',
+  '/employees/:employeeId/:type',
   companyController.getOneFromEmployee,
 );
 
@@ -51,7 +51,7 @@ router.post('/companies/:id/:type', (ctx) =>
   companyController.addOne(ctx),
 );
 
-router.post('/companies/empoyee/:employeeId/:type', (ctx) =>
+router.post('/empoyees/:employeeId/:type', (ctx) =>
   companyController.addOneFromEmployee(ctx),
 );
 
