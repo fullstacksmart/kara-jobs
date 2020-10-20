@@ -7,6 +7,7 @@ import { CompanyRecruitmentPreferences } from '../models/Company/CompanyRecruitm
 import { CompanyProfile } from '../models/Company/CompanyProfile';
 import { Model } from 'sequelize-typescript';
 import { ModelStatic } from 'sequelize/types';
+import { handleError } from './helpers';
 
 const subTables = {
   employees: CompanyEmployee,
@@ -59,10 +60,12 @@ export const getOne = async (
         ctx.body = currentCompany;
       } else if (type === 'signup') {
         const signupPage = currentCompany?.onboardingPage;
+        console.log(signupPage);
         const stages = [1, 4, 5, 6];
         const include = [];
         for (let i = 0; i <= stages.length; i++) {
-          if (signupPage && signupPage <= stages[i]) {
+          if (signupPage && stages[i] <= signupPage) {
+            console.log('include', i, stages[i], subTableNames[i]);
             include.push(subTableNames[i]);
           }
         }
@@ -93,8 +96,7 @@ export const getOne = async (
       }
     }
   } catch (err) {
-    console.error(err);
-    ctx.status = 500;
+    handleError(err, ctx);
   }
 };
 
@@ -111,7 +113,7 @@ export const getOneFromEmployee = async (
       ctx.status = 404;
     }
   } catch (err) {
-    ctx.status = 500;
+    handleError(err, ctx);
   }
 };
 
@@ -140,8 +142,9 @@ export const addOne = async (
 ): Promise<void> => {
   id = id || ctx.params.id;
   let fromDb;
-  let dbErr;
-  const type = ctx.params.type;
+  const type =
+    ctx.params.type ||
+    (ctx.params.id === undefined ? 'signup' : 'all');
   const companyCandidate = ctx.request.body;
   if (!companyCandidate) {
     ctx.status = 400;
@@ -151,25 +154,31 @@ export const addOne = async (
     try {
       fromDb = Company.create(companyCandidate);
     } catch (err) {
-      dbErr = err;
+      handleError(err, ctx);
+      return;
     }
   } else if (type === 'signup') {
     try {
-      const [
-        signingUpCompany,
-        created,
-      ] = await Model.findOrCreate.call(Company, {
-        where: {
-          id: id,
-        },
-        defaults: companyCandidate,
-      });
-      if (!created) {
-        signingUpCompany.update(companyCandidate);
+      if (id === undefined) {
+        fromDb = await Company.create(companyCandidate);
+      } else {
+        const [
+          signingUpCompany,
+          created,
+        ] = await Model.findOrCreate.call(Company, {
+          where: {
+            id: id,
+          },
+          defaults: companyCandidate,
+        });
+        if (!created) {
+          await signingUpCompany.update(companyCandidate);
+        }
+        fromDb = signingUpCompany;
       }
-      fromDb = signingUpCompany;
     } catch (err) {
-      dbErr = err;
+      handleError(err, ctx);
+      return;
     }
   } else {
     for (const subTableName of subTableNames) {
@@ -187,7 +196,8 @@ export const addOne = async (
               }),
             );
           } catch (err) {
-            dbErr = err;
+            handleError(err, ctx);
+            return;
           }
         } else {
           try {
@@ -197,22 +207,20 @@ export const addOne = async (
               id as string,
             );
           } catch (err) {
-            dbErr = err;
+            handleError(err, ctx);
+            return;
           }
         }
       }
     }
   }
-  if (dbErr !== undefined) {
-    ctx.status = 400;
-    ctx.body = dbErr;
-    return;
-  }
   ctx.status = 201;
   ctx.body = fromDb;
 };
 
-export const addOneFromEmployee = async (ctx: Context) => {
+export const addOneFromEmployee = async (
+  ctx: Context,
+): Promise<void> => {
   const employeeId = ctx.params.employeeId;
   try {
     const employee = await CompanyEmployee.findByPk(employeeId);
@@ -224,8 +232,8 @@ export const addOneFromEmployee = async (ctx: Context) => {
     const companyId = employee.CompanyId;
     addOne(ctx, companyId);
   } catch (err) {
-    ctx.status = 500;
-    ctx.body = `There was an error accessing the database: ${err}`;
+    handleError(err, ctx);
+    return;
   }
 };
 
@@ -241,12 +249,13 @@ export const updateOne = async (ctx: Context): Promise<void> => {
     }
     const companyCandidate = ctx.request.body;
     let updatedCompany;
-    let dbError;
     if (type === 'all') {
       try {
         updatedCompany = await existingEntry.update(companyCandidate);
+        console.log('after update', updatedCompany);
       } catch (err) {
-        dbError = `Error updating company: ${err}`;
+        handleError(err, ctx, 'while updating the db');
+        return;
       }
     } else {
       for (const subTableName of subTableNames) {
@@ -264,7 +273,8 @@ export const updateOne = async (ctx: Context): Promise<void> => {
                 }),
               );
             } catch (err) {
-              dbError = `Error updating ${type} array: ${err}`;
+              handleError(err, ctx, `while updating ${type} array`);
+              return;
             }
           } else {
             try {
@@ -274,21 +284,19 @@ export const updateOne = async (ctx: Context): Promise<void> => {
                 { where: { CompanyId: id } },
               );
             } catch (err) {
-              dbError = `Error updating ${type} item: ${err}`;
+              handleError(err, ctx, `while updating ${type} item`);
+              return;
             }
           }
         }
       }
     }
-    if (updatedCompany !== undefined) {
+    if (updatedCompany) {
       ctx.status = 200;
-      ctx.send(updatedCompany);
-      return;
+      ctx.body = updatedCompany;
     }
-    ctx.status = 400;
-    ctx.send(dbError);
   } catch (err) {
-    ctx.status = 500;
+    handleError(err, ctx);
   }
 };
 
@@ -327,7 +335,6 @@ export const deleteOne = async (ctx: Context): Promise<void> => {
       }
     }
   } catch (err) {
-    ctx.status = 500;
-    ctx.send = `Error deleting from the db: ${err}`;
+    handleError(err, ctx, `while deleting from db`);
   }
 };

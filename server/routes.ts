@@ -43,6 +43,8 @@ router.get(
   companyController.getOneFromEmployee,
 );
 
+router.post('/companies', (ctx) => companyController.addOne(ctx));
+
 router.post('/companies/:id', (ctx) => companyController.addOne(ctx));
 
 router.post('/companies/:id/:type', (ctx) =>
