@@ -47,7 +47,7 @@ const TalentSignUp0: React.FC = () => {
     const talentObj = {
       ...talent,
       ...info,
-      onboarding_page: 1,
+      onboardingPage: 1,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB: only post relevant data of this page

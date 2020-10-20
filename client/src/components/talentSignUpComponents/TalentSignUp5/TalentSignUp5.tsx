@@ -44,7 +44,7 @@ const TalentSignUp5: React.FC = () => {
     e.preventDefault();
     const talentObj = {
       ...talent,
-      onboarding_page: 6,
+      onboardingPage: 6,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     history.push('/talent-signup-6');

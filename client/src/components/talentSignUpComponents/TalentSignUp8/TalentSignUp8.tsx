@@ -90,8 +90,8 @@ const TalentSignUp8: React.FC = () => {
     e.preventDefault();
     const talentObj = {
       ...talent,
-      onboarding_page: 9,
-      onboarding_complete: true,
+      onboardingPage: 9,
+      onboardingComplete: true,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     //TO DO: enter path to profile

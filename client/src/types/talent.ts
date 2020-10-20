@@ -1,8 +1,7 @@
 export interface Talent {
-  uid: string;
-  email: string;
-  onbarding_page: number;
-  onboarding_complete: boolean;
+  id: string;
+  onboardingPage: number;
+  onboardingComplete: boolean;
   firstName: string;
   lastName: string;
   isoCode: string;
