@@ -37,7 +37,7 @@ export const getOne = async (
   id?: string,
 ): Promise<void> => {
   id = id || ctx.params.id;
-  const type = ctx.params.type || 'all';
+  const type = ctx.params.type || 'signup';
   try {
     if (type === 'all') {
       const currentCompany = await Company.findByPk(id, {
@@ -101,8 +101,9 @@ export const getOne = async (
 
 export const getOneFromEmployee = async (
   ctx: Context,
+  id?: string,
 ): Promise<void> => {
-  const employeeId = ctx.params.employeeId;
+  const employeeId = id || ctx.params.employeeId;
   try {
     const employee = await CompanyEmployee.findByPk(employeeId);
     if (!employee) {
