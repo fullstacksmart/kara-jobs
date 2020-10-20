@@ -51,8 +51,9 @@ router.post('/companies/:id/:type', (ctx) =>
   companyController.addOne(ctx),
 );
 
-router.post('/empoyees/:employeeId/:type', (ctx) =>
-  companyController.addOneFromEmployee(ctx),
+router.post(
+  '/employees/:employeeId/:type',
+  companyController.addOneFromEmployee,
 );
 
 router.put('/companies/:id', companyController.updateOne);

@@ -6,11 +6,16 @@ import {
   AllowNull,
   BelongsTo,
   DataType,
+  PrimaryKey,
 } from 'sequelize-typescript';
 import { Company } from './Company';
 
 @Table
 export class CompanyEmployee extends Model<CompanyEmployee> {
+  @PrimaryKey
+  @Column
+  id!: string;
+
   @AllowNull(false)
   @ForeignKey(() => Company as typeof Model)
   @Column(DataType.UUID)
