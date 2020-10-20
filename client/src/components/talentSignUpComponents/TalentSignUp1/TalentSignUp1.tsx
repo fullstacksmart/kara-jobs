@@ -7,6 +7,7 @@ import Label from '../../Label';
 import Option from '../../Option';
 import TextInput from '../../TextInput';
 import BlueWrapper from '../../../containers/BlueWrapper';
+import ProgressBar from '../../ProgressBar';
 import logo from '../../../assets/logos/kara_lightblue.png';
 import { useHistory } from 'react-router-dom';
 
@@ -116,26 +117,35 @@ const TalentSignUp1: React.FC = () => {
       <div className={styles.TalentSignUp1}>
         <div className={styles.FormHeader}>
           <img src={logo} className={styles.Logo} />
-          <h3>
-            Hallo Vorname Nachname, in ein paar Schritten kommst du zu deinem
-            Profil
-          </h3>
+          <ProgressBar profil={true} anerkennung={false} dokumente={false} />
+          <div className={styles.Text}>
+            Hallo {talent.firstName} {talent.lastName}, in ein paar Schritten
+            kommst du zu deinem Profil
+          </div>
         </div>
         <div className={styles.FormWrapper}>
-          <Form onSubmit={handleSubmit} id="residence-form">
-            <Label htmlFor="residence">Land*</Label>
-            <Select
-              id="residence"
-              value={`${info.isoCode},${info.residence}`}
-              onChange={handleChange}
-              onBlur={(e) => updateSession(e)}
-            >
-              {optArray.map((opt) => (
-                <Option key={opt.split(',')[0]} value={opt}>
-                  {opt.split(',')[1]}
-                </Option>
-              ))}
-            </Select>
+          <Form
+            onSubmit={handleSubmit}
+            id="residence-form"
+            className={styles.Form}
+          >
+            <div className={styles.DropDownWrapper}>
+              <Label htmlFor="residence" className={styles.DropDownLabel}>
+                Land*{' '}
+              </Label>
+              <Select
+                id="residence"
+                value={`${info.isoCode},${info.residence}`}
+                onChange={handleChange}
+                onBlur={(e) => updateSession(e)}
+              >
+                {optArray.map((opt) => (
+                  <Option key={opt.split(',')[0]} value={opt}>
+                    {opt.split(',')[1]}
+                  </Option>
+                ))}
+              </Select>
+            </div>
             <TextInput
               id="zipCode"
               labelText="Postleitzahl*"
@@ -151,12 +161,14 @@ const TalentSignUp1: React.FC = () => {
               required={true}
             ></TextInput>
           </Form>
-          <Button onClick={() => history.push('/talent-signup-0')}>
-            Zurück
-          </Button>
-          <Button type="submit" value="Submit" form="residence-form">
-            Submit
-          </Button>
+          <div className={styles.ButtonWrapper}>
+            <Button onClick={() => history.push('/talent-signup-0')}>
+              Zurück
+            </Button>
+            <Button type="submit" value="Submit" form="residence-form">
+              Submit
+            </Button>
+          </div>
         </div>
       </div>
     </BlueWrapper>

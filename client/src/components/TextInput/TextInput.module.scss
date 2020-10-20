@@ -1,5 +1,6 @@
 .TextInput {
   .Label {
+    min-width: 12rem;
     padding-bottom: 0.3rem;
     padding-top: 0.3rem;
   }
@@ -8,6 +9,8 @@
     border-radius: 7px;
     box-shadow: none;
     margin-bottom: 0.5rem;
+    min-width: 12rem;
     padding: 0.2rem;
   }
 }
+

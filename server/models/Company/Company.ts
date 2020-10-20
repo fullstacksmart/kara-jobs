@@ -5,6 +5,9 @@ import {
   AllowNull,
   HasMany,
   HasOne,
+  PrimaryKey,
+  Default,
+  DataType,
 } from 'sequelize-typescript';
 import { CompanyEmployee } from './CompanyEmployee';
 import { CompanyImage } from './CompanyImage';
@@ -14,6 +17,11 @@ import { CompanySearchPreferences } from './CompanySearchPreferences';
 
 @Table
 export class Company extends Model<Company> {
+  @PrimaryKey
+  @Default(DataType.UUIDV4)
+  @Column(DataType.UUID)
+  id!: string;
+
   @AllowNull(false)
   @Column
   name!: string;
@@ -34,7 +42,6 @@ export class Company extends Model<Company> {
   @Column
   streetNo!: string;
 
-  @AllowNull(false)
   @Column
   addressAdditional!: string;
 
@@ -48,6 +55,14 @@ export class Company extends Model<Company> {
 
   @Column
   webSite!: string;
+
+  @AllowNull(false)
+  @Column
+  onboardingComplete!: boolean;
+
+  @AllowNull(false)
+  @Column
+  onboardingPage!: number;
 
   @HasMany(() => CompanyEmployee as typeof Model)
   employees!: CompanyEmployee[];

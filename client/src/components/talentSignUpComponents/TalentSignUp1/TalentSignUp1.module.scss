@@ -6,13 +6,14 @@
   flex-direction: column;
   justify-content: center;
   margin-bottom: 2rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 
   .FormHeader {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 1rem;
   }
 
   .FormWrapper {
@@ -22,26 +23,48 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 4rem;
-    min-height: 18rem;
+    margin-bottom: 2rem;
+    min-height: 20rem;
     min-width: 18rem;
   }
 
   .Logo {
     height: 3rem;
     margin-bottom: 1rem;
+    margin-top: 2rem;
     max-width: 100%;
   }
 
-  h3 {
+  .Text {
     font-size: 1.1rem;
     font-weight: lighter;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    margin-top: 1.1rem;
+    text-align: center;
+  }
+
+  .DropDownWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .DropDownLabel {
+    padding-bottom: 0.3rem;
+    padding-top: 0.3rem;
+  }
+
+  Select {
+    border-radius: 7px;
+    box-shadow: none;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.3rem;
   }
 
   .Form {
     display: flex;
     flex-direction: column;
+    min-width: 12rem;
   }
 
   Button {
@@ -52,5 +75,19 @@
 
   Button:hover {
     background-color: $kara-dark-blue;
+  }
+
+  .ButtonWrapper {
+    display: flex;
+    justify-content: space-between;
+    min-width: 12rem;
+  }
+}
+
+@media only screen and (max-width: 864px) {      
+  .TalentSignUp1 {
+    .Text {
+      max-width: 20rem;
+    }
   }
 }
