@@ -70,21 +70,7 @@ const Registration: React.FC<RegistrationProps> = ({
 }: RegistrationProps) => {
   const variant = variants[kind];
   const history = useHistory();
-  // const [emailOK, setEmailOK] = useState(false);
-  // const [passwordOK, setPasswordOK] = useState(false);
   const firebase = useFirebase();
-  // TODO: implement real email check
-  // const checkEmail = (event: FormEvent<HTMLInputElement>) => {
-  //   const email = event.currentTarget.value;
-  //   const emailRegex = new RegExp(/^\w+@\w+\.\w+$/);
-  //   setEmailOK(emailRegex.test(email));
-  // };
-
-  // const checkPassword = (event: FormEvent<HTMLInputElement>) => {
-  //   const password = event.currentTarget.value;
-  //   const passwordRegex = new RegExp(/^\w{8,}$/);
-  //   setPasswordOK(passwordRegex.test(password));
-  // };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -114,23 +100,16 @@ const Registration: React.FC<RegistrationProps> = ({
       <h1>{variant.heading}</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.CheckBlock}>
-          <TextInput
-            id="email"
-            labelText="Email"
-            type={'email'}
-            required={true}
-          />
-          {/* <div className={styles.Check}>{emailOK ? '✅' : '❌'}</div> */}
+          <TextInput id="email" labelText="Email" type={'email'} required />
         </div>
         <div className={styles.CheckBlock}>
           <TextInput
             id="password"
             labelText="Passwort"
-            // onChange={checkPassword}
+            type={'password'}
             minlength={8}
-            required={true}
+            required
           />
-          {/* <div className={styles.Check}>{passwordOK ? '✅' : '❌'}</div> */}
         </div>
         <Button>{variant.submitButton}</Button>
         <div className={styles.alternativeRegistration}>

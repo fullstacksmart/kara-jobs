@@ -25,7 +25,6 @@ import TalentSignUp8 from '../../components/talentSignUpComponents/TalentSignUp8
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
 import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
 import EmployerSignUp2 from '../../components/EmployerSignUpComponents/EmployerSignUp2';
-import LoginContainer from '../../containers/LoginContainer';
 import Login from '../../components/Registration/Login';
 
 const Router: React.FC<unknown> = () => {
