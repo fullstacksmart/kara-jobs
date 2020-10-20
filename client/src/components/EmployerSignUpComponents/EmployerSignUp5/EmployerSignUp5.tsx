@@ -9,8 +9,8 @@ import Label from '../../Label';
 const EmployerSignUp5: React.FC = () => {
   const history = useHistory();
   const [info, setInfo] = useState({
-    agencyApplications: false,
-    internationalApplications: false,
+    agencyApplications: true,
+    internationalApplications: true,
   });
 
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
@@ -28,14 +28,17 @@ const EmployerSignUp5: React.FC = () => {
   };
 
   useEffect(() => {
+    updateSession();
+  }, [info]);
+  useEffect(() => {
     if (employer) {
       if (
         employer.agencyApplications !== undefined &&
         employer.internationalApplications !== undefined
       ) {
         setInfo({
-          agencyApplications: employer.agencyApplications,
-          internationalApplications: employer.internationalApplications,
+          agencyApplications: info.agencyApplications,
+          internationalApplications: info.internationalApplications,
         });
       }
     }
@@ -47,37 +50,22 @@ const EmployerSignUp5: React.FC = () => {
     identifier: string | React.FormEvent<HTMLSelectElement>,
   ): void => {
     if (typeof identifier === 'string') {
-      if (identifier === 'agencyTrue') {
-        setInfo((info) => {
+      if (identifier === 'agency') {
+        setInfo((prevState) => {
           return {
-            ...info,
-            agencyApplications: !employer.agencyApplications,
+            ...prevState,
+            agencyApplications: !prevState.agencyApplications,
           };
         });
-      } else if (identifier === 'agencyFalse') {
-        setInfo((info) => {
+      } else if (identifier === 'international') {
+        setInfo((prevState) => {
           return {
-            ...info,
-            agencyApplications: employer.agencyApplications,
-          };
-        });
-      } else if (identifier === 'internationalTrue') {
-        setInfo((info) => {
-          return {
-            ...info,
-            agencyApplications: !employer.internationalApplications,
-          };
-        });
-      } else if (identifier === 'internationalFalse') {
-        setInfo((info) => {
-          return {
-            ...info,
-            agencyApplications: employer.internationalApplications,
+            ...prevState,
+            internationalApplications: !prevState.internationalApplications,
           };
         });
       }
     }
-    updateSession();
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -102,43 +90,41 @@ const EmployerSignUp5: React.FC = () => {
         </Label>
         <RadioInput
           labelText="Ja"
-          id="true"
-          name="true"
-          value="true"
+          id="agencyTrue"
+          name="agencyTrue"
+          value="agencyTrue"
           checked={info.agencyApplications}
-          onChange={() => handleOptionChange('agencyTrue')}
+          onChange={() => handleOptionChange('agency')}
         ></RadioInput>
         <RadioInput
           labelText="Nein"
-          id="false"
-          name="false"
-          value="false"
-          checked={info.agencyApplications}
-          onChange={() => handleOptionChange('agencyFalse')}
+          id="agencyFalse"
+          name="agencyFalse"
+          value="agencyFalse"
+          checked={!info.agencyApplications}
+          onChange={() => handleOptionChange('agency')}
         ></RadioInput>
-      </Form>
-      <Form onSubmit={handleSubmit} id="intApplications-form">
         <Label>
           Ich möchte Bewerbungen von internationalen Talenten erhalten können
         </Label>
         <RadioInput
           labelText="Ja"
-          id="true"
-          name="true"
-          value="true"
+          id="internationalTrue"
+          name="internationalTrue"
+          value="internationalTrue"
           checked={info.internationalApplications}
-          onChange={() => handleOptionChange('internationalTrue')}
+          onChange={() => handleOptionChange('international')}
         ></RadioInput>
         <RadioInput
           labelText="Nein"
-          id="false"
-          name="false"
-          value="false"
-          checked={info.internationalApplications}
-          onChange={() => handleOptionChange('internationalFalse')}
+          id="internationalFalse"
+          name="internationalFalse"
+          value="internationalFalse"
+          checked={!info.internationalApplications}
+          onChange={() => handleOptionChange('international')}
         ></RadioInput>
       </Form>
-      <Button type="submit" value="Submit" form="intApplications-form">
+      <Button type="submit" value="Submit" form="applications-form">
         Weiter
       </Button>
     </div>
