@@ -8,6 +8,7 @@ import { CompanyProfile } from '../models/Company/CompanyProfile';
 import { Model } from 'sequelize-typescript';
 import { ModelStatic } from 'sequelize/types';
 import { handleError } from './helpers';
+import { CompanyArray } from '../types/company';
 
 const subTables = {
   employees: CompanyEmployee,
@@ -60,12 +61,10 @@ export const getOne = async (
         ctx.body = currentCompany;
       } else if (type === 'signup') {
         const signupPage = currentCompany?.onboardingPage;
-        console.log(signupPage);
         const stages = [1, 4, 5, 6];
         const include = [];
         for (let i = 0; i <= stages.length; i++) {
           if (signupPage && stages[i] <= signupPage) {
-            console.log('include', i, stages[i], subTableNames[i]);
             include.push(subTableNames[i]);
           }
         }
@@ -110,12 +109,13 @@ export const getOneFromEmployee = async (
       ctx.status = 400;
       ctx.body = `No employee with id ${employeeId} in db`;
       return;
-    }
-    const companyId = employee?.CompanyId;
-    if (companyId) {
-      getOne(ctx, companyId);
     } else {
-      ctx.status = 404;
+      const companyId = employee.CompanyId;
+      if (companyId) {
+        await getOne(ctx, companyId);
+      } else {
+        ctx.status = 404;
+      }
     }
   } catch (err) {
     handleError(err, ctx);
@@ -138,6 +138,38 @@ const addOrUpdateSubtable = async (
   );
   if (!created) {
     signingUpCompany.update(value);
+  }
+};
+
+const addAll = async (candidate: Company) => {
+  const createdCompany = await Company.create(candidate);
+  const CompanyId = createdCompany.id;
+  const include = [];
+  for (const subTableName of subTableNames) {
+    if (
+      Object.prototype.hasOwnProperty.call(candidate, subTableName)
+    ) {
+      const currentTable = subTables[subTableName];
+      if (Array.isArray(candidate[subTableName])) {
+        const enrichedEntries = (candidate[
+          subTableName
+        ] as CompanyArray).map((item) => ({ ...item, CompanyId }));
+        await Model.bulkCreate.call(currentTable, enrichedEntries);
+      } else {
+        // candidate is single item
+        const enrichedEntry = { ...candidate, CompanyId };
+        await new currentTable(enrichedEntry).save();
+      }
+      include.push(subTableName);
+    }
+  }
+  if (include.length === 0) {
+    return createdCompany;
+  } else {
+    const returnValue = await Company.findByPk(CompanyId, {
+      include,
+    });
+    return returnValue;
   }
 };
 
@@ -165,7 +197,7 @@ export const addOne = async (
   } else if (type === 'signup') {
     try {
       if (id === undefined) {
-        fromDb = await Company.create(companyCandidate);
+        fromDb = await addAll(companyCandidate);
       } else {
         const [
           signingUpCompany,
@@ -235,7 +267,7 @@ export const addOneFromEmployee = async (
       return;
     }
     const companyId = employee.CompanyId;
-    addOne(ctx, companyId);
+    await addOne(ctx, companyId);
   } catch (err) {
     handleError(err, ctx);
     return;
@@ -257,7 +289,6 @@ export const updateOne = async (ctx: Context): Promise<void> => {
     if (type === 'all') {
       try {
         updatedCompany = await existingEntry.update(companyCandidate);
-        console.log('after update', updatedCompany);
       } catch (err) {
         handleError(err, ctx, 'while updating the db');
         return;
