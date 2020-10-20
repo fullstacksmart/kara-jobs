@@ -28,7 +28,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-bottom: 2rem;
-    min-height: 22rem;
+    min-height: 20rem;
   }
 
   .Logo {
@@ -42,7 +42,7 @@
     font-size: 1.1rem;
     font-weight: lighter;
     margin-bottom: 2rem;
-    margin-top: 1.1rem;
+    padding-top: 2rem;
     text-align: center;
   }
 
@@ -94,20 +94,16 @@
     justify-content: space-between;
     min-width: 12rem;
   }
-
-  .HoverChild {
-    display: none;
-  }
 }
 
 @media only screen and (max-width: 864px) {      
   .TalentSignUp2 {
-    // .RadioContainer {
-    //   flex-direction: column;
-    // }
+    .Text {
+      font-size: 1rem;
+    }
 
-    // .IconContainer {
-    //   width: 6rem;
-    // }
+    .IconContainer {
+      width: 7rem;
+    }
   }
 }

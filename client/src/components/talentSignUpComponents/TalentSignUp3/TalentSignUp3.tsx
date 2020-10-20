@@ -6,6 +6,9 @@ import Label from '../../Label';
 import Option from '../../Option';
 import Select from '../../Select';
 import Button from '../../Button';
+import BlueWrapper from '../../../containers/BlueWrapper';
+import ProgressBar from '../../ProgressBar';
+import logo from '../../../assets/logos/kara_lightblue.png';
 import { useHistory } from 'react-router-dom';
 
 const optArray = ['Arbeitssuchend', 'Teilzeit', 'Vollzeit'];
@@ -99,45 +102,74 @@ const TalentSignUp3: React.FC = () => {
   };
 
   return (
-    <div className={styles.TalentSignUp3}>
-      <Form onSubmit={handleSubmit} id="position-form">
-        <TextInput
-          id="positionName"
-          labelText="Position*"
-          onChange={(e) => handleChange(e)}
-          onBlur={(e) => updateSession(e)}
-          required={true}
-        ></TextInput>
-        <Label htmlFor="occupationStatusId">
-          Derzeitiges Beschäftigungsverhältnis*
-        </Label>
-        <Select
-          id="occupationStatusId"
-          value={info.occupationStatusId}
-          onChange={handleChange}
-          onBlur={(e) => updateSession(e)}
-          required
-        >
-          {optArray.map((opt) => (
-            <Option key={opt} value={opt}>
-              {opt}
-            </Option>
-          ))}
-        </Select>
-        <TextInput
-          id="employerName"
-          labelText="Letzter oder derzeitiger Arbeitgeber*"
-          onChange={(e) => handleChange(e)}
-          onBlur={(e) => updateSession(e)}
-          required={true}
-        ></TextInput>
-      </Form>
-      <p onClick={() => history.push('/talent-signup-4')}>Ich studiere noch</p>
-      <Button onClick={() => history.push('/talent-signup-2')}>Zurück</Button>
-      <Button type="submit" value="Submit" form="position-form">
-        Submit
-      </Button>
-    </div>
+    <BlueWrapper>
+      <div className={styles.TalentSignUp3}>
+        <div className={styles.FormHeader}>
+          <img src={logo} className={styles.Logo} />
+          <ProgressBar profil={true} anerkennung={false} dokumente={false} />
+        </div>
+        <div className={styles.FormWrapper}>
+          <div className={styles.InputWrapper}>
+            <Form
+              onSubmit={handleSubmit}
+              id="position-form"
+              className={styles.Form}
+            >
+              <div className={styles.InputContainer}>
+                <TextInput
+                  id="positionName"
+                  labelText="Position*"
+                  onChange={(e) => handleChange(e)}
+                  onBlur={(e) => updateSession(e)}
+                  required={true}
+                ></TextInput>
+              </div>
+              <div className={styles.InputContainer}>
+                <Label htmlFor="occupationStatusId">
+                  Derzeitiges Beschäftigungsverhältnis*
+                </Label>
+                <Select
+                  id="occupationStatusId"
+                  value={info.occupationStatusId}
+                  onChange={handleChange}
+                  onBlur={(e) => updateSession(e)}
+                  required
+                >
+                  {optArray.map((opt) => (
+                    <Option key={opt} value={opt}>
+                      {opt}
+                    </Option>
+                  ))}
+                </Select>
+              </div>
+              <div className={styles.InputContainer}>
+                <TextInput
+                  id="employerName"
+                  labelText="Letzter oder derzeitiger Arbeitgeber*"
+                  onChange={(e) => handleChange(e)}
+                  onBlur={(e) => updateSession(e)}
+                  required={true}
+                ></TextInput>
+              </div>
+            </Form>
+          </div>
+          <div
+            onClick={() => history.push('/talent-signup-4')}
+            className={styles.TextLink}
+          >
+            Ich studiere noch
+          </div>
+          <div className={styles.ButtonWrapper}>
+            <Button onClick={() => history.push('/talent-signup-2')}>
+              Zurück
+            </Button>
+            <Button type="submit" value="Submit" form="position-form">
+              Submit
+            </Button>
+          </div>
+        </div>
+      </div>
+    </BlueWrapper>
   );
 };
 

@@ -10,7 +10,9 @@ interface RadioInputProps {
   onChange: () => void;
 }
 
-const RadioInput: React.FC<RadioInputProps> = ({
+const RadioInput: React.FC<
+  RadioInputProps & React.HTMLAttributes<HTMLDivElement>
+> = ({
   labelText,
   id,
   name,
