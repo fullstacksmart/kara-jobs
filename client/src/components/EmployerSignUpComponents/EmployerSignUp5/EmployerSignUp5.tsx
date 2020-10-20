@@ -4,47 +4,88 @@ import Form from '../../Form';
 import Button from '../../Button';
 import RadioInput from '../../RadioInput';
 import { useHistory } from 'react-router-dom';
+import Label from '../../Label';
 
 const EmployerSignUp5: React.FC = () => {
   const history = useHistory();
-  const [info, setInfo] = useState({ agencyApplications: 0 });
+  const [info, setInfo] = useState({
+    agencyApplications: false,
+    internationalApplications: false,
+  });
 
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
 
-  useEffect(() => {
-    if (employer && employer.agencyApplications !== undefined) {
-      setInfo({
-        agencyApplications: employer.agencyApplications,
-      });
-    }
-  }, []);
-
-  const updateSession = (identifier: number): void => {
+  const updateSession = (): void => {
     sessionStorage.setItem(
       'employer',
       JSON.stringify(
-        Object.assign(employer, { agencyApplications: identifier }),
+        Object.assign(employer, {
+          agencyApplications: info.agencyApplications,
+          internationalApplications: info.internationalApplications,
+        }),
       ),
     );
   };
 
-  const handleOptionChange = (identifier: number): void => {
-    setInfo({ agencyApplications: identifier });
-    updateSession(identifier);
+  useEffect(() => {
+    if (employer) {
+      if (
+        employer.agencyApplications !== undefined &&
+        employer.internationalApplications !== undefined
+      ) {
+        setInfo({
+          agencyApplications: employer.agencyApplications,
+          internationalApplications: employer.internationalApplications,
+        });
+      }
+    }
+  }, []);
+
+  //good until here
+
+  const handleOptionChange = (
+    identifier: string | React.FormEvent<HTMLSelectElement>,
+  ): void => {
+    if (typeof identifier === 'string') {
+      if (identifier === 'agencyTrue') {
+        setInfo((info) => {
+          return {
+            ...info,
+            agencyApplications: !employer.agencyApplications,
+          };
+        });
+      } else if (identifier === 'agencyFalse') {
+        setInfo((info) => {
+          return {
+            ...info,
+            agencyApplications: employer.agencyApplications,
+          };
+        });
+      } else if (identifier === 'internationalTrue') {
+        setInfo((info) => {
+          return {
+            ...info,
+            agencyApplications: !employer.internationalApplications,
+          };
+        });
+      } else if (identifier === 'internationalFalse') {
+        setInfo((info) => {
+          return {
+            ...info,
+            agencyApplications: employer.internationalApplications,
+          };
+        });
+      }
+    }
+    updateSession();
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const employerObj = {
-      ...employer,
-      ...info,
-      onboarding_page: 6,
-    };
-    sessionStorage.setItem('talent', JSON.stringify(employerObj));
-    // post to DB
     history.push('/employer-profile');
   };
+
+  console.log(employer);
 
   return (
     <div>
@@ -54,29 +95,50 @@ const EmployerSignUp5: React.FC = () => {
         können
       </p>
       <p>Sie können die Auswahl in Ihrem Profil jederzeit ändern.</p>
-      <p>
-        Ich möchte auch von Personalvermittlungsagenturen kontaktiert werden
-        können, sofern diese interessante Talente betreuen
-      </p>
-      <Form onSubmit={handleSubmit} id="agencyApplications-form">
+      <Form onSubmit={handleSubmit} id="applications-form">
+        <Label>
+          Ich möchte auch von Personalvermittlungsagenturen kontaktiert werden
+          können, sofern diese interessante Talente betreuen
+        </Label>
         <RadioInput
           labelText="Ja"
-          id="Ja"
-          name="Ja"
-          value="Ja"
-          checked={info.agencyApplications === 1}
-          onChange={() => handleOptionChange(1)}
+          id="true"
+          name="true"
+          value="true"
+          checked={info.agencyApplications}
+          onChange={() => handleOptionChange('agencyTrue')}
         ></RadioInput>
         <RadioInput
           labelText="Nein"
-          id="Nein"
-          name="Nein"
-          value="Nein"
-          checked={info.agencyApplications === 2}
-          onChange={() => handleOptionChange(2)}
+          id="false"
+          name="false"
+          value="false"
+          checked={info.agencyApplications}
+          onChange={() => handleOptionChange('agencyFalse')}
         ></RadioInput>
       </Form>
-      <Button type="submit" value="Submit" form="agencyApplications-form">
+      <Form onSubmit={handleSubmit} id="intApplications-form">
+        <Label>
+          Ich möchte Bewerbungen von internationalen Talenten erhalten können
+        </Label>
+        <RadioInput
+          labelText="Ja"
+          id="true"
+          name="true"
+          value="true"
+          checked={info.internationalApplications}
+          onChange={() => handleOptionChange('internationalTrue')}
+        ></RadioInput>
+        <RadioInput
+          labelText="Nein"
+          id="false"
+          name="false"
+          value="false"
+          checked={info.internationalApplications}
+          onChange={() => handleOptionChange('internationalFalse')}
+        ></RadioInput>
+      </Form>
+      <Button type="submit" value="Submit" form="intApplications-form">
         Weiter
       </Button>
     </div>
