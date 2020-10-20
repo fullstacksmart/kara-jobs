@@ -33,11 +33,11 @@ export class CompanySearchPreferences extends Model<
 
   @AllowNull(false)
   @Column
-  requireDregree!: boolean;
+  requireDregree!: number;
 
   @AllowNull(false)
   @Column
-  requireApprobation!: boolean;
+  requireApprobation!: number;
 
   @Column
   requiredGermanSkills!: string;

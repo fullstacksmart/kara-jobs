@@ -4,6 +4,7 @@ import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
 import Button from '../../Button';
 import Form from '../../Form';
+import logo from '../../../assets/logos/kara_lightblue.png';
 import { useHistory } from 'react-router-dom';
 
 const TalentSignUp0: React.FC = () => {
@@ -30,6 +31,7 @@ const TalentSignUp0: React.FC = () => {
   };
 
   const updateSession = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     sessionStorage.setItem(
       'talent',
       JSON.stringify(Object.assign(talent, { [e.target.id]: e.target.value })),
@@ -42,7 +44,11 @@ const TalentSignUp0: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const talentObj = Object.assign(talent, { onboarding_page: 1 });
+    const talentObj = {
+      ...talent,
+      ...info,
+      onboarding_page: 1,
+    };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB: only post relevant data of this page
     //postToDB(talentObj);
@@ -52,23 +58,35 @@ const TalentSignUp0: React.FC = () => {
   return (
     <BlueWrapper>
       <div className={styles.TalentSignUp0}>
-        <Form onSubmit={handleSubmit}>
-          <TextInput
-            id="firstName"
-            labelText="Vorname*"
-            onChange={handleChange}
-            onBlur={updateSession}
-            data-testid="firstName"
-          ></TextInput>
-          <TextInput
-            id="lastName"
-            labelText="Nachname*"
-            onChange={handleChange}
-            onBlur={updateSession}
-            data-testid="lastName"
-          ></TextInput>
-          <Button type="submit">Weiter</Button>
-        </Form>
+        <div className={styles.FormHeader}>
+          <img src={logo} className={styles.Logo} />
+          <div className={styles.Text}>
+            In wenigen Schritten zu deinem Profil
+          </div>
+        </div>
+        <div className={styles.FormWrapper}>
+          <Form onSubmit={handleSubmit} className={styles.Form}>
+            <TextInput
+              className={styles.TextInput}
+              id="firstName"
+              labelText="Vorname* "
+              onChange={handleChange}
+              onBlur={updateSession}
+              data-testid="firstName"
+              required={true}
+            ></TextInput>
+            <TextInput
+              className={styles.TextInput}
+              id="lastName"
+              labelText="Nachname* "
+              onChange={handleChange}
+              onBlur={updateSession}
+              data-testid="lastName"
+              required={true}
+            ></TextInput>
+            <Button type="submit">Weiter</Button>
+          </Form>
+        </div>
       </div>
     </BlueWrapper>
   );

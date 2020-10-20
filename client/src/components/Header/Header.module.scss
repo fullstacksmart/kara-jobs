@@ -2,8 +2,7 @@
 
 .Header {
   align-items: center;
-  background-color: $kara-dark-blue;
-  color: $kara-cream-white;
+  color: $kara-dark-blue;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,11 +11,12 @@
 
 .Logo {
   height: 3rem;
+  margin-top: 0.75rem;
   max-width: 100%;
 }
 
-.BurgerMenu {
-  display: none;
+.BurgerWrapper {
+  display: none !important;
 }
 
 .Menu {
@@ -30,46 +30,48 @@
 .CenteredMenu {
   align-items: center;
   display: flex;
+  justify-content: center;
   list-style: none;
-  padding-top: 0.5rem;
+  position: absolute;
+  top: 6rem;
 }
 
 .RightMenu {
   align-items: center;
   display: flex;
   list-style: none;
-  padding-top: 0.5rem;
   position: absolute;
   right: 3rem;
+  top: 6rem;
 }
 
-a {
-  color: $kara-cream-white;
-  text-decoration: none;
-}
+.Header {
+  a {
+    color: $kara-dark-blue;
+    text-decoration: none;
+  }
 
-a:hover {
-  background-color: $kara-light-blue;
-  color: $kara-dark-blue;
-  font-weight: bold;
-  transition-duration: 0.4s;
+  a:hover {
+    background-color: $kara-light-blue;
+    border-radius: 7px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    transition-duration: 0.4s;
+  }
 }
-
+  
 .Item {
   margin-right: 0.75rem;
   padding: 0.75rem;
 }
 
-.ButtonWrapper > Button {
-  background-color: $kara-light-blue;
-  padding-bottom: 0.25rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.25rem;
+.ButtonWrapper {
+  overflow: hidden;
 }
 
 .ButtonWrapper > Button:hover {
-  color: $kara-dark-blue;
+  background-color: $kara-light-blue;
+  color: rgb(255, 255, 255);
   transition-duration: 0.4s;
 }
 
@@ -89,9 +91,17 @@ a:hover {
     display: none;
   }
 
-  .BurgerMenu {
-    left: 0.5rem;
-    position: absolute;
+  .Header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .Logo {
+    padding-left: 1rem;
+  }
+
+  .BurgerWrapper {
+    display: unset !important;
   }
   
   .Item {

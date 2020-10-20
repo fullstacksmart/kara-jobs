@@ -4,15 +4,25 @@ import styles from './TextInput.module.scss';
 interface TextInputProps {
   labelText: string;
   id: string;
+  required?: boolean;
 }
 
 const TextInput: React.FC<
   TextInputProps & React.HTMLAttributes<HTMLInputElement>
-> = ({ labelText, id, ...props }: TextInputProps) => {
+> = ({ labelText, id, required, ...props }: TextInputProps) => {
   return (
     <div className={styles.TextInput}>
-      <label htmlFor={id}>{labelText}</label>
-      <input type="text" id={id} name={id} {...props}></input>
+      <div className={styles.Label}>
+        <label htmlFor={id}>{labelText}</label>
+      </div>
+      <input
+        className={styles.Input}
+        type="text"
+        id={id}
+        name={id}
+        required={required}
+        {...props}
+      ></input>
     </div>
   );
 };

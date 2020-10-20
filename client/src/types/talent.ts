@@ -14,5 +14,9 @@ export interface Talent {
   employerName: string;
   studyProgram: string;
   university: string;
-  expectedGraduationYear: string;
+  expectedGraduationYear: number;
+  approbationStartedFlag: boolean;
+  approbationFederalState: string;
+  approbationFeedbackFlag: boolean;
+  approbationStatus: string;
 }

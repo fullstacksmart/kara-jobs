@@ -18,6 +18,7 @@ $kara-light-grey: #ccc;
 *::after {
   box-sizing: inherit;
   font-family: $font-main;
+  font-weight: lighter;
   margin: 0;
   overflow-x: hidden;
   padding: 0;
@@ -25,4 +26,5 @@ $kara-light-grey: #ccc;
 
 body {
   box-sizing: border-box;
+  color: $kara-dark-blue;
 }

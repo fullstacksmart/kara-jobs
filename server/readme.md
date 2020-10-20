@@ -91,4 +91,81 @@ possible routes:
 - delete(/talents/:id/:type/:typeId)
   delete the piece of information of type :type with id :typeid on the talent with id :id
 
-- put(/talents)
+## companies
+
+the valid substitutions for "type" are:
+"all"|"employees"|"images"|"searchPreferences"|"recruitmentPreferences"|"profile"
+
+### get
+
+extra types: "basic"|"signup"
+
+possible routes:
+
+- get(/companies):
+  get all companies (to be removed for production)
+
+- get(/companies/:id):
+  get all info for company with id :id
+
+- get (/companies/:id/:type):
+  get info of type :type for company with id :id. During signup / at login, use type login to get all (and only) information available for company at current signup stage
+
+- get (/employees/:employeeId/:type):
+  get company info of type :type for company to which employee with id :employeeId belongs. For signup and/or login specify type "signup".
+
+### post
+
+extra types: "basic"|"signup"
+
+possible routes:
+
+- post(/companies):
+  post new company to db;
+  requires body of type CompleteCompany, i.e.
+  <code>
+  interface CompleteCompany {
+  name: string;
+  sector: string;
+  type: string;
+  street: string;
+  streetNo: string;
+  addressAdditional?: string;
+  zipCode: string;
+  city: string;
+  webSite?: string;
+  onboardingComplete: boolean;
+  onboardingPage: number;
+  employees?: CompanyEmployee[];
+  images?: CompanyImage[];
+  searchPreferences?: CompanySearchPreferences;
+  recruitmentPreferences?: CompanyRecruitmentPreferences;
+  profile?: CompanyProfile;
+  }
+  </code>
+  returns the new record
+
+- post(/companies/:id):
+  adds info for company with id :id to the db if it does not already exist
+
+- post(/companies/:id):
+  adds info of type :type for company with id :id to the database, if it does not already exist. Watch out: If type "signup" is specified, information may be updated. Old values will be lost. Use during signup when you're sure you are posting up to date information
+
+- post(/employees/:employeeId/:type):
+  adds info of type :type for the company to which employee with id :employeeId belongs
+
+### put
+
+- put(/companies/:id):
+  update information for the company with id :id
+
+- put(/companies/:id/:type):
+  update information of type :type for the company with id :id
+
+### delete
+
+- delete(/companies/:id):
+  delete company with id :id from the database
+
+- delete(/companies/:id/:type)
+  delete information of type :type about the company with id :id from the database

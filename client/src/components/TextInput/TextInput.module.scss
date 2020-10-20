@@ -1,3 +1,16 @@
 .TextInput {
-  // TODO: style me!
+  .Label {
+    min-width: 12rem;
+    padding-bottom: 0.3rem;
+    padding-top: 0.3rem;
+  }
+
+  input {
+    border-radius: 7px;
+    box-shadow: none;
+    margin-bottom: 0.5rem;
+    min-width: 12rem;
+    padding: 0.2rem;
+  }
 }
+
