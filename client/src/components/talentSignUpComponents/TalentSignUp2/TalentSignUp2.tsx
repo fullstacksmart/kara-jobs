@@ -83,13 +83,16 @@ const TalentSignUp2: React.FC = () => {
               <div className={styles.IconContainer}>
                 <img src={healthcareIcon} className={styles.Icon} />
                 <RadioInput
-                  labelText=" Sonstiges med Personal z.B. Laborassistent od. Physiotherapeut"
+                  labelText=" Sonstiges med Personal"
                   id="2"
                   name="2"
                   value="2"
                   checked={info.occupationId === '2'}
                   onChange={() => handleOptionChange('2')}
                 ></RadioInput>
+                <div className={styles.HoverChild}>
+                  z.B. Laborassistent od. Physiotherapeut
+                </div>
               </div>
             </div>
           </Form>
