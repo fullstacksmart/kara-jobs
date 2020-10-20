@@ -7,6 +7,7 @@ import Details from '../../Details';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
+import { redirect } from '../../../services/redirect';
 
 interface RegistrationProps {
   kind: string;
@@ -36,12 +37,11 @@ const Registration: React.FC<RegistrationProps> = ({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault;
-    console.log('submitted');
     const email = event.currentTarget.email.value;
     const password = event.currentTarget.password.value;
     try {
       firebase.createUser({ email, password });
-      history.push('/signedIn');
+      //history.push('/signedIn');
     } catch (error) {
       console.error(error);
     }
@@ -49,13 +49,21 @@ const Registration: React.FC<RegistrationProps> = ({
 
   const signInWithGoogle = () => {
     try {
-      firebase
-        .login({ provider: 'google', type: 'popup' })
-        .then(() => history.push('/signedIn'));
+      firebase.login({ provider: 'google', type: 'popup' });
+      //.then(() => history.push('/signedIn'));
     } catch (err) {
       console.error(err);
     }
   };
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      const uid = user.uid;
+      redirect(uid, kind);
+    } else {
+      // User is signed out.
+    }
+  });
 
   return (
     <div className={styles.Registration}>
