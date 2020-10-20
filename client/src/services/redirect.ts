@@ -3,6 +3,8 @@
 // if result !== null && onboarding_complete === false: do talent-signup container logic (set session storage and redirect to right page)
 // if result !== null && onboarding_complete: redirect to profile view (pass talent object?)
 
+import { resolve } from 'dns';
+
 //during onboarding:
 //post to DB: /talents/uid/signup
 
@@ -34,27 +36,87 @@ interface incompleteTalent {
 //TO DO: Add to .env file
 const server_address = 'http://localhost:3001';
 
-const goToSignup = (obj: incompleteTalent, type: string) => {
-  sessionStorage.setItem(type, JSON.stringify(obj));
-  //redirect to onboardingPage
+const setSessionStorage = (obj: incompleteTalent, kind: string) => {
+  //filter
+  sessionStorage.setItem(kind, JSON.stringify(obj));
 };
 
-const goToProfile = (obj, type) => {};
+//if login:
+//ask talent and then employee signup.
+//if onboarding complete, redirect to login page
+//else redirect to signup flow
 
-export const redirect = (uid: string, type: string) => {
-  //query DB
-  fetch(`${server_address}/${type}s/${uid}/signup`)
+('/users/uid');
+
+const handleLogin = async (uid: string) => {
+  const talent = await fetch(`${server_address}/talents/${uid}/signup`)
     .then((res) => res.json())
     .then((json) => {
-      if (json.message && json.message.includes('No info of type signup')) {
-        goToSignup(
-          { id: uid, onboardingPage: 0, onboardingComplete: false },
-          type,
-        );
+      if (json.message && json.message.includes('No info of kind signup')) {
+        return false;
       } else if (!json.onboardingComplete) {
-        goToSignup(json, type);
+        setSessionStorage(json, 'talent');
+        return { page: json.onboardingPage, complete: false, type: 'talent' };
       } else {
-        goToProfile(json, type);
+        setSessionStorage(json, 'talent');
+        return { page: json.onboardingPage, complete: true, type: 'talent' };
       }
     });
+  if (talent) {
+    return talent;
+  } else {
+    const employee = await fetch(`${server_address}/employees/${uid}/signup`)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.message && json.message.includes('No info of kind signup')) {
+          return false;
+        } else if (!json.onboardingComplete) {
+          setSessionStorage(json, 'employer');
+          return {
+            page: json.onboardingPage,
+            complete: false,
+            type: 'employer',
+          };
+        } else {
+          setSessionStorage(json, 'employer');
+          return {
+            page: json.onboardingPage,
+            complete: true,
+            type: 'employer',
+          };
+        }
+      });
+    return employee;
+  }
 };
+
+export const redirect = () => {
+  fetch(`${server_address}/users/veuEbK78pZULTEwjtpABtiXkk632`)
+    .then((res) => res.json())
+    .then((json) => console.log(json));
+};
+
+// export const redirect = async (uid: string, kind: string) => {
+//   if (kind === 'login') {
+//     const status = await handleLogin(uid);
+//   } else {
+//     const status = await fetch(`${server_address}/${kind}s/${uid}/signup`)
+//       .then((res) => res.json())
+//       .then((json) => {
+//         if (json.message && json.message.includes('No info of kind signup')) {
+//           setSessionStorage(
+//             { id: uid, onboardingPage: 0, onboardingComplete: false },
+//             kind,
+//           );
+//           return { page: 0, complete: false, type: kind };
+//         } else if (!json.onboardingComplete) {
+//           setSessionStorage(json, kind);
+//           return { page: json.onboardingPage, complete: false, type: kind };
+//         } else {
+//           setSessionStorage(json, kind);
+//           return { page: json.onboardingPage, complete: true, type: kind };
+//         }
+//       });
+//   }
+//   return status;
+// };

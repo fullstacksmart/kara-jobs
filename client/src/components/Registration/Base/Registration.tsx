@@ -109,10 +109,13 @@ const Registration: React.FC<RegistrationProps> = ({
     }
   };
 
-  firebase.auth().onAuthStateChanged(function (user) {
+  firebase.auth().onAuthStateChanged(async function (user) {
     if (user) {
       const uid = user.uid;
-      redirect(uid, kind);
+      redirect();
+      //const { page, complete } = await redirect(uid, kind);
+      //complete ? history.push()
+      //history.push(`${kind}-signup-${onboardingPage}`);
     } else {
       // User is signed out.
     }

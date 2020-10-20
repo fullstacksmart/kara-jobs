@@ -26,12 +26,7 @@ import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerS
 import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
 import EmployerSignUp2 from '../../components/EmployerSignUpComponents/EmployerSignUp2';
 import EmployerSignUp3 from '../../components/EmployerSignUpComponents/EmployerSignUp3';
-import LoginContainer from '../../containers/LoginContainer';
-<<<<<<< HEAD
-import EmployerSignUp4 from '../../components/EmployerSignUpComponents/EmployerSignUp4';
-=======
 import Login from '../../components/Registration/Login';
->>>>>>> acac238760594af0b6d737c51879c42ab5187e89
 
 const Router: React.FC<unknown> = () => {
   const auth = useSelector<RootState>((state) => state.firebase.auth);
@@ -123,12 +118,6 @@ const Router: React.FC<unknown> = () => {
           component={EmployerSignUp3}
         ></Route>,
         <Route
-          key="/employer-signup-4"
-          path="/employer-signup-4"
-          exact
-          component={EmployerSignUp4}
-        ></Route>,
-        <Route
           key="jobsearch"
           path="/jobsearch"
           exact
@@ -139,11 +128,7 @@ const Router: React.FC<unknown> = () => {
     <Loading />
   ) : (
     <>
-<<<<<<< HEAD
-      <Route path="/" exact component={Home}></Route>
-=======
-      <Route path="/" exact component={TalentRegistration}></Route>
->>>>>>> acac238760594af0b6d737c51879c42ab5187e89
+      <Route path="/" exact component={Login}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={Login}></Route>
       <Route
