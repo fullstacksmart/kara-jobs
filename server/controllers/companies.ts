@@ -7,7 +7,7 @@ import { CompanyRecruitmentPreferences } from '../models/Company/CompanyRecruitm
 import { CompanyProfile } from '../models/Company/CompanyProfile';
 import { Model } from 'sequelize-typescript';
 import { ModelStatic } from 'sequelize/types';
-import { handleError } from './helpers';
+import { handleError, textToJson } from './helpers';
 import { CompanyArray } from '../types/company';
 
 const subTables = {
@@ -106,8 +106,10 @@ export const getOneFromEmployee = async (
   try {
     const employee = await CompanyEmployee.findByPk(employeeId);
     if (!employee) {
-      ctx.status = 400;
-      ctx.body = `No employee with id ${employeeId} in db`;
+      ctx.status = 404;
+      ctx.body = textToJson(
+        `No employee with id ${employeeId} in db`,
+      );
       return;
     } else {
       const companyId = employee.CompanyId;
@@ -262,8 +264,10 @@ export const addOneFromEmployee = async (
   try {
     const employee = await CompanyEmployee.findByPk(employeeId);
     if (!employee) {
-      ctx.status = 400;
-      ctx.body = `there is no employee with id ${employeeId} in the db.`;
+      ctx.status = 404;
+      ctx.body = textToJson(
+        `there is no employee with id ${employeeId} in the db.`,
+      );
       return;
     }
     const companyId = employee.CompanyId;
@@ -280,8 +284,10 @@ export const updateOne = async (ctx: Context): Promise<void> => {
   try {
     const existingEntry = await Company.findByPk(id);
     if (!existingEntry) {
-      ctx.status = 400;
-      ctx.body = `There is no company with id ${id} in the database`;
+      ctx.status = 404;
+      ctx.body = textToJson(
+        `There is no company with id ${id} in the database`,
+      );
       return;
     }
     const companyCandidate = ctx.request.body;
