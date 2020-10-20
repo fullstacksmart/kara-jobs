@@ -6,6 +6,9 @@ import Label from '../../Label';
 import Option from '../../Option';
 import Select from '../../Select';
 import Button from '../../Button';
+import BlueWrapper from '../../../containers/BlueWrapper';
+import ProgressBar from '../../ProgressBar';
+import logo from '../../../assets/logos/kara_lightblue.png';
 import { useHistory } from 'react-router-dom';
 
 const current = new Date().getFullYear();
@@ -105,47 +108,64 @@ const TalentSignUp4: React.FC = () => {
   };
 
   return (
-    <div className={styles.TalentSignUp4}>
-      <Form onSubmit={handleSubmit} id="education-form">
-        <TextInput
-          id="studyProgram"
-          labelText="Studiengang*"
-          onChange={(e) => handleChange(e)}
-          onBlur={(e) => updateSession(e)}
-          required={true}
-        ></TextInput>
-        <TextInput
-          id="university"
-          labelText="Universität*"
-          onChange={(e) => handleChange(e)}
-          onBlur={(e) => updateSession(e)}
-          required={true}
-        ></TextInput>
-        <Label htmlFor="expectedGraduationYear">
-          Erwartetes Abschlussjahr*
-        </Label>
-        <Select
-          id="expectedGraduationYear"
-          value={info.expectedGraduationYear}
-          onChange={handleChange}
-          onBlur={(e) => updateSession(e)}
-          required
-        >
-          {optArray.map((opt) => (
-            <Option key={opt} value={opt}>
-              {opt}
-            </Option>
-          ))}
-        </Select>
-      </Form>
-      <p onClick={() => history.push('/talent-signup-3')}>
-        Ich arbeite bereits
-      </p>
-      <Button onClick={() => history.push('/talent-signup-2')}>Zurück</Button>
-      <Button type="submit" value="Submit" form="education-form">
-        Submit
-      </Button>
-    </div>
+    <BlueWrapper>
+      <div className={styles.TalentSignUp4}>
+        <div className={styles.FormHeader}>
+          <img src={logo} className={styles.Logo} />
+          <ProgressBar profil={true} anerkennung={false} dokumente={false} />
+        </div>
+        <div className={styles.FormWrapper}>
+          <div className={styles.InputWrapper}>
+            <Form onSubmit={handleSubmit} id="education-form">
+              <TextInput
+                id="studyProgram"
+                labelText="Studiengang*"
+                onChange={(e) => handleChange(e)}
+                onBlur={(e) => updateSession(e)}
+                required={true}
+              ></TextInput>
+              <TextInput
+                id="university"
+                labelText="Universität*"
+                onChange={(e) => handleChange(e)}
+                onBlur={(e) => updateSession(e)}
+                required={true}
+              ></TextInput>
+              <Label htmlFor="expectedGraduationYear">
+                Erwartetes Abschlussjahr*
+              </Label>
+              <Select
+                id="expectedGraduationYear"
+                value={info.expectedGraduationYear}
+                onChange={handleChange}
+                onBlur={(e) => updateSession(e)}
+                required
+              >
+                {optArray.map((opt) => (
+                  <Option key={opt} value={opt}>
+                    {opt}
+                  </Option>
+                ))}
+              </Select>
+            </Form>
+          </div>
+          <div
+            onClick={() => history.push('/talent-signup-3')}
+            className={styles.TextLink}
+          >
+            Ich arbeite bereits
+          </div>
+          <div className={styles.ButtonWrapper}>
+            <Button onClick={() => history.push('/talent-signup-2')}>
+              Zurück
+            </Button>
+            <Button type="submit" value="Submit" form="education-form">
+              Submit
+            </Button>
+          </div>
+        </div>
+      </div>
+    </BlueWrapper>
   );
 };
 
