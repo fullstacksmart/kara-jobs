@@ -37,7 +37,7 @@ const subTableNames: SubTableNames[] = Object.keys(
   subTables,
 ) as SubTableNames[];
 
-const fetchTalent = async (
+export const fetchTalent = async (
   id: string,
   info: string,
 ): Promise<Model | Model[] | null> => {
@@ -219,7 +219,7 @@ const isConsistent = (candidate: TalentCandidate, id: string) => {
 };
 
 export const getOne = async (ctx: Context): Promise<void> => {
-  const type = ctx.params.type || 'all';
+  const type = ctx.params.type || 'signup';
   const id = ctx.params.id;
   try {
     const talent = await fetchTalent(id, type);
