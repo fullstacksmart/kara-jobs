@@ -1,5 +1,3 @@
-import { rgbToHex } from '@material-ui/core';
-
 export const BurgerStyles = {
   bmBurgerButton: {
     position: 'absolute',
@@ -32,6 +30,7 @@ export const BurgerStyles = {
     background: 'rgb(0, 168, 198)',
     padding: '1.2rem 1.2rem 0',
     fontSize: '1.15rem',
+    borderRadius: '10px 0 0 0',
   },
   bmMorphShape: {
     fill: '#373a47',

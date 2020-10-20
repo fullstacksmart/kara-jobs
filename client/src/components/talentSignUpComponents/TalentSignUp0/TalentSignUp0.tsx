@@ -60,7 +60,9 @@ const TalentSignUp0: React.FC = () => {
       <div className={styles.TalentSignUp0}>
         <div className={styles.FormHeader}>
           <img src={logo} className={styles.Logo} />
-          <h3>In wenigen Schritten zu deinem Profil</h3>
+          <div className={styles.Text}>
+            In wenigen Schritten zu deinem Profil
+          </div>
         </div>
         <div className={styles.FormWrapper}>
           <Form onSubmit={handleSubmit} className={styles.Form}>
