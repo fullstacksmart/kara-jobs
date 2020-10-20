@@ -16,7 +16,7 @@ const Header: React.FC<unknown> = () => {
           <Link to="/">Für Talente</Link>
           <Link to="/">Für Arbeitgeber</Link>
           <Link to="/">Über uns</Link>
-          <Link to="/signup">Mitglied werden</Link>
+          <Link to="/talent-sign-up">Mitglied werden</Link>
           <Link to="/sign-in">
             <Button>Login</Button>
           </Link>
@@ -38,7 +38,7 @@ const Header: React.FC<unknown> = () => {
           </Link>
         </div>
         <div className={styles.RightMenu}>
-          <Link to="/signup" className={styles.Item}>
+          <Link to="/talent-sign-up" className={styles.Item}>
             Mitglied werden
           </Link>
           <Link to="/sign-in" className={styles.ButtonWrapper}>

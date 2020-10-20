@@ -32,7 +32,8 @@ import EmployerSignUp4 from '../../components/EmployerSignUpComponents/EmployerS
 const Router: React.FC<unknown> = () => {
   const auth = useSelector<RootState>((state) => state.firebase.auth);
   const paths = isEmpty(auth)
-    ? [
+    ? []
+    : [
         <Route
           key="signup"
           path="/signup"
@@ -123,98 +124,18 @@ const Router: React.FC<unknown> = () => {
           exact
           component={EmployerSignUp4}
         ></Route>,
-      ]
-    : [
         <Route
           key="jobsearch"
           path="/jobsearch"
           exact
           component={JobSearch}
         ></Route>,
-        <Route
-          key="signup"
-          path="/signup"
-          exact
-          component={TalentSignup}
-        ></Route>,
-        <Route
-          key="/talent-signup-0"
-          path="/talent-signup-0"
-          exact
-          component={TalentSignUp0}
-        ></Route>,
-        <Route
-          key="/talent-signup-1"
-          path="/talent-signup-1"
-          exact
-          component={TalentSignUp1}
-        ></Route>,
-        <Route
-          key="/talent-signup-2"
-          path="/talent-signup-2"
-          exact
-          component={TalentSignUp2}
-        ></Route>,
-        <Route
-          key="/talent-signup-3"
-          path="/talent-signup-3"
-          exact
-          component={TalentSignUp3}
-        ></Route>,
-        <Route
-          key="/talent-signup-4"
-          path="/talent-signup-4"
-          exact
-          component={TalentSignUp4}
-        ></Route>,
-        <Route
-          key="/talent-signup-5"
-          path="/talent-signup-5"
-          exact
-          component={TalentSignUp5}
-        ></Route>,
-        <Route
-          key="/talent-signup-6"
-          path="/talent-signup-6"
-          exact
-          component={TalentSignUp6}
-        ></Route>,
-        <Route
-          key="/talent-signup-7"
-          path="/talent-signup-7"
-          exact
-          component={TalentSignUp7}
-        ></Route>,
-        <Route
-          key="/talent-signup-8"
-          path="/talent-signup-8"
-          exact
-          component={TalentSignUp8}
-        ></Route>,
-        <Route
-          key="/employer-signup-0"
-          path="/employer-signup-0"
-          exact
-          component={EmployerSignUp0}
-        ></Route>,
-        <Route
-          key="/employer-signup-1"
-          path="/employer-signup-1"
-          exact
-          component={EmployerSignUp1}
-        ></Route>,
-        <Route
-          key="/employer-signup-2"
-          path="/employer-signup-2"
-          exact
-          component={EmployerSignUp2}
-        ></Route>,
       ];
   return !isLoaded(auth) ? (
     <Loading />
   ) : (
     <>
-      <Route path="/" exact component={TalentSignUp5}></Route>
+      <Route path="/" exact component={Home}></Route>
       <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={LoginContainer}></Route>
       <Route
