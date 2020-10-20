@@ -1,3 +1,104 @@
+@import '../../../sass/globals';
+
 .TalentSignUp7 {
-  // TODO: style me!
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+
+  .FormHeader {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    position: relative;
+    top: 2rem;
+  }
+
+  .Logo {
+    height: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    max-width: 100%;
+  }
+
+  .FormWrapper {
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    min-height: 20rem;
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+    width: 20rem;
+  }
+
+  .Text {
+    font-weight: lighter;
+    text-align: center;
+    width: 16rem;
+  }
+
+  Button {
+    background-color: $kara-light-blue;
+    color: rgb(255, 255, 255);
+    margin-top: 1rem;
+  }
+
+  Button:hover {
+    background-color: $kara-dark-blue;
+  }
+
+  .ButtonWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    min-width: 12rem;
+  }
+
+  .RadioContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .ItemContainer {
+    padding: 1rem;
+  }
+
+  .DropDownContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  Label {
+    font-size: 1rem;
+    font-weight: lighter;
+    padding: 0.2rem;
+    text-align: center;
+  }
+
+  Select {
+    border-radius: 7px;
+    box-shadow: none;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.2rem;
+    width: 14rem;
+  }
 }
