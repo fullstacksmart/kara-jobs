@@ -9,38 +9,76 @@ import { useHistory } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 
 interface RegistrationProps {
-  kind: string;
-  heading: string;
+  kind: 'talent' | 'employer' | 'login';
 }
+
+type Variant = {
+  heading: string;
+  googleText: string;
+  onSubmit: 'createUser' | 'login';
+  submitButton: string;
+  alreadyText: string;
+  alreadyLink: string;
+  alreadyButtonText: string;
+  otherKindText: string;
+  otherKindLink: string;
+};
+
+const variants: {
+  talent: Variant;
+  employer: Variant;
+  login: Variant;
+} = {
+  talent: {
+    heading: 'In wenigen Schritten zu Deinem Profil',
+    googleText: 'mit Google registrieren',
+    onSubmit: 'createUser',
+    submitButton: 'registrieren',
+    alreadyText: 'Schon registriert?',
+    alreadyLink: '/sign-in',
+    alreadyButtonText: 'Einloggen',
+    otherKindText: 'Ich bin Arbeitgeber',
+    otherKindLink: '/employer-sign-up',
+  },
+  employer: {
+    heading:
+      'In wenigen Schritten mit internationalen Talenten aus dem medizinischen Bereich in Kontakt treten',
+    googleText: 'mit Google registrieren',
+    onSubmit: 'createUser',
+    submitButton: 'registrieren',
+    alreadyText: 'Schon registriert?',
+    alreadyLink: '/sign-in',
+    alreadyButtonText: 'Einloggen',
+    otherKindText: 'Ich bin Pflegekraft',
+    otherKindLink: '/talent-sign-up',
+  },
+  login: {
+    heading: 'Login',
+    googleText: 'mit Google einloggen',
+    onSubmit: 'login',
+    submitButton: 'einloggen',
+    alreadyText: 'Noch nicht registriert?',
+    alreadyLink: '/talent-sign-up',
+    alreadyButtonText: 'Registrieren',
+    otherKindText: '',
+    otherKindLink: '',
+  },
+};
 
 const Registration: React.FC<RegistrationProps> = ({
   kind,
-  heading,
 }: RegistrationProps) => {
+  const variant = variants[kind];
   const history = useHistory();
-  const [emailOK, setEmailOK] = useState(false);
-  const [passwordOK, setPasswordOK] = useState(false);
   const firebase = useFirebase();
-  // TODO: implement real email check
-  const checkEmail = (event: FormEvent<HTMLInputElement>) => {
-    const email = event.currentTarget.value;
-    const emailRegex = new RegExp(/^\w+@\w+\.\w+$/);
-    setEmailOK(emailRegex.test(email));
-  };
-
-  const checkPassword = (event: FormEvent<HTMLInputElement>) => {
-    const password = event.currentTarget.value;
-    const passwordRegex = new RegExp(/^\w{8,}$/);
-    setPasswordOK(passwordRegex.test(password));
-  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault;
+    event.preventDefault();
     console.log('submitted');
     const email = event.currentTarget.email.value;
     const password = event.currentTarget.password.value;
     try {
-      firebase.createUser({ email, password });
+      firebase[variant.onSubmit]({ email, password });
       history.push('/signedIn');
     } catch (error) {
       console.error(error);
@@ -59,39 +97,41 @@ const Registration: React.FC<RegistrationProps> = ({
 
   return (
     <div className={styles.Registration}>
-      <h1>{heading}</h1>
+      <h1>{variant.heading}</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.CheckBlock}>
-          <TextInput id="email" labelText="Email" onChange={checkEmail} />
-          <div className={styles.Check}>{emailOK ? '✅' : '❌'}</div>
+          <TextInput id="email" labelText="Email" type={'email'} required />
         </div>
         <div className={styles.CheckBlock}>
           <TextInput
             id="password"
             labelText="Passwort"
-            onChange={checkPassword}
+            type={'password'}
+            minlength={8}
+            required
           />
-          <div className={styles.Check}>{passwordOK ? '✅' : '❌'}</div>
         </div>
-        <Button disabled={!emailOK || !passwordOK}>registrieren</Button>
+        <Button>{variant.submitButton}</Button>
         <div className={styles.alternativeRegistration}>
           <p>oder</p>
-          <GoogleButton
-            label="mit Google registrieren"
-            onClick={signInWithGoogle}
-          />
+          <GoogleButton label={variant.googleText} onClick={signInWithGoogle} />
         </div>
 
         <Details>
           <p>
-            Schon registriert? <TextLink to="/sign-in" text="Einloggen" />
+            {variant.alreadyText}{' '}
+            <TextLink
+              to={variant.alreadyLink}
+              text={variant.alreadyButtonText}
+            />
           </p>
         </Details>
       </form>
-      <TextLink
-        to={kind === 'talent' ? '/employer-sign-up' : 'talent-sign-up'}
-        text={`Ich bin ${kind === 'talent' ? 'Arbeitgeber' : 'Pflegekraft'}`}
-      />
+      {variant.otherKindText ? (
+        <TextLink to={variant.otherKindLink} text={variant.otherKindText} />
+      ) : (
+        ''
+      )}
     </div>
   );
 };

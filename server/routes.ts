@@ -2,6 +2,7 @@ import Router from '@koa/router';
 
 import * as talentController from './controllers/talents';
 import * as companyController from './controllers/companies';
+import * as userController from './controllers/users';
 
 const router = new Router();
 
@@ -38,9 +39,8 @@ router.get('/companies/:id/:type', (ctx) =>
   companyController.getOne(ctx),
 );
 
-router.get(
-  '/employees/:employeeId/:type',
-  companyController.getOneFromEmployee,
+router.get('/employees/:employeeId/:type', (ctx) =>
+  companyController.getOneFromEmployee(ctx),
 );
 
 router.post('/companies', (ctx) => companyController.addOne(ctx));
@@ -63,5 +63,8 @@ router.put('/companies/:id/:type', companyController.updateOne);
 router.delete('/companies/:id', companyController.deleteOne);
 
 router.delete('/companies/:id/:type', companyController.deleteOne);
+
+// users
+router.get('/users/:id', userController.getOne);
 
 export default router;

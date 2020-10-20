@@ -3,12 +3,7 @@ import React from 'react';
 import Registration from '../Base';
 
 const TalentRegistration: React.FC<unknown> = () => {
-  return (
-    <Registration
-      heading="In wenigen Schritten zu Deinem Profil"
-      kind="talent"
-    />
-  );
+  return <Registration kind="talent" />;
 };
 
 export default TalentRegistration;

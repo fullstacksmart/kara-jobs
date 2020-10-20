@@ -2,6 +2,13 @@ import { ValidationError } from 'sequelize';
 import { Context } from 'koa';
 import { DatabaseError } from 'sequelize';
 
+export const textToJson = (
+  text: string,
+  type = 'Error',
+): { type: string; message: string } => ({
+  type,
+  message: text,
+});
 export const handleError = (
   err: Error,
   ctx: Context,
@@ -9,11 +16,13 @@ export const handleError = (
 ): void => {
   ctx.status = 400;
   if (err instanceof ValidationError) {
-    ctx.body = `Validation error: ${message ? message + ': ' : ''}${
-      err.message
-    }`;
+    ctx.body = textToJson(
+      `Validation error: ${message ? message + ': ' : ''}${
+        err.message
+      }`,
+    );
   } else if (err instanceof DatabaseError) {
-    ctx.body = `Database error: ${err.message}`;
+    ctx.body = textToJson(`Database error: ${err.message}`);
   } else {
     ctx.status = 500;
   }
