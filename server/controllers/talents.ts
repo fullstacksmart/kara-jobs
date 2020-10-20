@@ -17,6 +17,7 @@ import { TalentRegistrationExperience } from '../models/Talent/TalentRegistratio
 import { TalentRegistrationQualification } from '../models/Talent/TalentRegistrationQualification';
 import { TalentQualification } from '../models/Talent/TalentQualification';
 import { Model } from 'sequelize';
+import { textToJson } from './helpers';
 
 const subTables = {
   registrationExperience: TalentRegistrationExperience,
@@ -226,8 +227,10 @@ export const getOne = async (ctx: Context): Promise<void> => {
       ctx.status = 200;
       ctx.body = talent;
     } else {
-      ctx.status = 400;
-      ctx.body = `No info of type ${type} for talent with id ${id}`;
+      ctx.status = 404;
+      ctx.body = textToJson(
+        `No info of type ${type} for talent with id ${id}`,
+      );
     }
   } catch (err) {
     console.error('there was a problem accessing the database:', err);
@@ -248,12 +251,12 @@ export const addForSignup = async (ctx: Context): Promise<void> => {
     const existingTalent = await Talent.findByPk(id);
     // TODO: rethink/discuss onboarding update logic
     if (existingTalent && existingTalent.onboardingComplete) {
-      ctx.body = `Talent with id ${id} already exists`;
+      ctx.body = textToJson(`Talent with id ${id} already exists`);
       return;
     } else {
       const talentCandidate = ctx.request.body;
       if (!isConsistent(talentCandidate, id)) {
-        ctx.body = 'Request is inconsistent with path';
+        ctx.body = textToJson('Request is inconsistent with path');
         return;
       } else if (
         existingTalent &&
@@ -269,7 +272,7 @@ export const addForSignup = async (ctx: Context): Promise<void> => {
         } catch (err) {
           ctx.status = 400;
           const message = `Talent does not have the right format to be included in db:\n${err}`;
-          ctx.body = message;
+          ctx.body = textToJson(message);
           console.error(message);
         }
         return;
@@ -284,7 +287,9 @@ export const addForSignup = async (ctx: Context): Promise<void> => {
           return;
         } catch (err) {
           ctx.status = 400;
-          ctx.body = `Talent does not have the right format to be included in db:\n${err}`;
+          ctx.body = textToJson(
+            `Talent does not have the right format to be included in db:\n${err}`,
+          );
           return;
         }
       }
@@ -320,7 +325,9 @@ export const addOne = async (ctx: Context): Promise<void> => {
         );
         if (existingEntry && !Array.isArray(existingEntry)) {
           ctx.status = 400;
-          ctx.body = `info of type ${type} already exists for talent ${id}`;
+          ctx.body = textToJson(
+            `info of type ${type} already exists for talent ${id}`,
+          );
           return;
         } else {
           try {
@@ -339,7 +346,7 @@ export const addOne = async (ctx: Context): Promise<void> => {
           } catch (err) {
             ctx.status = 400;
             const message = `Error inserting into db: ${err}`;
-            ctx.body = message;
+            ctx.body = textToJson(message);
             console.error(message);
           }
         }
@@ -359,7 +366,8 @@ export const updateOne = async (ctx: Context): Promise<void> => {
     const existingTalent = await Talent.findByPk(id);
     if (!existingTalent) {
       const message = `talent with id ${id} does not exist`;
-      ctx.body = message;
+      ctx.status = 404;
+      ctx.body = textToJson(message);
       return;
     }
     if (type === 'all') {
@@ -373,7 +381,7 @@ export const updateOne = async (ctx: Context): Promise<void> => {
       } catch (err) {
         ctx.status = 400;
         const message = `invalid format.\n${err}`;
-        ctx.body = message;
+        ctx.body = textToJson(message);
         console.error(message);
       }
     } else {
@@ -422,7 +430,7 @@ export const updateOne = async (ctx: Context): Promise<void> => {
           } catch (err) {
             ctx.status = 400;
             const message = `invalid format: ${err}`;
-            ctx.body = message;
+            ctx.body = textToJson(message);
             console.error(message);
           }
         }
@@ -430,7 +438,9 @@ export const updateOne = async (ctx: Context): Promise<void> => {
       return;
     }
     ctx.status = 400;
-    ctx.body(`invalid request. ${type} is not a valid type.`);
+    ctx.body = textToJson(
+      `invalid request. ${type} is not a valid type.`,
+    );
   } catch (err) {
     ctx.status = 500;
   }
@@ -441,8 +451,8 @@ export const deleteOne = async (ctx: Context): Promise<void> => {
   const type = ctx.params.type || 'all';
   const existingTalent = await Talent.findByPk(id);
   if (!existingTalent) {
-    ctx.status = 400;
-    ctx.body = `No talent with id ${id} in db`;
+    ctx.status = 404;
+    ctx.body = textToJson(`No talent with id ${id} in db`);
     return;
   }
   if (type === 'all') {
