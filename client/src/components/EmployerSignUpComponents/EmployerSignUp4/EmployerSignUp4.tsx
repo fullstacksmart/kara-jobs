@@ -38,6 +38,7 @@ const EmployerSignUp4: React.FC = () => {
           talentStudyStatus: talentStudyStatus.talentStudyStatus,
           talentApprobStatus: talentApprobStatus.talentApprobStatus,
           talentMinGerman: talentMinGerman.talentMinGerman,
+          onboarding_page: 5,
         }),
       ),
     );

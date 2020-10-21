@@ -18,8 +18,10 @@ export interface Employer {
   talentStudyStatus: number;
   talentAprobStatus: number;
   talentMinGerman: string;
-  agencyApplications: boolean;
+  specialistApplications: boolean;
+  approbationTraining: boolean;
   internationalApplications: boolean;
+  agencyApplications: boolean;
   onboardingPage?: number;
   onboardingComplete?: boolean;
 }
