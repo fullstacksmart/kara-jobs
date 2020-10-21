@@ -72,3 +72,11 @@ export interface incompleteTalent {
   };
   approbations?: approbation[];
 }
+
+export interface Experience {
+  TalentId: string;
+  occupationId: number;
+  positionName: string;
+  occupationStatusId: number;
+  employerName: string;
+}
