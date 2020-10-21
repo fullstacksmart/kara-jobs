@@ -1,17 +1,11 @@
 @font-face {
   font-family: 'hkNova';
   src: url('../../assets/fonts/HKNova-BoldR.eot'); /* IE9 Compat Modes */
-  src: url('../../assets/fonts/HKNova-BoldR.woff2') format('woff2'), 
-    url('../../assets/fonts/HKNova-BoldR.woff') format('woff'), /* Pretty Modern Browsers */
+  src: url('../../assets/fonts/HKNova-BoldR.woff2') format('woff2'),
+    url('../../assets/fonts/HKNova-BoldR.woff') format('woff'); /* Pretty Modern Browsers */
 }
 
 $font-main: 'hkNova', sans-serif;
-
-$kara-cream-white: rgb(224, 241, 244);
-$kara-light-blue: rgb(0, 168, 198);
-$kara-dark-blue: rgb(32, 53, 70);
-$kara-signal-yellow: rgb(243, 255, 113);
-$kara-light-grey: #ccc;
 
 *,
 *::before,

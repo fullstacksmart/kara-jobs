@@ -1,0 +1,15 @@
+@import '/Users/dev/Documents/projects/codeworks/senior/thesis/kara/client/src/sass/globals';
+
+.SearchBox {
+  background-color: $kara-white;
+  border-radius: 1rem;
+  color: $kara-black;
+  height: 2rem;
+  padding-left: 0.5rem;
+}
+
+.InputBox {
+  border-width: 0;
+  margin-left: 0.5rem;
+  outline: none;
+}

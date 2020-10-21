@@ -1,7 +1,7 @@
 @import '/Users/dev/Documents/projects/codeworks/senior/thesis/kara/client/src/sass/globals';
 
 $padding-container: 3rem;
-$padding-items: 2rem;
+$padding-items: 3rem;
 $height: 5rem;
 
 .ProfileLayoutHeader {
@@ -15,6 +15,7 @@ $height: 5rem;
 }
 
 .Half {
+  align-items: center;
   display: flex;
 
   > :not(:last-child) {
@@ -30,4 +31,8 @@ $height: 5rem;
     height: $height * 0.6;
     width: auto;
   }
+}
+
+.Link {
+  color: inherit;
 }
