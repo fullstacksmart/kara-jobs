@@ -1,0 +1,20 @@
+@import '/Users/dev/Documents/projects/codeworks/senior/thesis/kara/client/src/sass/globals';
+
+.MainInfo {
+  display: flex;
+}
+
+.ProfilePic {
+  background: green;
+  height: 100px;
+  max-width: 200px;
+  width: 20%;
+}
+
+.InfoText {
+  align-items: space-around;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-around;
+}
