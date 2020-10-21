@@ -1,8 +1,7 @@
 export interface Talent {
-  uid: string;
-  email: string;
-  onbarding_page: number;
-  onboarding_complete: boolean;
+  id: string;
+  onboardingPage: number;
+  onboardingComplete: boolean;
   firstName: string;
   lastName: string;
   isoCode: string;
@@ -20,4 +19,6 @@ export interface Talent {
   approbationFederalState: string;
   approbationFeedbackFlag: boolean;
   approbationStatus: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

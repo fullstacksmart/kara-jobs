@@ -103,7 +103,7 @@ const TalentSignUp1: React.FC = () => {
     const talentObj = {
       ...talent,
       ...info,
-      onboarding_page: 2,
+      onboardingPage: 2,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB (only relevant props from this page)

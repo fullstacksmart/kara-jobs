@@ -5,11 +5,20 @@ interface TextInputProps {
   labelText: string;
   id: string;
   required?: boolean;
+  type?: string;
+  minlength?: number;
 }
 
 const TextInput: React.FC<
   TextInputProps & React.HTMLAttributes<HTMLInputElement>
-> = ({ labelText, id, required, ...props }: TextInputProps) => {
+> = ({
+  labelText,
+  id,
+  required,
+  type = 'text',
+  minlength,
+  ...props
+}: TextInputProps) => {
   return (
     <div className={styles.TextInput}>
       <div className={styles.Label}>
@@ -17,10 +26,11 @@ const TextInput: React.FC<
       </div>
       <input
         className={styles.Input}
-        type="text"
+        type={type}
         id={id}
         name={id}
         required={required}
+        minLength={minlength}
         {...props}
       ></input>
     </div>

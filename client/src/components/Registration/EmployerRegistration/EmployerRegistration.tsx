@@ -3,12 +3,7 @@ import React from 'react';
 import Registration from '../Base';
 
 const EmployerRegistration: React.FC<unknown> = () => {
-  return (
-    <Registration
-      heading="In wenigen Schritten mit internationalen Talenten aus dem medizinischen Bereich in Kontakt treten"
-      kind="employer"
-    />
-  );
+  return <Registration kind="employer" />;
 };
 
 export default EmployerRegistration;
