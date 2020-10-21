@@ -4,6 +4,7 @@ import styles from './AboutMe.module.scss';
 
 interface AboutMeAttributes {
   title: string;
+  storeKey?: string;
 }
 
 const AboutMe: React.FC<AboutMeAttributes> = ({ title }: AboutMeAttributes) => {
@@ -11,7 +12,7 @@ const AboutMe: React.FC<AboutMeAttributes> = ({ title }: AboutMeAttributes) => {
   const [text, setText] = useState('some text about me');
   const [oldText, setOldText] = useState(text);
 
-  const handleSubmit = (event: React.MouseEvent): void => {
+  const handleSubmit = (): void => {
     setEditable(false);
   };
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
