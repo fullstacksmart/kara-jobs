@@ -200,12 +200,30 @@ const Router: React.FC<unknown> = () => {
           exact
           component={EmployerSignUp2}
         ></Route>,
+        <Route
+          key="/employer-signup-3"
+          path="/employer-signup-3"
+          exact
+          component={EmployerSignUp3}
+        ></Route>,
+        <Route
+          key="/employer-signup-4"
+          path="/employer-signup-4"
+          exact
+          component={EmployerSignUp4}
+        ></Route>,
+        <Route
+          key="/employer-signup-5"
+          path="/employer-signup-5"
+          exact
+          component={EmployerSignUp5}
+        ></Route>,
       ];
   return !isLoaded(auth) ? (
     <Loading />
   ) : (
     <>
-      <Route path="/" exact component={EmployerSignUp5}></Route>
+      <Route path="/" exact component={Home}></Route>
       <Route path="/sign-in" exact component={Login}></Route>
       <Route
         path="/talent-sign-up"
