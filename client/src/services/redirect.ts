@@ -6,30 +6,7 @@
 //during onboarding:
 //post to DB: /talents/uid/signup
 
-interface incompleteTalent {
-  id: string;
-  onboardingPage: number;
-  onboardingComplete: boolean;
-  firstName?: string;
-  lastName?: string;
-  isoCode?: string;
-  residence?: string;
-  zipCode?: string;
-  city?: string;
-  occupationId?: string;
-  positionName?: string;
-  occupationStatusId?: string;
-  employerName?: string;
-  studyProgram?: string;
-  university?: string;
-  expectedGraduationYear?: number;
-  approbationStartedFlag?: boolean;
-  approbationFederalState?: string;
-  approbationFeedbackFlag?: boolean;
-  approbationStatus?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
+import { incompleteTalent } from '../types/talent';
 
 interface returnType {
   page: number;

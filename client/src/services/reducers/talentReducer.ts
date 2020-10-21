@@ -8,7 +8,7 @@ const initialState: Talent = {
   firstName: '',
   lastName: '',
   isoCode: '',
-  residence: '',
+  country: '',
   zipCode: '',
   city: '',
   occupationId: '',
