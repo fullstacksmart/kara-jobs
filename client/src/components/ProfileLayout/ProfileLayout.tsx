@@ -6,6 +6,11 @@ const ProfileLayout: React.FC<unknown> = () => {
   return (
     <div className={styles.ProfileLayout}>
       <ProfileLayoutHeader />
+      <div className={styles.ProfileBody}>
+        <div className={styles.ProfileNav}></div>
+        <div className={styles.ProfileMain}></div>
+        <div className={styles.ProfileAdds}></div>
+      </div>
     </div>
   );
 };
