@@ -9,7 +9,7 @@ import Select from '../../Select';
 import Option from '../../Option';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import ProgressBar from '../../ProgressBar';
-import logo from '../../../assets/logos/kara_lightblue.png';
+import logo from '../../../assets/logos/kara_gradient.png';
 
 const TalentSignUp6: React.FC = () => {
   const history = useHistory();

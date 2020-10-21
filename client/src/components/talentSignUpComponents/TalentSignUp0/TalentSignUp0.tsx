@@ -4,7 +4,7 @@ import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
 import Button from '../../Button';
 import Form from '../../Form';
-import logo from '../../../assets/logos/kara_lightblue.png';
+import logo from '../../../assets/logos/kara_gradient.png';
 import { useHistory } from 'react-router-dom';
 
 const TalentSignUp0: React.FC = () => {

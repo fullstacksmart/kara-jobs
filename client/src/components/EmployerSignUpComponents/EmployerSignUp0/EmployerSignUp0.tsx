@@ -3,6 +3,7 @@ import styles from './EmployerSignUp0.module.scss';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
 import Button from '../../Button';
+import logo from '../../../assets/logos/kara_gradient.png';
 import { useHistory } from 'react-router-dom';
 
 const EmployerSignUp0: React.FC = () => {
@@ -55,23 +56,38 @@ const EmployerSignUp0: React.FC = () => {
   return (
     <BlueWrapper>
       <div className={styles.EmployerSignUp0}>
-        <form onSubmit={handleSubmit}>
-          <TextInput
-            id="firstName"
-            labelText="Vorname (Ansprechpartner)*"
-            onChange={handleChange}
-            onBlur={updateSession}
-            required={true}
-          ></TextInput>
-          <TextInput
-            id="lastName"
-            labelText="Nachname (Ansprechpartner)*"
-            onChange={handleChange}
-            onBlur={updateSession}
-            required={true}
-          ></TextInput>
-          <Button type="submit">Weiter</Button>
-        </form>
+        <div className={styles.FormHeader}>
+          <img src={logo} className={styles.Logo} />
+          <div className={styles.Text}>
+            In wenigen Schritten mit internationalen Talenten aus dem
+            medizinischen Bereich in Kontakt treten
+          </div>
+        </div>
+        <div className={styles.FormWrapper}>
+          <form onSubmit={handleSubmit} className={styles.Form}>
+            <TextInput
+              className={styles.TextInput}
+              id="firstName"
+              labelText="Vorname (Ansprechpartner)*"
+              onChange={handleChange}
+              onBlur={updateSession}
+              required={true}
+            ></TextInput>
+            <TextInput
+              className={styles.TextInputHardCoded}
+              id="lastName"
+              labelText="Nachname (Ansprechpartner)*"
+              onChange={handleChange}
+              onBlur={updateSession}
+              required={true}
+            ></TextInput>
+            <Button type="submit">Weiter</Button>
+            <div className={styles.BottomText}>
+              Sie können später weitere Teamkollegen Ihrer Organisation
+              hinzufügen
+            </div>
+          </form>
+        </div>
       </div>
     </BlueWrapper>
   );

@@ -5,11 +5,10 @@ import Button from '../../Button';
 import TextLink from '../../TextLink';
 import Details from '../../Details';
 import BlueWrapper from '../../../containers/BlueWrapper';
-import logo from '../../../assets/logos/kara_lightblue.png';
+import logo from '../../../assets/logos/kara_gradient.png';
 import googleIcon from '../../../assets/icons/google.jpg';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
-// import GoogleButton from 'react-google-button';
 import { redirect } from '../../../services/redirect';
 
 interface RegistrationProps {
@@ -57,7 +56,7 @@ const variants: {
     otherKindLink: '/talent-sign-up',
   },
   login: {
-    heading: 'Login',
+    heading: 'Einloggen',
     googleText: 'mit Google einloggen',
     onSubmit: 'login',
     submitButton: 'Einloggen',

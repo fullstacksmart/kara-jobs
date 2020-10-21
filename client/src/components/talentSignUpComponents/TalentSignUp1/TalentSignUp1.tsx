@@ -8,7 +8,7 @@ import Option from '../../Option';
 import TextInput from '../../TextInput';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import ProgressBar from '../../ProgressBar';
-import logo from '../../../assets/logos/kara_lightblue.png';
+import logo from '../../../assets/logos/kara_gradient.png';
 import { useHistory } from 'react-router-dom';
 import dbService from '../../../services/dbService';
 

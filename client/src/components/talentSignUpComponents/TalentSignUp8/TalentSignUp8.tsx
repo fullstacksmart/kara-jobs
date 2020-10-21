@@ -6,7 +6,7 @@ import Select from '../../Select';
 import Button from '../../Button';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import ProgressBar from '../../ProgressBar';
-import logo from '../../../assets/logos/kara_lightblue.png';
+import logo from '../../../assets/logos/kara_gradient.png';
 import trash from '../../../assets/icons/trash.png';
 import { useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';

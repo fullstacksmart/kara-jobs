@@ -4,7 +4,7 @@ import Form from '../../Form';
 import Button from '../../Button';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import ProgressBar from '../../ProgressBar';
-import logo from '../../../assets/logos/kara_lightblue.png';
+import logo from '../../../assets/logos/kara_gradient.png';
 import { useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
