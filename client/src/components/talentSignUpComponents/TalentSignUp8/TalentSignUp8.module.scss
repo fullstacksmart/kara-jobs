@@ -1,3 +1,165 @@
+@import '../../../sass/globals';
+
 .TalentSignUp8 {
-  // TODO: style me!
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+
+  .FormHeader {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .Logo {
+    height: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    max-width: 100%;
+  }
+
+  .FormWrapper {
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    min-height: 20rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1.5rem;
+    width: 24rem;
+  }
+
+  .Text {
+    font-size: 0.9rem;
+    font-weight: lighter;
+    text-align: center;
+    width: 15rem;
+  }
+
+  Button {
+    background-color: $kara-light-blue;
+    color: rgb(255, 255, 255);
+    margin-top: 1rem;
+  }
+
+  Button:hover {
+    background-color: $kara-dark-blue;
+  }
+
+  .ButtonWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    min-width: 12rem;
+  }
+
+  .SingleButtonWrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .SingleButtonWrapper > Button {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    padding-top: 0.2rem;
+  }
+
+  .DeleteButtonWrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .DeleteButtonWrapper > Button {
+    background-color: rgb(255, 255, 255);
+    border-style: none;
+    margin: 0;
+    padding: 0.5rem;
+  }
+
+  .TrashIcon {
+    height: auto;
+    width: 1rem;
+  }
+
+  .TextDocument {
+    align-self: center;
+    padding-bottom: 1rem;
+  }
+
+  .Documents {
+    align-items: center;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+    font-weight: lighter;
+  }
+
+  .DocumentItem {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    max-width: 20rem;
+    padding: 0.25rem;
+  }
+
+  .DropDownContainer {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+  }
+
+  Label {
+    font-size: 1rem;
+    font-weight: lighter;
+    padding: 0.2rem;
+  }
+
+  Select {
+    border-radius: 7px;
+    box-shadow: none;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    padding: 0.25rem;
+    width: 17rem;
+  }
+
+  .UploadedDocsWrapper {
+    border: 2px solid rgba(211, 220, 225, 1);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    min-width: 18rem;
+    padding: 0.5rem;
+  }
+
+  .InputWrapper {
+    left: 2rem;
+    position: relative;
+  }
+
+  .Input {
+    display: flex;
+    font-size: 0.9rem;
+    font-weight: lighter;
+  }
 }
