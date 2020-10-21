@@ -26,6 +26,7 @@
     margin-bottom: 2rem;
     min-height: 20rem;
     min-width: 18rem;
+    padding: 2.5rem;
   }
 
   .Logo {
@@ -48,8 +49,8 @@
     flex-direction: column;
   }
 
-  .DropDownLabel {
-    padding-bottom: 0.3rem;
+  Label {
+    font-size: 0.9rem;
     padding-top: 0.3rem;
   }
 

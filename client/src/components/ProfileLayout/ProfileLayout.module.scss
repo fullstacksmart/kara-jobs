@@ -1,0 +1,34 @@
+@import '/Users/dev/Documents/projects/codeworks/senior/thesis/kara/client/src/sass/globals';
+
+$nav-width: 20%;
+$add-width: 20%;
+
+.ProfileLayout {
+  // TODO: style me!
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.ProfileBody {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - #{$profile-layout-header-height});
+}
+
+.ProfileMain {
+  height: 100%;
+  width: 100% - $nav-width - $add-width;
+}
+
+.ProfileNav {
+  background: $kara-light-blue;
+  height: 100%;
+  width: $nav-width;
+}
+
+.ProfileAdds {
+  background: $kara-cream-white;
+  height: 100%;
+  width: $add-width;
+}
