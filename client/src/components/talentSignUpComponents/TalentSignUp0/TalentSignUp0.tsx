@@ -12,6 +12,7 @@ const TalentSignUp0: React.FC = () => {
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
 
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  console.log(talent);
 
   useEffect(() => {
     const firstName = document.getElementById('firstName') as HTMLInputElement;

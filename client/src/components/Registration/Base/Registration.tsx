@@ -8,7 +8,6 @@ import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import { redirect } from '../../../services/redirect';
-import { useLocation } from 'react-router-dom';
 
 interface RegistrationProps {
   kind: 'talent' | 'employer' | 'login';
@@ -87,46 +86,64 @@ const Registration: React.FC<RegistrationProps> = ({
   //   const passwordRegex = new RegExp(/^\w{8,}$/);
   //   setPasswordOK(passwordRegex.test(password));
   // };
-  const location = useLocation();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  async function handleRedirect(user: any) {
+    const uid = user.uid;
+    const { page, complete, type, wrongLogin } = await redirect(uid, kind);
+    console.log(page, complete, type, wrongLogin);
+    // if (wrongLogin) {
+    //   history.push('/talent-signup-0');
+    //   return;
+    // }
+    if (complete) {
+      //TO DO: Redirect to Talent / Employer Profile page (depending on kind)
+      history.push('/');
+    } else {
+      history.push(`/${type}-signup-${page}`);
+    }
+  }
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('submitted');
     const email = event.currentTarget.email.value;
     const password = event.currentTarget.password.value;
     try {
-      firebase[variant.onSubmit]({ email, password });
-      //history.push('/signedIn');
+      await firebase[variant.onSubmit]({ email, password });
+      const user = firebase.auth().currentUser;
+      if (user) handleRedirect(user);
     } catch (error) {
       console.error(error);
+      if (
+        error.message.includes(
+          'There is no user record corresponding to this identifier',
+        )
+      ) {
+        alert(
+          'Es konnte kein Benutzer für Ihre Daten gefunden werden. Bitte klicken Sie unten auf Registrieren.',
+        );
+      }
     }
   };
 
-  const signInWithGoogle = () => {
+  const signInWithGoogle = async () => {
     try {
-      firebase.login({ provider: 'google', type: 'popup' });
-      //.then(() => history.push('/signedIn'));
+      await firebase.login({ provider: 'google', type: 'popup' });
+      const user = firebase.auth().currentUser;
+      if (user) handleRedirect(user);
     } catch (err) {
       console.error(err);
+      //TO DO: Check if this error handling is necessary for google
+      if (
+        err.message.includes(
+          'There is no user record corresponding to this identifier',
+        )
+      ) {
+        alert(
+          'Es konnte kein Benutzer für Ihre Daten gefunden werden. Bitte klicken Sie unten auf Registrieren.',
+        );
+      }
     }
   };
-
-  firebase.auth().onAuthStateChanged(async function (user) {
-    if (user) {
-      const uid = user.uid;
-      const { page, complete, type, wrongLogin } = await redirect(uid, kind);
-      if (wrongLogin) {
-        history.push('/talent-signup-0');
-        return;
-      }
-      if (complete) {
-        //TO DO: Redirect to Talent / Employer Profile page (depending on kind)
-        history.push('/');
-      } else {
-        history.push(`/${type}-signup-${page}`);
-      }
-    }
-  });
 
   return (
     <div className={styles.Registration}>
