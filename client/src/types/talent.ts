@@ -42,19 +42,19 @@ interface AboutMe {
   updatedAt?: string;
 }
 
-interface Experience {
-  TalentId?: string;
-  positionName?: string;
-  employerName?: string;
-  employerCity?: string;
-  positionStartMonth?: number;
-  positionStartYear?: number;
-  positionEndMonth?: number;
-  positionEndYear?: number;
-  positionDescription?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
+// interface Experience {
+//   TalentId?: string;
+//   positionName?: string;
+//   employerName?: string;
+//   employerCity?: string;
+//   positionStartMonth?: number;
+//   positionStartYear?: number;
+//   positionEndMonth?: number;
+//   positionEndYear?: number;
+//   positionDescription?: string;
+//   createdAt?: string;
+//   updatedAt?: string;
+// }
 
 interface Qualification {
   TalentId?: string;
