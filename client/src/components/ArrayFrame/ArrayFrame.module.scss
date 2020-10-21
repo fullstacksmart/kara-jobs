@@ -1,0 +1,24 @@
+@import '../../sass/globals';
+
+.Border {
+  // TODO: style me!
+  border: 2px solid $kara-black;
+  border-radius: 2rem;
+  padding: 0 $main-info-left-padding;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.HeaderInset {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 $main-info-left-padding;
+}
+
+.PlusButton {
+  cursor: pointer;
+}
+
+.ArrayFrame {
+  padding-bottom: $profile-vertical-gutter;
+}
