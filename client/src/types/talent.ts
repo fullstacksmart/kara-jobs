@@ -74,9 +74,16 @@ export interface incompleteTalent {
 }
 
 export interface Experience {
+  id: number;
   TalentId: string;
   occupationId: number;
   positionName: string;
   occupationStatusId: number;
   employerName: string;
+  employerCity?: string;
+  positionStartMonth?: number;
+  positionStartYear?: number;
+  positionEndMonth?: number;
+  positionEndYear?: number;
+  positionDescription?: string;
 }
