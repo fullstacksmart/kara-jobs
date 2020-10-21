@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React from 'react';
 import styles from './Registration.module.scss';
 import TextInput from '../../TextInput';
 import Button from '../../Button';

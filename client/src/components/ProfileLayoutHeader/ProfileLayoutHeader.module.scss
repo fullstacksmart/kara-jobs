@@ -1,0 +1,37 @@
+@import '/Users/dev/Documents/projects/codeworks/senior/thesis/kara/client/src/sass/globals';
+
+$padding-container: 4rem;
+$padding-items: 3rem;
+
+.ProfileLayoutHeader {
+  align-items: center;
+  background: $kara-dark-blue;
+  color: $kara-cream-white;
+  display: flex;
+  height: $profile-layout-header-height;
+  justify-content: space-between;
+  padding: 0 $padding-container;
+}
+
+.Half {
+  align-items: flex-end;
+  display: flex;
+
+  > :not(:last-child) {
+    padding-right: $padding-items;
+  }
+
+  > * {
+    align-items: center;
+    display: flex;
+  }
+
+  > img {
+    height: $profile-layout-header-height * 0.6;
+    width: auto;
+  }
+}
+
+.Link {
+  color: inherit;
+}
