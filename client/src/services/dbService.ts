@@ -12,6 +12,7 @@ function fetchRequest(path: string, options: any) {
 }
 
 function postToDB(path: string, body: incompleteTalent) {
+  console.log(path, body);
   return fetchRequest(path, {
     method: 'POST',
     headers: {

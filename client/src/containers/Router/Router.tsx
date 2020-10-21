@@ -205,7 +205,7 @@ const Router: React.FC<unknown> = () => {
     <Loading />
   ) : (
     <>
-      <Route path="/" exact component={Home}></Route>
+      <Route path="/" exact component={EmployerSignUp5}></Route>
       <Route path="/sign-in" exact component={Login}></Route>
       <Route
         path="/talent-sign-up"
