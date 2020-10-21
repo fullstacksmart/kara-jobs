@@ -82,8 +82,6 @@ const TalentSignUp4: React.FC = () => {
         });
         break;
       case 'expectedGraduationYear':
-        console.log(e.currentTarget.value);
-        console.log(typeof e.currentTarget.value);
         setInfo({
           studyProgram: info.studyProgram,
           expectedGraduationYear: parseInt(e.currentTarget.value),
@@ -100,7 +98,7 @@ const TalentSignUp4: React.FC = () => {
     const talentObj = {
       ...talent,
       ...info,
-      onboarding_page: 5,
+      onboardingPage: 5,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB (only relevant props from this page)

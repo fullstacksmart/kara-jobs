@@ -10,17 +10,19 @@ import BlueWrapper from '../../../containers/BlueWrapper';
 import ProgressBar from '../../ProgressBar';
 import logo from '../../../assets/logos/kara_lightblue.png';
 import { useHistory } from 'react-router-dom';
+import dbService from '../../../services/dbService';
 
 const TalentSignUp1: React.FC = () => {
   const history = useHistory();
   const [info, setInfo] = useState({
-    isoCode: '',
-    residence: '',
+    isoCode: 'id1',
+    country: 'country1',
     zipCode: '',
     city: '',
   });
 
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  console.log(talent);
 
   useEffect(() => {
     const zipCodeHTML = document.getElementById('zipCode') as HTMLInputElement;
@@ -28,10 +30,10 @@ const TalentSignUp1: React.FC = () => {
     if (talent) {
       if (talent.zipCode !== undefined) zipCodeHTML.value = talent.zipCode;
       if (talent.city !== undefined) cityHTML.value = talent.city;
-      if (talent.residence !== undefined && talent.isoCode !== undefined)
+      if (talent.country !== undefined && talent.isoCode !== undefined)
         setInfo({
           isoCode: talent.isoCode,
-          residence: talent.residence,
+          country: talent.country,
           zipCode: talent.zipCode,
           city: talent.city,
         });
@@ -42,10 +44,10 @@ const TalentSignUp1: React.FC = () => {
     e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
   ) => {
     switch (e.currentTarget.id) {
-      case 'residence':
+      case 'country':
         setInfo({
           isoCode: e.currentTarget.value.split(',')[0],
-          residence: e.currentTarget.value.split(',')[1],
+          country: e.currentTarget.value.split(',')[1],
           zipCode: info.zipCode,
           city: info.city,
         });
@@ -53,7 +55,7 @@ const TalentSignUp1: React.FC = () => {
       case 'zipCode':
         setInfo({
           isoCode: info.isoCode,
-          residence: info.residence,
+          country: info.country,
           zipCode: e.currentTarget.value,
           city: info.city,
         });
@@ -61,7 +63,7 @@ const TalentSignUp1: React.FC = () => {
       case 'city':
         setInfo({
           isoCode: info.isoCode,
-          residence: info.residence,
+          country: info.country,
           zipCode: info.zipCode,
           city: e.currentTarget.value,
         });
@@ -76,13 +78,13 @@ const TalentSignUp1: React.FC = () => {
       | React.ChangeEvent<HTMLInputElement>
       | React.FocusEvent<HTMLSelectElement>,
   ) => {
-    if (e.currentTarget.id === 'residence') {
+    if (e.currentTarget.id === 'country') {
       sessionStorage.setItem(
         'talent',
         JSON.stringify(
           Object.assign(talent, {
             isoCode: e.currentTarget.value.split(',')[0],
-            residence: e.currentTarget.value.split(',')[1],
+            country: e.currentTarget.value.split(',')[1],
           }),
         ),
       );
@@ -103,10 +105,13 @@ const TalentSignUp1: React.FC = () => {
     const talentObj = {
       ...talent,
       ...info,
-      onboarding_page: 2,
+      onboardingPage: 2,
     };
+    console.log(talentObj);
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    // post to DB (only relevant props from this page)
+    dbService
+      .postToDB(`/talents/${talentObj.id}/signup`, talentObj)
+      .then((res) => console.log(res));
     history.push('/talent-signup-2');
   };
 
@@ -126,16 +131,16 @@ const TalentSignUp1: React.FC = () => {
         <div className={styles.FormWrapper}>
           <Form
             onSubmit={handleSubmit}
-            id="residence-form"
+            id="country-form"
             className={styles.Form}
           >
             <div className={styles.DropDownWrapper}>
-              <Label htmlFor="residence" className={styles.DropDownLabel}>
-                Land*{' '}
+              <Label htmlFor="country" className={styles.DropDownLabel}>
+                Land*
               </Label>
               <Select
-                id="residence"
-                value={`${info.isoCode},${info.residence}`}
+                id="country"
+                value={`${info.isoCode},${info.country}`}
                 onChange={handleChange}
                 onBlur={(e) => updateSession(e)}
               >
@@ -165,7 +170,7 @@ const TalentSignUp1: React.FC = () => {
             <Button onClick={() => history.push('/talent-signup-0')}>
               Zurück
             </Button>
-            <Button type="submit" value="Submit" form="residence-form">
+            <Button type="submit" value="Submit" form="country-form">
               Submit
             </Button>
           </div>

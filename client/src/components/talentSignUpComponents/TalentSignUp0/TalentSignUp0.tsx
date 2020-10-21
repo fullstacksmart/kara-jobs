@@ -12,6 +12,7 @@ const TalentSignUp0: React.FC = () => {
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
 
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  console.log(talent);
 
   useEffect(() => {
     const firstName = document.getElementById('firstName') as HTMLInputElement;
@@ -38,20 +39,14 @@ const TalentSignUp0: React.FC = () => {
     );
   };
 
-  // const postToDB = (talentObj: any) => {
-  //   console.log(talentObj);
-  // };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const talentObj = {
       ...talent,
       ...info,
-      onboarding_page: 1,
+      onboardingPage: 1,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    // post to DB: only post relevant data of this page
-    //postToDB(talentObj);
     history.push('/talent-signup-1');
   };
 

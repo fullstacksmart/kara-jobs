@@ -2,17 +2,13 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from '../Home';
 // import SignUp from '../SignUp';
-import TalentSignUp from '../TalentSignUp';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import JobSearch from '../JobSearch';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../services/reducers';
 import Loading from '../../components/Loading';
-import Success from '../../components/Success';
 import TalentRegistration from '../../components/Registration/TalentRegistration';
 import EmployerRegistration from '../../components/Registration/EmployerRegistration';
-import TalentSignup from '../TalentSignUp';
-//import EmployerSignup from '../EmployerSignUp';
 import TalentSignUp0 from '../../components/talentSignUpComponents/TalentSignUp0';
 import TalentSignUp1 from '../../components/talentSignUpComponents/TalentSignUp1';
 import TalentSignUp2 from '../../components/talentSignUpComponents/TalentSignUp2';
@@ -25,18 +21,15 @@ import TalentSignUp8 from '../../components/talentSignUpComponents/TalentSignUp8
 import EmployerSignUp0 from '../../components/EmployerSignUpComponents/EmployerSignUp0';
 import EmployerSignUp1 from '../../components/EmployerSignUpComponents/EmployerSignUp1';
 import EmployerSignUp2 from '../../components/EmployerSignUpComponents/EmployerSignUp2';
+import EmployerSignUp3 from '../../components/EmployerSignUpComponents/EmployerSignUp3';
 import Login from '../../components/Registration/Login';
+import EmployerSignUp4 from '../../components/EmployerSignUpComponents/EmployerSignUp4';
+import EmployerSignUp5 from '../../components/EmployerSignUpComponents/EmployerSignUp5';
 
 const Router: React.FC<unknown> = () => {
   const auth = useSelector<RootState>((state) => state.firebase.auth);
   const paths = isEmpty(auth)
     ? [
-        <Route
-          key="signup"
-          path="/signup"
-          exact
-          component={TalentSignup}
-        ></Route>,
         <Route
           key="/talent-signup-0"
           path="/talent-signup-0"
@@ -109,6 +102,24 @@ const Router: React.FC<unknown> = () => {
           exact
           component={EmployerSignUp2}
         ></Route>,
+        <Route
+          key="/employer-signup-3"
+          path="/employer-signup-3"
+          exact
+          component={EmployerSignUp3}
+        ></Route>,
+        <Route
+          key="/employer-signup-4"
+          path="/employer-signup-4"
+          exact
+          component={EmployerSignUp4}
+        ></Route>,
+        <Route
+          key="/employer-signup-5"
+          path="/employer-signup-5"
+          exact
+          component={EmployerSignUp5}
+        ></Route>,
       ]
     : [
         <Route
@@ -116,12 +127,6 @@ const Router: React.FC<unknown> = () => {
           path="/jobsearch"
           exact
           component={JobSearch}
-        ></Route>,
-        <Route
-          key="signup"
-          path="/signup"
-          exact
-          component={TalentSignup}
         ></Route>,
         <Route
           key="/talent-signup-0"
@@ -201,7 +206,6 @@ const Router: React.FC<unknown> = () => {
   ) : (
     <>
       <Route path="/" exact component={Home}></Route>
-      <Route path="/signedIn" exact component={Success}></Route>
       <Route path="/sign-in" exact component={Login}></Route>
       <Route
         path="/talent-sign-up"

@@ -2,13 +2,13 @@ import { TalentActions } from '../actions/talentActions';
 import { Talent } from '../../types/talent';
 
 const initialState: Talent = {
-  uid: '',
-  email: '',
-  onbarding_page: 0,
+  id: '',
+  onboardingPage: 0,
+  onboardingComplete: false,
   firstName: '',
   lastName: '',
   isoCode: '',
-  residence: '',
+  country: '',
   zipCode: '',
   city: '',
   occupationId: '',

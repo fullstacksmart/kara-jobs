@@ -54,6 +54,11 @@ const TalentSignUp5: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const talentObj = {
+      ...talent,
+      onboardingPage: 6,
+    };
+    sessionStorage.setItem('talent', JSON.stringify(talentObj));
     history.push('/talent-signup-6');
   };
 
@@ -77,7 +82,6 @@ const TalentSignUp5: React.FC = () => {
         function progress(snapshot) {
           const percentage = snapshot.bytesTransferred / snapshot.totalBytes;
           if (percentage === 1) {
-            console.log('here at 1');
             downloadImage();
           }
         },

@@ -94,7 +94,7 @@ const TalentSignUp6: React.FC = () => {
     const talentObj = {
       ...talent,
       ...info,
-      onboarding_page: page,
+      onboardingPage: page,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     // post to DB
