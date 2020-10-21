@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../services/reducers';
+import 'firebase/storage';
 
 const TalentSignUp5: React.FC = () => {
   const history = useHistory();

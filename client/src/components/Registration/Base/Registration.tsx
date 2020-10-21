@@ -107,6 +107,10 @@ const Registration: React.FC<RegistrationProps> = ({
         alert(
           'Es konnte kein Benutzer für Ihre Daten gefunden werden. Bitte klicken Sie unten auf Registrieren.',
         );
+      } else if (error.message.includes('The email address is already')) {
+        alert(
+          'Es gibt bereits einen Benutzer mit dieser E-Mail Adresse. Bitte loggen Sie sich ein.',
+        );
       }
     }
   };
