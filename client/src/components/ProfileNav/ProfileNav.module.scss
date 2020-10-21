@@ -1,0 +1,16 @@
+@import '/Users/dev/Documents/projects/codeworks/senior/thesis/kara/client/src/sass/globals';
+
+li {
+  align-items: center;
+  display: flex;
+
+  div {
+    width: 4rem;
+  }
+}
+
+ul {
+  li {
+    padding-bottom: 2rem;
+  }
+}
