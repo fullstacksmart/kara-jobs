@@ -3,7 +3,7 @@ import styles from './ProfileLayoutHeader.module.scss';
 import SearchBox from '../SearchBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faComments } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import StyledLink from '../StyledLink';
 
 const ProfileLayoutHeader: React.FC<unknown> = () => {
   return (
@@ -13,16 +13,16 @@ const ProfileLayoutHeader: React.FC<unknown> = () => {
         <SearchBox height="2.2rem" />
       </div>
       <div className={styles.Half}>
-        <Link className={styles.Link} to="">
+        <StyledLink to="">
           <div>
             <FontAwesomeIcon icon={faComments} size="3x" />
           </div>
-        </Link>
-        <Link to="" className={styles.Link}>
+        </StyledLink>
+        <StyledLink to="">
           <div>
             <FontAwesomeIcon icon={faUserCircle} size="3x" />
           </div>
-        </Link>
+        </StyledLink>
       </div>
     </div>
   );
