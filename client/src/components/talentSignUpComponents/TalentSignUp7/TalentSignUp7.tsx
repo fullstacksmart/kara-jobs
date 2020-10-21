@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styles from './TalentSignUp7.module.scss';
 import Form from '../../Form';
-import RadioInput from '../../RadioInput';
 import Button from '../../Button';
+import RadioInputHorizontal from '../../RadioInputHorizontal';
 import { useHistory } from 'react-router-dom';
 import Label from '../../Label';
 import Select from '../../Select';
 import Option from '../../Option';
+import BlueWrapper from '../../../containers/BlueWrapper';
+import ProgressBar from '../../ProgressBar';
+import logo from '../../../assets/logos/kara_lightblue.png';
 
 const TalentSignUp7: React.FC = () => {
   const history = useHistory();
@@ -105,47 +108,75 @@ const TalentSignUp7: React.FC = () => {
   ];
 
   return (
-    <div className={styles.TalentSignUp7}>
-      <Form onSubmit={handleSubmit} id="approbation-feedback-form">
-        <p>Hast du schon Rückmeldung von der Behörde erhalten?</p>
-        <RadioInput
-          labelText="Ja"
-          id="true"
-          name="true"
-          value="true"
-          checked={info.approbationFeedbackFlag === true}
-          onChange={() => handleChange(true)}
-        ></RadioInput>
-        <RadioInput
-          labelText="Nein"
-          id="false"
-          name="false"
-          value="false"
-          checked={info.approbationFeedbackFlag === false}
-          onChange={() => handleChange(false)}
-        ></RadioInput>
-        <Label htmlFor="approbationStatus">
-          Was ist der letzte Status deiner Anerkennung?
-        </Label>
-        <Select
-          id="approbationStatus"
-          value={info.approbationStatus}
-          onChange={(e) => handleChange(e)}
-          onBlur={(e) => updateSession(e)}
-          disabled
-        >
-          {optArray.map((opt) => (
-            <Option key={opt} value={opt}>
-              {opt}
-            </Option>
-          ))}
-        </Select>
-      </Form>
-      <Button onClick={() => history.push('/talent-signup-6')}>Zurück</Button>
-      <Button type="submit" value="Submit" form="approbation-feedback-form">
-        Submit
-      </Button>
-    </div>
+    <BlueWrapper>
+      <div className={styles.TalentSignUp7}>
+        <div className={styles.FormHeader}>
+          <img src={logo} className={styles.Logo} />
+          <ProgressBar profil={false} anerkennung={true} dokumente={false} />
+        </div>
+        <div className={styles.FormWrapper}>
+          <div className={styles.FormContainer}>
+            <Form onSubmit={handleSubmit} id="approbation-feedback-form">
+              <div className={styles.Text}>
+                Hast du schon Rückmeldung von der Behörde erhalten?
+              </div>
+              <div className={styles.RadioContainer}>
+                <div className={styles.ItemContainer}>
+                  <RadioInputHorizontal
+                    labelText="Ja"
+                    id="true"
+                    name="true"
+                    value="true"
+                    checked={info.approbationFeedbackFlag === true}
+                    onChange={() => handleChange(true)}
+                  ></RadioInputHorizontal>
+                </div>
+                <div className={styles.ItemContainer}>
+                  <RadioInputHorizontal
+                    labelText="Nein"
+                    id="false"
+                    name="false"
+                    value="false"
+                    checked={info.approbationFeedbackFlag === false}
+                    onChange={() => handleChange(false)}
+                  ></RadioInputHorizontal>
+                </div>
+              </div>
+              <div className={styles.DropDownContainer}>
+                <Label htmlFor="approbationStatus">
+                  Was ist der letzte Status deiner Anerkennung?
+                </Label>
+                <Select
+                  id="approbationStatus"
+                  value={info.approbationStatus}
+                  onChange={(e) => handleChange(e)}
+                  onBlur={(e) => updateSession(e)}
+                  disabled
+                >
+                  {optArray.map((opt) => (
+                    <Option key={opt} value={opt}>
+                      {opt}
+                    </Option>
+                  ))}
+                </Select>
+              </div>
+            </Form>
+          </div>
+          <div className={styles.ButtonWrapper}>
+            <Button onClick={() => history.push('/talent-signup-6')}>
+              Zurück
+            </Button>
+            <Button
+              type="submit"
+              value="Submit"
+              form="approbation-feedback-form"
+            >
+              Submit
+            </Button>
+          </div>
+        </div>
+      </div>
+    </BlueWrapper>
   );
 };
 

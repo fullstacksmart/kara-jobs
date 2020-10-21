@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './RadioInput.module.scss';
+import styles from './RadioInputHorizontal.module.scss';
 
-interface RadioInputProps {
+interface RadioInputHorizontalProps {
   labelText: string;
   id: string;
   name: string;
@@ -10,8 +10,8 @@ interface RadioInputProps {
   onChange: () => void;
 }
 
-const RadioInput: React.FC<
-  RadioInputProps & React.HTMLAttributes<HTMLDivElement>
+const RadioInputHorizontal: React.FC<
+  RadioInputHorizontalProps & React.HTMLAttributes<HTMLDivElement>
 > = ({
   labelText,
   id,
@@ -20,9 +20,9 @@ const RadioInput: React.FC<
   checked,
   onChange,
   ...props
-}: RadioInputProps) => {
+}: RadioInputHorizontalProps) => {
   return (
-    <div className={styles.RadioInput}>
+    <div className={styles.RadioInputHorizontal}>
       <input
         type="radio"
         id={id}
@@ -32,10 +32,9 @@ const RadioInput: React.FC<
         onChange={onChange}
         {...props}
       ></input>
-      <br />
       <label htmlFor={id}>{labelText}</label>
     </div>
   );
 };
 
-export default RadioInput;
+export default RadioInputHorizontal;
