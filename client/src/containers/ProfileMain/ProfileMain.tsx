@@ -53,6 +53,7 @@ const ProfileMain: React.FC<unknown> = () => {
       <AboutMe title="Über Dich" />
       <TalentExperience experiences={experiences} />
       <ArrayFrame items={[]} header="Deine Ausbildung" />
+
     </div>
   );
 };

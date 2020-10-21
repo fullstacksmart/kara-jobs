@@ -7,6 +7,8 @@ import Form from '../../Form';
 import Select from '../../Select';
 import Label from '../../Label';
 import Option from '../../Option';
+import ProgressBar from '../../ProgressBarEmployer';
+import logo from '../../../assets/logos/kara_gradient.png';
 import { useHistory } from 'react-router-dom';
 
 const EmployerSignUp1: React.FC = () => {
@@ -113,43 +115,53 @@ const EmployerSignUp1: React.FC = () => {
   return (
     <BlueWrapper>
       <div className={styles.EmployerSignUp1}>
-        <Form onSubmit={handleSubmit}>
-          <TextInput
-            id="companyName"
-            labelText="Name der Einrichtung/Firma*"
-            onChange={(e) => handleChange(e)}
-            onBlur={(e) => updateSession(e)}
-            required={true}
-          ></TextInput>
-          <Label htmlFor="sector">Branche*</Label>
-          <Select
-            id="sector"
-            value={selectedSector}
-            onChange={(e) => handleSelectedSector(e)}
-            onBlur={(e) => updateSession(e)}
-            required={true}
-          >
-            {sectorList.map((sector, key) => (
-              <Option key={key} value={sector.name}>
-                {sector.name}
-              </Option>
-            ))}
-          </Select>
-          <Label htmlFor="type">Art der Einrichtung*</Label>
-          <Select
-            id="type"
-            value={selectedType}
-            onChange={(e) => handleSelectedType(e)}
-            onBlur={(e) => updateSession(e)}
-          >
-            {types.map((type, key) => (
-              <Option key={key} value={type}>
-                {type}
-              </Option>
-            ))}
-          </Select>
-          <Button>Weiter</Button>
-        </Form>
+        <div className={styles.FormHeader}>
+          <img src={logo} className={styles.Logo} />
+          <ProgressBar
+            angaben={true}
+            talentsuche={false}
+            bewerbungsmanagement={false}
+          />
+        </div>
+        <div className={styles.FormWrapper}>
+          <Form onSubmit={handleSubmit} className={styles.Form}>
+            <TextInput
+              id="companyName"
+              labelText="Name der Einrichtung/Firma*"
+              onChange={(e) => handleChange(e)}
+              onBlur={(e) => updateSession(e)}
+              required={true}
+            ></TextInput>
+            <Label htmlFor="sector">Branche*</Label>
+            <Select
+              id="sector"
+              value={selectedSector}
+              onChange={(e) => handleSelectedSector(e)}
+              onBlur={(e) => updateSession(e)}
+              required={true}
+            >
+              {sectorList.map((sector, key) => (
+                <Option key={key} value={sector.name}>
+                  {sector.name}
+                </Option>
+              ))}
+            </Select>
+            <Label htmlFor="type">Art der Einrichtung*</Label>
+            <Select
+              id="type"
+              value={selectedType}
+              onChange={(e) => handleSelectedType(e)}
+              onBlur={(e) => updateSession(e)}
+            >
+              {types.map((type, key) => (
+                <Option key={key} value={type}>
+                  {type}
+                </Option>
+              ))}
+            </Select>
+            <Button>Weiter</Button>
+          </Form>
+        </div>
       </div>
     </BlueWrapper>
   );

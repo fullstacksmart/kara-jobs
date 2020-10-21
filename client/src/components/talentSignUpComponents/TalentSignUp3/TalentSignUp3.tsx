@@ -7,16 +7,19 @@ import Option from '../../Option';
 import Select from '../../Select';
 import Button from '../../Button';
 import BlueWrapper from '../../../containers/BlueWrapper';
-import ProgressBar from '../../ProgressBar';
-import logo from '../../../assets/logos/kara_lightblue.png';
+import ProgressBar from '../../ProgressBarTalent';
+import logo from '../../../assets/logos/kara_gradient.png';
 import { useHistory } from 'react-router-dom';
 import dbService from '../../../services/dbService';
+import { Talent } from '../../../types/talent';
 
 const optArray = ['Arbeitssuchend', 'Teilzeit', 'Vollzeit'];
 
 const TalentSignUp3: React.FC = () => {
   const history = useHistory();
-  const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  const talent = JSON.parse(
+    sessionStorage.getItem('talent') as string,
+  ) as Talent;
 
   const [info, setInfo] = useState({
     positionName: '',
@@ -31,12 +34,14 @@ const TalentSignUp3: React.FC = () => {
     const employerNameHTML = document.getElementById(
       'employerName',
     ) as HTMLInputElement;
-    if (talent) {
-      if (talent.positionName) positionNameHTML.value = talent.positionName;
-      if (talent.employerName) employerNameHTML.value = talent.employerName;
+    if (talent && talent.registrationExperience) {
+      if (talent.registrationExperience.positionName)
+        positionNameHTML.value = talent.registrationExperience.positionName;
+      if (talent.registrationExperience.employerName)
+        employerNameHTML.value = talent.registrationExperience.employerName;
       setInfo({
-        occupationStatusId: talent.occupationStatusId
-          ? talent.occupationStatusId
+        occupationStatusId: talent.registrationExperience.occupationStatusId
+          ? talent.registrationExperience.occupationStatusId
           : 1,
         positionName: positionNameHTML.value,
         employerName: employerNameHTML.value,
@@ -51,11 +56,13 @@ const TalentSignUp3: React.FC = () => {
   ) => {
     sessionStorage.setItem(
       'talent',
-      JSON.stringify(
-        Object.assign(talent, {
+      JSON.stringify({
+        ...talent,
+        registrationExperience: {
+          ...talent.registrationExperience,
           [e.currentTarget.id]: e.currentTarget.value,
-        }),
-      ),
+        },
+      }),
     );
   };
 
@@ -91,18 +98,18 @@ const TalentSignUp3: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const talentObj = {
+    const talentForDB = {
       ...talent,
-      ...info,
+      registrationExperience: {
+        ...talent.registrationExperience,
+        ...info,
+        TalentId: talent.id,
+      },
       onboardingPage: 5,
     };
-    sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    const talentForDB = {
-      ...talentObj,
-      TalentId: talentObj.id,
-    };
+    sessionStorage.setItem('talent', JSON.stringify(talentForDB));
     dbService
-      .postToDB(`/talents/${talentObj.id}/signup`, talentForDB)
+      .postSignup(`/talents/${talentForDB.id}/signup`, talentForDB)
       .then((res) => console.log(res))
       .catch((e) => console.error(e));
     history.push('/talent-signup-5');

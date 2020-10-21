@@ -4,14 +4,17 @@ import BlueWrapper from '../../../containers/BlueWrapper';
 import TextInput from '../../TextInput';
 import Button from '../../Button';
 import Form from '../../Form';
-import logo from '../../../assets/logos/kara_lightblue.png';
+import logo from '../../../assets/logos/kara_gradient.png';
 import { useHistory } from 'react-router-dom';
+import { Talent } from '../../../types/talent';
 
 const TalentSignUp0: React.FC = () => {
   const history = useHistory();
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
 
-  const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  const talent = JSON.parse(
+    sessionStorage.getItem('talent') as string,
+  ) as Talent;
 
   useEffect(() => {
     const firstName = document.getElementById('firstName') as HTMLInputElement;
@@ -44,7 +47,7 @@ const TalentSignUp0: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const talentObj = {
+    const talentObj: Talent = {
       ...talent,
       ...info,
       onboardingPage: 1,

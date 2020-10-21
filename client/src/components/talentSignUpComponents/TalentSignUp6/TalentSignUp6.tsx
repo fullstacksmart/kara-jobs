@@ -8,17 +8,20 @@ import Label from '../../Label';
 import Select from '../../Select';
 import Option from '../../Option';
 import BlueWrapper from '../../../containers/BlueWrapper';
-import ProgressBar from '../../ProgressBar';
+import ProgressBar from '../../ProgressBarTalent';
 import logo from '../../../assets/logos/kara_lightblue.png';
+import { Talent } from '../../../types/talent';
 
 const TalentSignUp6: React.FC = () => {
   const history = useHistory();
   const [info, setInfo] = useState({
-    approbationStartedFlag: false,
+    approbationStarted: false,
     approbationFederalState: '',
   });
 
-  const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  const talent = JSON.parse(
+    sessionStorage.getItem('talent') as string,
+  ) as Talent;
 
   const setDropdown = (flag: boolean) => {
     const dropdown = document.getElementById(
@@ -29,52 +32,72 @@ const TalentSignUp6: React.FC = () => {
     } else if (flag === false) {
       dropdown.setAttribute('disabled', 'true');
       setInfo({
-        approbationStartedFlag: flag,
+        approbationStarted: flag,
         approbationFederalState: '',
       });
     }
   };
 
   useEffect(() => {
-    if (
-      talent &&
-      talent.approbationStartedFlag !== undefined &&
-      talent.approbationFederalState !== undefined
-    ) {
-      setInfo({
-        approbationStartedFlag: talent.approbationStartedFlag,
-        approbationFederalState: talent.approbationFederalState,
-      });
-      if (talent.approbationStartedFlag === true) setDropdown(true);
+    if (talent && talent.approbations) {
+      if (
+        talent.approbations[0].approbationStarted &&
+        talent.approbations[0].approbationFederalState
+      ) {
+        setInfo({
+          approbationStarted: talent.approbations[0].approbationStarted,
+          approbationFederalState:
+            talent.approbations[0].approbationFederalState,
+        });
+      }
+      if (talent.approbations[0].approbationStarted) setDropdown(true);
     }
   }, []);
 
   const updateSession = (
     e: React.FormEvent<HTMLSelectElement> | boolean,
   ): void => {
+    if (!talent.approbations) {
+      talent.approbations = [{ approbationStarted: false }];
+    }
     if (typeof e === 'boolean') {
       sessionStorage.setItem(
         'talent',
-        JSON.stringify(Object.assign(talent, { approbationStartedFlag: e })),
+        JSON.stringify({
+          ...talent,
+          approbations: [
+            {
+              ...talent.approbations[0],
+              approbationStarted: e,
+              approbationFederalState: info.approbationFederalState,
+            },
+          ],
+        }),
       );
     } else {
       sessionStorage.setItem(
         'talent',
-        JSON.stringify(
-          Object.assign(talent, {
-            approbationFederalState: e.currentTarget.value,
-          }),
-        ),
+        JSON.stringify({
+          ...talent,
+          approbations: [
+            {
+              ...talent.approbations[0],
+              approbationStarted: info.approbationStarted,
+              approbationFederalState: e.currentTarget.value,
+            },
+          ],
+        }),
       );
     }
   };
+
   const handleChange = (
     e: React.FormEvent<HTMLSelectElement> | boolean,
   ): void => {
     if (typeof e === 'boolean') {
       if (e === true) {
         setInfo({
-          approbationStartedFlag: e,
+          approbationStarted: e,
           approbationFederalState: info.approbationFederalState,
         });
       }
@@ -82,23 +105,25 @@ const TalentSignUp6: React.FC = () => {
       updateSession(e);
     } else {
       setInfo({
-        approbationStartedFlag: info.approbationStartedFlag,
+        approbationStarted: info.approbationStarted,
         approbationFederalState: e.currentTarget.value,
       });
     }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const page = info.approbationStartedFlag ? 7 : 8;
     e.preventDefault();
+    const page = info.approbationStarted ? 7 : 8;
+    if (!talent.approbations) {
+      talent.approbations = [{ approbationStarted: false }];
+    }
     const talentObj = {
       ...talent,
-      ...info,
+      approbations: [{ ...talent.approbations[0], ...info }],
       onboardingPage: page,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    // post to DB
-    info.approbationStartedFlag
+    info.approbationStarted
       ? history.push('/talent-signup-7')
       : history.push('/talent-signup-8');
   };
@@ -116,7 +141,7 @@ const TalentSignUp6: React.FC = () => {
     'Schleswig-Holstein',
     'Mecklenburg-Vorpommern',
     'Thüringen',
-    'Sachen',
+    'Sachsen',
     'Sachsen-Anhalt',
     'Bremen',
     'Baden-Württemberg',
@@ -143,7 +168,7 @@ const TalentSignUp6: React.FC = () => {
                   id="true"
                   name="true"
                   value="true"
-                  checked={info.approbationStartedFlag === true}
+                  checked={info.approbationStarted === true}
                   onChange={() => handleChange(true)}
                 ></RadioInputHorizontal>
               </div>
@@ -153,14 +178,14 @@ const TalentSignUp6: React.FC = () => {
                   id="false"
                   name="false"
                   value="false"
-                  checked={info.approbationStartedFlag === false}
+                  checked={info.approbationStarted === false}
                   onChange={() => handleChange(false)}
                 ></RadioInputHorizontal>
               </div>
             </div>
             <div className={styles.DropDownContainer}>
               <Label htmlFor="approbationFederalState">
-                Erwartetes Abschlussjahr*
+                In welchem Bundesland?
               </Label>
               <Select
                 id="approbationFederalState"

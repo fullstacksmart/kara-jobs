@@ -4,17 +4,22 @@ import Label from '../../Label';
 import Option from '../../Option';
 import Select from '../../Select';
 import Button from '../../Button';
+import BlueWrapper from '../../../containers/BlueWrapper';
+import ProgressBar from '../../ProgressBarTalent';
+import logo from '../../../assets/logos/kara_gradient.png';
+import trash from '../../../assets/icons/trash.png';
 import { useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../services/reducers';
 import styles from './TalentSignUp8.module.scss';
+import dbService from '../../../services/dbService';
 
 const optArray = [
   '',
   'Annerkennungsbescheid',
   'Sprachzertifikat',
-  'Abschlusszeugnis(Uni-Ausbildung)',
+  'Abschlusszeugnis (Uni-Ausbildung)',
   'Arbeitszeugnis',
   'Zertifikate-Bescheinigung',
 ];
@@ -88,13 +93,18 @@ const TalentSignUp8: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const talentObj = {
+    const talentForDB = {
       ...talent,
       onboardingPage: 9,
       onboardingComplete: true,
     };
-    sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    //TO DO: enter path to profile
+    sessionStorage.setItem('talent', JSON.stringify(talentForDB));
+    //TO DOs:
+    //enter path to profile, fill redux
+    dbService
+      .postSignup(`/talents/${talentForDB.id}/signup`, talentForDB)
+      .then((res) => console.log(res))
+      .catch((e) => console.error(e));
     history.push('/');
   };
 
@@ -115,40 +125,70 @@ const TalentSignUp8: React.FC = () => {
   }
 
   return (
-    <div className={styles.TalentSignUp8}>
-      <Form onSubmit={handleSubmit} id="document-form">
-        <Label htmlFor="document">Dokumentart</Label>
-        <Select id="document" value={info.document} onChange={handleChange}>
-          {optArray.map((opt) => (
-            <Option key={opt} value={opt}>
-              {opt}
-            </Option>
-          ))}
-        </Select>
-        <input type="file" id="input"></input>
-        <Button onClick={handleFiles}>Hochladen</Button>
-      </Form>
-      <div id="uploaded-documents-wrapper">
-        <p>Hochgeladene Dokumente*</p>
-        <div id="uploaded-documents">
-          {list.map((el) => {
-            return (
-              <div key={el}>
-                <p id={el}>{el}</p>
-                <Button id={`delete-${el}`} onClick={deleteDoc.bind(el)}>
-                  Delete
-                </Button>
-              </div>
-            );
-          })}
+    <BlueWrapper>
+      <div className={styles.TalentSignUp8}>
+        <div className={styles.FormHeader}>
+          <img src={logo} className={styles.Logo} />
+          <ProgressBar profil={false} anerkennung={false} dokumente={true} />
+        </div>
+        <div className={styles.FormWrapper}>
+          <Form onSubmit={handleSubmit} id="document-form">
+            <div className={styles.DropDownContainer}>
+              <Label htmlFor="document">Dokumentart</Label>
+              <Select
+                id="document"
+                value={info.document}
+                onChange={handleChange}
+              >
+                {optArray.map((opt) => (
+                  <Option key={opt} value={opt}>
+                    {opt}
+                  </Option>
+                ))}
+              </Select>
+            </div>
+            <div className={styles.InputWrapper}>
+              <input type="file" id="input" className={styles.Input}></input>
+            </div>
+            <div className={styles.SingleButtonWrapper}>
+              <Button onClick={handleFiles}>Hochladen</Button>
+            </div>
+          </Form>
+          <div
+            id="uploaded-documents-wrapper"
+            className={styles.UploadedDocsWrapper}
+          >
+            <div className={styles.TextDocument}>Hochgeladene Dokumente*</div>
+            <div id="uploaded-documents" className={styles.Documents}>
+              {list.map((el) => {
+                return (
+                  <div key={el} className={styles.DocumentItem}>
+                    <div className={styles.DeleteButtonWrapper}>
+                      <Button id={`delete-${el}`} onClick={deleteDoc.bind(el)}>
+                        <img src={trash} className={styles.TrashIcon} />
+                      </Button>
+                    </div>
+                    <div id={el}>{el}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className={styles.ButtonWrapper}>
+            <Button onClick={() => history.push('/talent-signup-6')}>
+              Zurück
+            </Button>
+            <Button type="submit" value="Submit" form="document-form">
+              Submit
+            </Button>
+          </div>
+          <div className={styles.Text}>
+            *Du kannst Dokumente auch noch zu einem späteren Zeitpunkt
+            hinzufügen
+          </div>
         </div>
       </div>
-      <Button onClick={() => history.push('/talent-signup-6')}>Zurück</Button>
-      <Button type="submit" value="Submit" form="document-form"></Button>
-      <p>
-        *Du kannst Dokumente auch noch zu einem späteren Zeitpunkt hinzufügen
-      </p>
-    </div>
+    </BlueWrapper>
   );
 };
 

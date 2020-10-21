@@ -1,0 +1,46 @@
+@import '../../sass/globals';
+
+.ProgressBar {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+
+  .WhiteCircle {
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+  }
+
+  .ActiveCircle {
+    background-color: $kara-light-blue;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+  }
+
+  .Text {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .StatusContainer {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 7rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media only screen and (max-width: 864px) {      
+  .ProgressBar {
+    max-width: 26rem;
+  }
+}

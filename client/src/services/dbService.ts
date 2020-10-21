@@ -1,4 +1,4 @@
-import { incompleteTalent } from '../types/talent';
+import { Talent } from '../types/talent';
 
 // TO DO: Replace with .env
 const root = 'http://localhost:3001';
@@ -11,7 +11,7 @@ function fetchRequest(path: string, options: any) {
     });
 }
 
-function postToDB(path: string, body: incompleteTalent) {
+function postSignup(path: string, body: Talent) {
   console.log(path, body);
   return fetchRequest(path, {
     method: 'POST',
@@ -23,5 +23,5 @@ function postToDB(path: string, body: incompleteTalent) {
 }
 
 export default {
-  postToDB,
+  postSignup,
 };
