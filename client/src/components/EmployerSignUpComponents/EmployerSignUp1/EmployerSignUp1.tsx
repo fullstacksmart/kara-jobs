@@ -11,52 +11,30 @@ import { useHistory } from 'react-router-dom';
 
 const EmployerSignUp1: React.FC = () => {
   const history = useHistory();
-  const [info, setInfo] = useState({ companyName: '', sector: '', type: '' });
+  const [info, setInfo] = useState({ companyName: '' });
+  const [selectedSector, setSelectedSector] = useState('');
+  const [selectedType, setSelectedType] = useState('');
+  const [types, setTypes] = useState([]);
 
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
+  console.log(employer);
 
   useEffect(() => {
     const companyName = document.getElementById(
       'companyName',
     ) as HTMLInputElement;
-    const sector = document.getElementById('sector') as HTMLInputElement;
-    const type = document.getElementById('type') as HTMLInputElement;
     if (employer) {
       if (employer.companyName !== undefined)
         companyName.value = employer.companyName;
-      if (employer.sector !== undefined) sector.value = employer.sector;
-      if (employer.type !== undefined) type.value = employer.type;
     }
   }, []);
 
   const handleChange = (
     e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
   ) => {
-    switch (e.currentTarget.id) {
-      case 'companyName':
-        setInfo({
-          companyName: e.currentTarget.value,
-          sector: info.sector,
-          type: info.type,
-        });
-        break;
-      case 'sector':
-        setInfo({
-          companyName: info.companyName,
-          sector: e.currentTarget.value,
-          type: info.type,
-        });
-        break;
-      case 'type':
-        setInfo({
-          companyName: info.companyName,
-          sector: info.sector,
-          type: e.currentTarget.value,
-        });
-        break;
-      default:
-        break;
-    }
+    setInfo({
+      companyName: e.currentTarget.value,
+    });
   };
 
   const updateSession = (
@@ -74,6 +52,51 @@ const EmployerSignUp1: React.FC = () => {
     );
   };
 
+  const sectorObj: { [index: string]: any } = {
+    Pflege: [
+      'Krankenhaus',
+      'Pflegeheim',
+      'ambulanter Pflegedienst',
+      'Reha',
+      'Praxis',
+    ],
+    Medizin: [
+      'Krankenhaus',
+      'Arztpraxis',
+      'Medizinisches Forschungsinstitut',
+      'Sanatorium',
+    ],
+    'Personal & Beretung': [
+      'Personalvermittlung',
+      'Sprachschule',
+      'Migrationsrecht',
+      'Arbeitsrecht',
+      'Sonstige',
+    ],
+    Technologie: ['Sonstige'],
+  };
+
+  const sectorList = Object.keys(sectorObj).map((key) => ({
+    name: key,
+  }));
+
+  const handleSelectedSector = (
+    e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
+  ) => {
+    const sectorSel = e.currentTarget.value;
+    const typeSel = sectorSel !== '' ? sectorObj[sectorSel] : '';
+    setSelectedSector(sectorSel);
+    setTypes(typeSel);
+    setSelectedType('');
+  };
+
+  const handleSelectedType = (
+    e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
+  ) => {
+    const typeSel = e.currentTarget.value;
+    setSelectedType(typeSel);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const employerObj = {
@@ -87,18 +110,6 @@ const EmployerSignUp1: React.FC = () => {
     history.push('/employer-signup-2');
   };
 
-  const sectorArr = [
-    ['id1', 'sector1'],
-    ['id2', 'sector2'],
-    ['id3', 'sector3'],
-  ];
-
-  const typeArr = [
-    ['id1', 'type1'],
-    ['id2', 'type2'],
-    ['id3', 'type3'],
-  ];
-
   return (
     <BlueWrapper>
       <div className={styles.EmployerSignUp1}>
@@ -108,29 +119,32 @@ const EmployerSignUp1: React.FC = () => {
             labelText="Name der Einrichtung/Firma*"
             onChange={(e) => handleChange(e)}
             onBlur={(e) => updateSession(e)}
+            required={true}
           ></TextInput>
-          <Label htmlFor="sectors">Branche*</Label>
+          <Label htmlFor="sector">Branche*</Label>
           <Select
             id="sector"
-            value={info.sector}
-            onChange={handleChange}
+            value={selectedSector}
+            onChange={(e) => handleSelectedSector(e)}
             onBlur={(e) => updateSession(e)}
+            required={true}
           >
-            {sectorArr.map((opt) => (
-              <Option key={opt[0]} value={opt[1]}>
-                {opt[1]}
+            {sectorList.map((sector, key) => (
+              <Option key={key} value={sector.name}>
+                {sector.name}
               </Option>
             ))}
           </Select>
+          <Label htmlFor="type">Art der Einrichtung*</Label>
           <Select
             id="type"
-            value={info.type}
-            onChange={handleChange}
+            value={selectedType}
+            onChange={(e) => handleSelectedType(e)}
             onBlur={(e) => updateSession(e)}
           >
-            {typeArr.map((opt) => (
-              <Option key={opt[0]} value={opt[1]}>
-                {opt[1]}
+            {types.map((type, key) => (
+              <Option key={key} value={type}>
+                {type}
               </Option>
             ))}
           </Select>

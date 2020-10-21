@@ -120,11 +120,12 @@ const EmployerSignUp4: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // post to DB
-    history.push('/employer-signup-4');
+    history.push('/employer-signup-5');
   };
 
-  const optArray = ['low', 'medium', 'high'];
+  const optArray = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'Egal'];
 
+  console.log(employer);
   return (
     <div>
       <p>
@@ -163,7 +164,7 @@ const EmployerSignUp4: React.FC = () => {
         ></Checkbox>
         <p>Ausbildung / Studium bereits abgeschlossen?</p>
         <RadioInput
-          labelText="Ausbildung / Studium bereits abgeschlossen?"
+          labelText="Ja"
           id="1"
           name="1"
           value="1"
@@ -171,53 +172,53 @@ const EmployerSignUp4: React.FC = () => {
           onChange={() => handleChange('study-1')}
         ></RadioInput>
         <RadioInput
-          labelText="Arzt"
+          labelText="Nein"
+          id="0"
+          name="0"
+          value="0"
+          checked={talentStudyStatus.talentStudyStatus === 0}
+          onChange={() => handleChange('study-0')}
+        ></RadioInput>
+        <RadioInput
+          labelText="Egal"
           id="2"
           name="2"
           value="2"
           checked={talentStudyStatus.talentStudyStatus === 2}
           onChange={() => handleChange('study-2')}
         ></RadioInput>
-        <RadioInput
-          labelText="Sonstiges med Personal z.B. Laborassistent od. Physiotherapeut"
-          id="3"
-          name="3"
-          value="3"
-          checked={talentStudyStatus.talentStudyStatus === 3}
-          onChange={() => handleChange('study-3')}
-        ></RadioInput>
         <p>Anerkennungs / Approbationsbescheid bereits vorliegend?</p>
         <RadioInput
           labelText="Ja"
-          id="4"
-          name="4"
-          value="4"
+          id="1"
+          name="1"
+          value="1"
           checked={talentApprobStatus.talentApprobStatus === 1}
           onChange={() => handleChange('approb-1')}
         ></RadioInput>
         <RadioInput
           labelText="Nein"
-          id="5"
-          name="5"
-          value="5"
-          checked={talentApprobStatus.talentApprobStatus === 2}
+          id="0"
+          name="0"
+          value="0"
+          checked={talentApprobStatus.talentApprobStatus === 0}
           onChange={() => handleChange('approb-2')}
         ></RadioInput>
         <RadioInput
           labelText="Laufend"
-          id="6"
-          name="6"
-          value="6"
+          id="3"
+          name="3"
+          value="3"
           checked={talentApprobStatus.talentApprobStatus === 3}
           onChange={() => handleChange('approb-3')}
         ></RadioInput>
         <RadioInput
           labelText="Egal"
-          id="7"
-          name="7"
-          value="7"
-          checked={talentApprobStatus.talentApprobStatus === 4}
-          onChange={() => handleChange('approb-4')}
+          id="2"
+          name="2"
+          value="2"
+          checked={talentApprobStatus.talentApprobStatus === 2}
+          onChange={() => handleChange('approb-2')}
         ></RadioInput>
         <p>
           Minimum Deutschkenntnisse (wenn nicht durch Anerkennung bereits

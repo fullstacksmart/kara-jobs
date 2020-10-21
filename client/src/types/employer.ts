@@ -12,10 +12,12 @@ export interface Employer {
   zipCode: string;
   city: string;
   website: string;
-  searchDoctor: number;
-  searchNurse: number;
-  searchOther: number;
+  searchDoctor: boolean;
+  searchNurse: boolean;
+  searchOther: boolean;
   talentStudyStatus: number;
   talentAprobStatus: number;
   talentMinGerman: string;
+  agencyApplications: boolean;
+  internationalApplications: boolean;
 }

@@ -15,9 +15,10 @@ const EmployerSignUp0: React.FC = () => {
     const firstName = document.getElementById('firstName') as HTMLInputElement;
     const lastName = document.getElementById('lastName') as HTMLInputElement;
     if (employer) {
-      if (employer.firstName !== undefined)
+      if (employer.firstName && firstName.value)
         firstName.value = employer.firstName;
-      if (employer.lastName !== undefined) lastName.value = employer.lastName;
+      if (employer.lastName && lastName.value)
+        lastName.value = employer.lastName;
     }
   }, []);
 
@@ -60,14 +61,16 @@ const EmployerSignUp0: React.FC = () => {
             labelText="Vorname (Ansprechpartner)*"
             onChange={handleChange}
             onBlur={updateSession}
+            required={true}
           ></TextInput>
           <TextInput
             id="lastName"
             labelText="Nachname (Ansprechpartner)*"
             onChange={handleChange}
             onBlur={updateSession}
+            required={true}
           ></TextInput>
-          <Button>Weiter</Button>
+          <Button type="submit">Weiter</Button>
         </form>
       </div>
     </BlueWrapper>
