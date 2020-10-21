@@ -26,6 +26,7 @@ const EmployerSignUp5: React.FC = () => {
           internationalApplications: info.internationalApplications,
           specialistApplications: info.specialistApplications,
           approbationTraining: info.approbationTraining,
+          onboarding_page: 6,
         }),
       ),
     );
