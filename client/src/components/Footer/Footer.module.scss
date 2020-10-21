@@ -1,8 +1,10 @@
 @import '../../sass/globals';
 
 .Footer {
+  bottom: 0;
   color: $kara-dark-blue;
   font-size: 0.75rem;
   margin-top: 2rem;
   padding: 1rem;
+  position: absolute;
 }
