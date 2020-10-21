@@ -22,7 +22,6 @@ const TalentSignUp1: React.FC = () => {
   });
 
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
-  console.log(talent);
 
   useEffect(() => {
     const zipCodeHTML = document.getElementById('zipCode') as HTMLInputElement;
@@ -106,7 +105,6 @@ const TalentSignUp1: React.FC = () => {
       ...info,
       onboardingPage: 2,
     };
-    console.log(talentObj);
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     dbService
       .postToDB(`/talents/${talentObj.id}/signup`, talentObj)

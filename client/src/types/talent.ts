@@ -8,9 +8,9 @@ export interface Talent {
   country: string;
   zipCode: string;
   city: string;
-  occupationId: string;
+  occupationId: number;
   positionName: string;
-  occupationStatusId: string;
+  occupationStatusId: number;
   employerName: string;
   studyProgram: string;
   university: string;
@@ -24,18 +24,18 @@ export interface Talent {
 }
 
 export interface incompleteTalent {
-  id: string;
-  onboardingPage: number;
-  onboardingComplete: boolean;
+  id?: string;
+  onboardingPage?: number;
+  onboardingComplete?: boolean;
   firstName?: string;
   lastName?: string;
   isoCode?: string;
   country?: string;
   zipCode?: string;
   city?: string;
-  occupationId?: string;
+  occupationId?: number;
   positionName?: string;
-  occupationStatusId?: string;
+  occupationStatusId?: number;
   employerName?: string;
   studyProgram?: string;
   university?: string;
@@ -46,4 +46,5 @@ export interface incompleteTalent {
   approbationStatus?: string;
   createdAt?: string;
   updatedAt?: string;
+  TalentId?: string;
 }
