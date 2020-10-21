@@ -3,7 +3,7 @@ import styles from './TalentSignUp5.module.scss';
 import Form from '../../Form';
 import Button from '../../Button';
 import BlueWrapper from '../../../containers/BlueWrapper';
-import ProgressBar from '../../ProgressBar';
+import ProgressBar from '../../ProgressBarTalent';
 import logo from '../../../assets/logos/kara_gradient.png';
 import { useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';

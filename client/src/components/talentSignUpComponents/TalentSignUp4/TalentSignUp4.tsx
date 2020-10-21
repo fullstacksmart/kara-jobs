@@ -7,7 +7,7 @@ import Option from '../../Option';
 import Select from '../../Select';
 import Button from '../../Button';
 import BlueWrapper from '../../../containers/BlueWrapper';
-import ProgressBar from '../../ProgressBar';
+import ProgressBar from '../../ProgressBarTalent';
 import logo from '../../../assets/logos/kara_gradient.png';
 import { useHistory } from 'react-router-dom';
 

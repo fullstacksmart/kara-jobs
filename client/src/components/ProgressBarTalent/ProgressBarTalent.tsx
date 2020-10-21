@@ -1,17 +1,17 @@
 import React from 'react';
-import styles from './ProgressBar.module.scss';
+import styles from './ProgressBarTalent.module.scss';
 
-interface ProgressBarProps {
+interface ProgressBarTalentProps {
   profil: boolean;
   anerkennung: boolean;
   dokumente: boolean;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({
+const ProgressBarTalent: React.FC<ProgressBarTalentProps> = ({
   profil,
   anerkennung,
   dokumente,
-}: ProgressBarProps) => {
+}: ProgressBarTalentProps) => {
   return (
     <div className={styles.ProgressBar}>
       <div className={styles.StatusContainer}>
@@ -42,4 +42,4 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   );
 };
 
-export default ProgressBar;
+export default ProgressBarTalent;

@@ -5,7 +5,7 @@ import Form from '../../Form';
 import RadioInput from '../../RadioInput';
 import Button from '../../Button';
 import BlueWrapper from '../../../containers/BlueWrapper';
-import ProgressBar from '../../ProgressBar';
+import ProgressBar from '../../ProgressBarTalent';
 import logo from '../../../assets/logos/kara_gradient.png';
 import doctorIcon from '../../../assets/icons/doctor.png';
 import nurseIcon from '../../../assets/icons/nurse.png';
