@@ -10,6 +10,7 @@ import BlueWrapper from '../../../containers/BlueWrapper';
 import ProgressBar from '../../ProgressBar';
 import logo from '../../../assets/logos/kara_lightblue.png';
 import { useHistory } from 'react-router-dom';
+import dbService from '../../../services/dbService';
 
 const optArray = ['Arbeitssuchend', 'Teilzeit', 'Vollzeit'];
 
@@ -19,7 +20,7 @@ const TalentSignUp3: React.FC = () => {
 
   const [info, setInfo] = useState({
     positionName: '',
-    occupationStatusId: '',
+    occupationStatusId: 1,
     employerName: '',
   });
 
@@ -31,16 +32,15 @@ const TalentSignUp3: React.FC = () => {
       'employerName',
     ) as HTMLInputElement;
     if (talent) {
-      if (talent.positionName !== undefined)
-        positionNameHTML.value = talent.positionName;
-      if (talent.employerName !== undefined)
-        employerNameHTML.value = talent.employerName;
-      if (talent.occupationStatusId !== undefined)
-        setInfo({
-          occupationStatusId: talent.occupationStatusId,
-          positionName: talent.positionName,
-          employerName: talent.employerName,
-        });
+      if (talent.positionName) positionNameHTML.value = talent.positionName;
+      if (talent.employerName) employerNameHTML.value = talent.employerName;
+      setInfo({
+        occupationStatusId: talent.occupationStatusId
+          ? talent.occupationStatusId
+          : 1,
+        positionName: positionNameHTML.value,
+        employerName: employerNameHTML.value,
+      });
     }
   }, []);
 
@@ -73,7 +73,7 @@ const TalentSignUp3: React.FC = () => {
       case 'occupationStatusId':
         setInfo({
           positionName: info.positionName,
-          occupationStatusId: e.currentTarget.value,
+          occupationStatusId: parseInt(e.currentTarget.value),
           employerName: info.employerName,
         });
         break;
@@ -97,7 +97,14 @@ const TalentSignUp3: React.FC = () => {
       onboardingPage: 5,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    // post to DB (only relevant props from this page)
+    const talentForDB = {
+      ...talentObj,
+      TalentId: talentObj.id,
+    };
+    dbService
+      .postToDB(`/talents/${talentObj.id}/signup`, talentForDB)
+      .then((res) => console.log(res))
+      .catch((e) => console.error(e));
     history.push('/talent-signup-5');
   };
 
@@ -136,7 +143,7 @@ const TalentSignUp3: React.FC = () => {
                   required
                 >
                   {optArray.map((opt) => (
-                    <Option key={opt} value={opt}>
+                    <Option key={opt} value={optArray.indexOf(opt)}>
                       {opt}
                     </Option>
                   ))}

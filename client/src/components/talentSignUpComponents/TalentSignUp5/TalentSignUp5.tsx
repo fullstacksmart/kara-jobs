@@ -14,6 +14,7 @@ import 'firebase/storage';
 const TalentSignUp5: React.FC = () => {
   const history = useHistory();
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  console.log(talent);
 
   let profession = '';
   if (talent.occupationId === '0') {

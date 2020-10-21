@@ -13,7 +13,7 @@ import healthcareIcon from '../../../assets/icons/healthcare.png';
 
 const TalentSignUp2: React.FC = () => {
   const history = useHistory();
-  const [info, setInfo] = useState({ occupationId: '' });
+  const [info, setInfo] = useState({ occupationId: 1 });
 
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
 
@@ -23,14 +23,14 @@ const TalentSignUp2: React.FC = () => {
     }
   }, []);
 
-  const updateSession = (identifier: string): void => {
+  const updateSession = (identifier: number): void => {
     sessionStorage.setItem(
       'talent',
       JSON.stringify(Object.assign(talent, { occupationId: identifier })),
     );
   };
 
-  const handleOptionChange = (identifier: string): void => {
+  const handleOptionChange = (identifier: number): void => {
     setInfo({ occupationId: identifier });
     updateSession(identifier);
   };
@@ -43,7 +43,6 @@ const TalentSignUp2: React.FC = () => {
       onboardingPage: 3,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    // post to DB
     history.push('/talent-signup-3');
   };
 
@@ -62,22 +61,22 @@ const TalentSignUp2: React.FC = () => {
                 <img src={nurseIcon} className={styles.Icon} />
                 <RadioInput
                   labelText=" Krankenpfleger"
-                  id="0"
-                  name="0"
-                  value="0"
-                  checked={info.occupationId === '0'}
-                  onChange={() => handleOptionChange('0')}
+                  id="1"
+                  name="1"
+                  value="1"
+                  checked={info.occupationId === 1}
+                  onChange={() => handleOptionChange(1)}
                 ></RadioInput>
               </div>
               <div className={styles.IconContainer}>
                 <img src={doctorIcon} className={styles.Icon} />
                 <RadioInput
                   labelText=" Arzt"
-                  id="1"
-                  name="1"
-                  value="1"
-                  checked={info.occupationId === '1'}
-                  onChange={() => handleOptionChange('1')}
+                  id="2"
+                  name="2"
+                  value="2"
+                  checked={info.occupationId === 2}
+                  onChange={() => handleOptionChange(2)}
                 ></RadioInput>
               </div>
               <div className={styles.IconContainer}>
@@ -85,11 +84,11 @@ const TalentSignUp2: React.FC = () => {
                 <RadioInput
                   className={styles.HoverOverMe}
                   labelText=" Sonstiges med Personal"
-                  id="2"
-                  name="2"
-                  value="2"
-                  checked={info.occupationId === '2'}
-                  onChange={() => handleOptionChange('2')}
+                  id="3"
+                  name="3"
+                  value="3"
+                  checked={info.occupationId === 3}
+                  onChange={() => handleOptionChange(3)}
                 ></RadioInput>
               </div>
             </div>
