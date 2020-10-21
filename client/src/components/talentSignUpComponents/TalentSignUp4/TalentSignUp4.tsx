@@ -10,13 +10,17 @@ import BlueWrapper from '../../../containers/BlueWrapper';
 import ProgressBar from '../../ProgressBar';
 import logo from '../../../assets/logos/kara_lightblue.png';
 import { useHistory } from 'react-router-dom';
+import { Talent } from '../../../types/talent';
+import dbService from '../../../services/dbService';
 
 const current = new Date().getFullYear();
 const optArray = [current, current + 1, current + 2, current + 3];
 
 const TalentSignUp4: React.FC = () => {
   const history = useHistory();
-  const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  const talent = JSON.parse(
+    sessionStorage.getItem('talent') as string,
+  ) as Talent;
 
   const [info, setInfo] = useState({
     studyProgram: '',
@@ -31,20 +35,20 @@ const TalentSignUp4: React.FC = () => {
     const universityHTML = document.getElementById(
       'university',
     ) as HTMLInputElement;
-    if (talent) {
-      if (talent.studyProgram !== undefined)
-        studyProgramHTML.value = talent.studyProgram;
-      if (talent.university !== undefined)
-        universityHTML.value = talent.university;
-      if (
-        talent.expectedGraduationYear !== undefined &&
-        talent.expectedGraduationYear !== 0
-      )
-        setInfo({
-          expectedGraduationYear: talent.expectedGraduationYear,
-          studyProgram: talent.studyProgram,
-          university: talent.university,
-        });
+    if (talent && talent.registrationQualification) {
+      if (talent.registrationQualification.studyProgram)
+        studyProgramHTML.value = talent.registrationQualification.studyProgram;
+      if (talent.registrationQualification.university)
+        universityHTML.value = talent.registrationQualification.university;
+      setInfo({
+        expectedGraduationYear:
+          talent.registrationQualification.expectedGraduationYear &&
+          talent.registrationQualification.expectedGraduationYear !== 0
+            ? talent.registrationQualification.expectedGraduationYear
+            : current,
+        studyProgram: studyProgramHTML.value,
+        university: universityHTML.value,
+      });
     }
   }, []);
 
@@ -55,11 +59,13 @@ const TalentSignUp4: React.FC = () => {
   ) => {
     sessionStorage.setItem(
       'talent',
-      JSON.stringify(
-        Object.assign(talent, {
+      JSON.stringify({
+        ...talent,
+        registrationQualification: {
+          ...talent.registrationQualification,
           [e.currentTarget.id]: e.currentTarget.value,
-        }),
-      ),
+        },
+      }),
     );
   };
 
@@ -95,13 +101,20 @@ const TalentSignUp4: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const talentObj = {
+    const talentForDB = {
       ...talent,
-      ...info,
+      registrationQualification: {
+        ...talent.registrationQualification,
+        ...info,
+        TalentId: talent.id,
+      },
       onboardingPage: 5,
     };
-    sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    // post to DB (only relevant props from this page)
+    sessionStorage.setItem('talent', JSON.stringify(talentForDB));
+    dbService
+      .postSignup(`/talents/${talentForDB.id}/signup`, talentForDB)
+      .then((res) => console.log(res))
+      .catch((e) => console.error(e));
     history.push('/talent-signup-5');
   };
 

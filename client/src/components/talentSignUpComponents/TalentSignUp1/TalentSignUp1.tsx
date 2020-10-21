@@ -11,6 +11,7 @@ import ProgressBar from '../../ProgressBar';
 import logo from '../../../assets/logos/kara_lightblue.png';
 import { useHistory } from 'react-router-dom';
 import dbService from '../../../services/dbService';
+import { Talent } from '../../../types/talent';
 
 const TalentSignUp1: React.FC = () => {
   const history = useHistory();
@@ -21,7 +22,9 @@ const TalentSignUp1: React.FC = () => {
     city: '',
   });
 
-  const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  const talent = JSON.parse(
+    sessionStorage.getItem('talent') as string,
+  ) as Talent;
 
   useEffect(() => {
     const zipCodeHTML = document.getElementById('zipCode') as HTMLInputElement;
@@ -100,14 +103,14 @@ const TalentSignUp1: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const talentObj = {
+    const talentObj: Talent = {
       ...talent,
       ...info,
       onboardingPage: 2,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));
     dbService
-      .postToDB(`/talents/${talentObj.id}/signup`, talentObj)
+      .postSignup(`/talents/${talentObj.id}/signup`, talentObj)
       .then((res) => console.log(res));
     history.push('/talent-signup-2');
   };

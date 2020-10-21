@@ -10,23 +10,36 @@ import logo from '../../../assets/logos/kara_lightblue.png';
 import doctorIcon from '../../../assets/icons/doctor.png';
 import nurseIcon from '../../../assets/icons/nurse.png';
 import healthcareIcon from '../../../assets/icons/healthcare.png';
+import { Talent } from '../../../types/talent';
 
 const TalentSignUp2: React.FC = () => {
   const history = useHistory();
   const [info, setInfo] = useState({ occupationId: 1 });
 
-  const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  const talent = JSON.parse(
+    sessionStorage.getItem('talent') as string,
+  ) as Talent;
 
   useEffect(() => {
-    if (talent && talent.occupationId !== undefined) {
-      setInfo({ occupationId: talent.occupationId });
+    if (
+      talent &&
+      talent.registrationExperience &&
+      talent.registrationExperience.occupationId
+    ) {
+      setInfo({ occupationId: talent.registrationExperience.occupationId });
     }
   }, []);
 
   const updateSession = (identifier: number): void => {
     sessionStorage.setItem(
       'talent',
-      JSON.stringify(Object.assign(talent, { occupationId: identifier })),
+      JSON.stringify({
+        ...talent,
+        registrationExperience: {
+          ...talent.registrationExperience,
+          occupationId: identifier,
+        },
+      }),
     );
   };
 
@@ -39,7 +52,7 @@ const TalentSignUp2: React.FC = () => {
     e.preventDefault();
     const talentObj = {
       ...talent,
-      ...info,
+      registrationExperience: { ...talent.registrationExperience, ...info },
       onboardingPage: 3,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentObj));

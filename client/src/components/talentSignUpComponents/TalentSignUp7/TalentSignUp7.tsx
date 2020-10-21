@@ -10,15 +10,19 @@ import Option from '../../Option';
 import BlueWrapper from '../../../containers/BlueWrapper';
 import ProgressBar from '../../ProgressBar';
 import logo from '../../../assets/logos/kara_lightblue.png';
+import { Talent } from '../../../types/talent';
+import dbService from '../../../services/dbService';
 
 const TalentSignUp7: React.FC = () => {
   const history = useHistory();
   const [info, setInfo] = useState({
-    approbationFeedbackFlag: false,
+    approbationFeedback: false,
     approbationStatus: '',
   });
 
-  const talent = JSON.parse(sessionStorage.getItem('talent') as string);
+  const talent = JSON.parse(
+    sessionStorage.getItem('talent') as string,
+  ) as Talent;
 
   const setDropdown = (flag: boolean) => {
     const dropdown = document.getElementById(
@@ -29,52 +33,71 @@ const TalentSignUp7: React.FC = () => {
     } else if (flag === false) {
       dropdown.setAttribute('disabled', 'true');
       setInfo({
-        approbationFeedbackFlag: flag,
+        approbationFeedback: flag,
         approbationStatus: '',
       });
     }
   };
 
   useEffect(() => {
-    if (
-      talent &&
-      talent.approbationFeedbackFlag !== undefined &&
-      talent.approbationStatus !== undefined
-    ) {
-      setInfo({
-        approbationFeedbackFlag: talent.approbationFeedbackFlag,
-        approbationStatus: talent.approbationStatus,
-      });
-      if (talent.approbationFeedbackFlag === true) setDropdown(true);
+    if (talent && talent.approbations) {
+      if (
+        talent.approbations[0].approbationFeedback &&
+        talent.approbations[0].approbationStatus
+      ) {
+        setInfo({
+          approbationFeedback: talent.approbations[0].approbationFeedback,
+          approbationStatus: talent.approbations[0].approbationStatus,
+        });
+      }
+      if (talent.approbations[0].approbationFeedback) setDropdown(true);
     }
   }, []);
 
   const updateSession = (
     e: React.FormEvent<HTMLSelectElement> | boolean,
   ): void => {
+    if (!talent.approbations) {
+      talent.approbations = [{ approbationFeedback: false }];
+    }
     if (typeof e === 'boolean') {
       sessionStorage.setItem(
         'talent',
-        JSON.stringify(Object.assign(talent, { approbationFeedbackFlag: e })),
+        JSON.stringify({
+          ...talent,
+          approbations: [
+            {
+              ...talent.approbations[0],
+              approbationFeedback: e,
+              approbationStatus: info.approbationStatus,
+            },
+          ],
+        }),
       );
     } else {
       sessionStorage.setItem(
         'talent',
-        JSON.stringify(
-          Object.assign(talent, {
-            approbationStatus: e.currentTarget.value,
-          }),
-        ),
+        JSON.stringify({
+          ...talent,
+          approbations: [
+            {
+              ...talent.approbations[0],
+              approbationFeedback: info.approbationFeedback,
+              approbationStatus: e.currentTarget.value,
+            },
+          ],
+        }),
       );
     }
   };
+
   const handleChange = (
     e: React.FormEvent<HTMLSelectElement> | boolean,
   ): void => {
     if (typeof e === 'boolean') {
       if (e === true) {
         setInfo({
-          approbationFeedbackFlag: e,
+          approbationFeedback: e,
           approbationStatus: info.approbationStatus,
         });
       }
@@ -82,7 +105,7 @@ const TalentSignUp7: React.FC = () => {
       updateSession(e);
     } else {
       setInfo({
-        approbationFeedbackFlag: info.approbationFeedbackFlag,
+        approbationFeedback: info.approbationFeedback,
         approbationStatus: e.currentTarget.value,
       });
     }
@@ -90,13 +113,21 @@ const TalentSignUp7: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const talentObj = {
+    if (!talent.approbations) {
+      talent.approbations = [{ approbationFeedback: false }];
+    }
+    const talentForDB = {
       ...talent,
-      ...info,
+      approbations: [
+        { ...talent.approbations[0], ...info, id: 0, TalentId: talent.id },
+      ],
       onboardingPage: 8,
     };
-    sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    // post to DB
+    sessionStorage.setItem('talent', JSON.stringify(talentForDB));
+    dbService
+      .postSignup(`/talents/${talentForDB.id}/signup`, talentForDB)
+      .then((res) => console.log(res))
+      .catch((e) => console.error(e));
     history.push('/talent-signup-8');
   };
 
@@ -127,7 +158,7 @@ const TalentSignUp7: React.FC = () => {
                     id="true"
                     name="true"
                     value="true"
-                    checked={info.approbationFeedbackFlag === true}
+                    checked={info.approbationFeedback === true}
                     onChange={() => handleChange(true)}
                   ></RadioInputHorizontal>
                 </div>
@@ -137,7 +168,7 @@ const TalentSignUp7: React.FC = () => {
                     id="false"
                     name="false"
                     value="false"
-                    checked={info.approbationFeedbackFlag === false}
+                    checked={info.approbationFeedback === false}
                     onChange={() => handleChange(false)}
                   ></RadioInputHorizontal>
                 </div>

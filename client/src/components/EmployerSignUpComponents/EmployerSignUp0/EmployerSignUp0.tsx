@@ -33,9 +33,10 @@ const EmployerSignUp0: React.FC = () => {
   const updateSession = (e: React.ChangeEvent<HTMLInputElement>): void => {
     sessionStorage.setItem(
       'employer',
-      JSON.stringify(
-        Object.assign(employer, { [e.target.id]: e.target.value }),
-      ),
+      JSON.stringify({
+        ...employer,
+        [e.target.id]: e.target.value,
+      }),
     );
   };
 

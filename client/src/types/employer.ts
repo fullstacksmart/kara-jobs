@@ -20,4 +20,6 @@ export interface Employer {
   talentMinGerman: string;
   agencyApplications: boolean;
   internationalApplications: boolean;
+  onboardingPage?: number;
+  onboardingComplete?: boolean;
 }
