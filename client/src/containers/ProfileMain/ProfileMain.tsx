@@ -40,7 +40,7 @@ const experiences: Experience[] = [
   },
 ];
 
-const ProfileMain: React.FC<unknown> = (props: unknown) => {
+const ProfileMain: React.FC<unknown> = () => {
   return (
     <div className={styles.ProfileMain}>
       <MainInfo

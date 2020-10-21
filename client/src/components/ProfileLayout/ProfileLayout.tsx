@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './ProfileLayout.module.scss';
 import ProfileLayoutHeader from '../ProfileLayoutHeader';
-import ProfileNav from '../ProfileNav';
 
 interface ProfileLayoutAttributes {
   nav: React.ReactNode;
