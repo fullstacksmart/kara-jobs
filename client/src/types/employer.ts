@@ -22,4 +22,6 @@ export interface Employer {
   approbationTraining: boolean;
   internationalApplications: boolean;
   agencyApplications: boolean;
+  onboardingPage?: number;
+  onboardingComplete?: boolean;
 }

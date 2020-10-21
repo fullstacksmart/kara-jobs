@@ -9,20 +9,26 @@ import { useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../services/reducers';
+import { Talent } from '../../../types/talent';
 import 'firebase/storage';
 
 const TalentSignUp5: React.FC = () => {
   const history = useHistory();
-  const talent = JSON.parse(sessionStorage.getItem('talent') as string);
-  console.log(talent);
+  const talent = JSON.parse(
+    sessionStorage.getItem('talent') as string,
+  ) as Talent;
 
   let profession = '';
-  if (talent.occupationId === '0') {
-    profession = 'Krankenpfleger';
-  } else if (talent.occupationId === '1') {
-    profession = 'Arzt';
-  } else if (talent.occupationId === '2') {
-    profession = 'Medizinisches Personal';
+  if (talent.registrationExperience) {
+    if (talent.registrationExperience.occupationId === 1) {
+      profession = 'Krankenpfleger';
+    } else if (talent.registrationExperience.occupationId === 2) {
+      profession = 'Arzt';
+    } else {
+      profession = 'Medizinisches Personal';
+    }
+  } else {
+    profession = 'Student';
   }
 
   //FILE MGMT
@@ -65,7 +71,7 @@ const TalentSignUp5: React.FC = () => {
   };
 
   const redirect = () => {
-    if (talent.studyProgram && talent.university) {
+    if (talent.registrationQualification) {
       history.push('/talent-signup-4');
     } else {
       history.push('/talent-signup-3');
@@ -113,7 +119,7 @@ const TalentSignUp5: React.FC = () => {
               </div>
               <div className={styles.Info}>{profession}</div>
               <div className={styles.Info}>
-                {talent.city + ', ' + talent.residence}
+                {talent.city + ', ' + talent.country}
               </div>
             </div>
           </div>

@@ -6,7 +6,8 @@
 //during onboarding:
 //post to DB: /talents/uid/signup
 
-import { incompleteTalent } from '../types/talent';
+import { Talent } from '../types/talent';
+import { Employer } from '../types/employer';
 
 interface returnType {
   page: number;
@@ -17,13 +18,13 @@ interface returnType {
 
 const server_address = 'http://localhost:3001';
 
-const setSessionStorage = (obj: incompleteTalent, kind: string) => {
+const setSessionStorage = (obj: Talent | Employer, kind: string) => {
   sessionStorage.setItem(kind, JSON.stringify(obj));
 };
 
 //if login:
 //ask talent and then employee signup.
-//if onboarding complete, redirect to login page
+//if onboarding complete, redirect to login page and fill redux store
 //else redirect to signup flow
 
 const handleLogin = async (uid: string) => {
@@ -31,19 +32,33 @@ const handleLogin = async (uid: string) => {
     .then((res) => res.json())
     .then(
       (json) => {
+        //No employee with
         console.log(json);
-        if (json.message && json.message.includes('in db')) {
-          setSessionStorage(
-            { id: uid, onboardingPage: 0, onboardingComplete: false },
-            'talent',
-          );
-          return {
-            page: 0,
-            complete: false,
-            type: 'talent',
-            wrongLogin: false,
-          };
-        } else if (json.message) {
+        if (json.message) {
+          if (json.message.includes('No employee with')) {
+            setSessionStorage(
+              { id: uid, onboardingPage: 0, onboardingComplete: false },
+              'employer',
+            );
+            return {
+              page: 0,
+              complete: false,
+              type: 'employer',
+              wrongLogin: false,
+            };
+          }
+          if (json.message.includes('in db')) {
+            setSessionStorage(
+              { id: uid, onboardingPage: 0, onboardingComplete: false },
+              'talent',
+            );
+            return {
+              page: 0,
+              complete: false,
+              type: 'talent',
+              wrongLogin: false,
+            };
+          }
           setSessionStorage(
             { id: uid, onboardingPage: 0, onboardingComplete: false },
             'talent',
