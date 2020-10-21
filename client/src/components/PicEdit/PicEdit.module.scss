@@ -1,0 +1,25 @@
+@import '/Users/dev/Documents/projects/codeworks/senior/thesis/kara/client/src/sass/globals';
+
+.PicEdit {
+  background-color: rgba($kara-light-grey, 0.5);
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.InnerWindow {
+  background-color: $kara-light-grey;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 20rem;
+  justify-content: space-between;
+  left: 50%;
+  padding: 3rem;
+  position: absolute;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  width: 30rem;
+}

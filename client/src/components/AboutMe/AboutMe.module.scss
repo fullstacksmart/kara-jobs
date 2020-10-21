@@ -1,0 +1,19 @@
+@import '../../sass/globals';
+
+.AboutMe {
+  padding-bottom: $profile-vertical-gutter;
+  padding-left: $main-info-left-padding;
+}
+
+.TextBox {
+  border: 2px solid #111;
+  border-radius: 0.3rem;
+  min-height: 10rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.ButtonContainer {
+  margin-top: 1rem;
+  text-align: center;
+}
