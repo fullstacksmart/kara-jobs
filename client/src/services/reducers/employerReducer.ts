@@ -21,8 +21,10 @@ const initialState: Employer = {
   talentStudyStatus: 0,
   talentAprobStatus: 0,
   talentMinGerman: '',
-  agencyApplications: true,
+  specialistApplications: true,
+  approbationTraining: true,
   internationalApplications: true,
+  agencyApplications: true,
 };
 
 const EmployerReducer = (
