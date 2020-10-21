@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import CancelSave from '../CancelSave';
 import styles from './AboutMe.module.scss';
 
-const AboutMe: React.FC<unknown> = () => {
+interface AboutMeAttributes {
+  title: string;
+}
+
+const AboutMe: React.FC<AboutMeAttributes> = ({ title }: AboutMeAttributes) => {
   const [editable, setEditable] = useState(false);
   const [text, setText] = useState('some text about me');
   const [oldText, setOldText] = useState(text);
@@ -44,7 +48,7 @@ const AboutMe: React.FC<unknown> = () => {
 
   return (
     <div className={styles.AboutMe}>
-      <h1>Über Dich</h1>
+      <h1>{title}</h1>
       {textArea}
     </div>
   );
