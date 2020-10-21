@@ -28,15 +28,14 @@ const TalentSignUp1: React.FC = () => {
     const zipCodeHTML = document.getElementById('zipCode') as HTMLInputElement;
     const cityHTML = document.getElementById('city') as HTMLInputElement;
     if (talent) {
-      if (talent.zipCode !== undefined) zipCodeHTML.value = talent.zipCode;
-      if (talent.city !== undefined) cityHTML.value = talent.city;
-      if (talent.country !== undefined && talent.isoCode !== undefined)
-        setInfo({
-          isoCode: talent.isoCode,
-          country: talent.country,
-          zipCode: talent.zipCode,
-          city: talent.city,
-        });
+      if (talent.zipCode) zipCodeHTML.value = talent.zipCode;
+      if (talent.city) cityHTML.value = talent.city;
+      setInfo({
+        isoCode: talent.isoCode ? talent.isoCode : 'id1',
+        country: talent.country ? talent.country : 'country1',
+        zipCode: zipCodeHTML.value,
+        city: cityHTML.value,
+      });
     }
   }, []);
 

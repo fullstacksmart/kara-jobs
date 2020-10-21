@@ -18,8 +18,12 @@ const TalentSignUp0: React.FC = () => {
     const firstName = document.getElementById('firstName') as HTMLInputElement;
     const lastName = document.getElementById('lastName') as HTMLInputElement;
     if (talent) {
-      if (talent.firstName !== undefined) firstName.value = talent.firstName;
-      if (talent.lastName !== undefined) lastName.value = talent.lastName;
+      if (talent.firstName) firstName.value = talent.firstName;
+      if (talent.lastName) lastName.value = talent.lastName;
+      setInfo({
+        firstName: firstName.value,
+        lastName: lastName.value,
+      });
     }
   }, []);
 
