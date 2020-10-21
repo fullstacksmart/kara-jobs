@@ -10,7 +10,7 @@ const ProfileLayoutHeader: React.FC<unknown> = () => {
     <div className={styles.ProfileLayoutHeader}>
       <div className={styles.Half}>
         <img src="assets/kara_creme.png" />
-        <SearchBox />
+        <SearchBox height="2.2rem" />
       </div>
       <div className={styles.Half}>
         <Link className={styles.Link} to="">
