@@ -24,6 +24,7 @@ import EmployerSignUp3 from '../../components/EmployerSignUpComponents/EmployerS
 import Login from '../../components/Registration/Login';
 import EmployerSignUp4 from '../../components/EmployerSignUpComponents/EmployerSignUp4';
 import EmployerSignUp5 from '../../components/EmployerSignUpComponents/EmployerSignUp5';
+import Profile from '../Profile';
 
 const Router: React.FC<unknown> = () => {
   const auth = useSelector<RootState>((state) => state.firebase.auth);
@@ -199,6 +200,24 @@ const Router: React.FC<unknown> = () => {
           exact
           component={EmployerSignUp2}
         ></Route>,
+        <Route
+          key="/employer-signup-3"
+          path="/employer-signup-3"
+          exact
+          component={EmployerSignUp3}
+        ></Route>,
+        <Route
+          key="/employer-signup-4"
+          path="/employer-signup-4"
+          exact
+          component={EmployerSignUp4}
+        ></Route>,
+        <Route
+          key="/employer-signup-5"
+          path="/employer-signup-5"
+          exact
+          component={EmployerSignUp5}
+        ></Route>,
       ];
   return !isLoaded(auth) ? (
     <Loading />
@@ -216,6 +235,7 @@ const Router: React.FC<unknown> = () => {
         exact
         component={EmployerRegistration}
       ></Route>
+      <Route path="/profile" exact component={Profile}></Route>
       {paths}
     </>
   );

@@ -1,15 +1,26 @@
 import React from 'react';
 import styles from './ProfileLayout.module.scss';
 import ProfileLayoutHeader from '../ProfileLayoutHeader';
+import ProfileNav from '../ProfileNav';
 
-const ProfileLayout: React.FC<unknown> = () => {
+interface ProfileLayoutAttributes {
+  nav: React.ReactNode;
+  main?: React.ReactNode;
+  adds?: React.ReactNode;
+}
+
+const ProfileLayout: React.FC<ProfileLayoutAttributes> = ({
+  nav,
+  main,
+  adds,
+}: ProfileLayoutAttributes) => {
   return (
     <div className={styles.ProfileLayout}>
       <ProfileLayoutHeader />
       <div className={styles.ProfileBody}>
-        <div className={styles.ProfileNav}></div>
-        <div className={styles.ProfileMain}></div>
-        <div className={styles.ProfileAdds}></div>
+        <div className={styles.ProfileNav}>{nav}</div>
+        <div className={styles.ProfileMain}>{main}</div>
+        <div className={styles.ProfileAdds}>{adds}</div>
       </div>
     </div>
   );

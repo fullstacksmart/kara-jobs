@@ -9,8 +9,10 @@ import Label from '../../Label';
 const EmployerSignUp5: React.FC = () => {
   const history = useHistory();
   const [info, setInfo] = useState({
+    specialistApplications: true,
     agencyApplications: true,
     internationalApplications: true,
+    approbationTraining: true,
   });
 
   const employer = JSON.parse(sessionStorage.getItem('employer') as string);
@@ -22,6 +24,9 @@ const EmployerSignUp5: React.FC = () => {
         Object.assign(employer, {
           agencyApplications: info.agencyApplications,
           internationalApplications: info.internationalApplications,
+          specialistApplications: info.specialistApplications,
+          approbationTraining: info.approbationTraining,
+          onboarding_page: 6,
         }),
       ),
     );
@@ -34,17 +39,19 @@ const EmployerSignUp5: React.FC = () => {
     if (employer) {
       if (
         employer.agencyApplications !== undefined &&
-        employer.internationalApplications !== undefined
+        employer.internationalApplications !== undefined &&
+        employer.specialistApplications !== undefined &&
+        employer.approbationTraining !== undefined
       ) {
         setInfo({
           agencyApplications: info.agencyApplications,
           internationalApplications: info.internationalApplications,
+          specialistApplications: info.specialistApplications,
+          approbationTraining: info.approbationTraining,
         });
       }
     }
   }, []);
-
-  //good until here
 
   const handleOptionChange = (
     identifier: string | React.FormEvent<HTMLSelectElement>,
@@ -62,6 +69,20 @@ const EmployerSignUp5: React.FC = () => {
           return {
             ...prevState,
             internationalApplications: !prevState.internationalApplications,
+          };
+        });
+      } else if (identifier === 'specialist') {
+        setInfo((prevState) => {
+          return {
+            ...prevState,
+            specialistApplications: !prevState.specialistApplications,
+          };
+        });
+      } else if (identifier === 'trainings') {
+        setInfo((prevState) => {
+          return {
+            ...prevState,
+            approbationTraining: !prevState.approbationTraining,
           };
         });
       }
@@ -85,24 +106,42 @@ const EmployerSignUp5: React.FC = () => {
       <p>Sie können die Auswahl in Ihrem Profil jederzeit ändern.</p>
       <Form onSubmit={handleSubmit} id="applications-form">
         <Label>
-          Ich möchte auch von Personalvermittlungsagenturen kontaktiert werden
-          können, sofern diese interessante Talente betreuen
+          Wir möchten Initiativbewerbungen von examinierten Fachkräften erhalten
         </Label>
         <RadioInput
           labelText="Ja"
-          id="agencyTrue"
-          name="agencyTrue"
-          value="agencyTrue"
-          checked={info.agencyApplications}
-          onChange={() => handleOptionChange('agency')}
+          id="specialistTrue"
+          name="specialistTrue"
+          value="specialistTrue"
+          checked={info.specialistApplications}
+          onChange={() => handleOptionChange('specialist')}
         ></RadioInput>
         <RadioInput
           labelText="Nein"
-          id="agencyFalse"
-          name="agencyFalse"
-          value="agencyFalse"
-          checked={!info.agencyApplications}
-          onChange={() => handleOptionChange('agency')}
+          id="specialistFalse"
+          name="specialistFalse"
+          value="specialistFalse"
+          checked={!info.specialistApplications}
+          onChange={() => handleOptionChange('specialist')}
+        ></RadioInput>
+        <Label>
+          Wir bieten Anerkennungslehrgänge für internationale Pflegekräfte an
+        </Label>
+        <RadioInput
+          labelText="Ja"
+          id="trainingsTrue"
+          name="trainingsTrue"
+          value="trainingsTrue"
+          checked={info.approbationTraining}
+          onChange={() => handleOptionChange('trainings')}
+        ></RadioInput>
+        <RadioInput
+          labelText="Nein"
+          id="trainingsFalse"
+          name="trainingsFalse"
+          value="trainingsFalse"
+          checked={!info.approbationTraining}
+          onChange={() => handleOptionChange('trainings')}
         ></RadioInput>
         <Label>
           Ich möchte Bewerbungen von internationalen Talenten erhalten können
@@ -122,6 +161,26 @@ const EmployerSignUp5: React.FC = () => {
           value="internationalFalse"
           checked={!info.internationalApplications}
           onChange={() => handleOptionChange('international')}
+        ></RadioInput>
+        <Label>
+          Ich möchte auch von Personalvermittlungsagenturen kontaktiert werden
+          können, sofern diese interessante Talente betreuen
+        </Label>
+        <RadioInput
+          labelText="Ja"
+          id="agencyTrue"
+          name="agencyTrue"
+          value="agencyTrue"
+          checked={info.agencyApplications}
+          onChange={() => handleOptionChange('agency')}
+        ></RadioInput>
+        <RadioInput
+          labelText="Nein"
+          id="agencyFalse"
+          name="agencyFalse"
+          value="agencyFalse"
+          checked={!info.agencyApplications}
+          onChange={() => handleOptionChange('agency')}
         ></RadioInput>
       </Form>
       <Button type="submit" value="Submit" form="applications-form">

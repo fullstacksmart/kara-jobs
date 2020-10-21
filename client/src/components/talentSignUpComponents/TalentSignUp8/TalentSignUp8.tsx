@@ -13,6 +13,7 @@ import { useFirebase } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../services/reducers';
 import styles from './TalentSignUp8.module.scss';
+import dbService from '../../../services/dbService';
 
 const optArray = [
   '',
@@ -92,13 +93,18 @@ const TalentSignUp8: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const talentObj = {
+    const talentForDB = {
       ...talent,
       onboardingPage: 9,
       onboardingComplete: true,
     };
-    sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    //TO DO: enter path to profile
+    sessionStorage.setItem('talent', JSON.stringify(talentForDB));
+    //TO DOs:
+    //enter path to profile, fill redux
+    dbService
+      .postSignup(`/talents/${talentForDB.id}/signup`, talentForDB)
+      .then((res) => console.log(res))
+      .catch((e) => console.error(e));
     history.push('/');
   };
 

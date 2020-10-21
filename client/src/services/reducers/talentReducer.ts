@@ -3,25 +3,6 @@ import { Talent } from '../../types/talent';
 
 const initialState: Talent = {
   id: '',
-  onboardingPage: 0,
-  onboardingComplete: false,
-  firstName: '',
-  lastName: '',
-  isoCode: '',
-  country: '',
-  zipCode: '',
-  city: '',
-  occupationId: '',
-  positionName: '',
-  occupationStatusId: '',
-  employerName: '',
-  studyProgram: '',
-  university: '',
-  expectedGraduationYear: new Date().getFullYear(),
-  approbationStartedFlag: false,
-  approbationFederalState: '',
-  approbationFeedbackFlag: false,
-  approbationStatus: '',
 };
 
 const TalentReducer = (

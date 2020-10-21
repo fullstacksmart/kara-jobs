@@ -1,0 +1,16 @@
+@import '../../sass/globals';
+
+li {
+  align-items: center;
+  display: flex;
+
+  div {
+    width: 4rem;
+  }
+}
+
+ul {
+  li {
+    padding-bottom: 2rem;
+  }
+}

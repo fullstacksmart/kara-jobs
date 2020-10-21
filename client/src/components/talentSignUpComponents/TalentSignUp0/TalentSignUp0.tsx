@@ -6,20 +6,26 @@ import Button from '../../Button';
 import Form from '../../Form';
 import logo from '../../../assets/logos/kara_gradient.png';
 import { useHistory } from 'react-router-dom';
+import { Talent } from '../../../types/talent';
 
 const TalentSignUp0: React.FC = () => {
   const history = useHistory();
   const [info, setInfo] = useState({ firstName: '', lastName: '' });
 
-  const talent = JSON.parse(sessionStorage.getItem('talent') as string);
-  console.log(talent);
+  const talent = JSON.parse(
+    sessionStorage.getItem('talent') as string,
+  ) as Talent;
 
   useEffect(() => {
     const firstName = document.getElementById('firstName') as HTMLInputElement;
     const lastName = document.getElementById('lastName') as HTMLInputElement;
     if (talent) {
-      if (talent.firstName !== undefined) firstName.value = talent.firstName;
-      if (talent.lastName !== undefined) lastName.value = talent.lastName;
+      if (talent.firstName) firstName.value = talent.firstName;
+      if (talent.lastName) lastName.value = talent.lastName;
+      setInfo({
+        firstName: firstName.value,
+        lastName: lastName.value,
+      });
     }
   }, []);
 
@@ -41,7 +47,7 @@ const TalentSignUp0: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const talentObj = {
+    const talentObj: Talent = {
       ...talent,
       ...info,
       onboardingPage: 1,
