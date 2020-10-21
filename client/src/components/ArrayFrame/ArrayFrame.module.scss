@@ -5,8 +5,16 @@
   border: 2px solid $kara-black;
   border-radius: 2rem;
   padding: 0 $main-info-left-padding;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+
+  > *:not(:last-child) {
+    border-bottom: 2px solid $kara-black;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .HeaderInset {

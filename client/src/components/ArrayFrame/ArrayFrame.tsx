@@ -30,7 +30,7 @@ const ArrayFrame: React.FC<ArrayFrameProps> = ({
           />
         </div>
       </div>
-      {list.length ? <div className={styles.Border}>{list}</div> : <></>}
+      {list.length ? <div className={styles.Border}>{items}</div> : <></>}
     </div>
   );
 };

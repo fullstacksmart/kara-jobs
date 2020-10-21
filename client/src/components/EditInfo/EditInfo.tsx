@@ -11,13 +11,9 @@ interface EditInfoAttributes {
   onClick?: React.EventHandler<SyntheticEvent>;
 }
 
-const EditInfo: React.FC<EditInfoAttributes> = ({
-  top,
-  bottom = '0',
-  left,
-  right = '0',
-  onClick,
-}: EditInfoAttributes) => {
+const EditInfo: React.FC<
+  EditInfoAttributes & React.HTMLAttributes<HTMLHtmlElement>
+> = ({ top, bottom = '0', left, right = '0', onClick }: EditInfoAttributes) => {
   const style: EditInfoAttributes = {};
   if (top) style.top = top;
   if (bottom) style.bottom = bottom;
