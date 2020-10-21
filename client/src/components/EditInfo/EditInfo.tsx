@@ -25,7 +25,7 @@ const EditInfo: React.FC<EditInfoAttributes> = ({
   if (right) style.right = right;
   return (
     <div className={styles.EditInfo} onClick={onClick} style={style}>
-      <FontAwesomeIcon icon={faEdit} size="2x" />
+      <FontAwesomeIcon icon={faEdit} size="2x" className={styles.Icon} />
     </div>
   );
 };
