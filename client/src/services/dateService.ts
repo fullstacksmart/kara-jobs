@@ -19,7 +19,8 @@ export const getDuration = (
   const months = durationInMonths % 12;
   const yearPlural = years > 1 ? 'e' : '';
   const monthPlural = months > 1 ? 'e' : '';
-  let durationString = years > 0 ? years + ' Jahr' + yearPlural + ' und ' : '';
+  let durationString =
+    years > 0 ? years + ' Jahr' + yearPlural + (months ? ' und ' : '') : '';
   durationString += months > 0 ? months + ' Monat' + monthPlural : '';
   return durationString;
 };

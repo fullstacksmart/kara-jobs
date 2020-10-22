@@ -56,18 +56,23 @@ interface AboutMe {
 //   updatedAt?: string;
 // }
 
-interface Qualification {
+export interface Qualification {
+  id?: number;
   TalentId?: string;
   institutionName?: string;
   degree?: string;
   fieldOfStudy?: string;
+  studyStartMonth?: number;
   studyStartYear?: number;
+  studyEndMonth?: number;
+  studyEndYear?: number;
   studyDescription?: string;
   createdAt?: string;
   updatedAt?: string;
 }
 
-interface Language {
+export interface Language {
+  id: number;
   TalentId?: string;
   language?: string;
   languageLevel?: number;
@@ -75,7 +80,8 @@ interface Language {
   updatedAt?: string;
 }
 
-interface Skill {
+export interface Skill {
+  id: number;
   TalentId?: string;
   skill?: string;
   createdAt?: string;
@@ -106,7 +112,7 @@ export interface Talent {
 }
 
 export interface Experience {
-  id: number;
+  id?: number;
   TalentId: string;
   occupationId: number;
   positionName: string;
