@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CancelSave from '../CancelSave';
 import EditInfo from '../EditInfo';
 import PicEdit from '../PicEdit';
@@ -7,8 +7,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../types/redux';
 import { Talent } from '../../types/talent';
 import { saveInfo } from '../../services/dbService';
+import { useFirebase } from 'react-redux-firebase';
+import 'firebase/storage';
 
 const MainInfo: React.FC<unknown> = () => {
+  const firebase = useFirebase();
   const talent = useSelector<RootState>((state) => state.talent) as Talent;
   const [showPicEdit, setShowPicEdit] = useState(false);
   const [showInfoEdit, setShowInfoEdit] = useState(false);
@@ -39,6 +42,31 @@ const MainInfo: React.FC<unknown> = () => {
     await saveInfo({ ...talent, ...info }, 'all', talent.id);
     setShowInfoEdit(false);
   };
+
+  const downloadImage = () => {
+    const uid = talent.id;
+    const storageRef = firebase
+      .storage()
+      .ref(`/talents/${uid}/images/profile-picture`);
+    storageRef
+      .getDownloadURL()
+      .then(function (url) {
+        if (url) {
+          console.log(url);
+          const img = document.getElementById(
+            'profile-picture',
+          ) as HTMLImageElement;
+          if (img) img.src = url;
+        }
+      })
+      .catch(function (e) {
+        console.log('download error', e);
+      });
+  };
+
+  useEffect(() => {
+    downloadImage();
+  }, []);
 
   const handleChange = (type: string, e: React.ChangeEvent<HTMLInputElement>) =>
     setInfo({ ...info, [type]: e.currentTarget.value });
@@ -101,7 +129,7 @@ const MainInfo: React.FC<unknown> = () => {
   return (
     <div className={styles.MainInfo}>
       <div className={styles.PicContainer}>
-        <div className={styles.ProfilePic}></div>
+        <img src="" id="profile-picture" className={styles.ProfilePic}></img>
         <EditInfo onClick={() => setShowPicEdit(true)} />
       </div>
       <div className={styles.InfoText}>
