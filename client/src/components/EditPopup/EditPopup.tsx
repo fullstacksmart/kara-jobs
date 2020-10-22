@@ -21,11 +21,15 @@ const EditPopup: React.FC<EditPopupPropsBase> = ({
   return (
     <div className={styles.EditPopup}>
       <div className={styles.InnerWindow}>
-        <FontAwesomeIcon
-          icon={faTrash}
-          onClick={onDelete}
-          className={styles.Trashcan}
-        />
+        {onDelete ? (
+          <FontAwesomeIcon
+            icon={faTrash}
+            onClick={onDelete}
+            className={styles.Trashcan}
+          />
+        ) : (
+          <></>
+        )}
         <div className={styles.ContentContainer}>{props.children}</div>
         <CancelSave onCancel={onCancel} onSave={onSave} />
       </div>
