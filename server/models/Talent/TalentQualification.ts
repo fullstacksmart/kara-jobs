@@ -27,9 +27,15 @@ export class TalentQualification extends Model<TalentQualification> {
   @Column
   fieldOfStudy!: string;
 
+  @Column(DataType.DECIMAL(2, 0))
+  studyStartMonth!: number;
+
   @AllowNull(false)
   @Column(DataType.DECIMAL(4, 0))
   studyStartYear!: number;
+
+  @Column(DataType.DECIMAL(2, 0))
+  studyEndMonth!: number;
 
   @Column(DataType.DECIMAL(4, 0))
   studyEndYear!: number;
