@@ -20,15 +20,14 @@ const EmployerSignUp5: React.FC = () => {
   const updateSession = (): void => {
     sessionStorage.setItem(
       'employer',
-      JSON.stringify(
-        Object.assign(employer, {
-          agencyApplications: info.agencyApplications,
-          internationalApplications: info.internationalApplications,
-          specialistApplications: info.specialistApplications,
-          approbationTraining: info.approbationTraining,
-          onboarding_page: 6,
-        }),
-      ),
+      JSON.stringify({
+        ...employer,
+        agencyApplications: info.agencyApplications,
+        internationalApplications: info.internationalApplications,
+        specialistApplications: info.specialistApplications,
+        approbationTraining: info.approbationTraining,
+        onboarding_page: 6,
+      }),
     );
   };
 

@@ -82,21 +82,19 @@ const TalentSignUp1: React.FC = () => {
     if (e.currentTarget.id === 'country') {
       sessionStorage.setItem(
         'talent',
-        JSON.stringify(
-          Object.assign(talent, {
-            isoCode: e.currentTarget.value.split(',')[0],
-            country: e.currentTarget.value.split(',')[1],
-          }),
-        ),
+        JSON.stringify({
+          ...talent,
+          soCode: e.currentTarget.value.split(',')[0],
+          country: e.currentTarget.value.split(',')[1],
+        }),
       );
     } else {
       sessionStorage.setItem(
         'talent',
-        JSON.stringify(
-          Object.assign(talent, {
-            [e.currentTarget.id]: e.currentTarget.value,
-          }),
-        ),
+        JSON.stringify({
+          ...talent,
+          [e.currentTarget.id]: e.currentTarget.value,
+        }),
       );
     }
   };
