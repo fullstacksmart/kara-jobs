@@ -30,17 +30,16 @@ const EmployerSignUp4: React.FC = () => {
   const updateSession = (): void => {
     sessionStorage.setItem(
       'employer',
-      JSON.stringify(
-        Object.assign(employer, {
-          searchDoctor: talent.searchDoctor,
-          searchNurse: talent.searchNurse,
-          searchOther: talent.searchOther,
-          talentStudyStatus: talentStudyStatus.talentStudyStatus,
-          talentApprobStatus: talentApprobStatus.talentApprobStatus,
-          talentMinGerman: talentMinGerman.talentMinGerman,
-          onboarding_page: 5,
-        }),
-      ),
+      JSON.stringify({
+        ...employer,
+        searchDoctor: talent.searchDoctor,
+        searchNurse: talent.searchNurse,
+        searchOther: talent.searchOther,
+        talentStudyStatus: talentStudyStatus.talentStudyStatus,
+        talentApprobStatus: talentApprobStatus.talentApprobStatus,
+        talentMinGerman: talentMinGerman.talentMinGerman,
+        onboarding_page: 5,
+      }),
     );
   };
 

@@ -126,16 +126,20 @@ const Registration: React.FC<RegistrationProps> = ({
       await firebase.login({ provider: 'google', type: 'popup' });
       const user = firebase.auth().currentUser;
       if (user) handleRedirect(user);
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       //TO DO: Check if this error handling is necessary for google
       if (
-        err.message.includes(
+        error.message.includes(
           'There is no user record corresponding to this identifier',
         )
       ) {
         alert(
           'Es konnte kein Benutzer für Ihre Daten gefunden werden. Bitte klicken Sie unten auf Registrieren.',
+        );
+      } else if (error.message.includes('The email address is already')) {
+        alert(
+          'Es gibt bereits einen Benutzer mit dieser E-Mail Adresse. Bitte loggen Sie sich ein.',
         );
       }
     }
