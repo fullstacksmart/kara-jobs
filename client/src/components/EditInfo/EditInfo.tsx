@@ -1,6 +1,6 @@
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { CSSProperties, SyntheticEvent } from 'react';
+import React, { SyntheticEvent } from 'react';
 import styles from './EditInfo.module.scss';
 
 interface EditInfoAttributes {
@@ -9,7 +9,7 @@ interface EditInfoAttributes {
   left?: string;
   right?: string;
   onClick?: React.EventHandler<SyntheticEvent>;
-  style?: CSSProperties;
+  style?: React.CSSProperties;
 }
 
 const EditInfo: React.FC<
@@ -22,7 +22,7 @@ const EditInfo: React.FC<
   onClick,
   style,
 }: EditInfoAttributes) => {
-  const defaultStyle: EditInfoAttributes = {};
+  const defaultStyle: Record<string, unknown> = {};
   if (top) defaultStyle.top = top;
   if (bottom) defaultStyle.bottom = bottom;
   if (left) defaultStyle.left = left;
