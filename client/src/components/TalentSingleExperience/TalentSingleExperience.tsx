@@ -45,7 +45,6 @@ const TalentSingleExperience: React.FC<TalentSingleExperienceProps> = ({
         <div className={styles.EditContainer}>
           <EditInfo top="0" />
         </div>
-
         {durationString}
       </div>
     </div>
