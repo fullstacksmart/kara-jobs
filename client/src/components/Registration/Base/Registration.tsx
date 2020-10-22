@@ -83,7 +83,9 @@ const Registration: React.FC<RegistrationProps> = ({
     // }
     if (complete) {
       //TO DO: Redirect to Talent / Employer Profile page (depending on type)
-      history.push('/');
+      //history.push('/');
+      const stuff = sessionStorage.getItem(type);
+      console.log(stuff);
       //and set redux (get from session storage and clear session storage afterwards)
     } else {
       history.push(`/${type}-signup-${page}`);
