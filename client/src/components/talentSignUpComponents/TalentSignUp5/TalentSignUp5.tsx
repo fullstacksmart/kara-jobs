@@ -52,7 +52,7 @@ const TalentSignUp5: React.FC = () => {
         }
       })
       .catch(function (e) {
-        console.log(e);
+        console.log('download error', e);
       });
   };
 
@@ -88,13 +88,16 @@ const TalentSignUp5: React.FC = () => {
       task.on(
         'state_changed',
         function progress(snapshot) {
-          const percentage = snapshot.bytesTransferred / snapshot.totalBytes;
-          if (percentage === 1) {
-            downloadImage();
-          }
+          const percentage =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('uploading percentage: ' + percentage);
         },
         function error(err) {
-          console.log(err);
+          console.log('upload error', err);
+        },
+        function complete() {
+          console.log('complete');
+          downloadImage();
         },
       );
     }

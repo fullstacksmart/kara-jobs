@@ -1,16 +1,32 @@
 @import '../../sass/globals';
 
-li {
-  align-items: center;
-  display: flex;
-
-  div {
-    width: 4rem;
+.ProfileNav {
+  ul {
+    display: flex;
+    flex-direction: column;
   }
-}
 
-ul {
   li {
-    padding-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  .ItemWrapper {
+    align-items: center;
+    display: flex;
+    justify-content: start;
+    padding: 0.2rem;
+  }
+
+  .Icon {
+    align-items: center;
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+  }
+
+  .IconText {
+    padding-left: 0.7rem;
   }
 }
+

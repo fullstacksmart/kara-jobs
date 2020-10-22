@@ -46,11 +46,10 @@ const EmployerSignUp1: React.FC = () => {
   ) => {
     sessionStorage.setItem(
       'employer',
-      JSON.stringify(
-        Object.assign(employer, {
-          [e.currentTarget.id]: e.currentTarget.value,
-        }),
-      ),
+      JSON.stringify({
+        ...employer,
+        [e.currentTarget.id]: e.currentTarget.value,
+      }),
     );
   };
 

@@ -13,27 +13,27 @@ const ProfileNav: React.FC<unknown> = () => {
     <div className={styles.ProfileNav}>
       <ul>
         <StyledLink to="">
-          <li>
-            <div>
-              <FontAwesomeIcon icon={faHospital} size="3x" />
+          <li className={styles.ItemWrapper}>
+            <div className={styles.Icon}>
+              <FontAwesomeIcon icon={faHospital} size="lg" />
             </div>
-            Arbeitgebersuche
+            <div className={styles.IconText}>Arbeitgebersuche</div>
           </li>
         </StyledLink>
         <StyledLink to="">
-          <li>
-            <div>
-              <FontAwesomeIcon icon={faGraduationCap} size="3x" />
+          <li className={styles.ItemWrapper}>
+            <div className={styles.Icon}>
+              <FontAwesomeIcon icon={faGraduationCap} size="lg" />
             </div>
-            kara Produkte
+            <div className={styles.IconText}>kara Produkte</div>
           </li>
         </StyledLink>
         <StyledLink to="">
-          <li>
-            <div>
-              <FontAwesomeIcon icon={faCog} size="3x" />
+          <li className={styles.ItemWrapper}>
+            <div className={styles.Icon}>
+              <FontAwesomeIcon icon={faCog} size="lg" />
             </div>
-            Einstellungen
+            <div className={styles.IconText}>Einstellungen</div>
           </li>
         </StyledLink>
       </ul>
