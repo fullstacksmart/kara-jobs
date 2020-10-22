@@ -1,0 +1,31 @@
+@import '../../sass/globals';
+
+.TalentSingleExperience {
+  display: flex;
+  justify-content: space-between;
+  min-height: 4rem;
+  padding: 1rem 0;
+  // TODO: style me!
+}
+
+.Half {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.LeftHalf {
+  flex-shrink: 0;
+  margin-right: 2rem;
+}
+
+.EditContainer {
+  content: '';
+  height: 4rem;
+  width: 4rem;
+}
+
+// h2,
+// h3 {
+//   font-size: 1rem;
+// }

@@ -8,7 +8,7 @@ import Label from '../../Label';
 import Select from '../../Select';
 import Option from '../../Option';
 import BlueWrapper from '../../../containers/BlueWrapper';
-import ProgressBar from '../../ProgressBar';
+import ProgressBar from '../../ProgressBarTalent';
 import logo from '../../../assets/logos/kara_lightblue.png';
 import { Talent } from '../../../types/talent';
 

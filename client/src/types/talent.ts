@@ -42,26 +42,30 @@ interface AboutMe {
   updatedAt?: string;
 }
 
-interface Experience {
-  TalentId?: string;
-  positionName?: string;
-  employerName?: string;
-  employerCity?: string;
-  positionStartMonth?: number;
-  positionStartYear?: number;
-  positionEndMonth?: number;
-  positionEndYear?: number;
-  positionDescription?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
+// interface Experience {
+//   TalentId?: string;
+//   positionName?: string;
+//   employerName?: string;
+//   employerCity?: string;
+//   positionStartMonth?: number;
+//   positionStartYear?: number;
+//   positionEndMonth?: number;
+//   positionEndYear?: number;
+//   positionDescription?: string;
+//   createdAt?: string;
+//   updatedAt?: string;
+// }
 
-interface Qualification {
+export interface Qualification {
+  id?: number;
   TalentId?: string;
   institutionName?: string;
   degree?: string;
   fieldOfStudy?: string;
+  studyStartMonth?: number;
   studyStartYear?: number;
+  studyEndMonth?: number;
+  studyEndYear?: number;
   studyDescription?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -103,4 +107,19 @@ export interface Talent {
   qualifications?: Qualification[];
   languages?: Language[];
   skills?: Skill[];
+}
+
+export interface Experience {
+  id?: number;
+  TalentId: string;
+  occupationId: number;
+  positionName: string;
+  occupationStatusId: number;
+  employerName: string;
+  employerCity?: string;
+  positionStartMonth?: number;
+  positionStartYear?: number;
+  positionEndMonth?: number;
+  positionEndYear?: number;
+  positionDescription?: string;
 }

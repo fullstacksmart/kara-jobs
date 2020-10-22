@@ -1,8 +1,119 @@
-.TalentRegistration {
-  // TODO: style me!
-}
+@import '../../../sass/globals';
 
-.CheckBlock {
+.Registration {
+  align-items: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+
+  .CheckBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .FormHeader {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .Logo {
+    height: 3rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+  }
+
+  .Text {
+    font-size: 1rem;
+    font-weight: lighter;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .TextHeader {
+    font-size: 1.2rem;
+    font-weight: lighter;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    max-width: 30rem;
+    text-align: center;
+  }
+
+  .FormWrapper {
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 4rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    max-width: 20rem;
+    min-height: 26.5rem;
+    min-width: 20rem;
+    padding: 1rem;
+  }
+
+  .Form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ButtonWrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  Button {
+    background-color: $kara-light-blue;
+    color: rgb(255, 255, 255);
+    margin-top: 1rem;
+  }
+
+  Button:hover {
+    background-color: $kara-dark-blue;
+  }
+
+  .GoogleButtonWrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+  }
+
+  .GoogleButtonWrapper > Button {
+    padding: 0;
+  }
+
+  .GoogleContainer {
+    display: flex;
+  }
+
+  .GoogleIcon {
+    height: 30px;
+    vertical-align: middle;
+    width: 30px;
+  }
+
+  .ButtonIconWrapper {
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    padding: 0.3rem;
+  }
+
+  .ButtonTextWrapper {
+    align-items: center;
+    background-color: $kara-light-blue;
+    display: flex;
+    justify-content: center;
+    padding: 0.2rem;
+  }
 }

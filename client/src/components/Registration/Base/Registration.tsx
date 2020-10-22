@@ -4,9 +4,11 @@ import TextInput from '../../TextInput';
 import Button from '../../Button';
 import TextLink from '../../TextLink';
 import Details from '../../Details';
+import BlueWrapper from '../../../containers/BlueWrapper';
+import logo from '../../../assets/logos/kara_gradient.png';
+import googleIcon from '../../../assets/icons/google.jpg';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
-import GoogleButton from 'react-google-button';
 import { redirect } from '../../../services/redirect';
 
 interface RegistrationProps {
@@ -34,7 +36,7 @@ const variants: {
     heading: 'In wenigen Schritten zu Deinem Profil',
     googleText: 'mit Google registrieren',
     onSubmit: 'createUser',
-    submitButton: 'registrieren',
+    submitButton: 'Registrieren',
     alreadyText: 'Schon registriert?',
     alreadyLink: '/sign-in',
     alreadyButtonText: 'Einloggen',
@@ -46,7 +48,7 @@ const variants: {
       'In wenigen Schritten mit internationalen Talenten aus dem medizinischen Bereich in Kontakt treten',
     googleText: 'mit Google registrieren',
     onSubmit: 'createUser',
-    submitButton: 'registrieren',
+    submitButton: 'Registrieren',
     alreadyText: 'Schon registriert?',
     alreadyLink: '/sign-in',
     alreadyButtonText: 'Einloggen',
@@ -54,10 +56,10 @@ const variants: {
     otherKindLink: '/talent-sign-up',
   },
   login: {
-    heading: 'Login',
+    heading: 'Einloggen',
     googleText: 'mit Google einloggen',
     onSubmit: 'login',
-    submitButton: 'einloggen',
+    submitButton: 'Einloggen',
     alreadyText: 'Noch nicht registriert?',
     alreadyLink: '/talent-sign-up',
     alreadyButtonText: 'Registrieren',
@@ -139,43 +141,66 @@ const Registration: React.FC<RegistrationProps> = ({
   };
 
   return (
-    <div className={styles.Registration}>
-      <h1>{variant.heading}</h1>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.CheckBlock}>
-          <TextInput id="email" labelText="Email" type={'email'} required />
+    <BlueWrapper>
+      <div className={styles.Registration}>
+        <div className={styles.FormHeader}>
+          <img src={logo} className={styles.Logo} />
+          <div className={styles.TextHeader}>{variant.heading}</div>
         </div>
-        <div className={styles.CheckBlock}>
-          <TextInput
-            id="password"
-            labelText="Passwort"
-            type={'password'}
-            minlength={8}
-            required
-          />
-        </div>
-        <Button>{variant.submitButton}</Button>
-        <div className={styles.alternativeRegistration}>
-          <p>oder</p>
-          <GoogleButton label={variant.googleText} onClick={signInWithGoogle} />
-        </div>
+        <div className={styles.FormWrapper}>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.CheckBlock}>
+              <TextInput id="email" labelText="Email" type={'email'} required />
+            </div>
+            <div className={styles.CheckBlock}>
+              <TextInput
+                id="password"
+                labelText="Passwort"
+                type={'password'}
+                minlength={8}
+                required
+              />
+            </div>
+            <div className={styles.ButtonWrapper}>
+              <Button>{variant.submitButton}</Button>
+            </div>
+            <div className={styles.alternativeRegistration}>
+              <div className={styles.Text}>oder</div>
+              <div className={styles.GoogleButtonWrapper}>
+                <Button onClick={signInWithGoogle}>
+                  <div className={styles.GoogleContainer}>
+                    <div className={styles.ButtonIconWrapper}>
+                      <img src={googleIcon} className={styles.GoogleIcon} />
+                    </div>
+                    <div className={styles.ButtonTextWrapper}>
+                      {variant.googleText}
+                    </div>
+                  </div>
+                </Button>
+              </div>
+            </div>
 
-        <Details>
-          <p>
-            {variant.alreadyText}{' '}
-            <TextLink
-              to={variant.alreadyLink}
-              text={variant.alreadyButtonText}
-            />
-          </p>
-        </Details>
-      </form>
-      {variant.otherKindText ? (
-        <TextLink to={variant.otherKindLink} text={variant.otherKindText} />
-      ) : (
-        ''
-      )}
-    </div>
+            <Details>
+              {variant.alreadyText}{' '}
+              <TextLink
+                to={variant.alreadyLink}
+                text={variant.alreadyButtonText}
+              />
+            </Details>
+          </form>
+          {variant.otherKindText ? (
+            <div className={styles.Option}>
+              <TextLink
+                to={variant.otherKindLink}
+                text={variant.otherKindText}
+              />
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
+      </div>
+    </BlueWrapper>
   );
 };
 
