@@ -17,7 +17,7 @@ const TalentSignUp1: React.FC = () => {
   const history = useHistory();
   const [info, setInfo] = useState({
     isoCode: 'id1',
-    country: 'country1',
+    country: 'Germany',
     zipCode: '',
     city: '',
   });
@@ -34,7 +34,7 @@ const TalentSignUp1: React.FC = () => {
       if (talent.city) cityHTML.value = talent.city;
       setInfo({
         isoCode: talent.isoCode ? talent.isoCode : 'id1',
-        country: talent.country ? talent.country : 'country1',
+        country: talent.country ? talent.country : 'Germany',
         zipCode: zipCodeHTML.value,
         city: cityHTML.value,
       });
@@ -113,7 +113,7 @@ const TalentSignUp1: React.FC = () => {
     history.push('/talent-signup-2');
   };
 
-  const optArray = ['id1,country1', 'id2,country2', 'id3,country3'];
+  const optArray = ['id1,Germany', 'id2,Serbia', 'id3,Austria'];
 
   return (
     <BlueWrapper>
