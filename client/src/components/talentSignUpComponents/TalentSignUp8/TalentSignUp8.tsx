@@ -10,7 +10,7 @@ import logo from '../../../assets/logos/kara_gradient.png';
 import trash from '../../../assets/icons/trash.png';
 import { useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../services/reducers';
 import styles from './TalentSignUp8.module.scss';
 import dbService from '../../../services/dbService';
@@ -29,6 +29,10 @@ const TalentSignUp8: React.FC = () => {
   const talent = JSON.parse(sessionStorage.getItem('talent') as string);
   const [info, setInfo] = useState({ document: '' });
   const [list, setList] = useState<string[]>([]);
+
+  //REDUX
+  const dispatch = useDispatch();
+  const reduxTalent = useSelector<RootState>((state) => state.talent);
 
   //FILE MGMT
   const firebase = useFirebase();
@@ -99,13 +103,12 @@ const TalentSignUp8: React.FC = () => {
       onboardingComplete: true,
     };
     sessionStorage.setItem('talent', JSON.stringify(talentForDB));
-    //TO DOs:
-    //enter path to profile, fill redux
     dbService
       .postSignup(`/talents/${talentForDB.id}/signup`, talentForDB)
       .then((res) => console.log(res))
       .catch((e) => console.error(e));
-    history.push('/');
+    dispatch({ type: 'ADD_TALENT', payload: talent });
+    history.push('/profile');
   };
 
   async function handleFiles(e: React.MouseEvent<HTMLButtonElement>) {

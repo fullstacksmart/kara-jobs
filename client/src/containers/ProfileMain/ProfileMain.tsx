@@ -5,6 +5,8 @@ import AboutMe from '../../components/AboutMe';
 import TalentExperience from '../../components/TalentExperience';
 import { Experience, Language, Qualification, Skill } from '../../types/talent';
 import TalentQualification from '../../components/TalentQualification';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../services/reducers';
 import TalentSkills from '../../components/TalentSkills';
 
 // mocks
@@ -90,6 +92,8 @@ const skills: Skill[] = [
 ];
 
 const ProfileMain: React.FC<unknown> = () => {
+  const reduxTalent = useSelector<RootState>((state) => state.talent);
+  console.log(reduxTalent);
   return (
     <div className={styles.ProfileMain}>
       <MainInfo

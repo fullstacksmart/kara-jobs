@@ -14,6 +14,7 @@ interface returnType {
   complete: boolean;
   type: string;
   wrongLogin: boolean;
+  json?: Talent | Employer;
 }
 
 const server_address = 'http://localhost:3001';
@@ -71,13 +72,24 @@ const handleLogin = async (uid: string) => {
           };
         } else {
           const env = json.firstName ? 'talent' : 'employer';
-          setSessionStorage(json, env);
-          return {
-            page: json.onboardingPage,
-            complete: json.onboardingComplete,
-            type: env,
-            wrongLogin: false,
-          };
+          console.log('complete here');
+          if (json.onboardingComplete) {
+            return {
+              page: json.onboardingPage,
+              complete: json.onboardingComplete,
+              type: env,
+              wrongLogin: false,
+              json: json,
+            };
+          } else {
+            setSessionStorage(json, env);
+            return {
+              page: json.onboardingPage,
+              complete: json.onboardingComplete,
+              type: env,
+              wrongLogin: false,
+            };
+          }
         }
       },
       (error) => {
