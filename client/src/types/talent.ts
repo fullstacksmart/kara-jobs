@@ -56,12 +56,16 @@ interface AboutMe {
 //   updatedAt?: string;
 // }
 
-interface Qualification {
+export interface Qualification {
+  id?: number;
   TalentId?: string;
   institutionName?: string;
   degree?: string;
   fieldOfStudy?: string;
+  studyStartMonth?: number;
   studyStartYear?: number;
+  studyEndMonth?: number;
+  studyEndYear?: number;
   studyDescription?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -106,7 +110,7 @@ export interface Talent {
 }
 
 export interface Experience {
-  id: number;
+  id?: number;
   TalentId: string;
   occupationId: number;
   positionName: string;
