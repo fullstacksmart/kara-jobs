@@ -71,7 +71,8 @@ export interface Qualification {
   updatedAt?: string;
 }
 
-interface Language {
+export interface Language {
+  id: number;
   TalentId?: string;
   language?: string;
   languageLevel?: number;
@@ -79,7 +80,8 @@ interface Language {
   updatedAt?: string;
 }
 
-interface Skill {
+export interface Skill {
+  id: number;
   TalentId?: string;
   skill?: string;
   createdAt?: string;
