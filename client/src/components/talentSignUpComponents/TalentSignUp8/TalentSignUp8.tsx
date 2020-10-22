@@ -107,7 +107,7 @@ const TalentSignUp8: React.FC = () => {
       .postSignup(`/talents/${talentForDB.id}/signup`, talentForDB)
       .then((res) => console.log(res))
       .catch((e) => console.error(e));
-    dispatch({ type: 'ADD_TALENT', payload: talent });
+    dispatch({ type: 'ADD_TALENT', payload: talentForDB });
     history.push('/profile');
   };
 
