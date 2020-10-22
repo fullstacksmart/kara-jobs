@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CancelSave from '../CancelSave';
 import EditInfo from '../EditInfo';
 import PicEdit from '../PicEdit';
 import styles from './MainInfo.module.scss';
+import { useFirebase } from 'react-redux-firebase';
+import 'firebase/storage';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../services/reducers';
+import { Talent } from '../../types/talent';
 
 interface MainInfoAttributes {
   firstName: string;
@@ -19,6 +24,9 @@ const MainInfo: React.FC<MainInfoAttributes> = ({
   city,
   country,
 }: MainInfoAttributes) => {
+  const firebase = useFirebase();
+  const reduxTalent = useSelector<RootState>((state) => state.talent) as Talent;
+  console.log(reduxTalent);
   const [showPicEdit, setShowPicEdit] = useState(false);
   const [showInfoEdit, setShowInfoEdit] = useState(false);
   const [info, setInfo] = useState({
@@ -44,6 +52,31 @@ const MainInfo: React.FC<MainInfoAttributes> = ({
     // TODO: implement actual save to db
     setShowInfoEdit(false);
   };
+
+  const downloadImage = () => {
+    const uid = reduxTalent.id;
+    const storageRef = firebase
+      .storage()
+      .ref(`/talents/${uid}/images/profile-picture`);
+    storageRef
+      .getDownloadURL()
+      .then(function (url) {
+        if (url) {
+          console.log(url);
+          const img = document.getElementById(
+            'profile-picture',
+          ) as HTMLImageElement;
+          if (img) img.src = url;
+        }
+      })
+      .catch(function (e) {
+        console.log('download error', e);
+      });
+  };
+
+  useEffect(() => {
+    downloadImage();
+  }, []);
 
   const handleChange = (type: string, e: React.ChangeEvent<HTMLInputElement>) =>
     setInfo({ ...info, [type]: e.currentTarget.value });
@@ -106,7 +139,7 @@ const MainInfo: React.FC<MainInfoAttributes> = ({
   return (
     <div className={styles.MainInfo}>
       <div className={styles.PicContainer}>
-        <div className={styles.ProfilePic}></div>
+        <img src="" id="profile-picture" className={styles.ProfilePic}></img>
         <EditInfo onClick={() => setShowPicEdit(true)} />
       </div>
       <div className={styles.InfoText}>
