@@ -41,7 +41,10 @@ const TalentSignUp0: React.FC = () => {
     e.preventDefault();
     sessionStorage.setItem(
       'talent',
-      JSON.stringify(Object.assign(talent, { [e.target.id]: e.target.value })),
+      JSON.stringify({
+        ...talent,
+        [e.target.id]: e.target.value,
+      }),
     );
   };
 

@@ -52,12 +52,44 @@ const TalentSignUp5: React.FC = () => {
         }
       })
       .catch(function (e) {
-        console.log(e);
+        console.log('download error', e);
       });
   };
 
+  function handleFiles(this: HTMLInputElement) {
+    console.log('handling');
+    const file = this.files ? this.files[0] : null;
+    if (file) {
+      const storageRef = firebase
+        .storage()
+        .ref(`/talents/${uid}/images/profile-picture`);
+      const task = storageRef.put(file);
+      task.on(
+        'state_changed',
+        function progress(snapshot) {
+          const percentage =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('uploading percentage: ' + percentage);
+        },
+        function error(err) {
+          console.log('upload error', err);
+        },
+        function complete() {
+          console.log('complete');
+          downloadImage();
+        },
+      );
+    }
+  }
+
+  async function setEventListener() {
+    const input = (await document.getElementById('input')) as HTMLInputElement;
+    input.addEventListener('change', handleFiles, false);
+  }
+
   useEffect(() => {
     downloadImage();
+    setEventListener();
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -77,31 +109,6 @@ const TalentSignUp5: React.FC = () => {
       history.push('/talent-signup-3');
     }
   };
-
-  function handleFiles(this: HTMLInputElement) {
-    const file = this.files ? this.files[0] : null;
-    if (file) {
-      const storageRef = firebase
-        .storage()
-        .ref(`/talents/${uid}/images/profile-picture`);
-      const task = storageRef.put(file);
-      task.on(
-        'state_changed',
-        function progress(snapshot) {
-          const percentage = snapshot.bytesTransferred / snapshot.totalBytes;
-          if (percentage === 1) {
-            downloadImage();
-          }
-        },
-        function error(err) {
-          console.log(err);
-        },
-      );
-    }
-  }
-
-  const input = document.getElementById('input') as HTMLInputElement;
-  if (input) input.addEventListener('change', handleFiles, false);
 
   return (
     <BlueWrapper>
