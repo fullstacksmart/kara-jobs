@@ -6,6 +6,8 @@ import ArrayFrame from '../../components/ArrayFrame';
 import TalentExperience from '../../components/TalentExperience';
 import { Experience, Qualification } from '../../types/talent';
 import TalentQualification from '../../components/TalentQualification';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../services/reducers';
 
 // mocks
 
@@ -71,6 +73,8 @@ const qualifications: Qualification[] = [
 ];
 
 const ProfileMain: React.FC<unknown> = () => {
+  const reduxTalent = useSelector<RootState>((state) => state.talent);
+  console.log(reduxTalent);
   return (
     <div className={styles.ProfileMain}>
       <MainInfo

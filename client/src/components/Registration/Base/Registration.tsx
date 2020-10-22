@@ -10,6 +10,8 @@ import googleIcon from '../../../assets/icons/google.jpg';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 import { redirect } from '../../../services/redirect';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../../services/reducers';
 
 interface RegistrationProps {
   kind: 'talent' | 'employer' | 'login';
@@ -74,21 +76,20 @@ const Registration: React.FC<RegistrationProps> = ({
   const variant = variants[kind];
   const history = useHistory();
   const firebase = useFirebase();
+  const dispatch = useDispatch();
 
   async function handleRedirect(user: any) {
     const uid = user.uid;
-    const { page, complete, type, wrongLogin } = await redirect(uid, kind);
+    const { page, complete, type, wrongLogin, json } = await redirect(
+      uid,
+      kind,
+    );
     console.log(page, complete, type, wrongLogin);
-    // if (wrongLogin) {
-    //   history.push('/talent-signup-0');
-    //   return;
-    // }
     if (complete) {
       //TO DO: Redirect to Talent / Employer Profile page (depending on type)
-      //history.push('/');
-      const stuff = sessionStorage.getItem(type);
-      console.log(stuff);
-      //and set redux (get from session storage and clear session storage afterwards)
+      console.log(json);
+      dispatch({ type: 'ADD_TALENT', payload: json });
+      history.push('/profile');
     } else {
       history.push(`/${type}-signup-${page}`);
     }
