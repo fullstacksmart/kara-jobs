@@ -1,0 +1,34 @@
+@import '../../sass/globals';
+
+.EditPopup {
+  // TODO: style me!
+  background-color: rgba($kara-light-grey, 0.5);
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.InnerWindow {
+  background-color: $kara-light-grey;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 20rem;
+  justify-content: space-between;
+  left: 50%;
+  padding: 3rem;
+  padding-bottom: 1rem;
+  position: absolute;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  width: 30rem;
+}
+
+.Trashcan {
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
