@@ -1,0 +1,32 @@
+@import '../../sass/globals';
+
+.EditableList {
+  // TODO: style me!
+  max-width: 30rem;
+
+  ul {
+    padding-left: $main-info-left-padding;
+  }
+}
+
+.HeadingContainer {
+  display: flex;
+
+  h2 {
+    padding-right: 2rem;
+  }
+}
+
+.Icon {
+  cursor: pointer;
+}
+
+.ListItem {
+  overflow: visible;
+  position: relative;
+}
+
+.UnorderedList {
+  overflow: visible;
+  padding-top: 1rem;
+}

@@ -21,7 +21,7 @@ const TalentQualification: React.FC<TalentQualificationProps> = ({
   });
   return (
     <div className={styles.TalentQualification}>
-      <ArrayFrame items={qualificationComponents} header="Deine Erfahrung" />
+      <ArrayFrame items={qualificationComponents} header="Deine Ausbildung" />
     </div>
   );
 };

@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './ProfileMain.module.scss';
 import MainInfo from '../../components/MainInfo';
 import AboutMe from '../../components/AboutMe';
-import ArrayFrame from '../../components/ArrayFrame';
 import TalentExperience from '../../components/TalentExperience';
-import { Experience, Qualification } from '../../types/talent';
+import { Experience, Language, Qualification, Skill } from '../../types/talent';
 import TalentQualification from '../../components/TalentQualification';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../services/reducers';
+import TalentSkills from '../../components/TalentSkills';
 
 // mocks
 
@@ -72,6 +72,25 @@ const qualifications: Qualification[] = [
   },
 ];
 
+const languages: Language[] = [
+  {
+    id: 1,
+    language: 'serbisch',
+    languageLevel: 5,
+  },
+  {
+    id: 2,
+    language: 'deutsch',
+    languageLevel: 2,
+  },
+];
+const skills: Skill[] = [
+  {
+    id: 1,
+    skill: 'Alte Menschen',
+  },
+];
+
 const ProfileMain: React.FC<unknown> = () => {
   const reduxTalent = useSelector<RootState>((state) => state.talent);
   console.log(reduxTalent);
@@ -87,6 +106,7 @@ const ProfileMain: React.FC<unknown> = () => {
       <AboutMe title="Über Dich" />
       <TalentExperience experiences={experiences} />
       <TalentQualification qualifications={qualifications} />
+      <TalentSkills languages={languages} skills={skills} />
     </div>
   );
 };
