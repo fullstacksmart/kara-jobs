@@ -5,3 +5,5 @@ export type InitialState = {
   talent: Talent;
   employer: Employer;
 };
+
+export type RootState = InitialState;

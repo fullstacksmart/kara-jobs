@@ -3,31 +3,25 @@ import CancelSave from '../CancelSave';
 import EditInfo from '../EditInfo';
 import PicEdit from '../PicEdit';
 import styles from './MainInfo.module.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../types/redux';
+import { Talent } from '../../types/talent';
+import { saveInfo } from '../../services/dbService';
 
-interface MainInfoAttributes {
-  firstName: string;
-  lastName: string;
-  profession: string;
-  city: string;
-  country: string;
-}
-
-const MainInfo: React.FC<MainInfoAttributes> = ({
-  firstName,
-  lastName,
-  profession,
-  city,
-  country,
-}: MainInfoAttributes) => {
+const MainInfo: React.FC<unknown> = () => {
+  const talent = useSelector<RootState>((state) => state.talent) as Talent;
   const [showPicEdit, setShowPicEdit] = useState(false);
   const [showInfoEdit, setShowInfoEdit] = useState(false);
+  //mock
   const [info, setInfo] = useState({
-    firstName,
-    lastName,
-    profession,
-    city,
-    country,
+    firstName: talent.firstName || 'Max',
+    lastName: talent.lastName || 'Mustermann',
+    profession: talent.registrationExperience?.positionName || 'Krankenpfleger',
+    city: talent.city || 'Belgrad',
+    country: talent.country || 'Serbien',
   });
+  // mock
+  talent.id = talent.id || 'abcd';
   const [oldInfo, setOldInfo] = useState(info);
 
   const handleInfoClick = () => {
@@ -40,8 +34,9 @@ const MainInfo: React.FC<MainInfoAttributes> = ({
     setInfo(oldInfo);
   };
 
-  const saveInfoEdit = () => {
+  const saveInfoEdit = async () => {
     // TODO: implement actual save to db
+    await saveInfo({ ...info, id: talent.id }, 'basic', talent.id);
     setShowInfoEdit(false);
   };
 

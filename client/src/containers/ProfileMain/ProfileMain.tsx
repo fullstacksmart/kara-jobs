@@ -92,17 +92,11 @@ const skills: Skill[] = [
 ];
 
 const ProfileMain: React.FC<unknown> = () => {
-  const reduxTalent = useSelector<RootState>((state) => state.talent);
-  console.log(reduxTalent);
+  // const reduxTalent = useSelector<RootState>((state) => state.talent);
+  // console.log(reduxTalent);
   return (
     <div className={styles.ProfileMain}>
-      <MainInfo
-        firstName="Max"
-        lastName="Mustermann"
-        profession="Krankenpfleger"
-        city="Belgrad"
-        country="Serbien"
-      />
+      <MainInfo />
       <AboutMe title="Über Dich" />
       <TalentExperience experiences={experiences} />
       <TalentQualification qualifications={qualifications} />
