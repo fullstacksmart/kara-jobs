@@ -4,7 +4,8 @@ import MainInfo from '../../components/MainInfo';
 import AboutMe from '../../components/AboutMe';
 import ArrayFrame from '../../components/ArrayFrame';
 import TalentExperience from '../../components/TalentExperience';
-import { Experience } from '../../types/talent';
+import { Experience, Qualification } from '../../types/talent';
+import TalentQualification from '../../components/TalentQualification';
 
 // mocks
 
@@ -40,6 +41,35 @@ const experiences: Experience[] = [
   },
 ];
 
+const qualifications: Qualification[] = [
+  {
+    id: 1,
+    TalentId: 'abcd',
+    // 1: ''
+    // 2:
+    // 3:
+    degree: 'Zertifikat',
+    fieldOfStudy: 'Ausbildung zur Krankenpflegerin',
+    // 0:
+    // 1:
+    // 2:
+    institutionName: 'Schwarzwaldklinik',
+    studyStartMonth: 11,
+    studyStartYear: 2014,
+    studyEndYear: 2016,
+    studyEndMonth: 4,
+  },
+  {
+    id: 2,
+    TalentId: 'qzb',
+    fieldOfStudy: 'Anaesthesie',
+    degree: 'Dr. med.',
+    institutionName: 'Charité Berlin',
+    studyStartMonth: 1,
+    studyStartYear: 2015,
+  },
+];
+
 const ProfileMain: React.FC<unknown> = () => {
   return (
     <div className={styles.ProfileMain}>
@@ -52,8 +82,7 @@ const ProfileMain: React.FC<unknown> = () => {
       />
       <AboutMe title="Über Dich" />
       <TalentExperience experiences={experiences} />
-      <ArrayFrame items={[]} header="Deine Ausbildung" />
-
+      <TalentQualification qualifications={qualifications} />
     </div>
   );
 };
