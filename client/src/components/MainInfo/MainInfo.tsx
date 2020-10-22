@@ -36,7 +36,7 @@ const MainInfo: React.FC<unknown> = () => {
 
   const saveInfoEdit = async () => {
     // TODO: implement actual save to db
-    await saveInfo({ ...info, id: talent.id }, 'basic', talent.id);
+    await saveInfo({ ...talent, ...info }, 'all', talent.id);
     setShowInfoEdit(false);
   };
 

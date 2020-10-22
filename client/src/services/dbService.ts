@@ -31,9 +31,10 @@ export const saveInfo = async (
 ): Promise<unknown> => {
   store.dispatch({ type: 'ADD_TALENT', payload: info });
   const path = `/${kind}/${id}/${type}`;
+  console.log(info);
   console.log('path', path);
   return await fetchRequest(path, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
