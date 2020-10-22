@@ -1,6 +1,6 @@
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { SyntheticEvent } from 'react';
+import React, { CSSProperties, SyntheticEvent } from 'react';
 import styles from './EditInfo.module.scss';
 
 interface EditInfoAttributes {
@@ -9,16 +9,26 @@ interface EditInfoAttributes {
   left?: string;
   right?: string;
   onClick?: React.EventHandler<SyntheticEvent>;
+  style?: CSSProperties;
 }
 
 const EditInfo: React.FC<
   EditInfoAttributes & React.HTMLAttributes<HTMLHtmlElement>
-> = ({ top, bottom = '0', left, right = '0', onClick }: EditInfoAttributes) => {
-  const style: EditInfoAttributes = {};
-  if (top) style.top = top;
-  if (bottom) style.bottom = bottom;
-  if (left) style.left = left;
-  if (right) style.right = right;
+> = ({
+  top,
+  bottom = '0',
+  left,
+  right = '0',
+  onClick,
+  style,
+}: EditInfoAttributes) => {
+  const defaultStyle: EditInfoAttributes = {};
+  if (top) defaultStyle.top = top;
+  if (bottom) defaultStyle.bottom = bottom;
+  if (left) defaultStyle.left = left;
+  if (right) defaultStyle.right = right;
+
+  style = style || defaultStyle;
   return (
     <div className={styles.EditInfo} onClick={onClick} style={style}>
       <FontAwesomeIcon icon={faEdit} size="2x" className={styles.Icon} />
