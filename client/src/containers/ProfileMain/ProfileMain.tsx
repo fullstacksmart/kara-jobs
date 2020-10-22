@@ -8,6 +8,7 @@ import TalentQualification from '../../components/TalentQualification';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../services/reducers';
 import TalentSkills from '../../components/TalentSkills';
+import GradientWrapper from '../GradientWrapper';
 
 // mocks
 
@@ -95,13 +96,15 @@ const ProfileMain: React.FC<unknown> = () => {
   // const reduxTalent = useSelector<RootState>((state) => state.talent);
   // console.log(reduxTalent);
   return (
-    <div className={styles.ProfileMain}>
-      <MainInfo />
-      <AboutMe title="Über Dich" />
-      <TalentExperience experiences={experiences} />
-      <TalentQualification qualifications={qualifications} />
-      <TalentSkills languages={languages} skills={skills} />
-    </div>
+    <GradientWrapper>
+      <div className={styles.ProfileMain}>
+        <MainInfo />
+        <AboutMe title="Über Dich" />
+        <TalentExperience experiences={experiences} />
+        <TalentQualification qualifications={qualifications} />
+        <TalentSkills languages={languages} skills={skills} />
+      </div>
+    </GradientWrapper>
   );
 };
 

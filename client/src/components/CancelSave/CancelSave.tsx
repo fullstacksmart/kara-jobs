@@ -14,8 +14,8 @@ const CancelSave: React.FC<CancelSaveProps> = ({
 }: CancelSaveProps) => {
   return (
     <div className={styles.CancelSave} {...props}>
-      <Button onClick={onCancel}>zurück</Button>
-      <Button onClick={onSave}>speichern</Button>
+      <Button onClick={onCancel}>Zurück</Button>
+      <Button onClick={onSave}>Speichern</Button>
     </div>
   );
 };

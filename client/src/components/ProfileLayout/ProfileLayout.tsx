@@ -19,7 +19,7 @@ const ProfileLayout: React.FC<ProfileLayoutAttributes> = ({
       <div className={styles.ProfileBody}>
         <div className={styles.ProfileNav}>{nav}</div>
         <div className={styles.ProfileMain}>{main}</div>
-        <div className={styles.ProfileAdds}>{adds}</div>
+        {/* <div className={styles.ProfileAdds}>{adds}</div> */}
       </div>
     </div>
   );

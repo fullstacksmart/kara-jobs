@@ -1,15 +1,14 @@
 @import '../../sass/globals';
 
 .Border {
-  // TODO: style me!
-  border: 2px solid $kara-black;
-  border-radius: 2rem;
+  border: 2px solid $kara-dark-blue;
+  border-radius: 1rem;
   padding: 0 $main-info-left-padding;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
 
   > *:not(:last-child) {
-    border-bottom: 2px solid $kara-black;
+    border-bottom: 2px solid $kara-dark-blue;
     margin-left: -1rem;
     margin-right: -1rem;
     padding-left: 1rem;
@@ -20,7 +19,10 @@
 .HeaderInset {
   display: flex;
   justify-content: space-between;
-  padding: 0 $main-info-left-padding;
+  max-width: 40rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .PlusButton {
