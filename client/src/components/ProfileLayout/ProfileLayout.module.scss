@@ -4,8 +4,7 @@ $nav-width: 20%;
 $add-width: 20%;
 
 .ProfileLayout {
-  // TODO: style me!
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   width: 100vw;
 }
@@ -13,7 +12,7 @@ $add-width: 20%;
 .ProfileBody {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - #{$profile-layout-header-height});
+  min-height: calc(100vh - #{$profile-layout-header-height});
 }
 
 .ProfileMain {
@@ -24,10 +23,12 @@ $add-width: 20%;
 
 .ProfileNav {
   background: $kara-light-blue;
+  border-radius: 0 10px 0 0;
   color: $kara-cream-white;
-  height: 100%;
-  padding-left: 2rem;
-  padding-top: 3rem;
+  min-height: 100%;
+  min-width: 15rem;
+  padding-left: 1rem;
+  padding-top: 2rem;
   width: $nav-width;
 }
 
