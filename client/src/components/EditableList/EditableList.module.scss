@@ -1,8 +1,11 @@
 @import '../../sass/globals';
 
 .EditableList {
-  // TODO: style me!
-  max-width: 30rem;
+  font-size: 0.8rem;
+  max-width: 35rem;
+  min-height: 5rem;
+  min-width: 10rem;
+  padding-bottom: 1.5rem;
 
   ul {
     padding-left: $main-info-left-padding;
@@ -10,10 +13,12 @@
 }
 
 .HeadingContainer {
+  align-items: flex-end;
   display: flex;
 
   h2 {
-    padding-right: 2rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
   }
 }
 
@@ -22,11 +27,14 @@
 }
 
 .ListItem {
+  align-items: flex-end;
+  display: flex;
+  justify-content: flex-start;
+  min-height: 3rem;
   overflow: visible;
   position: relative;
 }
 
 .UnorderedList {
   overflow: visible;
-  padding-top: 1rem;
 }

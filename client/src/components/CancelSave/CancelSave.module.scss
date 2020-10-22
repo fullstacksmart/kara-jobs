@@ -4,6 +4,19 @@
   align-items: space-between;
   align-self: end;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 100%;
+}
+
+.CancelSave > Button {
+
+  background-color: $kara-light-blue;
+  color: rgb(255, 255, 255);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+
+}
+
+.CancelSave > Button:hover {
+  background-color: $kara-dark-blue;
 }

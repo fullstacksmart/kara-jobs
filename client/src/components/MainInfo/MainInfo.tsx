@@ -106,7 +106,7 @@ const MainInfo: React.FC<MainInfoAttributes> = ({
   return (
     <div className={styles.MainInfo}>
       <div className={styles.PicContainer}>
-        <div className={styles.ProfilePic}></div>
+        <img className={styles.ProfilePic}></img>
         <EditInfo onClick={() => setShowPicEdit(true)} />
       </div>
       <div className={styles.InfoText}>
