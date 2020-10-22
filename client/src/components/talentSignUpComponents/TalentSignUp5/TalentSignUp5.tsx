@@ -56,29 +56,8 @@ const TalentSignUp5: React.FC = () => {
       });
   };
 
-  useEffect(() => {
-    downloadImage();
-  }, []);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const talentObj = {
-      ...talent,
-      onboardingPage: 6,
-    };
-    sessionStorage.setItem('talent', JSON.stringify(talentObj));
-    history.push('/talent-signup-6');
-  };
-
-  const redirect = () => {
-    if (talent.registrationQualification) {
-      history.push('/talent-signup-4');
-    } else {
-      history.push('/talent-signup-3');
-    }
-  };
-
   function handleFiles(this: HTMLInputElement) {
+    console.log('handling');
     const file = this.files ? this.files[0] : null;
     if (file) {
       const storageRef = firebase
@@ -103,8 +82,33 @@ const TalentSignUp5: React.FC = () => {
     }
   }
 
-  const input = document.getElementById('input') as HTMLInputElement;
-  if (input) input.addEventListener('change', handleFiles, false);
+  async function setEventListener() {
+    const input = (await document.getElementById('input')) as HTMLInputElement;
+    input.addEventListener('change', handleFiles, false);
+  }
+
+  useEffect(() => {
+    downloadImage();
+    setEventListener();
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const talentObj = {
+      ...talent,
+      onboardingPage: 6,
+    };
+    sessionStorage.setItem('talent', JSON.stringify(talentObj));
+    history.push('/talent-signup-6');
+  };
+
+  const redirect = () => {
+    if (talent.registrationQualification) {
+      history.push('/talent-signup-4');
+    } else {
+      history.push('/talent-signup-3');
+    }
+  };
 
   return (
     <BlueWrapper>
