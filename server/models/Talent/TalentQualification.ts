@@ -32,6 +32,9 @@ export class TalentQualification extends Model<TalentQualification> {
   studyStartYear!: number;
 
   @Column(DataType.DECIMAL(4, 0))
+  studyEndYear!: number;
+
+  @Column(DataType.DECIMAL(4, 0))
   studyDescription!: string;
 
   @BelongsTo(() => Talent as typeof Model)
