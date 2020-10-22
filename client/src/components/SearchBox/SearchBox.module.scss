@@ -2,14 +2,15 @@
 
 .SearchBox {
   background-color: $kara-white;
-  border-radius: 1rem;
+  border: 1px solid $kara-dark-blue;
+  border-radius: 7px;
   color: $kara-black;
   height: 2.2rem;
   padding-left: 0.5rem;
-}
 
-.InputBox {
-  border-width: 0;
-  margin-left: 0.5rem;
-  outline: none;
+  .InputBox {
+    border-width: 0;
+    margin-left: 0.5rem;
+    outline: none;
+  }
 }

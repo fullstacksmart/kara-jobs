@@ -1,37 +1,51 @@
 @import '../../sass/globals';
 
-$padding-container: 4rem;
+$padding-container: 3rem;
 $padding-items: 3rem;
 
 .ProfileLayoutHeader {
   align-items: center;
-  background: $kara-dark-blue;
+  background: rgb(255, 255, 255);
   color: $kara-cream-white;
   display: flex;
   height: $profile-layout-header-height;
   justify-content: space-between;
-  padding: 0 $padding-container;
-}
+  padding: $padding-container;
 
-.Half {
-  align-items: flex-end;
-  display: flex;
 
-  > :not(:last-child) {
-    padding-right: $padding-items;
-  }
-
-  > * {
-    align-items: center;
+  .Half {
+    align-items: flex-end;
     display: flex;
+    left: -2rem;
+    position: relative;
+  
+    > :not(:last-child) {
+      padding-right: $padding-items;
+    }
+  
+    > * {
+      align-items: center;
+      display: flex;
+    }
   }
 
-  > img {
-    height: $profile-layout-header-height * 0.6;
+  .Logo {
+    max-height: 3rem;
     width: auto;
   }
+  
+  .Link {
+    color: inherit;
+  }
+
+  .IconBackground {
+    align-items: center;
+    background-color: $kara-light-blue;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    padding: 0.7rem;
+  }
+   
 }
 
-.Link {
-  color: inherit;
-}
