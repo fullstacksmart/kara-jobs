@@ -13,7 +13,7 @@ const rrfConfig = {};
 
 const initialStore = {};
 
-const store = createStore(rootReducer, initialStore);
+export const store = createStore(rootReducer, initialStore);
 
 const rrfProps = {
   firebase,
