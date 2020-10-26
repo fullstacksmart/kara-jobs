@@ -14,10 +14,21 @@ const TalentExperiences: React.FC<TalentExperienceProps> = ({
 }: TalentExperienceProps) => {
   const [currentExperiences, setCurrentExperiences] = useState(experiences);
   const [showAdder, setShowAdder] = useState(false);
+  const [currentExperience, setCurrentExperience] = useState<
+    Experience | undefined
+  >(undefined);
 
   const experienceComponents = currentExperiences.map((experience) => {
+    const showThisExperience = () => {
+      setShowAdder(true);
+      setCurrentExperience(experience);
+    };
     return (
-      <TalentSingleExperience key={experience.id} experience={experience} />
+      <TalentSingleExperience
+        key={experience.id}
+        experience={experience}
+        setShowAdder={showThisExperience}
+      />
     );
   });
   return (
@@ -31,6 +42,7 @@ const TalentExperiences: React.FC<TalentExperienceProps> = ({
         <ExperienceAdder
           setExperiences={setCurrentExperiences}
           setShowAdder={setShowAdder}
+          experience={currentExperience}
         />
       ) : (
         <></>

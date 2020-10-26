@@ -7,6 +7,7 @@ interface TextInputProps {
   required?: boolean;
   type?: string;
   minlength?: number;
+  value?: string;
 }
 
 const TextInput: React.FC<
@@ -17,6 +18,7 @@ const TextInput: React.FC<
   required,
   type = 'text',
   minlength,
+  value,
   ...props
 }: TextInputProps) => {
   return (
@@ -31,6 +33,7 @@ const TextInput: React.FC<
         name={id}
         required={required}
         minLength={minlength}
+        value={value}
         {...props}
       ></input>
     </div>

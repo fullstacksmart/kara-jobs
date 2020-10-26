@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { getDuration } from '../../services/dateService';
 import { Experience } from '../../types/talent';
 import EditInfo from '../EditInfo';
@@ -7,10 +7,12 @@ import styles from './TalentSingleExperience.module.scss';
 
 interface TalentSingleExperienceProps {
   experience: Experience;
+  setShowAdder?: (event: SyntheticEvent<Element, Event>) => void;
 }
 
 const TalentSingleExperience: React.FC<TalentSingleExperienceProps> = ({
   experience,
+  setShowAdder,
 }: TalentSingleExperienceProps) => {
   const durationString = getDuration(
     experience.positionStartMonth,
@@ -43,7 +45,7 @@ const TalentSingleExperience: React.FC<TalentSingleExperienceProps> = ({
       </div>
       <div className={styles.Half}>
         <div className={styles.EditContainer}>
-          <EditInfo top="0" />
+          <EditInfo top="0" onClick={setShowAdder} />
         </div>
         {durationString}
       </div>
