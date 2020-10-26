@@ -9,9 +9,9 @@ For talents: Find a job with a German health care institution, apply online, and
 For employers: Attract international health care professionals. Choose whose applications you would like to receive.
 
 ## Screenshots
-<div>
+<div align="center">
   <img width=200px src="./readme_images/gifs/kara-mobile.gif" alt="mobile view" style="zoom: 33%;" />
-  <img width=640px src="./readme_images/gifs/kara-desktop.gif" alt="desktop view" style="zoom: 33%;" />
+  <img width=630px src="./readme_images/gifs/kara-desktop.gif" alt="desktop view" style="zoom: 33%;" />
 </div>
 
 
