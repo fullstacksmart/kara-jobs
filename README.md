@@ -31,8 +31,8 @@ For employers: Attract international health care professionals. Choose whose app
 
 ## Developers
 
-- Tobias Niklas Becker – backend-frontend integration, frontend functionalities: [github](https://github.com/beckertobias) – [linkedIn](https://www.linkedin.com/in/tobias-n-becker/)
-- Camila Müller-Ludwig, frontend and UI design: [github](https://github.com/camifernweh) – [linkedIn](https://www.linkedin.com/in/cmullerludwig/)
-- Edu Pinto, frontend and UI design: [github](https://github.com/pintoedo) – [linekedIn](https://www.linkedin.com/in/pintocodes/)
+- Tobias Niklas Becker – backend-frontend integration, frontend functionalities: [github](https://github.com/beckertobias) – [LinkedIn](https://www.linkedin.com/in/tobias-n-becker/)
+- Camila Müller-Ludwig, frontend and UI design: [github](https://github.com/camifernweh) – [LinkedIn](https://www.linkedin.com/in/cmullerludwig/)
+- Edu Pinto, frontend and UI design: [github](https://github.com/pintoedo) – [LinekedIn](https://www.linkedin.com/in/pintocodes/)
 
-- Alex Steinberg – backend lead, frontend collaborator: [github](https://github.com/atsteinberg) – [linkedIn](www.linkedin.com/in/atsteinberg) – [web](https://atsteinberg.github.io)
+- Alex Steinberg – backend lead, frontend collaborator: [github](https://github.com/atsteinberg) – [LinkedIn](www.linkedin.com/in/atsteinberg) – [web](https://atsteinberg.github.io)
