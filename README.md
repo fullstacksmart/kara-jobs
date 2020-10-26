@@ -1,10 +1,10 @@
-#Kara
+# Kara
 
 <img src="./client/public/assets/kara_dark.png" alt="kara" style="zoom:50%;" />
 
 Kara is a job portal that connects international health care professionals with German employers.
 
-For talents: Find a job with a Germam health care institution, apply online, and manage your approbation process. 
+For talents: Find a job with a German health care institution, apply online, and manage your approbation process. 
 
 For employers: Attract international health care professionals. Choose whose applications you would like to receive. 
 
