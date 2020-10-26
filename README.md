@@ -1,4 +1,4 @@
-#Kara
+# Kara
 
 <img src="./client/public/assets/kara_dark.png" alt="kara" style="zoom:50%;" />
 
