@@ -1,16 +1,16 @@
 # Kara
 
-<img src="./client/public/assets/kara_dark.png" alt="kara" style="zoom:50%;" />
+<img src="./readme_images/kara_banner.png" alt="kara" style="zoom:50%;" />
 
 Kara is a job portal that connects international health care professionals with German employers.
 
-For talents: Find a job with a German health care institution, apply online, and manage your approbation process. 
+For talents: Find a job with a German health care institution, apply online, and manage your approbation process.
 
-For employers: Attract international health care professionals. Choose whose applications you would like to receive. 
+For employers: Attract international health care professionals. Choose whose applications you would like to receive.
 
 ## Screenshots
 
-<img src="/Users/dev/Documents/projects/codeworks/senior/thesis/kara/readme_images/iphone.png" alt="iphone" style="zoom: 33%;" />
+<img src="./readme_images/iphoneCentered.png" alt="iphone" style="zoom: 33%;" />
 
 ## Getting started
 
@@ -21,18 +21,18 @@ For employers: Attract international health care professionals. Choose whose app
 
 ## Built with
 
-* [React](https://reactjs.org/) 
-* [Redux](https://redux.js.org/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Firebase](https://firebase.google.com/)
-* [Koa](https://koajs.com/)
-* [PostgreSQL](https://www.postgresql.org/)
-* [Blood, Sweat & Tears](https://bloodsweatandtears.com/)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Firebase](https://firebase.google.com/)
+- [Koa](https://koajs.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Blood, Sweat & Tears](https://bloodsweatandtears.com/)
 
 ## Developers
 
-* Tobias Becker – backend-frontend integration, frontend functionalities: [github](https://github.com/beckertobias) – [linkedin](https://www.linkedin.com/in/tobias-n-becker/) 
-* Camila Müller-Ludwig, frontend and UI design: [github](https://github.com/camifernweh) – [linkedin](https://www.linkedin.com/in/cmullerludwig/)
-* Edu Pinto, frontend and UI design: [github](https://github.com/pintoedo) – [linekedin](https://www.linkedin.com/in/pintocodes/)
+- Tobias Becker – backend-frontend integration, frontend functionalities: [github](https://github.com/beckertobias) – [linkedin](https://www.linkedin.com/in/tobias-n-becker/)
+- Camila Müller-Ludwig, frontend and UI design: [github](https://github.com/camifernweh) – [linkedin](https://www.linkedin.com/in/cmullerludwig/)
+- Edu Pinto, frontend and UI design: [github](https://github.com/pintoedo) – [linekedin](https://www.linkedin.com/in/pintocodes/)
 
-* Alex Steinberg – backend lead, frontend collaborator: [github](https://github.com/atsteinberg) – [linkedin](www.linkedin.com/in/atsteinberg) – [web](https://atsteinberg.github.io)
+- Alex Steinberg – backend lead, frontend collaborator: [github](https://github.com/atsteinberg) – [linkedin](www.linkedin.com/in/atsteinberg) – [web](https://atsteinberg.github.io)
