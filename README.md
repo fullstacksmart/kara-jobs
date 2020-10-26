@@ -10,6 +10,8 @@ For employers: Attract international health care professionals. Choose whose app
 
 ## Screenshots
 
+<img src="/Users/dev/Documents/projects/codeworks/senior/thesis/kara/readme_images/iphone.png" alt="iphone" style="zoom: 33%;" />
+
 ## Getting started
 
 1. clone repo: <code>git clone https://github.com/fullstacksmart/kara-jobs.git</code>
